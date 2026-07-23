@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>足球战术分析智能体</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="/static/css/style.css?v=6" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <span class="logo-mark"></span>
+      <div class="header-titles">
+        <h1>足球战术分析智能体</h1>
+        <span class="header-sub">Football Tactical Multi-Agent</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span id="status-badge" class="status-badge offline">未加载</span>
+      <span id="status-detail" class="status-detail"></span>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <!-- ════════════ 左栏：控制 + 主对话 ════════════ -->
+    <section class="panel panel-left">
+      <!-- 数据上传 -->
+      <div class="card upload-section">
+        <div class="card-title"><span class="ct-dot"></span>数据上传</div>
+        <div class="upload-grid">
+          <label class="upload-item" data-kind="person">
+            <input id="person-input" type="file" accept=".csv" hidden />
+            <div class="upload-slot">
+              <div class="upload-icon">P</div>
+              <div class="upload-meta">
+                <div class="upload-label">球员轨迹 person</div>
+                <div class="upload-filename" id="person-name">未选择</div>
+              </div>
+            </div>
+          </label>
+          <label class="upload-item" data-kind="ball">
+            <input id="ball-input" type="file" accept=".csv" hidden />
+            <div class="upload-slot">
+              <div class="upload-icon">B</div>
+              <div class="upload-meta">
+                <div class="upload-label">足球轨迹 ball</div>
+                <div class="upload-filename" id="ball-name">未选择</div>
+              </div>
+            </div>
+          </label>
+        </div>
+        <button id="upload-btn" class="btn btn-primary" disabled>上传并加载</button>
+        <div id="upload-status" class="upload-status"></div>
+      </div>
+
+      <!-- 快捷指令 -->
+      <div class="card quick-section">
+        <div class="card-title"><span class="ct-dot"></span>快捷指令</div>
+        <div class="quick-grid">
+          <button class="chip" data-prompt="help">帮助</button>
+          <button class="chip" data-prompt="整体分析一下这场比赛">整体分析</button>
+          <button class="chip" data-prompt="谁是本场比赛核心球员">核心球员</button>
+          <button class="chip" data-prompt="比赛节奏如何">比赛节奏</button>
+          <button class="chip cf-trigger" id="cf-trigger-btn">反事实工作台</button>
+        </div>
+      </div>
+
+      <!-- 主对话区（仅常规问答） -->
+      <div class="card chat-section">
+        <div class="chat-header">
+          <div class="card-title no-margin"><span class="ct-dot"></span>对话</div>
+          <button id="clear-chat-btn" class="btn btn-ghost btn-sm" title="清除上下文">清除</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+          <div class="chat-empty">上传数据后即可开始对话。支持：聚焦解说、风格分析、球员对比、整体战术、数据核验……</div>
+        </div>
+        <div class="chat-input-wrap">
+          <textarea id="chat-input" class="chat-input" rows="2" placeholder="输入问题，回车发送（Shift+回车换行）…"></textarea>
+          <button id="chat-send" class="btn btn-primary btn-send">发送</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════ 右栏：可视化 + 对比 ════════════ -->
+    <section class="panel panel-right">
+      <div class="viz-tabs">
+        <button class="viz-tab active" data-tab="original">原始轨迹</button>
+        <button class="viz-tab" data-tab="compare">对比展示</button>
+        <span class="tab-indicator" id="tab-indicator"></span>
+      </div>
+
+      <!-- 原始轨迹 -->
+      <div class="viz-pane active" id="pane-original">
+        <div class="viz-canvas-wrap glass">
+          <canvas id="canvas-original" width="1320" height="820"></canvas>
+          <div class="viz-empty" id="viz-empty">上传数据后展示原始轨迹</div>
+        </div>
+        <div class="viz-controls">
+          <button id="play-btn" class="btn btn-ghost btn-sm" disabled>播放</button>
+          <input id="frame-slider" class="frame-slider" type="range" min="0" max="0" value="0" disabled />
+          <span id="frame-label" class="frame-label">帧 0 / 0</span>
+        </div>
+      </div>
+
+      <!-- 对比展示 -->
+      <div class="viz-pane" id="pane-compare">
+        <div class="compare-toolbar">
+          <div class="compare-mode">
+            <label><input type="radio" name="compare-mode" value="split" checked /> 分屏对比</label>
+            <label><input type="radio" name="compare-mode" value="overlay" /> 叠加对比</label>
+            <button id="cmp-focus-btn" class="cmp-focus-btn" hidden title="悬停高亮另一条轨迹，点击切换主要轨迹">
+              <span class="cmp-focus-icon">⇄</span><span id="cmp-focus-label">聚焦：原始</span>
+            </button>
+          </div>
+          <div class="compare-source">
+            <span>反事实</span>
+            <select id="cf-select"><option value="">暂无</option></select>
+            <button id="cf-load-btn" class="btn btn-ghost btn-sm">加载</button>
+          </div>
+        </div>
+        <div class="compare-body" id="compare-body">
+          <div class="viz-canvas-wrap half glass">
+            <div class="canvas-caption" id="cap-left">原始轨迹</div>
+            <canvas id="canvas-left" width="1320" height="820"></canvas>
+          </div>
+          <div class="viz-canvas-wrap half glass">
+            <div class="canvas-caption" id="cap-right">反事实轨迹</div>
+            <canvas id="canvas-right" width="1320" height="820"></canvas>
+          </div>
+        </div>
+        <div class="viz-controls">
+          <button id="cmp-play-btn" class="btn btn-ghost btn-sm" disabled>播放</button>
+          <input id="cmp-slider" class="frame-slider" type="range" min="0" max="0" value="0" disabled />
+          <span id="cmp-frame-label" class="frame-label">帧 0 / 0</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ════════════ 反事实工作台（二级菜单）════════════ -->
+  <!-- 解耦：左侧结构化表单 + 右侧自然语言对话，均在二级菜单内，不污染主对话区 -->
+  <div class="modal-overlay" id="cf-modal" hidden>
+    <div class="modal modal-wide">
+      <div class="modal-header">
+        <h3>反事实工作台</h3>
+        <button class="modal-close" id="cf-modal-close" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body cf-workbench">
+        <!-- 左：结构化表单 -->
+        <div class="cf-form-pane">
+          <div class="cf-pane-title">结构化生成</div>
+          <div class="form-row">
+            <label>主体球员</label>
+            <select id="cf-subject"><option value="">请先上传数据</option></select>
+          </div>
+          <div class="form-row">
+            <label>干预时间（秒）</label>
+            <input id="cf-time" type="number" min="0" step="0.1" value="3.0" />
+          </div>
+          <div class="form-row">
+            <label>替换动作</label>
+            <select id="cf-action">
+              <option value="shoot">直接射门</option>
+              <option value="dribble">盘带突破</option>
+              <option value="pass">传球</option>
+              <option value="clear">解围</option>
+              <option value="hold">控球</option>
+            </select>
+          </div>
+          <div class="form-row" id="cf-target-row" hidden>
+            <label>传球目标</label>
+            <select id="cf-target"><option value="">不指定</option></select>
+          </div>
+          <div class="form-row">
+            <label>生成时长（秒，0 = 补全到结束）</label>
+            <input id="cf-duration" type="number" min="0" step="0.5" value="0" />
+          </div>
+          <div class="form-tip">提交后调用 MCTS 反事实推演并生成轨迹 CSV，自动在右侧对比区加载。</div>
+          <button class="btn btn-primary cf-form-submit" id="cf-submit">开始推演</button>
+        </div>
+
+        <!-- 右：自然语言反事实对话（独立消息区） -->
+        <div class="cf-chat-pane">
+          <div class="cf-pane-title">自然语言指令</div>
+          <div id="cf-chat-messages" class="cf-chat-messages">
+            <div class="cf-chat-empty">用自然语言描述反事实设想，由大模型理解后生成数据。<br/>例如：如果7号在第3秒直接射门，生成后面5秒的轨迹数据</div>
+          </div>
+          <div class="cf-chat-input-wrap">
+            <textarea id="cf-chat-input" class="cf-chat-input" rows="2" placeholder="描述反事实场景，回车发送…"></textarea>
+            <button id="cf-chat-send" class="btn btn-primary btn-sm">发送</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/viz.js?v=6"></script>
+  <script src="/static/js/upload.js?v=6"></script>
+  <script src="/static/js/chat.js?v=6"></script>
+  <script src="/static/js/counterfactual.js?v=6"></script>
+  <script src="/static/js/app.js?v=6"></script>
+</body>
+</html>
