@@ -39,12 +39,36 @@ def reset_stream_callback(token: contextvars.Token) -> None:
     _stream_callback.reset(token)
 
 
+def get_stream_callback() -> Callable[[str], None] | None:
+    """只读访问器：返回当前作用域的流式回调（Harness 观测/回放用，不修改状态）。"""
+    return _stream_callback.get()
+
+
+# ── 调用分派器（Harness 最小钩子） ─────────────────────────────
+# 默认 None：call_llm 直接执行 _call_llm_impl，行为与原实现完全一致
+# （仅多一次 None 判断，语义恒等）。Harness 在 trace/record/replay 模式下
+# 注入包装器；注入器接收与 call_llm 完全相同的参数，返回值语义相同（str | None）。
+_LlmDispatcher = Callable[..., "str | None"]
+_llm_dispatcher: _LlmDispatcher | None = None
+
+
+def set_llm_dispatcher(dispatcher: _LlmDispatcher | None) -> None:
+    """注入/清除 LLM 调用分派器（None = 恢复默认直调实现）。"""
+    global _llm_dispatcher
+    _llm_dispatcher = dispatcher
+
+
+def get_llm_dispatcher() -> _LlmDispatcher | None:
+    """只读访问器：返回当前分派器。"""
+    return _llm_dispatcher
+
+
 @dataclass
 class LlmConfig:
     api_key: str
     model: str = "deepseek-v4-flash"
-    # base_url: str = "https://api.deepseek.com"
-    base_url: str = "https://opencode.ai/zen/go"
+    base_url: str = "https://api.deepseek.com"
+    # base_url: str = "https://opencode.ai/zen/go"
     temperature: float = 0.85
     # 推理型模型（响应含 reasoning_content）的思维链与正文共享该预算：
     # 复杂/多子问题的推理可消耗 3000+ tokens，2048 会被推理耗尽导致正文为空，
@@ -86,6 +110,26 @@ def call_llm(
 
     返回生成的文本内容，失败返回 None。
     """
+    if _llm_dispatcher is not None:
+        return _llm_dispatcher(
+            system_prompt, user_message,
+            config=config, max_tokens=max_tokens, retries=retries, stream=stream,
+        )
+    return _call_llm_impl(
+        system_prompt, user_message,
+        config=config, max_tokens=max_tokens, retries=retries, stream=stream,
+    )
+
+
+def _call_llm_impl(
+    system_prompt: str,
+    user_message: str,
+    config: LlmConfig | None = None,
+    max_tokens: int | None = None,
+    retries: int = 1,
+    stream: bool = False,
+) -> str | None:
+    """call_llm 的默认实现（原 call_llm 函数体，一字未动）。"""
     if config is None:
         config = load_llm_config()
     if config is None:

@@ -1,0 +1,12 @@
+{
+  "name": "standard",
+  "seed": 42,
+  "dataset": {
+    "person": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_person2d.csv",
+    "ball": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_soccer3d.csv"
+  },
+  "entry": "script",
+  "script_file": "harness/scripts/standard_12s.txt",
+  "created_at": "2026-08-04 14:51:50",
+  "format_version": 1
+}

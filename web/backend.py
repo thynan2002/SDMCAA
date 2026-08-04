@@ -35,7 +35,7 @@ _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(_PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROJECT_ROOT))
 
-from agents.session.manager import SessionManager
+from harness import Harness, HarnessConfig
 from agents.llm_client import set_stream_callback, reset_stream_callback
 from agents.progress import set_progress_callback, reset_progress_callback
 from agents.player.tracker import _read_csv_rows, _safe_int
@@ -58,8 +58,10 @@ load_dotenv(_PROJECT_ROOT / ".env")
 
 app = FastAPI(title="足球战术分析智能体", version="1.0")
 
-# 全局单例会话（本地单用户）
-session: SessionManager = SessionManager()
+# 全局单例 Harness（本地单用户）；Harness 透明包装 SessionManager，
+# 默认 passthrough 模式（仅 trace 观测），行为与直接使用 SessionManager 等价。
+# 可通过环境变量 HARNESS_MODE/HARNESS_GOLDEN_DIR 等切换 record/replay。
+harness: Harness = Harness(HarnessConfig.from_env())
 
 
 # ════════════════════════════════════════════════════════════════
@@ -98,10 +100,10 @@ async def no_cache_static(request, call_next):
 
 @app.get("/api/status")
 async def get_status():
-    loaded = session.corpus is not None
+    loaded = harness.corpus is not None
     info: dict[str, Any] = {"loaded": loaded}
-    if loaded and session.corpus is not None:
-        c = session.corpus
+    if loaded and harness.corpus is not None:
+        c = harness.corpus
         all_frames = set()
         for p in c.players.values():
             all_frames.update(p.frames)
@@ -115,19 +117,19 @@ async def get_status():
             "frame_min": frame_min,
             "frame_max": frame_max,
             "duration_seconds": round(frame_max / FPS, 2),
-            "person_file": Path(session._data_files[0]).name if session._data_files[0] else "",
-            "ball_file": Path(session._data_files[1]).name if session._data_files[1] else "",
+            "person_file": Path(harness.data_files[0]).name if harness.data_files[0] else "",
+            "ball_file": Path(harness.data_files[1]).name if harness.data_files[1] else "",
         })
     return info
 
 
 @app.get("/api/players")
 async def get_players():
-    if session.corpus is None:
+    if harness.corpus is None:
         return []
     players = []
     team_map = {"A": "A队", "B": "B队", "C": "门将"}
-    for p in sorted(session.corpus.players.values(), key=lambda x: _safe_sort(x.track_id)):
+    for p in sorted(harness.corpus.players.values(), key=lambda x: _safe_sort(x.track_id)):
         players.append({
             "jersey": p.jersey_label,
             "track_id": p.track_id,
@@ -158,9 +160,8 @@ async def upload_files(
             f.write(await fobj.read())
 
     # 重建一个全新会话，避免旧数据残留
-    global session
-    session = SessionManager()
-    ok = session.load_data(person_path, ball_path)
+    harness.reset()
+    ok = harness.load_data(person_path, ball_path)
     if not ok:
         return JSONResponse(
             {"ok": False, "error": "数据加载失败，请检查 CSV 格式（person: frame_num,track_id,x,y,color; ball: frame_num,x,y,z）"},
@@ -175,7 +176,7 @@ async def upload_files(
 
 @app.post("/api/chat")
 async def chat(message: str = Form(...)):
-    if session.corpus is None:
+    if harness.corpus is None:
         return JSONResponse({"error": "请先上传数据文件"}, status_code=400)
 
     async def event_gen():
@@ -189,7 +190,7 @@ async def chat(message: str = Form(...)):
 
         token = set_stream_callback(cb)
         ptoken = set_progress_callback(progress_cb)
-        task = asyncio.create_task(asyncio.to_thread(session.handle_input, message))
+        task = asyncio.create_task(asyncio.to_thread(harness.handle_input, message))
         last_progress = asyncio.get_event_loop().time()
         try:
             # 立即发送一个进度事件，让前端马上进入"生成中"状态
@@ -235,8 +236,7 @@ async def chat(message: str = Form(...)):
 
 @app.post("/api/clear")
 async def clear_session():
-    global session
-    session = SessionManager()
+    harness.reset()
     return {"ok": True}
 
 
@@ -252,7 +252,7 @@ async def counterfactual_generate(
     altered_target: str = Form(""),
     duration_seconds: float = Form(0.0),
 ):
-    if session.corpus is None:
+    if harness.corpus is None:
         return JSONResponse({"error": "请先上传数据文件"}, status_code=400)
 
     async def event_gen():
@@ -268,7 +268,7 @@ async def counterfactual_generate(
         ptoken = set_progress_callback(progress_cb)
 
         def run():
-            return session.handle_counterfactual_form(
+            return harness.handle_counterfactual_form(
                 subject_player, time_second, altered_action,
                 altered_target, duration_seconds,
             )
@@ -303,7 +303,7 @@ async def counterfactual_generate(
                         yield _sse({"type": "progress", "content": "MCTS 推演中，正在模拟战术决策树…"})
                     await asyncio.sleep(0.02)
             response = await task
-            files = session.last_counterfactual_files
+            files = harness.last_counterfactual_files
             yield _sse({"type": "done", "content": response, "files": files})
         except Exception as e:
             traceback.print_exc()
@@ -326,7 +326,7 @@ async def counterfactual_chat(message: str = Form(...)):
       理解后触发反事实分析/轨迹生成；回复以独立流式气泡显示在二级菜单
       内的消息区，不污染主对话区。
     """
-    if session.corpus is None:
+    if harness.corpus is None:
         return JSONResponse({"error": "请先上传数据文件"}, status_code=400)
 
     async def event_gen():
@@ -340,7 +340,7 @@ async def counterfactual_chat(message: str = Form(...)):
 
         token = set_stream_callback(cb)
         ptoken = set_progress_callback(progress_cb)
-        task = asyncio.create_task(asyncio.to_thread(session.handle_input, message))
+        task = asyncio.create_task(asyncio.to_thread(harness.handle_input, message))
         last_progress = asyncio.get_event_loop().time()
         try:
             yield _sse({"type": "progress", "content": "正在理解反事实指令…"})
@@ -369,7 +369,7 @@ async def counterfactual_chat(message: str = Form(...)):
                         yield _sse({"type": "progress", "content": "反事实推演中，正在模拟战术决策树…"})
                     await asyncio.sleep(0.02)
             response = await task
-            files = session.last_counterfactual_files
+            files = harness.last_counterfactual_files
             yield _sse({"type": "done", "content": response, "files": files})
         except Exception as e:
             traceback.print_exc()
@@ -384,9 +384,9 @@ async def counterfactual_chat(message: str = Form(...)):
 @app.get("/api/counterfactuals")
 async def list_counterfactuals():
     """列出 Output 目录中所有反事实轨迹文件对。"""
-    if session.corpus is None:
+    if harness.corpus is None:
         return []
-    prefix = session.corpus.prefix
+    prefix = harness.corpus.prefix
     pat = re.compile(rf"^{re.escape(prefix)}_cf_f(\d+)_(person|ball)\.csv$")
     pairs: dict[int, dict[str, str]] = {}
     for p in OUTPUT_DIR.iterdir() if OUTPUT_DIR.is_dir() else []:
@@ -416,9 +416,9 @@ async def list_counterfactuals():
 
 @app.get("/api/trajectory/original")
 async def trajectory_original():
-    if session.corpus is None or not session._data_files[0]:
+    if harness.corpus is None or not harness.data_files[0]:
         return JSONResponse({"error": "未加载数据"}, status_code=400)
-    person_csv, ball_csv = session._data_files
+    person_csv, ball_csv = harness.data_files
     return _build_trajectory_json(person_csv, ball_csv, label="原始轨迹")
 
 

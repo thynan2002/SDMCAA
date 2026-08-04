@@ -32,6 +32,11 @@ def reset_progress_callback(token: contextvars.Token) -> None:
     _progress_callback.reset(token)
 
 
+def get_progress_callback() -> Callable[[str, str, dict[str, Any]], None] | None:
+    """只读访问器：返回当前作用域的进度回调（Harness 回调复合用，不修改状态）。"""
+    return _progress_callback.get()
+
+
 def push_stage(stage: str, content: str, status: str = "active", **extra: Any) -> None:
     """推送一个阶段性状态。
 
