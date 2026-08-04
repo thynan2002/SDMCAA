@@ -1,0 +1,13 @@
+# 运行时依赖
+requests>=2.32
+python-dotenv>=1.0
+langgraph>=1.2
+fastapi>=0.115
+uvicorn>=0.30
+python-multipart>=0.0.9
+numpy>=2.0
+pandas>=2.2
+matplotlib>=3.9
+
+# 测试
+pytest>=8.0
