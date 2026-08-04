@@ -90,12 +90,38 @@ python -m web.backend
 **足球数据 (`ball.csv`)**: `frame_num, x, y, z`
 - `z`: 球心离地高度（米）
 
+### 测试 Harness
+
+标准 pytest 结构（`tests/`），旧命令行入口（`tools/test_*.py`）保留为薄包装，
+两者共享 `tests/_common.py` 中的同一套实现，行为一致。
+
+```bash
+# 运行全部 pytest 用例（真实 API 冒烟默认跳过）
+pytest
+
+# 指定 smoke 标记（需要 DEEPSEEK_API_KEY 的真实 API 冒烟）
+pytest -m smoke
+
+# 旧式命令行入口（输出 [OK]/[FAIL]，退出码 0=通过 / 1=失败）
+python tools/test_counterfactual_sim.py
+python tools/test_llm_decision.py
+```
+
+| 文件 | 覆盖内容 |
+|------|----------|
+| `tests/conftest.py` | 项目路径引导 + 共享夹具（corpus / mock LLM / bad LLM） |
+| `tests/_common.py` | pytest 用例与命令行入口共享的模拟/校验/mock 工具 |
+| `tests/test_corpus.py` | 数据加载 Harness（语料构建、插值、多数据集、视频预留层） |
+| `tests/test_counterfactual_sim.py` | 反事实轨迹端到端（物理校验/前缀一致性/格式闭环/专项验证） |
+| `tests/test_llm_decision.py` | LLM 决策引擎接线（mock 全链路/非法回退/纯启发式/冒烟） |
+
 ## 项目结构
 
 ```
 football-agent/
 ├── main.py                    # CLI 入口
 ├── showAll.py                 # 轨迹可视化 (matplotlib)
+├── pyproject.toml             # pytest Harness 配置
 ├── .env                       # LLM API Key 配置
 ├── agents/
 │   ├── llm_client.py          # DeepSeek API 调用 (流式+非流式)
@@ -108,7 +134,8 @@ football-agent/
 ├── web/
 │   ├── backend.py             # FastAPI 后端 (SSE 流式)
 │   └── static/                # 前端资源
-├── tools/                     # 独立分析脚本
+├── tools/                     # 独立分析脚本 / 测试命令行入口
+├── tests/                     # pytest 测试 Harness
 ├── TestInput/                 # 测试 CSV 数据
 └── Output/                    # 生成结果
 ```

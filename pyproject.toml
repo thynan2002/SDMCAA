@@ -1,0 +1,8 @@
+# 项目根配置 — 当前仅用于 pytest Harness（无打包构建系统，不影响运行时）
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = ["-m", "not smoke"]
+markers = [
+    "smoke: 需要真实 DEEPSEEK_API_KEY 的冒烟测试（默认跳过）",
+]
