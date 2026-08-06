@@ -320,6 +320,79 @@ body { display: flex; flex-direction: column; }
   40% { opacity: 1; transform: translateY(-3px); }
 }
 
+/* ── 模型操作轨迹（LLM 调用 / 思考过程 / tool_calls / 工具结果）── */
+.op-log { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+.op-log:empty { display: none; }
+.op-log-wrap {
+  background: rgba(8, 8, 12, 0.45); border: 1px solid var(--border-soft);
+  border-radius: 10px; margin-bottom: 10px; overflow: hidden;
+}
+.op-log-summary {
+  cursor: pointer; padding: 8px 12px; font-size: 12.5px; color: var(--text-dim);
+  display: flex; align-items: center; gap: 8px; user-select: none;
+}
+.op-log-icon { flex-shrink: 0; }
+.op-log-body {
+  padding: 0 12px 10px; display: flex; flex-direction: column; gap: 4px;
+  border-top: 1px solid var(--border-soft);
+}
+.op-item {
+  background: rgba(17, 17, 24, 0.55); border: 1px solid var(--border-soft);
+  border-radius: 8px; font-size: 12px;
+}
+.op-item > summary {
+  cursor: pointer; list-style: none; display: flex; align-items: center;
+  gap: 7px; padding: 7px 10px; user-select: none;
+}
+.op-item > summary::-webkit-details-marker { display: none; }
+.op-status {
+  width: 15px; height: 15px; flex-shrink: 0; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+}
+.op-item.active .op-status {
+  background: var(--accent); color: #052e1f;
+  animation: stagePulse 1.1s ease-in-out infinite;
+}
+.op-item.done .op-status {
+  background: var(--accent-dim); color: var(--accent-2);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+.op-item.fail .op-status {
+  background: rgba(239, 68, 68, 0.18); color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+}
+.op-title { flex-shrink: 0; }
+.op-item.reasoning .op-title { color: var(--text-dim); font-style: italic; }
+.op-item.tool .op-title { color: var(--accent-2); }
+.op-item.llm .op-title { color: var(--text); }
+.op-item.round .op-title { color: var(--text-dim); }
+.op-detail { color: var(--text-faint); font-size: 11px; }
+.op-log-summary .op-detail { margin-left: auto; }
+.op-item-body { padding: 0 10px 8px; display: flex; flex-direction: column; gap: 6px; }
+.op-tool-call, .op-result {
+  background: rgba(0, 0, 0, 0.35); border: 1px solid var(--border-soft);
+  border-radius: 6px; padding: 6px 8px;
+}
+.op-fn { font-family: var(--mono); color: var(--accent-2); font-weight: 600; font-size: 11.5px; }
+.op-json {
+  margin: 5px 0 0; max-height: 180px; overflow: auto;
+  font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+  white-space: pre-wrap; word-break: break-all;
+}
+.op-text {
+  margin: 0; padding: 8px 10px; max-height: 220px; overflow: auto;
+  color: var(--text-dim); font-size: 11.5px; line-height: 1.6;
+  white-space: pre-wrap; word-break: break-all;
+}
+.op-result .op-badge {
+  float: right; font-size: 10px; padding: 1px 7px; border-radius: 999px;
+  font-weight: 700; margin-left: 8px;
+}
+.op-badge.ok { background: rgba(16, 185, 129, 0.15); color: var(--accent-2); }
+.op-badge.fail { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+.op-result.fail .op-fn { color: var(--danger); }
+
 /* Markdown 渲染样式 */
 .msg-bubble pre.md-code, .cf-msg-bubble pre.md-code {
   background: rgba(0, 0, 0, 0.4); padding: 10px 12px; border-radius: 8px;

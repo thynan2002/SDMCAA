@@ -23,7 +23,7 @@ import re
 import sys
 import traceback
 from pathlib import Path
-from typing import Any
+from typing import Any, AsyncIterator, Callable
 
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
@@ -38,6 +38,7 @@ if str(_PROJECT_ROOT) not in sys.path:
 from harness import Harness, HarnessConfig
 from agents.llm_client import set_stream_callback, reset_stream_callback
 from agents.progress import set_progress_callback, reset_progress_callback
+from agents.ops import set_op_callback, reset_op_callback
 from agents.player.tracker import _read_csv_rows, _safe_int
 
 FIELD_WIDTH = 1200
@@ -179,59 +180,14 @@ async def chat(message: str = Form(...)):
     if harness.corpus is None:
         return JSONResponse({"error": "请先上传数据文件"}, status_code=400)
 
-    async def event_gen():
-        q: queue.SimpleQueue = queue.SimpleQueue()
-
-        def cb(chunk: str):
-            q.put(("delta", chunk))
-
-        def progress_cb(stage: str, content: str, extra: dict):
-            q.put(("stage", {"stage": stage, "content": content, **extra}))
-
-        token = set_stream_callback(cb)
-        ptoken = set_progress_callback(progress_cb)
-        task = asyncio.create_task(asyncio.to_thread(harness.handle_input, message))
-        last_progress = asyncio.get_event_loop().time()
-        try:
-            # 立即发送一个进度事件，让前端马上进入"生成中"状态
-            yield _sse({"type": "progress", "content": "正在思考…"})
-            while True:
-                # 先把队列里所有 chunk 排空
-                drained_any = False
-                while not q.empty():
-                    kind, payload = q.get_nowait()
-                    if kind == "delta" and payload:
-                        drained_any = True
-                        yield _sse({"type": "delta", "content": payload})
-                    elif kind == "stage":
-                        drained_any = True
-                        yield _sse({"type": "stage", **payload})
-                if task.done():
-                    # 任务完成后做最后一次排空（防止竞态）
-                    while not q.empty():
-                        kind, payload = q.get_nowait()
-                        if kind == "delta" and payload:
-                            yield _sse({"type": "delta", "content": payload})
-                        elif kind == "stage":
-                            yield _sse({"type": "stage", **payload})
-                    break
-                if not drained_any:
-                    # 无 delta/阶段 时周期性发送进度心跳，保持连接活跃
-                    now = asyncio.get_event_loop().time()
-                    if now - last_progress >= PROGRESS_INTERVAL:
-                        last_progress = now
-                        yield _sse({"type": "progress", "content": "正在生成回复…"})
-                    await asyncio.sleep(0.02)
-            response = await task
-            yield _sse({"type": "done", "content": response})
-        except Exception as e:
-            traceback.print_exc()
-            yield _sse({"type": "error", "content": str(e)})
-        finally:
-            reset_stream_callback(token)
-            reset_progress_callback(ptoken)
-
-    return StreamingResponse(event_gen(), media_type="text/event-stream; charset=utf-8", headers=_sse_headers())
+    return StreamingResponse(
+        _stream_run(
+            lambda: harness.handle_input(message),
+            initial_status="正在思考…",
+        ),
+        media_type="text/event-stream; charset=utf-8",
+        headers=_sse_headers(),
+    )
 
 
 @app.post("/api/clear")
@@ -255,64 +211,22 @@ async def counterfactual_generate(
     if harness.corpus is None:
         return JSONResponse({"error": "请先上传数据文件"}, status_code=400)
 
-    async def event_gen():
-        q: queue.SimpleQueue = queue.SimpleQueue()
+    def run():
+        return harness.handle_counterfactual_form(
+            subject_player, time_second, altered_action,
+            altered_target, duration_seconds,
+        )
 
-        def cb(chunk: str):
-            q.put(("delta", chunk))
-
-        def progress_cb(stage: str, content: str, extra: dict):
-            q.put(("stage", {"stage": stage, "content": content, **extra}))
-
-        token = set_stream_callback(cb)
-        ptoken = set_progress_callback(progress_cb)
-
-        def run():
-            return harness.handle_counterfactual_form(
-                subject_player, time_second, altered_action,
-                altered_target, duration_seconds,
-            )
-
-        task = asyncio.create_task(asyncio.to_thread(run))
-        last_progress = asyncio.get_event_loop().time()
-        try:
-            # 立即反馈：MCTS 推演耗时长，先告知用户已开始，避免"界面无反应"
-            yield _sse({"type": "progress", "content": "正在启动反事实推演（MCTS 2000 次模拟，预计 1-3 分钟）…"})
-            while True:
-                drained_any = False
-                while not q.empty():
-                    kind, payload = q.get_nowait()
-                    if kind == "delta" and payload:
-                        drained_any = True
-                        yield _sse({"type": "delta", "content": payload})
-                    elif kind == "stage":
-                        drained_any = True
-                        yield _sse({"type": "stage", **payload})
-                if task.done():
-                    while not q.empty():
-                        kind, payload = q.get_nowait()
-                        if kind == "delta" and payload:
-                            yield _sse({"type": "delta", "content": payload})
-                        elif kind == "stage":
-                            yield _sse({"type": "stage", **payload})
-                    break
-                if not drained_any:
-                    now = asyncio.get_event_loop().time()
-                    if now - last_progress >= PROGRESS_INTERVAL:
-                        last_progress = now
-                        yield _sse({"type": "progress", "content": "MCTS 推演中，正在模拟战术决策树…"})
-                    await asyncio.sleep(0.02)
-            response = await task
-            files = harness.last_counterfactual_files
-            yield _sse({"type": "done", "content": response, "files": files})
-        except Exception as e:
-            traceback.print_exc()
-            yield _sse({"type": "error", "content": str(e)})
-        finally:
-            reset_stream_callback(token)
-            reset_progress_callback(ptoken)
-
-    return StreamingResponse(event_gen(), media_type="text/event-stream; charset=utf-8", headers=_sse_headers())
+    return StreamingResponse(
+        _stream_run(
+            run,
+            initial_status="正在启动反事实推演（MCTS 2000 次模拟，预计 1-3 分钟）…",
+            heartbeat="MCTS 推演中，正在模拟战术决策树…",
+            done_extra=lambda r: {"files": harness.last_counterfactual_files},
+        ),
+        media_type="text/event-stream; charset=utf-8",
+        headers=_sse_headers(),
+    )
 
 
 @app.post("/api/counterfactual/chat")
@@ -329,56 +243,16 @@ async def counterfactual_chat(message: str = Form(...)):
     if harness.corpus is None:
         return JSONResponse({"error": "请先上传数据文件"}, status_code=400)
 
-    async def event_gen():
-        q: queue.SimpleQueue = queue.SimpleQueue()
-
-        def cb(chunk: str):
-            q.put(("delta", chunk))
-
-        def progress_cb(stage: str, content: str, extra: dict):
-            q.put(("stage", {"stage": stage, "content": content, **extra}))
-
-        token = set_stream_callback(cb)
-        ptoken = set_progress_callback(progress_cb)
-        task = asyncio.create_task(asyncio.to_thread(harness.handle_input, message))
-        last_progress = asyncio.get_event_loop().time()
-        try:
-            yield _sse({"type": "progress", "content": "正在理解反事实指令…"})
-            while True:
-                drained_any = False
-                while not q.empty():
-                    kind, payload = q.get_nowait()
-                    if kind == "delta" and payload:
-                        drained_any = True
-                        yield _sse({"type": "delta", "content": payload})
-                    elif kind == "stage":
-                        drained_any = True
-                        yield _sse({"type": "stage", **payload})
-                if task.done():
-                    while not q.empty():
-                        kind, payload = q.get_nowait()
-                        if kind == "delta" and payload:
-                            yield _sse({"type": "delta", "content": payload})
-                        elif kind == "stage":
-                            yield _sse({"type": "stage", **payload})
-                    break
-                if not drained_any:
-                    now = asyncio.get_event_loop().time()
-                    if now - last_progress >= PROGRESS_INTERVAL:
-                        last_progress = now
-                        yield _sse({"type": "progress", "content": "反事实推演中，正在模拟战术决策树…"})
-                    await asyncio.sleep(0.02)
-            response = await task
-            files = harness.last_counterfactual_files
-            yield _sse({"type": "done", "content": response, "files": files})
-        except Exception as e:
-            traceback.print_exc()
-            yield _sse({"type": "error", "content": str(e)})
-        finally:
-            reset_stream_callback(token)
-            reset_progress_callback(ptoken)
-
-    return StreamingResponse(event_gen(), media_type="text/event-stream; charset=utf-8", headers=_sse_headers())
+    return StreamingResponse(
+        _stream_run(
+            lambda: harness.handle_input(message),
+            initial_status="正在理解反事实指令…",
+            heartbeat="反事实推演中，正在模拟战术决策树…",
+            done_extra=lambda r: {"files": harness.last_counterfactual_files},
+        ),
+        media_type="text/event-stream; charset=utf-8",
+        headers=_sse_headers(),
+    )
 
 
 @app.get("/api/counterfactuals")
@@ -538,6 +412,104 @@ def _build_trajectory_json(person_csv: str, ball_csv: str, label: str = "") -> J
 # ════════════════════════════════════════════════════════════════
 # 辅助
 # ════════════════════════════════════════════════════════════════
+
+async def _stream_run(
+    run: Callable[[], Any],
+    initial_status: str,
+    heartbeat: str = "正在生成回复…",
+    done_extra: Callable[[Any], dict[str, Any]] | None = None,
+) -> AsyncIterator[str]:
+    """通用 SSE 流生成器：合并三类事件并转发。
+
+    - delta     → LLM 流式正文增量（逐 token）
+    - stage     → 流水线阶段进度（push_stage）
+    - op        → 模型操作轨迹（push_op：LLM 调用/思考过程/tool_calls/
+                 工具结果/工具循环），前端渲染「模型操作轨迹」面板
+
+    无事件时按 PROGRESS_INTERVAL 发送心跳，保持连接活跃。
+    """
+    q: queue.SimpleQueue = queue.SimpleQueue()
+
+    def cb(chunk: str):
+        q.put(("delta", chunk))
+
+    def progress_cb(stage: str, content: str, extra: dict):
+        q.put(("stage", {"stage": stage, "content": content, **extra}))
+
+    # 工具轮次改为全局连续编号：LLM 层每次调用都从 0 重计 round，
+    # 多次调用（路由/语义档位/问答…）会产生多个"第 1 轮"，前端难以区分。
+    # 这里在 SSE 出口统一映射为全程递增的轮次与调用序号。
+    op_state: dict[str, Any] = {"call_seq": 0, "round_seq": 0,
+                                "last_local_round": None, "last_round_seq": None}
+
+    def op_cb(event: str, payload: dict):
+        if event == "llm_start":
+            op_state["call_seq"] += 1
+            payload["call_seq"] = op_state["call_seq"]
+        elif event == "round_start":
+            op_state["round_seq"] += 1
+            op_state["last_local_round"] = payload.get("round")
+            op_state["last_round_seq"] = op_state["round_seq"]
+            payload["round"] = op_state["round_seq"]
+            payload["call_seq"] = op_state["call_seq"]
+        elif (
+            event in ("tool_calls", "tool_result")
+            and payload.get("round") == op_state.get("last_local_round")
+            and op_state.get("last_round_seq") is not None
+        ):
+            # 工具事件与最近一次 round_start 对齐（事件按序到达）
+            payload["round"] = op_state["last_round_seq"]
+        q.put(("op", {"event": event, **payload}))
+
+    token = set_stream_callback(cb)
+    ptoken = set_progress_callback(progress_cb)
+    otoken = set_op_callback(op_cb)
+    task = asyncio.create_task(asyncio.to_thread(run))
+    last_progress = asyncio.get_event_loop().time()
+    try:
+        # 立即发送一个进度事件，让前端马上进入"生成中"状态
+        yield _sse({"type": "progress", "content": initial_status})
+        while True:
+            # 先把队列里所有 chunk 排空
+            drained_any = False
+            while not q.empty():
+                kind, payload = q.get_nowait()
+                drained_any = True
+                if kind == "delta" and payload:
+                    yield _sse({"type": "delta", "content": payload})
+                elif kind == "stage":
+                    yield _sse({"type": "stage", **payload})
+                elif kind == "op":
+                    yield _sse({"type": "op", **payload})
+            if task.done():
+                # 任务完成后做最后一次排空（防止竞态）
+                while not q.empty():
+                    kind, payload = q.get_nowait()
+                    if kind == "delta" and payload:
+                        yield _sse({"type": "delta", "content": payload})
+                    elif kind == "stage":
+                        yield _sse({"type": "stage", **payload})
+                    elif kind == "op":
+                        yield _sse({"type": "op", **payload})
+                break
+            if not drained_any:
+                # 无事件时周期性发送进度心跳，保持连接活跃
+                now = asyncio.get_event_loop().time()
+                if now - last_progress >= PROGRESS_INTERVAL:
+                    last_progress = now
+                    yield _sse({"type": "progress", "content": heartbeat})
+                await asyncio.sleep(0.02)
+        response = await task
+        extra = (done_extra or (lambda r: {}))(response)
+        yield _sse({"type": "done", "content": response, **extra})
+    except Exception as e:
+        traceback.print_exc()
+        yield _sse({"type": "error", "content": str(e)})
+    finally:
+        reset_stream_callback(token)
+        reset_progress_callback(ptoken)
+        reset_op_callback(otoken)
+
 
 def _sse(obj: dict) -> str:
     return f"data: {json.dumps(obj, ensure_ascii=False)}\n\n"

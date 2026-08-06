@@ -25,11 +25,13 @@ import contextvars
 import json
 import logging
 import os
+import time
 from dataclasses import dataclass
 from typing import Any, Callable, Generator
 
 import requests
 from agents.logging_config import get_logger
+from agents.ops import push_op
 
 logger = get_logger("llm_client")
 
@@ -192,22 +194,35 @@ def call_llm(
             effective_tools, bound_choice = binding
             if effective_choice is None:
                 effective_choice = bound_choice
-    if effective_tools:
-        return _call_llm_with_tools(
-            system_prompt, user_message, effective_tools, effective_choice,
-            config=config, max_tokens=max_tokens, retries=retries, stream=stream,
-            max_rounds=max_rounds or _DEFAULT_MAX_TOOL_ROUNDS,
-        )
-
-    if _llm_dispatcher is not None:
-        return _llm_dispatcher(
-            system_prompt, user_message,
-            config=config, max_tokens=max_tokens, retries=retries, stream=stream,
-        )
-    return _call_llm_impl(
-        system_prompt, user_message,
-        config=config, max_tokens=max_tokens, retries=retries, stream=stream,
+    cfg = config or load_llm_config()
+    push_op(
+        "llm_start",
+        model=cfg.model if cfg else None,
+        stream=stream,
+        has_tools=bool(effective_tools),
     )
+    try:
+        if effective_tools:
+            result = _call_llm_with_tools(
+                system_prompt, user_message, effective_tools, effective_choice,
+                config=config, max_tokens=max_tokens, retries=retries, stream=stream,
+                max_rounds=max_rounds or _DEFAULT_MAX_TOOL_ROUNDS,
+            )
+        elif _llm_dispatcher is not None:
+            result = _llm_dispatcher(
+                system_prompt, user_message,
+                config=config, max_tokens=max_tokens, retries=retries, stream=stream,
+            )
+        else:
+            result = _call_llm_impl(
+                system_prompt, user_message,
+                config=config, max_tokens=max_tokens, retries=retries, stream=stream,
+            )
+    except Exception as exc:
+        push_op("llm_end", ok=False, error=str(exc))
+        raise
+    push_op("llm_end", ok=result is not None, length=len(result) if result else 0)
+    return result
 
 
 # ── 工具调用多轮循环 ───────────────────────────────────────────
@@ -250,6 +265,7 @@ def _call_llm_with_tools(
         {"role": "user", "content": user_message},
     ]
     for rnd in range(max_rounds):
+        push_op("round_start", round=rnd, tool_count=len(tools))
         exchange = ToolExchange(
             tools=schemas,
             tool_choice=tool_choice,
@@ -279,6 +295,15 @@ def _call_llm_with_tools(
             # 无工具调用：文本回答（或 None 失败 → 调用方规则兜底）
             return text
 
+        push_op("tool_calls",
+                round=rnd,
+                calls=[
+                    {
+                        "name": str(((tc.get("function") or {}).get("name") or "")),
+                        "arguments": (tc.get("function") or {}).get("arguments"),
+                    }
+                    for tc in tool_calls
+                ])
         messages.append(_sanitize_assistant_message(assistant))
         terminal_results: list[dict[str, Any]] = []
         # 同一响应内的多个独立工具请求：一次性全部执行（并行 tool_calls）
@@ -297,6 +322,12 @@ def _call_llm_with_tools(
                 result = {"error": f"未注册的工具: {name}", "kind": "unknown_tool"}
             else:
                 result = _execute_tool_spec(spec, args)
+            push_op("tool_result",
+                    round=rnd,
+                    name=name,
+                    args=args,
+                    ok="error" not in result,
+                    result=result)
             if terminal and "error" not in result:
                 terminal_results.append(result)
             messages.append({
@@ -465,6 +496,10 @@ def _call_llm_impl(
             content = message.get("content") or ""
             tool_calls = message.get("tool_calls")
             finish_reason = choice.get("finish_reason")
+            reasoning = message.get("reasoning_content") or ""
+            if reasoning:
+                # 非流式调用的模型思考（reasoning_content）完整推送
+                push_op("reasoning", content=reasoning)
             # 工具调用响应：回填 assistant 消息（content 可为空），由工具循环继续
             if exchange is not None and tool_calls:
                 exchange.assistant_message = {
@@ -586,6 +621,21 @@ def _drain_stream(
     # 显式锁定 UTF-8：requests 默认对 text/* 响应使用 ISO-8859-1 解码，
     # 会导致中文多字节字符被错误解释为 Latin-1 → 乱码。
     resp.encoding = "utf-8"
+    # 模型思考（reasoning_content）增量：节流推送，避免事件风暴；
+    # 首个增量发 reasoning_start 标记，流结束 flush 剩余并收尾。
+    reasoning_parts: list[str] = []
+    reasoning_total = 0
+    reasoning_active = False
+    last_reasoning_push = time.monotonic()
+
+    def flush_reasoning(force: bool = False) -> None:
+        nonlocal reasoning_parts, last_reasoning_push
+        now = time.monotonic()
+        if reasoning_parts and (force or now - last_reasoning_push >= 0.4):
+            push_op("reasoning_delta", content="".join(reasoning_parts))
+            reasoning_parts = []
+            last_reasoning_push = now
+
     for raw in resp.iter_lines(decode_unicode=True):
         if not raw:
             continue
@@ -604,6 +654,15 @@ def _drain_stream(
             continue
         delta = (choices[0].get("delta") or {})
         _merge_tool_call_delta(acc_tool_calls, delta.get("tool_calls") or [])
+        # 转发模型思考增量（reasoning_content），正文 content 走原回调
+        reasoning = delta.get("reasoning_content") or ""
+        if reasoning:
+            if not reasoning_active:
+                push_op("reasoning_start")
+                reasoning_active = True
+            reasoning_parts.append(reasoning)
+            reasoning_total += len(reasoning)
+            flush_reasoning(False)
         # 只转发正文 content，不转发 reasoning_content（模型内部思维链）
         text = delta.get("content") or ""
         if text:
@@ -612,6 +671,9 @@ def _drain_stream(
                 cb(text)
             except Exception:
                 logger.warning("流式回调异常，已忽略", exc_info=True)
+    flush_reasoning(True)
+    if reasoning_total:
+        push_op("reasoning_end", length=reasoning_total)
     if acc_tool_calls:
         ordered = [acc_tool_calls[i] for i in sorted(acc_tool_calls)]
         finished = [

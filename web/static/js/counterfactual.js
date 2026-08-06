@@ -119,6 +119,10 @@ const Counterfactual = (() => {
     const stageList = document.createElement("div");
     stageList.className = "stage-list";
     bubble.appendChild(stageList);
+    // 模型操作轨迹（LLM 调用 / 思考过程 / tool_calls / 工具结果）
+    const opLog = document.createElement("div");
+    opLog.className = "op-log";
+    bubble.appendChild(opLog);
     const status = document.createElement("div");
     status.className = "stream-status";
     if (initialStatus) status.innerHTML = '<span class="dots"></span>' + window.escapeHtml(initialStatus);
@@ -131,7 +135,7 @@ const Counterfactual = (() => {
     msg.appendChild(bubble);
     cfChatMessages.appendChild(msg);
     _cfScroll();
-    return { bubble, body, status, cursor, stageList };
+    return { bubble, body, status, cursor, stageList, opLog };
   }
 
   function cfSetBusy(b) {
@@ -146,8 +150,9 @@ const Counterfactual = (() => {
   async function cfSendStream(url, formData, initialStatus) {
     if (cfBusy) return null;
     cfSetBusy(true);
-    const { bubble, body, status, cursor, stageList } = cfAddStreaming(initialStatus);
+    const { bubble, body, status, cursor, stageList, opLog } = cfAddStreaming(initialStatus);
     const stages = new window.StageTracker(stageList);
+    const ops = new window.OpTracker(opLog);
     let acc = "";
     try {
       const res = await fetch(url, { method: "POST", body: formData });
@@ -184,6 +189,9 @@ const Counterfactual = (() => {
             status.innerHTML = "";
             stages.handle(evt);
             _cfScroll();
+          } else if (evt.type === "op") {
+            ops.handle(evt);
+            _cfScroll();
           } else if (evt.type === "progress") {
             if (!hasBody && stages.items.length === 0) {
               status.innerHTML = '<span class="dots"></span>' + window.escapeHtml(evt.content || "处理中…"); _cfScroll();
@@ -206,6 +214,7 @@ const Counterfactual = (() => {
       status.innerHTML = "";
       stageList.innerHTML = "";
       cursor.remove();
+      ops.finish();
       bubble.classList.remove("streaming");
       body.innerHTML = window.renderMarkdown(doneContent || acc || "（无响应）");
       _cfScroll();

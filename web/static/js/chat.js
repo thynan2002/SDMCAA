@@ -56,6 +56,10 @@ const Chat = (() => {
     const stageList = document.createElement("div");
     stageList.className = "stage-list";
     bubble.appendChild(stageList);
+    // 模型操作轨迹（LLM 调用 / 思考过程 / tool_calls / 工具结果）
+    const opLog = document.createElement("div");
+    opLog.className = "op-log";
+    bubble.appendChild(opLog);
     // 状态行（进度提示，仅在有 stage 前显示）
     const status = document.createElement("div");
     status.className = "stream-status";
@@ -76,7 +80,7 @@ const Chat = (() => {
     msg.appendChild(meta);
     messagesEl.appendChild(msg);
     _scroll();
-    return { bubble, body, status, cursor, stageList };
+    return { bubble, body, status, cursor, stageList, opLog };
   }
 
   function setBusy(b) {
@@ -101,8 +105,9 @@ const Chat = (() => {
       return null;
     }
     setBusy(true);
-    const { bubble, body, status, cursor, stageList } = addStreamingAssistant(initialStatus);
+    const { bubble, body, status, cursor, stageList, opLog } = addStreamingAssistant(initialStatus);
     const stages = new StageTracker(stageList);
+    const ops = new OpTracker(opLog);
     let acc = "";
 
     try {
@@ -154,6 +159,10 @@ const Chat = (() => {
             status.innerHTML = "";
             stages.handle(evt);
             _scroll();
+          } else if (evt.type === "op") {
+            // 模型操作事件（LLM 调用/思考/tool_calls/工具结果）
+            ops.handle(evt);
+            _scroll();
           } else if (evt.type === "progress") {
             // 仅在没有正文且没有阶段项时显示静态进度心跳；阶段开始后忽略
             if (!hasBody && stages.items.length === 0) {
@@ -185,6 +194,7 @@ const Chat = (() => {
       status.innerHTML = "";
       stageList.innerHTML = "";
       cursor.remove();
+      ops.finish(); // 操作轨迹折叠为可展开面板，保留在正文上方
       const finalText = doneContent || acc || "（无响应）";
       bubble.classList.remove("streaming");
       body.innerHTML = renderMarkdown(finalText);
@@ -331,3 +341,158 @@ class StageTracker {
   }
 }
 window.StageTracker = StageTracker;
+
+/* ═══════════════════════════════════════════════════════════
+   OpTracker — 模型操作轨迹渲染器
+   接收后端 "op" 事件（event 字段区分类型），在气泡内渲染
+   「模型操作轨迹」列表：
+   - llm_start / llm_end     每次 LLM 调用起止
+   - round_start             工具循环轮次
+   - reasoning_start / reasoning_delta / reasoning_end / reasoning
+                             模型思考过程（流式增量 / 非流式完整）
+   - tool_calls              模型发起的工具调用（名称 + 参数）
+   - tool_result             工具执行结果（成功/失败 + JSON）
+   ═══════════════════════════════════════════════════════════ */
+class OpTracker {
+  constructor(container) {
+    this.container = container;
+    this.items = []; // [{ seq, kind, title, status, detail, body, round }]
+    this.seq = 0;
+  }
+
+  _add({ kind, title, status }) {
+    const it = { seq: ++this.seq, kind, title, status, detail: "", body: "", round: null };
+    this.items.push(it);
+    return it;
+  }
+
+  _last(pred) {
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      if (typeof pred === "string" ? this.items[i].kind === pred : pred(this.items[i])) return this.items[i];
+    }
+    return null;
+  }
+
+  _pretty(s) {
+    try {
+      const j = JSON.parse(s);
+      return JSON.stringify(j, null, 2);
+    } catch { return s; }
+  }
+
+  /* 处理一个 op 事件，更新列表 */
+  handle(evt) {
+    switch (evt.event) {
+      case "llm_start":
+        this._add({
+          kind: "llm",
+          title: "🧠 调用 LLM" + (evt.model ? `（${evt.model}）` : "") + (evt.has_tools ? " · 工具模式" : "") + (evt.call_seq ? ` · 第 ${evt.call_seq} 次调用` : ""),
+          status: "active",
+        });
+        break;
+      case "llm_end": {
+        const it = this._last("llm");
+        if (it) {
+          it.status = evt.ok ? "done" : "fail";
+          it.detail = evt.ok ? `完成${evt.length != null ? `（${evt.length} 字符）` : ""}` : "调用失败";
+        }
+        break;
+      }
+      case "round_start":
+        this._add({
+          kind: "round",
+          title: `🔄 工具循环第 ${evt.round} 轮${evt.tool_count != null ? `（${evt.tool_count} 个工具可用）` : ""}`,
+          status: "done",
+        });
+        break;
+      case "reasoning_start": {
+        this._add({ kind: "reasoning", title: "💭 模型思考中…", status: "active" });
+        break;
+      }
+      case "reasoning_delta": {
+        let it = this._last("reasoning");
+        if (!it) it = this._add({ kind: "reasoning", title: "💭 模型思考中…", status: "active" });
+        it.body = (it.body || "") + evt.content;
+        break;
+      }
+      case "reasoning_end": {
+        const it = this._last("reasoning");
+        if (it) {
+          it.status = "done";
+          it.title = `💭 思考过程${evt.length != null ? `（${evt.length} 字符）` : ""}`;
+        }
+        break;
+      }
+      case "reasoning": {
+        // 非流式调用的完整思考过程（中间 LLM 调用）
+        const it = this._add({ kind: "reasoning", title: `💭 思考过程${evt.content ? `（${evt.content.length} 字符）` : ""}`, status: "done" });
+        it.body = evt.content || "";
+        break;
+      }
+      case "tool_calls": {
+        const calls = (evt.calls || []).map(c => {
+          const raw = typeof c.arguments === "string" ? c.arguments : JSON.stringify(c.arguments || {}, null, 2);
+          return `<div class="op-tool-call"><span class="op-fn">${escapeHtml(c.name || "?")}</span><pre class="op-json">${escapeHtml(this._pretty(raw))}</pre></div>`;
+        }).join("");
+        const it = this._add({
+          kind: "tool",
+          title: `🔧 调用工具${evt.round != null ? `（第 ${evt.round} 轮）` : ""}`,
+          status: "done",
+        });
+        it.round = evt.round != null ? evt.round : null;
+        it.body = calls;
+        break;
+      }
+      case "tool_result": {
+        // 追加到同一轮最近一次工具调用项下；无匹配项时单独成项
+        let it = this._last(i => i.kind === "tool" && (evt.round == null || i.round === evt.round));
+        if (!it) {
+          it = this._add({ kind: "tool", title: `🔧 工具结果${evt.name ? `（${evt.name}）` : ""}`, status: "done" });
+          it.round = evt.round != null ? evt.round : null;
+        }
+        const ok = !!evt.ok;
+        const badge = ok ? '<span class="op-badge ok">成功</span>' : '<span class="op-badge fail">失败</span>';
+        const head = evt.name ? `<span class="op-fn">${escapeHtml(evt.name)}</span>` : "";
+        const bodyHtml = evt.result != null ? `<pre class="op-json">${escapeHtml(this._pretty(JSON.stringify(evt.result, null, 2)))}</pre>` : "";
+        it.body = (it.body || "") + `<div class="op-result ${ok ? "ok" : "fail"}">${head}${badge}${bodyHtml}</div>`;
+        break;
+      }
+    }
+    this._render();
+  }
+
+  /* 流式结束：整体折叠为可展开面板（保留在正文上方） */
+  finish() {
+    if (this.items.length === 0) {
+      this.container.innerHTML = "";
+      return;
+    }
+    const n = this.items.length;
+    const inner = this.container.innerHTML;
+    this.container.innerHTML = `<details class="op-log-wrap" open>
+      <summary class="op-log-summary"><span class="op-log-icon">🔧</span>模型操作轨迹（${n}）
+        <span class="op-detail">LLM 调用 · 思考过程 · tool_calls · 工具结果</span></summary>
+      <div class="op-log-body">${inner}</div></details>`;
+  }
+
+  _render() {
+    const html = this.items.map(it => {
+      const cls = `op-item ${it.kind} ${it.status}`;
+      const icon = it.status === "active" ? "◌" : it.status === "fail" ? "✕" : "✓";
+      const dots = it.status === "active" ? '<span class="stage-dots"><i></i><i></i><i></i></span>' : "";
+      const detail = it.detail ? `<span class="op-detail">${escapeHtml(it.detail)}</span>` : "";
+      // 思考过程是纯文本，其余按 HTML 内容（已转义）渲染
+      let body = "";
+      if (it.body) {
+        body = it.kind === "reasoning"
+          ? `<pre class="op-text">${escapeHtml(it.body)}</pre>`
+          : `<div class="op-item-body">${it.body}</div>`;
+      }
+      const open = it.status === "active" || it.kind === "tool" || it.kind === "reasoning";
+      return `<details class="${cls}"${open ? " open" : ""}>
+        <summary><span class="op-status">${icon}</span><span class="op-title">${escapeHtml(it.title)}</span>${detail}${dots}</summary>${body}</details>`;
+    }).join("");
+    this.container.innerHTML = html;
+  }
+}
+window.OpTracker = OpTracker;
