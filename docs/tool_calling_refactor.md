@@ -166,3 +166,73 @@ tests 与 harness 均以**固定签名**patch 传输函数与 dispatcher。为�
   general_qa（数据工具）。
 - 同一响应并行 tool_calls：循环支持 + 单测证明。
 - 37 个 pytest 用例 + golden 四维回放 PASS。
+
+---
+
+# 执行结果（重构总结）
+
+## 1. 选型理由（最终落地）
+
+| 选型 | 结论 |
+|------|------|
+| 保留手写 requests 传输层，扩展 tools/tool_calls | 测试与 harness 以固定签名 patch `_call_llm_impl`/dispatcher（`tools` 经 `tool_exchange_var` ContextVar 通道传递，不改变任何既有签名）；OpenAI 兼容协议下 tools 仅是 payload 扩展，零新依赖 |
+| langgraph 工具链 / openai SDK / MCP | 不引入：会绕开 call_llm 分派器钩子与流式回调通道，破坏 harness 等价性；LangGraph 维持其流水线编排职责 |
+| pydantic v2（随 langgraph 依赖已存在） | 定义决策工具参数模型并导出 JSON Schema；校验保持宽容（不设 Literal 枚举），越界值由下游既有容忍解析与规则兜底处理 |
+| 自研最小工具循环（受约束的必然选择） | 约 150 行，全部行为有单测覆盖；保证 harness 钩子、流式语义、旧 golden 回放完全兼容 |
+
+## 2. 改动文件（全部提交）
+
+| 文件 | 阶段 | 内容 |
+|------|------|------|
+| `agents/llm_client.py` | 1/3 | tools/tool_choice/max_rounds 参数、`_call_llm_with_tools` 循环、`bind_prompt_tools`、`tool_exchange_var` 通道、流式 tool_calls 增量累积、tool_choice 400 降级重试 |
+| `agents/tools/__init__.py` `base.py` | 1 | ToolSpec/ToolRegistry/失败分类（invalid_arguments/execution_error/insufficient_data/unknown_tool） |
+| `harness/interceptors.py` | 1 | 录制条目按需追加 tool_round/tools/tool_choice/assistant_message（旧格式不变）；trace 追加工具属性 |
+| `harness/mock.py` | 1 | ReplayLLM 回放 assistant_message 驱动工具循环；format_version=2（读取端不按版本分支） |
+| `tests/test_tool_calling.py` | 1/收尾 | 21 个用例（循环/并行/失败分类/绑定/回放/流式/record→replay 工具闭环） |
+| `agents/tools/schemas.py` | 2 | 6 个终止型决策工具（submit_intent/decision/script/strategy/challenge_judgment/semantic_tiers） |
+| `agents/tools/football.py` | 2 | 6 个数据工具（战术事实/球路时间线/帧快照/球员原始数据/画像/反事实模拟）+ active corpus 注入 |
+| `agents/session/router.py` | 2 | 绑定 submit_intent（试点） |
+| `agents/professional/simulation/llm_brain.py` | 3 | 绑定 submit_script/decision/strategy/semantic_tiers；修复档位缓存键映射缺陷 |
+| `agents/professional/agents/data_verifier.py` | 3 | 绑定 submit_challenge_judgment |
+| `agents/professional/agents/general_qa.py` | 3 | 绑定 6 个数据工具（auto），正文保持文本流式 |
+| `agents/session/manager.py` `main.py` | 3 | load_data/run_once 注入 active corpus（各 1 行） |
+| `docs/harness.md` | 收尾 | 等价性论证扩展（工具层） |
+
+## 3. 迁移的调用点（19 处）
+
+| 调用点 | 迁移方式 |
+|--------|----------|
+| `session/router.py` 意图路由 | ✅ 绑定 submit_intent（终止型） |
+| `llm_brain.generate_script` | ✅ 绑定 submit_script |
+| `llm_brain.decide` | ✅ 绑定 submit_decision |
+| `llm_brain.generate_strategy_table` | ✅ 绑定 submit_strategy |
+| `llm_brain.SemanticTierBatcher._resolve_batch` | ✅ 绑定 submit_semantic_tiers |
+| `data_verifier._judge_challenge` | ✅ 绑定 submit_challenge_judgment |
+| `general_qa.answer` 正文 | ✅ 数据工具（auto）+ 文本流式（正文仍为文本生成） |
+| 其余 12 处（解说/报告/摘要/风格标签/核验回复/反事实分析） | 纯文本生成，保持文本（按任务定义不迁移） |
+
+## 4. golden 兼容策略（落地）
+
+- **旧 golden 直接回放（主策略，零重录）**：迁移仅增加工具绑定，`(system_prompt,
+  user_message)` 全部不变；`harness/golden/standard`（39 条 response=null 的
+  全兜底链路）无需重录，四维比对持续 PASS。
+- **新格式向后兼容**：record 仅在出现工具交互时追录可选字段；ReplayLLM 对无该
+  字段的旧条目行为不变；record→replay 工具闭环有专门单测覆盖。
+- **一键重录**：`python -m harness run ... --mode record --golden-dir
+  harness/golden/standard --seed 42`（已写入手册 docs/harness.md）。
+
+## 5. 已知边界
+
+- **实网输出文本差异**：绑定数据工具后，模型可能主动调用工具获取额外数据，
+  回答文本与纯内嵌事实时不同（语义一致、不编造，属工具化预期效果）；回放模式
+  完全确定性。
+- **tool_choice 兼容**：DeepSeek 推理模式拒绝 `tool_choice=required`（400
+  Thinking mode），绑定统一使用 auto，传输层对 400 自动降级重试。
+- **档位缓存键修复**：迁移中发现并修复既有缺陷（`req_N` 未映射回缓存键导致
+  LLM 档位描述实网从未生效）；回放路径（全部 None）不受影响。
+- **Output/ 残留文件**：golden 文件清单比对以 Output/ 实际文件为准，运行过
+  其他数据集后会留下 `{prefix}_cf_*` 残留（gitignore 产物），影响文件维度比对；
+  测试已做清理，人工运行 verify 前建议清空 Output/。
+- **反事实模拟工具耗时**：`run_counterfactual_simulation` 为启发式推演（不触发
+  LLM 递归），耗时数秒，仅当用户明确描述反事实场景时模型才应调用。
+
