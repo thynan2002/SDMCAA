@@ -3,11 +3,17 @@
 Golden 目录布局（record 模式生成）：
     meta.json        会话元信息（数据集路径、脚本、seed、创建时间）
     llm_calls.jsonl  全部 LLM 流量：{seq, stream, system_prompt, user_message, response}
+                     工具调用轮次可含可选字段：tool_round / tools / tool_choice /
+                     assistant_message（含 tool_calls 的完整 assistant 消息）
     turns.jsonl      逐轮记录：{seq, input, response, snapshot}
     files.json       产出文件清单：{相对文件名: sha256}
 
 回放匹配规则：以 (system_prompt, user_message) 精确匹配，同一 key 多次出现
-按 FIFO 顺序消费（对应记忆摘要等相同 prompt 重复调用的场景）。
+按 FIFO 顺序消费（对应记忆摘要等相同 prompt 重复调用、以及工具循环中
+同一请求的多轮交互场景）。
+
+向后兼容：旧 golden 条目无可选字段时，回放行为与纯文本时代完全一致
+（返回录制的 response 文本；工具循环收到纯文本即走文本回退路径）。
 """
 
 from __future__ import annotations
@@ -18,7 +24,7 @@ import time
 from pathlib import Path
 from typing import Any, Iterator
 
-from agents.llm_client import get_stream_callback
+from agents.llm_client import get_stream_callback, get_tool_exchange
 
 # 流式回放时的 chunk 大小（字符数）。契约：所有 chunk 拼接 == 完整响应，
 # 与真实流式调用的可观测契约一致（cb(delta...); return "".join(deltas)）。
@@ -53,7 +59,10 @@ class GoldenStore:
         self.dir.mkdir(parents=True, exist_ok=True)
         meta = dict(meta)
         meta.setdefault("created_at", time.strftime("%Y-%m-%d %H:%M:%S"))
-        meta.setdefault("format_version", 1)
+        # format_version=2：llm_calls 条目可含工具调用可选字段
+        # （tool_round/tools/tool_choice/assistant_message）；
+        # 读取端不按版本分支，旧 version=1 数据完全兼容。
+        meta.setdefault("format_version", 2)
         (self.dir / "meta.json").write_text(
             json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8",
         )
@@ -121,15 +130,19 @@ class ReplayLLM:
     等价性论证：仅在 replay 模式注入；返回值为 golden 中同一
     (system_prompt, user_message) 的录制响应，原样转发流式回调契约，
     不向业务代码暴露任何额外行为。
+
+    工具调用回放：golden 条目若含 assistant_message（含 tool_calls），
+    且当前处于工具交换通道中，则将其回填到交换对象，使工具循环按
+    录制的工具调用轨迹精确重现；旧条目无该字段时行为与纯文本一致。
     """
 
     def __init__(self, calls: list[dict[str, Any]], strict: bool = True) -> None:
         self.strict = strict
-        # (system, user) → 响应队列（FIFO）
-        self._pool: dict[tuple[str, str], list[str | None]] = {}
+        # (system, user) → 完整条目队列（FIFO），保留可选的 assistant_message
+        self._pool: dict[tuple[str, str], list[dict[str, Any]]] = {}
         for c in calls:
             key = (c["system_prompt"], c["user_message"])
-            self._pool.setdefault(key, []).append(c.get("response"))
+            self._pool.setdefault(key, []).append(c)
         self.served: list[dict[str, Any]] = []  # 已服务的请求序列（回归比对用）
 
     def __call__(
@@ -143,6 +156,7 @@ class ReplayLLM:
     ) -> str | None:
         key = (system_prompt, user_message)
         queue = self._pool.get(key)
+        entry: dict[str, Any] | None = None
         if not queue:
             if self.strict:
                 raise MockError(
@@ -153,7 +167,8 @@ class ReplayLLM:
                 )
             response: str | None = None
         else:
-            response = queue.pop(0)
+            entry = queue.pop(0)
+            response = entry.get("response")
 
         self.served.append({
             "seq": len(self.served),
@@ -162,6 +177,14 @@ class ReplayLLM:
             "user_message": user_message,
             "response": response,
         })
+
+        # 工具调用回放：把录制的 assistant_message 回填到交换通道，
+        # 使工具循环按录制轨迹重现（旧条目无该字段 → 走文本回退）。
+        exchange = get_tool_exchange()
+        if exchange is not None and entry is not None:
+            recorded_msg = entry.get("assistant_message")
+            if recorded_msg is not None:
+                exchange.assistant_message = recorded_msg
 
         # 流式契约回放：调用方标记 stream 且当前作用域有回调时，
         # 将完整响应切块推入回调，拼接结果与返回值一致。

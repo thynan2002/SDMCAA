@@ -11,6 +11,12 @@ observe 只读记录（哈希/长度/耗时/可选全量入出参），满足：
 
 安装方式：agents.llm_client.set_llm_dispatcher(dispatch)。
 未安装时 dispatcher=None，call_llm 与原实现逐字节等价。
+
+工具调用（function calling）扩展（向后兼容）：
+分派签名保持不变；工具参数与响应中的 tool_calls 经 llm_client 的
+tool_exchange_var 上下文变量观测。record 模式仅在出现工具交互时为
+golden 条目追加可选字段（tools / tool_choice / tool_round /
+assistant_message），旧格式条目与旧 golden 回放不受影响。
 """
 
 from __future__ import annotations
@@ -75,6 +81,8 @@ class LLMInterceptor:
     ) -> str | None:
         seq = self.call_count
         self.call_count += 1
+        # 工具交换通道（激活时表示本次为工具循环中的某一轮）
+        exchange = llm_client.get_tool_exchange()
         span_attrs = {
             "seq": seq,
             "stream": bool(stream),
@@ -83,6 +91,11 @@ class LLMInterceptor:
             "system_len": len(system_prompt),
             "user_len": len(user_message),
         }
+        if exchange is not None:
+            span_attrs["tool_round"] = exchange.round
+            span_attrs["tools"] = [
+                (t.get("function") or {}).get("name", "?") for t in exchange.tools
+            ]
 
         with self.tracer.span("llm", f"llm_call[{seq}]", **span_attrs):
             if self.mode == MODE_REPLAY:
@@ -99,19 +112,35 @@ class LLMInterceptor:
                 )
                 _ = time.time() - start  # 耗时由 span 统一记录
 
+            # 工具循环轮次可能无正文（仅 tool_calls）；response 可为 ""
+            responded = response is not None
+            has_tool_calls = bool(
+                exchange is not None and exchange.assistant_message
+                and exchange.assistant_message.get("tool_calls")
+            )
             self.tracer.event("llm_result", f"llm_result[{seq}]", **{
                 "seq": seq,
-                "ok": response is not None,
+                "ok": responded,
+                "tool_calls": has_tool_calls,
                 "response_sha256": sha256_text(response) if response else None,
                 "response_len": len(response) if response else 0,
             })
 
         if self.mode == MODE_RECORD and self.golden is not None:
-            self.golden.append_llm_call({
+            entry: dict[str, Any] = {
                 "seq": seq,
                 "stream": bool(stream),
                 "system_prompt": system_prompt,
                 "user_message": user_message,
                 "response": response,
-            })
+            }
+            # 仅在出现工具交互时追加可选字段（向后兼容，旧条目格式不变）
+            if exchange is not None:
+                entry["tool_round"] = exchange.round
+                entry["tools"] = exchange.tools
+                if exchange.tool_choice is not None:
+                    entry["tool_choice"] = exchange.tool_choice
+                if exchange.assistant_message is not None:
+                    entry["assistant_message"] = exchange.assistant_message
+            self.golden.append_llm_call(entry)
         return response

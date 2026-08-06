@@ -1,0 +1,168 @@
+# 工具调用（tool_calls）驱动架构重构设计
+
+> 目标：将足球战术分析多智能体系统从「纯文本 JSON 契约」迁移到「OpenAI 风格
+> function calling」：tools 参数 + tool_calls 解析 + 多轮工具循环 + 并行 tool_calls，
+> 同时保持 harness golden 回放与全部 37 个 pytest 用例不回归。
+
+## 一、现状盘点
+
+- 19 处 `call_llm` 调用点（不含定义）：
+  - **结构化决策输出（改工具契约）**：`session/router.py`（意图路由 JSON）、
+    `llm_brain.py` 的 `generate_script` / `decide` / `generate_strategy_table` /
+    `SemanticTierBatcher._resolve_batch`（4 处 JSON）、`data_verifier.py` 的
+    `_judge_challenge`（质疑判断 JSON）。共 7 处。
+  - **纯文本生成（保持文本）**：解说稿（player/agents.py）、报告 ×3
+    （report_generator.py）、风格标签/概括（style_modeler.py、data_collector.py）、
+    核验报告 ×3 与质疑回复（data_verifier.py）、反事实分析报告
+    （counterfactual_engine.py）、综合问答正文（general_qa.py）、记忆摘要（memory.py）。
+- 关键约束（来自现有测试与 golden）：
+  1. `tests/_common.py` 的 mock 以 `(system_prompt, user_message, config, max_tokens,
+     retries)` 5 参签名替换 `llm_brain.call_llm` —— llm_brain 内部调用点的调用
+     签名**不可变更**。
+  2. `tests/test_harness_equivalence.py` 以 6 参签名替换 `agents.llm_client._call_llm_impl`
+     与 `harness.interceptors._call_llm_impl` —— 传输层被 patch 的函数签名**不可变更**。
+  3. dispatcher 探针断言收到且仅收到原 6 个参数（不传 tools 时）。
+  4. golden 回放以 `(system_prompt, user_message)` 精确匹配、FIFO 消费；
+     现有 `harness/golden/standard` 的 39 条记录全部为 `response: null`
+     （录制时 LLM 不可用），回放验证的是**全兜底链路**。迁移后各调用点的
+     首轮 `(system, user)` 必须保持不变，旧 golden 才能继续回放。
+
+## 二、技术选型与理由
+
+| 候选 | 结论 | 理由 |
+|------|------|------|
+| langchain / langgraph 工具链（`create_react_agent` / `bind_tools` / `ToolNode`） | **不用于 LLM 调用层** | LangGraph 代理运行时会绕开 `call_llm` 分派器钩子与流式回调 ContextVar，直接破坏 harness 的观测/录制/回放等价性（硬约束 5）。LangGraph 继续承担其现有职责——两个 Orchestrator 的流水线编排（`StateGraph`），不改变。 |
+| openai 官方 SDK | **不引入** | 未安装；替换传输层意味着重写 `_call_llm_impl`（测试 patch 点）与流式 SSE 解析语义，引入不可控差异且无 golden 收益。现有 requests 传输层本就是 OpenAI Chat Completions 兼容协议，`tools` 仅是 payload 字段扩展，增量实现成本最低、等价性风险最小。 |
+| pydantic（v2，经 langgraph 依赖已存在，2.10.3） | **采用** | 用于定义工具参数模型并导出 JSON Schema（`model_json_schema()`），执行时做参数校验/类型强制。 |
+| MCP 框架 | **不引入** | 本项目的工具全部是进程内确定性函数，MCP 的跨进程协议层只会增加集成成本与等价性风险，收益不明确。 |
+| 自研最小工具循环 | **采用（受约束的必然选择）** | 任务要求 harness 拦截器钩子继续生效、`call_llm` 签名与流式语义保留、旧 golden 可回放——任何重型框架都无法绕过这些钩子。循环本身约百行，全部行为有单测覆盖。 |
+
+## 三、总体架构
+
+```
+调用方（router / llm_brain / verifier / general_qa …）
+   │  call_llm(system, user, [tools=...], [stream=...])     ← 签名向后兼容
+   ▼
+agents/llm_client.py
+   ├─ 无 tools 且无绑定 → 原路径（dispatcher/impl，逐字节等价）
+   └─ 有 tools（显式参数 或 bind_prompt_tools 绑定）
+        ▼  _call_llm_with_tools：多轮工具循环
+        每轮：设置 _tool_exchange 上下文变量（tools + 当前 messages）
+              → 经 dispatcher（harness 观测/录制/回放）或直调 _call_llm_impl
+              → 传输层读取 exchange：payload 加 tools、解析 tool_calls 回填 exchange
+        tool_calls → agents/tools 注册表执行（一轮内多个并行调用一次性执行）
+              → 终止型工具（结构化输出提交）：返回 json.dumps(结果) 给调用方
+              → 数据型工具：结果以 role=tool 消息回填，进入下一轮
+        无 tool_calls → 返回文本（含流式契约）
+```
+
+### 3.1 兼容性机要：`_tool_exchange` 上下文变量
+
+tests 与 harness 均以**固定签名**patch 传输函数与 dispatcher。为不改变任何既有
+签名，tools 参数与多轮 messages 通过 ContextVar（`_tool_exchange`）传入传输层，
+解析出的 assistant 消息（含 tool_calls）经同一通道回传。该模式与现有
+`_stream_callback` ContextVar 完全同构。由此：
+
+- 不传 tools 时，dispatcher 收到的参数与原 6 参逐一对应（现有断言通过）；
+- 被 patch 的 mock 实现忽略 exchange，返回纯文本 → 工具层按「无 tool_calls，
+  文本回退」处理 → 与重构前解析路径一致；
+- replay 模式下 ReplayLLM 返回录制文本（旧条目无 tool_calls）→ 同样走文本回退。
+
+### 3.2 返回值契约（保持 `str | None`）
+
+| 情形 | 返回 |
+|------|------|
+| 无 tools（且无绑定） | 与重构前完全一致 |
+| 模型经**终止型工具**提交结构化结果 | `json.dumps(工具参数)` —— 调用方现有 JSON 解析器直接复用 |
+| 同一响应多个并行终止型工具 | 各结果字典合并后 `json.dumps` |
+| 数据型工具循环后的最终文本回答 | 文本（流式调用同时推送增量 chunk） |
+| 模型返回纯文本（mock / 旧 golden / 未用工具） | 原文返回 → 调用方文本回退解析 |
+| 失败（网络/超时/格式非法/循环超限） | `None` → 调用方规则兜底（router 关键词、llm_brain 启发式、verifier 关键词），持续失败时各调用点已如实上报「模型调用失败，并非数据不足」 |
+
+### 3.3 失败降级链（要求 4）
+
+| 失败类型 | 处理 |
+|----------|------|
+| 网络/超时（瞬时） | 传输层按现有 `retries` 重试（不变） |
+| 输出非法（既无 tool_calls 也非可解析文本） | 返回原文/None → 调用方既有规则兜底 |
+| 工具参数非法 / 执行异常 | 以 `role=tool` 错误结果回填模型（OpenAI 惯例），受 `max_rounds` 限制；仍失败 → None → 兜底 |
+| 数据不足 | 数据工具返回 `{"status": "数据不足", ...}`，由模型按「忠实于数据」提示词纪律如实声明 |
+
+不使用占位内容掩盖失败；不改动任何现有兜底路径。
+
+### 3.4 并行 tool_calls（要求 3）
+
+单个 assistant 消息中的多个 tool_calls **全部执行完毕后再回填消息**（一次性）。
+`SemanticTierBatcher` 的「入队→批量提交」并入该机制：批量推断改用终止型工具
+`submit_semantic_tiers`（tool_choice=required）提交，模型也可在同一响应内并行发起
+多个提交调用（自动合并）；入队/缓存/分批仍是批量请求的组织层，不再是独立的
+「文本 JSON 推断实现」——重复的文本契约解析路径被工具契约取代（保留为回退）。
+
+### 3.5 禁止凭空编造（要求 2）
+
+新增 `agents/tools/`：
+
+- `base.py`：`ToolSpec` / `ToolRegistry` / 失败分类（参数非法、执行异常、数据不足）；
+- `schemas.py`：pydantic 决策工具模型（submit_intent / submit_decision /
+  submit_script / submit_strategy / submit_challenge_judgment / submit_semantic_tiers）；
+- `football.py`：确定性分析能力封装为**数据工具**，绑定给 general_qa / data_verifier
+  （tool_choice=auto，首轮 payload 不变，模型需要更多信息时**只能**通过工具获取）：
+  `get_tactical_facts`（战术事实提取）、`get_ball_timeline`（球路分析）、
+  `get_frame_snapshot`（帧级核验）、`get_player_raw_data`（球员轨迹核验）、
+  `get_player_profile`（画像/风格模型查询）、`run_counterfactual_simulation`
+  （反事实模拟+轨迹导出，仅在用户明确要求时由模型调用）。
+  工具经 `set_active_corpus`（SessionManager.load_data 注入）读取当前语料；
+  语料缺失时返回「数据不足」，不得编造。
+
+## 四、改动文件清单
+
+| 文件 | 改动 | 阶段 |
+|------|------|------|
+| `agents/llm_client.py` | +tools/tool_choice 参数、`_tool_exchange`、`_call_llm_with_tools` 循环、`bind_prompt_tools`、`_call_llm_impl`/`_call_llm_streaming` 读 exchange（无 exchange 时逐字节等价） | 1 |
+| `agents/tools/__init__.py` `base.py` | 注册表骨架（新增） | 1 |
+| `harness/interceptors.py` | 录制条目按需追加 `tools`/`assistant_message` 字段（旧格式不受影响）；trace 追加工具属性 | 1 |
+| `harness/mock.py` | ReplayLLM：条目含 `assistant_message` 时回填 exchange（旧条目行为不变） | 1 |
+| `tests/test_tool_calling.py` | 新增单测（循环/并行/失败分类/回退/回放兼容/流式） | 1 |
+| `agents/tools/schemas.py` `football.py` | 决策 schema + 数据工具（新增） | 2 |
+| `agents/session/router.py` | 绑定 submit_intent（试点；解析与兜底逻辑不变） | 2 |
+| `agents/professional/simulation/llm_brain.py` | 4 个提示词绑定对应提交工具（调用点签名不变，解析/重试/兜底不变） | 3 |
+| `agents/professional/agents/data_verifier.py` | 质疑判断绑定 submit_challenge_judgment；核验提示词绑定数据工具（auto） | 3 |
+| `agents/professional/agents/general_qa.py` | SYSTEM_PROMPT 绑定数据工具（auto，首轮 payload 不变） | 3 |
+| `agents/session/manager.py` `main.py` | load_data / run_once 注入 active corpus（各 1 行） | 3 |
+| `docs/harness.md` | 等价性论证更新（工具层 + 一键重录命令） | 收尾 |
+
+## 五、逐智能体迁移方案
+
+| 调用点 | 类型 | 方案 | 回退链 |
+|--------|------|------|--------|
+| router.parse | 结构化 | 绑定 `submit_intent`（required）；tool 参数→`_build_query_from_json` 复用 | 文本 JSON→同解析；失败→关键词规则→GENERAL_QA |
+| llm_brain.generate_script | 结构化 | 绑定 `submit_script`（required） | 文本→`_parse_json`；失败→空剧本 |
+| llm_brain.decide | 结构化 | 绑定 `submit_decision`（required） | 文本→`_parse_json`+`_validate_decision`；非法重试1次→None→启发式 |
+| llm_brain.generate_strategy_table | 结构化 | 绑定 `submit_strategy`（required） | 文本→`_parse_json`；失败→None→公式权重 |
+| SemanticTierBatcher.flush | 结构化 | 绑定 `submit_semantic_tiers`（required） | 文本→`_parse_semantic_tier_result`；失败→阈值档位 |
+| data_verifier._judge_challenge | 结构化 | 绑定 `submit_challenge_judgment`（required） | 文本 JSON→同解析；失败→关键词判断 |
+| general_qa.answer | 文本+数据工具 | 绑定数据工具（auto），正文仍为文本流式 | 工具不可用→仅用内嵌事实；LLM 失败→「模型调用失败」文案 |
+| data_verifier 核验/质疑回复 ×3 | 文本(+数据工具) | 帧级/球员核验绑定数据工具（auto） | 原样保留 |
+| 其余 8 处（解说/报告/摘要/风格标签） | 纯文本 | 不迁移 | 不变 |
+
+## 六、golden 兼容策略
+
+1. **旧 golden 直接回放**（主策略）：迁移只增加 tools 绑定，不改任何
+   `(system_prompt, user_message)` 首轮内容；replay 返回的录制文本/None 走文本
+   回退路径，与重构前行为逐字节一致。现有 `harness/golden/standard`（39 条
+   response=null 全兜底链路）无需重录即可继续 PASS。
+2. **新格式向后兼容**：record 模式仅在出现 tool_calls 时追录 `tools` /
+   `assistant_message` 字段（format_version=1 不变，字段可选）；ReplayLLM 对无该
+   字段的旧条目行为不变。
+3. **一键重录**（可选）：`python -m harness run TestInput/Files/12s_person2d.csv
+   TestInput/Files/12s_soccer3d.csv --script harness/scripts/standard_12s.txt
+   --mode record --golden-dir harness/golden/standard --seed 42`（真实 API）。
+
+## 七、验收对照
+
+- `call_llm` 支持 tools 参数与 tool_calls 循环；不传 tools 时行为与重构前完全一致
+  （现有 dispatcher 探针用例 + A/B 等价用例直接证明）。
+- ≥3 个智能体完成工具化：router、llm_brain.decide、data_verifier（质疑判断）+
+  general_qa（数据工具）。
+- 同一响应并行 tool_calls：循环支持 + 单测证明。
+- 37 个 pytest 用例 + golden 四维回放 PASS。
