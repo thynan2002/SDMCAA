@@ -38,6 +38,10 @@ def run_once(person_csv: Path, ball_csv: Path, focus_jerseys: list[str] | None =
     corpus = build_corpus_from_paths(person_csv, ball_csv)
     print(f"球员数: {corpus.player_count}（含门将 {len(corpus.goalkeepers())} 人）")
 
+    # 数据工具的语料来源（单次解说路径）
+    from agents.tools.football import set_active_corpus
+    set_active_corpus(corpus)
+
     orch = PlayerTrackingOrchestrator()
     decision = orch.run_single(corpus, focus_jerseys=focus_jerseys)
 

@@ -213,7 +213,7 @@ def call_llm(
 # ── 工具调用多轮循环 ───────────────────────────────────────────
 # LLM 发起 tool_calls → 注册表执行 → 结果回填 → 继续生成。
 # 终止型工具（结构化输出提交）的调用即最终答案，立即返回。
-_DEFAULT_MAX_TOOL_ROUNDS = 4
+_DEFAULT_MAX_TOOL_ROUNDS = 8
 
 
 def _call_llm_with_tools(

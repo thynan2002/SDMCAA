@@ -789,3 +789,18 @@ class DataVerifierAgent:
         """球员在任意帧的估计位置（线性插值，跟踪数据稀疏时不再失真）。"""
         from agents.player.tracker import position_at_frame
         return position_at_frame(player, target_frame)
+
+
+# ── 工具契约绑定：质疑判断改为 function calling 交付结构化结果 ──
+# 模型经 submit_challenge_judgment 工具调用提交判定（字段与原有文本
+# JSON 契约一致）→ 既有 json.loads 路径原样复用；模型直接返回文本
+# （mock/旧 golden/模型行为差异）时文本解析路径照常工作；LLM 失败时
+# 关键词判断兜底不变。
+from agents.llm_client import bind_prompt_tools  # noqa: E402
+from agents.tools.schemas import build_challenge_tool  # noqa: E402
+
+bind_prompt_tools(
+    CHALLENGE_SYSTEM_PROMPT,
+    [build_challenge_tool()],
+    tool_choice="auto",
+)

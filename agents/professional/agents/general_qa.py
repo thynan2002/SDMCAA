@@ -430,3 +430,19 @@ def _safe_sort_key(track_id: str) -> tuple:
         return (0, int(track_id), track_id)
     except (ValueError, TypeError):
         return (1, track_id, track_id)
+
+
+# ── 工具契约绑定：综合问答获得比赛数据工具 ─────────────────────
+# 比赛事实已内嵌在首轮用户消息中（payload 与重构前一致）；当回答需要
+# 提示词中未提供的额外信息（特定帧/球员数据、战术事实、球路明细、
+# 反事实推演）时，模型**只能**通过工具获取，不得编造。工具不可用时
+# 按「忠实于数据」纪律如实声明数据不足。
+# 正文仍为纯文本流式生成；模型直接返回文本时（mock/旧 golden）行为不变。
+from agents.llm_client import bind_prompt_tools  # noqa: E402
+from agents.tools.football import (  # noqa: E402
+    ensure_football_tools_registered,
+    get_football_tools,
+)
+
+ensure_football_tools_registered()
+bind_prompt_tools(SYSTEM_PROMPT, get_football_tools(), tool_choice="auto")

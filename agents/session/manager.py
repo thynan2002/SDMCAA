@@ -57,6 +57,9 @@ class SessionManager:
         try:
             self.corpus = build_corpus_from_paths(person_csv, ball_csv)
             self._data_files = (str(person_csv), str(ball_csv))
+            # 数据工具（get_frame_snapshot 等）的语料来源
+            from agents.tools.football import set_active_corpus
+            set_active_corpus(self.corpus)
             return True
         except Exception as e:
             print(f"[错误] 数据加载失败：{e}")

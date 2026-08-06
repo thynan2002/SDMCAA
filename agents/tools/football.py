@@ -262,90 +262,104 @@ def _run_counterfactual_simulation(args: dict[str, Any]) -> dict[str, Any]:
 
 # ── 注册 ───────────────────────────────────────────────────────
 
+_TOOL_SPECS: list[ToolSpec] | None = None
+
+
+def get_football_tools() -> list[ToolSpec]:
+    """返回数据工具规格列表（幂等构造，供提示词绑定使用）。"""
+    global _TOOL_SPECS
+    if _TOOL_SPECS is None:
+        _TOOL_SPECS = [
+            ToolSpec(
+                name="get_tactical_facts",
+                description=(
+                    "获取球队级战术事实：阵型结构与站位、进攻态势（推进方向/进攻空间/传球特征）、"
+                    "球员参与度与跑动、攻防转换线索。用户询问球队战术、阵型、进攻方式、核心球员、"
+                    "攻防转换等问题时调用。"
+                ),
+                parameters={"type": "object", "properties": {}, "additionalProperties": False},
+                handler=_get_tactical_facts,
+            ),
+            ToolSpec(
+                name="get_ball_timeline",
+                description=(
+                    "获取球路分析时间线：逐球路事件的起止时间、球路（如「6号→7号」）、方向、"
+                    "速度档位、距离档位、球高度。用户询问球的流转、传球序列、球路等问题时调用。"
+                ),
+                parameters={"type": "object", "properties": {}, "additionalProperties": False},
+                handler=_get_ball_timeline,
+            ),
+            ToolSpec(
+                name="get_frame_snapshot",
+                description=(
+                    "帧级核验：获取指定帧的球位置、离球最近球员、附近球员及该帧球路事件。"
+                    "用户询问特定时刻/帧发生了什么、质疑某时刻场上位置时调用。"
+                ),
+                parameters={
+                    "type": "object",
+                    "properties": {"frame": {"type": "integer", "description": "帧号（帧率30，帧号≈秒数×30）"}},
+                    "required": ["frame"],
+                },
+                handler=_get_frame_snapshot,
+            ),
+            ToolSpec(
+                name="get_player_raw_data",
+                description=(
+                    "获取球员的原始轨迹数据（总帧数、轨迹范围、主要区域、平均位置、速度与冲刺统计）。"
+                    "用户核实某球员的位置/轨迹/活动范围时调用。"
+                ),
+                parameters={
+                    "type": "object",
+                    "properties": {"jersey": {"type": "string", "description": "球衣号，如「7号」"}},
+                    "required": ["jersey"],
+                },
+                handler=_get_player_raw_data,
+            ),
+            ToolSpec(
+                name="get_player_profile",
+                description=(
+                    "获取球员画像统计：主要活动区域、区域分布、速度/冲刺、场地覆盖率、"
+                    "参与球路次数、接近球时间占比。用户询问球员风格、活跃度、特点时调用。"
+                ),
+                parameters={
+                    "type": "object",
+                    "properties": {"jersey": {"type": "string", "description": "球衣号，如「7号」"}},
+                    "required": ["jersey"],
+                },
+                handler=_get_player_profile,
+            ),
+            ToolSpec(
+                name="run_counterfactual_simulation",
+                description=(
+                    "反事实轨迹模拟（启发式）：基于给定干预时间与替换动作，从真实数据出发推演"
+                    "未来轨迹并返回关键事件与结局。仅在用户明确描述「如果/假如…会怎样」且需要"
+                    "推演结果时调用；耗时数秒。altered_action 取值 pass/shoot/dribble/clear/hold，"
+                    "pass 时可提供 altered_target。"
+                ),
+                parameters={
+                    "type": "object",
+                    "properties": {
+                        "subject_player": {"type": "string", "description": "主体球员球衣号，如「7号」"},
+                        "time_second": {"type": "number", "description": "干预时间（秒）"},
+                        "altered_action": {
+                            "type": "string", "enum": ["pass", "shoot", "dribble", "clear", "hold"],
+                        },
+                        "altered_target": {"type": "string", "description": "替换传球目标球衣号（pass 时）"},
+                        "duration_seconds": {"type": "number", "description": "推演时长（秒），0=到数据结束"},
+                    },
+                    "required": ["subject_player", "time_second", "altered_action"],
+                },
+                handler=_run_counterfactual_simulation,
+            ),
+        ]
+    return list(_TOOL_SPECS)
+
+
 def ensure_football_tools_registered() -> None:
     """幂等注册数据工具到默认注册表（由使用方模块导入时调用）。"""
     global _registered
     if _registered:
         return
     _registered = True
-    register_tool(ToolSpec(
-        name="get_tactical_facts",
-        description=(
-            "获取球队级战术事实：阵型结构与站位、进攻态势（推进方向/进攻空间/传球特征）、"
-            "球员参与度与跑动、攻防转换线索。用户询问球队战术、阵型、进攻方式、核心球员、"
-            "攻防转换等问题时调用。"
-        ),
-        parameters={"type": "object", "properties": {}, "additionalProperties": False},
-        handler=_get_tactical_facts,
-    ))
-    register_tool(ToolSpec(
-        name="get_ball_timeline",
-        description=(
-            "获取球路分析时间线：逐球路事件的起止时间、球路（如「6号→7号」）、方向、"
-            "速度档位、距离档位、球高度。用户询问球的流转、传球序列、球路等问题时调用。"
-        ),
-        parameters={"type": "object", "properties": {}, "additionalProperties": False},
-        handler=_get_ball_timeline,
-    ))
-    register_tool(ToolSpec(
-        name="get_frame_snapshot",
-        description=(
-            "帧级核验：获取指定帧的球位置、离球最近球员、附近球员及该帧球路事件。"
-            "用户询问特定时刻/帧发生了什么、质疑某时刻场上位置时调用。"
-        ),
-        parameters={
-            "type": "object",
-            "properties": {"frame": {"type": "integer", "description": "帧号（帧率30，帧号≈秒数×30）"}},
-            "required": ["frame"],
-        },
-        handler=_get_frame_snapshot,
-    ))
-    register_tool(ToolSpec(
-        name="get_player_raw_data",
-        description=(
-            "获取球员的原始轨迹数据（总帧数、轨迹范围、主要区域、平均位置、速度与冲刺统计）。"
-            "用户核实某球员的位置/轨迹/活动范围时调用。"
-        ),
-        parameters={
-            "type": "object",
-            "properties": {"jersey": {"type": "string", "description": "球衣号，如「7号」"}},
-            "required": ["jersey"],
-        },
-        handler=_get_player_raw_data,
-    ))
-    register_tool(ToolSpec(
-        name="get_player_profile",
-        description=(
-            "获取球员画像统计：主要活动区域、区域分布、速度/冲刺、场地覆盖率、"
-            "参与球路次数、接近球时间占比。用户询问球员风格、活跃度、特点时调用。"
-        ),
-        parameters={
-            "type": "object",
-            "properties": {"jersey": {"type": "string", "description": "球衣号，如「7号」"}},
-            "required": ["jersey"],
-        },
-        handler=_get_player_profile,
-    ))
-    register_tool(ToolSpec(
-        name="run_counterfactual_simulation",
-        description=(
-            "反事实轨迹模拟（启发式）：基于给定干预时间与替换动作，从真实数据出发推演"
-            "未来轨迹并返回关键事件与结局。仅在用户明确描述「如果/假如…会怎样」且需要"
-            "推演结果时调用；耗时数秒。altered_action 取值 pass/shoot/dribble/clear/hold，"
-            "pass 时可提供 altered_target。"
-        ),
-        parameters={
-            "type": "object",
-            "properties": {
-                "subject_player": {"type": "string", "description": "主体球员球衣号，如「7号」"},
-                "time_second": {"type": "number", "description": "干预时间（秒）"},
-                "altered_action": {
-                    "type": "string", "enum": ["pass", "shoot", "dribble", "clear", "hold"],
-                },
-                "altered_target": {"type": "string", "description": "替换传球目标球衣号（pass 时）"},
-                "duration_seconds": {"type": "number", "description": "推演时长（秒），0=到数据结束"},
-            },
-            "required": ["subject_player", "time_second", "altered_action"],
-        },
-        handler=_run_counterfactual_simulation,
-    ))
+    for spec in get_football_tools():
+        register_tool(spec)

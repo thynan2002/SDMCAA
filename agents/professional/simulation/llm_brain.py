@@ -688,7 +688,13 @@ class SemanticTierBatcher:
 def _parse_semantic_tier_result(
     text: str, expected_keys: list[str],
 ) -> dict[str, str] | None:
-    """解析 LLM 批量语义推断的 JSON 响应。"""
+    """解析 LLM 批量语义推断的 JSON 响应。
+
+    响应中的键为请求 ID（req_0, req_1, ...）；按索引映射回调用方的
+    缓存键（expected_keys），否则档位描述写不进缓存、二次查询永远
+    落空（迁移时修复的既有缺陷：映射缺失导致 LLM 档位描述在实网
+    从未生效；回放路径全部为 None，不受影响）。
+    """
     if not text:
         return None
     cleaned = text.strip()
@@ -726,4 +732,38 @@ def _parse_semantic_tier_result(
     results = data.get("results")
     if not isinstance(results, dict):
         return None
-    return {str(k): str(v) for k, v in results.items() if k and v is not None}
+    out: dict[str, str] = {}
+    for k, v in results.items():
+        if not k or v is None:
+            continue
+        m = re.match(r"^req_(\d+)$", str(k))
+        if m:
+            idx = int(m.group(1))
+            if 0 <= idx < len(expected_keys):
+                out[expected_keys[idx]] = str(v)
+                continue
+        out[str(k)] = str(v)
+    return out
+
+
+# ═══════════════════════════════════════════════════════════════════
+# 工具契约绑定：结构化决策输出改为 function calling 交付
+# ═══════════════════════════════════════════════════════════════════
+# 模型经 submit_* 终止型工具提交结构化结果（工具参数即 JSON 契约，
+# 与原有文本契约字段一致）→ call_llm 返回 json.dumps(参数)，既有
+# _parse_json / _validate_decision / _parse_semantic_tier_result 原样
+# 复用；模型直接返回文本（mock/旧 golden/模型行为差异）时文本解析
+# 路径照常工作；LLM 失败时启发式兜底不变。
+# 调用点签名未改（conftest 的 mock 以固定签名替换 call_llm）。
+from agents.llm_client import bind_prompt_tools  # noqa: E402
+from agents.tools.schemas import (  # noqa: E402
+    build_decision_tool,
+    build_script_tool,
+    build_semantic_tiers_tool,
+    build_strategy_tool,
+)
+
+bind_prompt_tools(SCRIPT_SYSTEM_PROMPT, [build_script_tool()], tool_choice="auto")
+bind_prompt_tools(DECIDE_SYSTEM_PROMPT, [build_decision_tool()], tool_choice="auto")
+bind_prompt_tools(STRATEGY_SYSTEM_PROMPT, [build_strategy_tool()], tool_choice="auto")
+bind_prompt_tools(SEMANTIC_TIER_SYSTEM_PROMPT, [build_semantic_tiers_tool()], tool_choice="auto")
