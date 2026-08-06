@@ -438,6 +438,21 @@ def _call_llm_impl(
         payload["max_tokens"] = budget
         try:
             response = requests.post(url, headers=headers, json=payload, timeout=config.timeout)
+            # 降级链：部分推理型模型不接受强制 tool_choice（400 Thinking mode ...），
+            # 去掉 tool_choice 后按 auto 语义重试一次（tools 保留，行为不降级）。
+            if (
+                response.status_code == 400
+                and "tool_choice" in payload
+                and attempt == 0
+            ):
+                body_text = response.text or ""
+                if "tool_choice" in body_text or "Thinking mode" in body_text:
+                    logger.warning(
+                        "服务端拒绝 tool_choice（%s），降级为 auto 重试",
+                        body_text[:200],
+                    )
+                    payload.pop("tool_choice", None)
+                    continue
             response.raise_for_status()
             data = response.json()
             choice = (data.get("choices") or [{}])[0]
@@ -530,36 +545,18 @@ def _call_llm_streaming(
     acc_tool_calls: dict[int, dict[str, Any]] = {}
     try:
         with requests.post(url, headers=headers, json=payload, timeout=config.timeout, stream=True) as resp:
+            if (
+                resp.status_code == 400
+                and "tool_choice" in payload
+                and (resp.text or "").find("tool_choice") != -1
+            ):
+                # 降级链：推理模式拒绝强制 tool_choice → 去 choice 重试一次
+                logger.warning("流式请求 tool_choice 被拒绝（%s），降级重试", resp.text[:200])
+                payload.pop("tool_choice", None)
+                with requests.post(url, headers=headers, json=payload, timeout=config.timeout, stream=True) as resp2:
+                    return _drain_stream(resp2, acc_tool_calls, pieces, cb)
             resp.raise_for_status()
-            # 显式锁定 UTF-8：requests 默认对 text/* 响应使用 ISO-8859-1 解码，
-            # 会导致中文多字节字符被错误解释为 Latin-1 → 乱码。
-            resp.encoding = "utf-8"
-            for raw in resp.iter_lines(decode_unicode=True):
-                if not raw:
-                    continue
-                line = raw.strip()
-                if not line.startswith("data:"):
-                    continue
-                data_str = line[len("data:"):].strip()
-                if data_str == "[DONE]":
-                    break
-                try:
-                    chunk = json.loads(data_str)
-                except json.JSONDecodeError:
-                    continue
-                choices = chunk.get("choices") or []
-                if not choices:
-                    continue
-                delta = (choices[0].get("delta") or {})
-                _merge_tool_call_delta(acc_tool_calls, delta.get("tool_calls") or [])
-                # 只转发正文 content，不转发 reasoning_content（模型内部思维链）
-                text = delta.get("content") or ""
-                if text:
-                    pieces.append(text)
-                    try:
-                        cb(text)
-                    except Exception:
-                        logger.warning("流式回调异常，已忽略", exc_info=True)
+            return _drain_stream(resp, acc_tool_calls, pieces, cb)
     except Exception as e:
         logger.warning("流式调用失败: %s", e)
         # 流式中途失败：已收到的部分仍然返回，避免完全丢失
@@ -567,7 +564,49 @@ def _call_llm_streaming(
             return "".join(pieces)
         return None
 
-    # 工具调用响应：回填累积的 tool_calls（content 可为空），由工具循环继续
+
+def _drain_stream(
+    resp: Any,
+    acc_tool_calls: dict[int, dict[str, Any]],
+    pieces: list[str],
+    cb: Callable[[str], None],
+) -> str | None:
+    """消费流式响应体，累积 tool_calls 并推送正文增量 chunk。
+
+    与纯文本时代契约一致：cb(delta...) 逐增量调用；返回值=完整文本；
+    工具调用响应回填 exchange.assistant_message 后由工具循环继续。
+    """
+    exchange = tool_exchange_var.get()
+    resp.raise_for_status()
+    # 显式锁定 UTF-8：requests 默认对 text/* 响应使用 ISO-8859-1 解码，
+    # 会导致中文多字节字符被错误解释为 Latin-1 → 乱码。
+    resp.encoding = "utf-8"
+    for raw in resp.iter_lines(decode_unicode=True):
+        if not raw:
+            continue
+        line = raw.strip()
+        if not line.startswith("data:"):
+            continue
+        data_str = line[len("data:"):].strip()
+        if data_str == "[DONE]":
+            break
+        try:
+            chunk = json.loads(data_str)
+        except json.JSONDecodeError:
+            continue
+        choices = chunk.get("choices") or []
+        if not choices:
+            continue
+        delta = (choices[0].get("delta") or {})
+        _merge_tool_call_delta(acc_tool_calls, delta.get("tool_calls") or [])
+        # 只转发正文 content，不转发 reasoning_content（模型内部思维链）
+        text = delta.get("content") or ""
+        if text:
+            pieces.append(text)
+            try:
+                cb(text)
+            except Exception:
+                logger.warning("流式回调异常，已忽略", exc_info=True)
     if acc_tool_calls:
         ordered = [acc_tool_calls[i] for i in sorted(acc_tool_calls)]
         finished = [
@@ -581,5 +620,4 @@ def _call_llm_streaming(
                 "tool_calls": finished,
             }
             return "".join(pieces)
-
     return "".join(pieces) if pieces else None

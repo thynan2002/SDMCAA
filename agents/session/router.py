@@ -412,3 +412,20 @@ class QueryRouter:
         if match:
             return f"{match.group(1)}号"
         return str(raw).strip()
+
+
+# ── 工具契约绑定：意图路由改为 function calling 交付结构化结果 ──
+# 模型经 submit_intent 工具调用提交解析结果；工具参数即 JSON 契约，
+# 与原有文本 JSON 契约字段一致 → _build_query_from_json 原样复用。
+# 模型直接返回文本（mock/旧 golden/模型行为差异）时，既有文本解析
+# 路径照常工作；LLM 失败时关键词规则兜底不变。
+# tool_choice 使用 auto（DeepSeek 推理模式不接受 required 强制）；
+# 传输层对 tool_choice 类 400 错误会自动降级重试。
+from agents.llm_client import bind_prompt_tools  # noqa: E402
+from agents.tools.schemas import build_intent_tool  # noqa: E402
+
+bind_prompt_tools(
+    QueryRouter.SYSTEM_PROMPT,
+    [build_intent_tool()],
+    tool_choice="auto",
+)
