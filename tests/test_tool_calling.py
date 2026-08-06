@@ -447,3 +447,91 @@ class TestRegistryBasics:
             assert out == {"echoed": "t"}
         finally:
             get_default_registry()._tools.pop("echo_default", None)
+
+
+# ─────────────────────────────────────────────────────────────────
+# 10. record → replay 闭环（含工具调用条目）
+# ─────────────────────────────────────────────────────────────────
+
+class TestRecordReplayToolCalls:
+    """录制含 assistant_message 的 golden → 回放驱动真实工具循环。
+
+    证明：新格式（tools / assistant_message 可选字段）向后兼容、
+    ReplayLLM 能按录制轨迹重现工具调用、回放回归四维 PASS。
+    """
+
+    def test_record_replay_roundtrip_with_tool_calls(self, tmp_path):
+        import agents.llm_client as llm_client_module
+        import harness.interceptors as interceptors_module
+        from harness import Harness, HarnessConfig
+        from harness.config import MODE_RECORD, PROJECT_ROOT
+        from harness.verify.regression import verify_golden
+        from tests._common import BALL_CSV, PERSON_CSV
+
+        # 清空 Output 中可能残留的 12s_cf_* 产物，保证文件清单比对封闭
+        output_dir = PROJECT_ROOT / "Output"
+        if output_dir.is_dir():
+            for stale in output_dir.glob("12s_cf_*.csv"):
+                stale.unlink()
+
+        def impl(system_prompt, user_message, config=None, max_tokens=None,
+                 retries=1, stream=False):
+            # 路由提示词：模拟模型发起 submit_intent 工具调用
+            ex = llm_client_module.get_tool_exchange()
+            if ex is not None and "意图路由器" in system_prompt:
+                ex.assistant_message = {
+                    "role": "assistant", "content": "",
+                    "tool_calls": [_tool_call(
+                        "submit_intent",
+                        {"intent": "focus_player", "target_players": ["7号"],
+                         "confidence": 0.9, "scenario": None},
+                        call_id="c_rt",
+                    )],
+                }
+                return ""
+            return "模拟回复[tool_roundtrip]"
+
+        orig_llm = llm_client_module._call_llm_impl
+        orig_int = interceptors_module._call_llm_impl
+        llm_client_module._call_llm_impl = impl
+        interceptors_module._call_llm_impl = impl
+        golden_dir = tmp_path / "golden_tools"
+        try:
+            cfg = HarnessConfig(
+                mode=MODE_RECORD, golden_dir=golden_dir, seed=42,
+                trace_dir=tmp_path / "t1", trace_enabled=False,
+            )
+            with Harness(cfg) as h:
+                h.init_recording({
+                    "name": "tools_roundtrip", "seed": 42,
+                    "dataset": {
+                        "person": str(PERSON_CSV.resolve()),
+                        "ball": str(BALL_CSV.resolve()),
+                    },
+                })
+                assert h.load_data(PERSON_CSV, BALL_CSV)
+                resp = h.handle_input("聚焦7号")
+                assert resp, "路由工具契约应产出非空响应"
+        finally:
+            llm_client_module._call_llm_impl = orig_llm
+            interceptors_module._call_llm_impl = orig_int
+
+        # 录制条目应包含工具可选字段
+        entries = [
+            json.loads(l)
+            for l in (golden_dir / "llm_calls.jsonl").read_text(encoding="utf-8").splitlines()
+            if l.strip()
+        ]
+        router_entries = [e for e in entries if "意图路由器" in e["system_prompt"]]
+        assert router_entries, "应录制到路由调用"
+        entry = router_entries[0]
+        assert entry.get("assistant_message", {}).get("tool_calls"), "应录制 assistant_message"
+        tool_names = [t["function"]["name"] for t in entry.get("tools", [])]
+        assert "submit_intent" in tool_names
+
+        # 回放：严格 mock 下四维比对 PASS，工具循环按录制轨迹重现
+        result = verify_golden(golden_dir, trace_dir=tmp_path / "t2")
+        assert not result.errors, f"回放异常: {result.errors}"
+        assert result.llm_sequence_equal, result.llm_first_mismatch
+        assert not result.turn_diffs, "逐轮输出或快照不一致"
+        assert result.passed
