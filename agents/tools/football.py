@@ -154,7 +154,9 @@ def _get_player_raw_data(args: dict[str, Any]) -> dict[str, Any]:
         if player.jersey_label == jersey:
             return {
                 "球员": jersey,
-                "所属队伍": player.color,
+                # 与 general_qa/data_verifier 口径一致：颜色码 → 中文队名
+                "所属队伍": {"A": "A队", "B": "B队", "C": "门将"}.get(
+                    player.color, f"{player.color}队"),
                 "颜色标识": player.color,
                 "总帧数": len(player.frames),
                 "轨迹范围": {
@@ -188,14 +190,18 @@ def _get_player_profile(args: dict[str, Any]) -> dict[str, Any]:
             zones = sorted(
                 player.zone_distribution.items(), key=lambda x: x[1], reverse=True,
             )
+            # 战术角色确定性推断（与 data_verifier/general_qa 同口径，替代占位文案）
+            from agents.player.tracker import classify_position, classify_side
+            if player.is_goalkeeper:
+                role = "门将"
+            else:
+                role = f"{classify_position(player.avg_y())}（{classify_side(player.avg_x())}路）"
             return {
                 "球员": jersey,
                 "所属队伍": {"A": "A队", "B": "B队", "C": "门将"}.get(
                     player.color, f"{player.color}队"),
                 "是否门将": player.is_goalkeeper,
-                "战术角色": (
-                    "门将" if player.is_goalkeeper else "由数据推断"
-                ),
+                "战术角色": role,
                 "主要活动区域": player.dominant_zone,
                 "区域分布Top3": [
                     f"{z}({v:.0f}%时间)" for z, v in zones[:3]

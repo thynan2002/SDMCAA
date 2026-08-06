@@ -243,12 +243,17 @@ def _call_llm_with_tools(
             if name:
                 specs_by_name.setdefault(name, registry.get(name))
 
-    messages: list[dict[str, Any]] = []  # 空 = 首轮，传输层用 [system, user]
+    # 消息历史包含 system+user（多轮工具循环中必须完整保留上下文，
+    # 否则第 2 轮起模型看不到用户问题与系统提示词 —— 修复审查发现的缺陷）
+    messages: list[dict[str, Any]] = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_message},
+    ]
     for rnd in range(max_rounds):
         exchange = ToolExchange(
             tools=schemas,
             tool_choice=tool_choice,
-            messages=list(messages) if messages else None,
+            messages=list(messages),
             round=rnd,
         )
         token = tool_exchange_var.set(exchange)

@@ -236,3 +236,15 @@ tests 与 harness 均以**固定签名**patch 传输函数与 dispatcher。为�
 - **反事实模拟工具耗时**：`run_counterfactual_simulation` 为启发式推演（不触发
   LLM 递归），耗时数秒，仅当用户明确描述反事实场景时模型才应调用。
 
+## 6. 审查修复记录（2026-08-06 代码审查后）
+
+| 级别 | 问题 | 修复 |
+|------|------|------|
+| P1 | 多轮工具循环第 2 轮起丢失 system/user 消息（`messages` 初始为空，工具回填后上下文残缺） | `_call_llm_with_tools` 的 `messages` 全量初始化为 `[system, user]`，每轮完整透传；同步修正 3 个受影响单测的索引断言（改为按 role 定位）并新增消息序列断言 |
+| P2 | `get_player_raw_data` 的「所属队伍」输出颜色码（A/B/C）与全局中文队名口径不一致 | 映射为中文队名 |
+| P2 | `get_player_profile` 的「战术角色」为占位文案「由数据推断」 | 改用 `classify_position`/`classify_side` 确定性推断位置角色 |
+| P3 | 新测试文件 2 个未用导入（pytest、register_tool） | 移除 |
+
+修复后复验：58 个 pytest 全部通过（37 原有 + 21 新增）、golden 四维回放 PASS、
+实网冒烟（剧本/决策/档位/质疑判断/general_qa 工具循环）全部正确。
+

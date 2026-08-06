@@ -24,11 +24,9 @@ from __future__ import annotations
 
 import json
 
-import pytest
-
 from agents import llm_client
 from agents.llm_client import ToolExchange, tool_exchange_var
-from agents.tools.base import ToolRegistry, ToolSpec, register_tool, get_default_registry
+from agents.tools.base import ToolRegistry, ToolSpec, get_default_registry
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -135,8 +133,10 @@ class TestTerminalToolRound:
         call = transport.calls[0]
         assert call["tool_choice"] == "required"
         assert call["tools"][0]["function"]["name"] == "submit_demo"
-        # 首轮 messages=None：传输层应使用 [system, user]
-        assert call["messages"] is None
+        # 首轮 messages 必须包含 system + user（完整上下文）
+        assert [m["role"] for m in call["messages"]] == ["system", "user"]
+        assert call["messages"][0]["content"] == "sys"
+        assert call["messages"][1]["content"] == "usr"
 
     def test_no_tools_legacy_path_unaffected(self, monkeypatch):
         """不传 tools 且无绑定 → 走原路径（交换通道不激活）。"""
@@ -168,11 +168,11 @@ class TestDataToolLoop:
         )
         assert out == "最终回答"
         assert transport.attempts == 2
-        # 第二轮 messages 必须包含 assistant 工具调用 + role=tool 结果
+        # 第二轮 messages 必须保留完整上下文：system → user → assistant(工具调用) → tool(结果)
         messages = transport.calls[1]["messages"]
-        assert messages[0]["role"] == "assistant"
-        assert messages[0]["tool_calls"][0]["function"]["name"] == "echo_data"
-        tool_msg = messages[1]
+        assert [m["role"] for m in messages] == ["system", "user", "assistant", "tool"]
+        assert messages[2]["tool_calls"][0]["function"]["name"] == "echo_data"
+        tool_msg = messages[3]
         assert tool_msg["role"] == "tool"
         assert "球在中路" in tool_msg["content"]
         assert tool_msg["tool_call_id"] == "call_1"
@@ -249,7 +249,7 @@ class TestToolFailures:
         monkeypatch.setattr(llm_client, "_call_llm_impl", transport)
         out = llm_client.call_llm("sys", "usr", tools=[tool])
         assert out == "已降级处理"
-        tool_msg = transport.calls[1]["messages"][1]
+        tool_msg = [m for m in transport.calls[1]["messages"] if m["role"] == "tool"][0]
         payload = json.loads(tool_msg["content"])
         assert payload["kind"] == "execution_error"
         assert "工具执行异常" in payload["error"]
@@ -266,7 +266,7 @@ class TestToolFailures:
         out = llm_client.call_llm("sys", "usr", tools=[_submit_spec()])
         assert json.loads(out) == {"answer": 7}
         assert transport.attempts == 2
-        tool_msg = transport.calls[1]["messages"][1]
+        tool_msg = [m for m in transport.calls[1]["messages"] if m["role"] == "tool"][0]
         payload = json.loads(tool_msg["content"])
         assert payload["kind"] == "invalid_arguments"
 
@@ -278,7 +278,7 @@ class TestToolFailures:
         monkeypatch.setattr(llm_client, "_call_llm_impl", transport)
         out = llm_client.call_llm("sys", "usr", tools=[_data_spec()])
         assert out == "说明"
-        tool_msg = transport.calls[1]["messages"][1]
+        tool_msg = [m for m in transport.calls[1]["messages"] if m["role"] == "tool"][0]
         assert json.loads(tool_msg["content"])["kind"] == "unknown_tool"
 
     def test_loop_not_converging_returns_none(self, monkeypatch):
