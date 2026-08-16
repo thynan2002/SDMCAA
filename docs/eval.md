@@ -1,4 +1,10 @@
-# 评测框架（eval/）— 单 LLM 直接调用 vs 多智能体系统对比评测
+# 评测框架（eval/）📊 — 单 LLM 直接调用 vs 多智能体系统对比评测
+
+<p align="center">
+  <img src="https://img.shields.io/badge/status-implemented-2EA043?style=flat-square" alt="Status: implemented">
+  <img src="https://img.shields.io/badge/systems-bare%2Fsingle%2Fmulti-4B8BBE?style=flat-square" alt="Systems: bare/single/multi">
+  <img src="https://img.shields.io/badge/cases-46%2B-8B5CF6?style=flat-square" alt="Cases: 46+">
+</p>
 
 对同一测试用例集，系统性地对比三种方案：
 
@@ -8,10 +14,7 @@
 | `single` | 基线 B：单智能体 + 与多智能体同套数据工具（function calling 循环） |
 | `multi` | 被测系统：SessionManager 多智能体流水线（经 Harness passthrough） |
 
-> 公平参评与策略化重构（v2）：三系统统一「形势判断优先、用户索要才引用数值」的
-> 输出纪律；accuracy/tactical_accuracy 改由 Judge 语义比对（程序化数值扫描降级为
-> 诊断不计分）；Judge 升级为 deepseek-v4-pro（rubric v3）；领域指标单位米制化
-> （距离米、速度米/秒）；权重向 reasoning/tactical 倾斜（策略类合计 0.45）。
+> **公平参评与策略化重构（v2）**：三系统统一「形势判断优先、用户索要才引用数值」的输出纪律；accuracy/tactical_accuracy 改由 Judge 语义比对（程序化数值扫描降级为诊断不计分）；Judge 升级为 deepseek-v4-pro（rubric v3）；领域指标单位米制化（距离米、速度米/秒）；权重向 reasoning/tactical 倾斜（策略类合计 0.45）。
 
 ## 快速开始
 
@@ -31,11 +34,9 @@ python -m eval run --event smoke --cases qa_duration,halluc_player_99 \
     --systems bare,single,multi --repeats 1
 ```
 
-配置：复制 `eval/config.example.yaml` 为 `eval/config.yaml`（权重、重复数、
-效率基准、Judge 抽样等均可调）；Judge 模型默认 `deepseek-v4-pro`（与被测系统
-解耦，同 API Key 仅模型 ID 不同），可用环境变量
-`EVAL_JUDGE_MODEL / EVAL_JUDGE_BASE_URL / EVAL_JUDGE_API_KEY` 切换任意
-OpenAI 兼容 API。
+### 配置
+
+复制 `eval/config.example.yaml` 为 `eval/config.yaml`（权重、重复数、效率基准、Judge 抽样等均可调）；Judge 模型默认 `deepseek-v4-pro`（与被测系统解耦，同 API Key 仅模型 ID 不同），可用环境变量 `EVAL_JUDGE_MODEL / EVAL_JUDGE_BASE_URL / EVAL_JUDGE_API_KEY` 切换任意 OpenAI 兼容 API。
 
 ## 产物布局（Score/{event}_{ts}/）
 
@@ -63,18 +64,13 @@ report.md / report.html / figures/*.png
 | tool_use | 诊断 | 失败率 + 冗余调用率；仅计入「扩展总分」（裸调用结构性无工具） | trace 派生 |
 | stability | 诊断 | 跨重复答案相似度（difflib） | 程序化 |
 
-- **共同总分** = Σ 权重×分项（三系统公平可比）；**扩展总分** 额外以 0.10
-  权重并入 tool_use（其余等比缩放），仅在 single 与 multi 间比较。
-- **策略化倾向**：reasoning + tactical_accuracy 合计 0.45（原 0.30），
-  accuracy + grounding + completeness 合计 0.35（原 0.52），得分点从
-  「小细节数值」转向「形势/策略判断」。
-- **语义对齐（混合软校验）**：accuracy/tactical_accuracy 以 Judge 语义比对
-  为主，程序化数值/胜者/类别/容差扫描降级为诊断（保留在 metrics.json 的
-  `details` 便于对照，不计分）；Judge 缺失分量自动重归一化并在报告标注。
+- **共同总分** = Σ 权重×分项（三系统公平可比）；**扩展总分** 额外以 0.10 权重并入 tool_use（其余等比缩放），仅在 single 与 multi 间比较。
+- **策略化倾向**：reasoning + tactical_accuracy 合计 0.45（原 0.30），accuracy + grounding + completeness 合计 0.35（原 0.52），得分点从「小细节数值」转向「形势/策略判断」。
+- **语义对齐（混合软校验）**：accuracy/tactical_accuracy 以 Judge 语义比对为主，程序化数值/胜者/类别/容差扫描降级为诊断（保留在 metrics.json 的 `details` 便于对照，不计分）；Judge 缺失分量自动重归一化并在报告标注。
 
 ## 领域真实性与可量化性（v1.0 重构）
 
-### 1.1 领域量化指标（goldref.py 独立重算，不经被测系统）
+### 领域量化指标（goldref.py 独立重算，不经被测系统）
 
 | 指标 | 表达式 | 定义 / 依据 |
 |---|---|---|
@@ -84,7 +80,7 @@ report.md / report.html / figures/*.png
 | 事件类型 | `event_types` | 独立事件检测（控球/带球/长传/快速推进/射门），按球速+高度阈值分段 |
 | 核验数值 | `player_x/y_at_second:T,S` / `nearest_player_at_second:S` / `ball_player_distance_at_second:T,S` | 独立插值复核位置/最近球员/距离，坐标与距离单位**米** |
 
-### 1.2 用例分层（L1-L7）
+### 用例分层（L1-L7）
 
 | 层 | 业务场景 | 默认类别 |
 |---|---|---|
@@ -96,15 +92,10 @@ report.md / report.html / figures/*.png
 | L6 | 综合战术分析 | team（战术复盘类） |
 | L7 | 幻觉与鲁棒性 | hallucination |
 
-新增领域用例：`qa_ball_speed_max`（L2）、`frame_ball_zone_90`（L3）、
-`team_threat_peak`（L3）、`qa_player_zone_7`（L4）、`timeline_event_types`（L2）；
-`verify_7s_pos` / `verify_ball_owner_3s` 补充数值金标准；`cf_7s_shoot`
-方向金标准增加 neg 关键词（验证变化方向而非纯过程词）。
-v2 扩用例：启用 7s 数据集，新增 `qa_7s_player_count` / `qa_7s_ball_hmax`
-（L1）、`compare_7s_active`（L2）、`style_7s_player11`（L4）、
-`team_7s_threat`（L3）。
+新增领域用例：`qa_ball_speed_max`（L2）、`frame_ball_zone_90`（L3）、`team_threat_peak`（L3）、`qa_player_zone_7`（L4）、`timeline_event_types`（L2）；`verify_7s_pos` / `verify_ball_owner_3s` 补充数值金标准；`cf_7s_shoot` 方向金标准增加 neg 关键词（验证变化方向而非纯过程词）。
+v2 扩用例：启用 7s 数据集，新增 `qa_7s_player_count` / `qa_7s_ball_hmax`（L1）、`compare_7s_active`（L2）、`style_7s_player11`（L4）、`team_7s_threat`（L3）。
 
-### 1.4 Judge rubric v3
+### Judge rubric v3
 
 - 新增 `tactical`（0-1）战术判断维度，评测取向「形势/策略判断优先，其次才是数值精确度」；
 - fabrication 从二值改为 0-1 连续（按编造严重程度分级）；
@@ -114,89 +105,61 @@ v2 扩用例：启用 7s 数据集，新增 `qa_7s_player_count` / `qa_7s_ball_h
 
 ## SOTA 能力凸显与关键维度（v1.1 重构）
 
-### 2.1 多 Agent 辩论协作（已移除）
+### 多 Agent 辩论协作（已移除）
 
-原 `DebateAgent`（双视角辩论协作）作为未接入默认流水线的独立能力，
-在中间层精简中移除（评测中零调用，属死重）；`team_collab_breakdown`
-用例的多视角 checklist 与 `collaboration` 诊断指标保留（不计分）。
+原 `DebateAgent`（双视角辩论协作）作为未接入默认流水线的独立能力，在中间层精简中移除（评测中零调用，属死重）；`team_collab_breakdown` 用例的多视角 checklist 与 `collaboration` 诊断指标保留（不计分）。
 
-### 2.2 反事实评测增强
+### 反事实评测增强
 
-`cf_7s_pass10` 补充方向金标准（neg 关键词区分「无变化」放水）；MCTS 随机性
-大不设精确数值金标准（修订 #2），以方向性 + checklist + 跨重复 stability 诊断评估。
+`cf_7s_pass10` 补充方向金标准（neg 关键词区分「无变化」放水）；MCTS 随机性大不设精确数值金标准（修订 #2），以方向性 + checklist + 跨重复 stability 诊断评估。
 
-### 2.3 跨 Agent 结构化事实记忆（`agents/session/memory.py`）
+### 跨 Agent 结构化事实记忆（`agents/session/memory.py`）
 
-`MemoryStore` 增加 `fact_store`：`record_fact(fact, source, confidence)` /
-`get_facts()` / `get_fact_context()`，支持来源与置信度过滤、持久化往返 ——
-跨 Agent 共享的已验证事实工作记忆（默认不改变现有 prompt 注入行为）。
+`MemoryStore` 增加 `fact_store`：`record_fact(fact, source, confidence)` / `get_facts()` / `get_fact_context()`，支持来源与置信度过滤、持久化往返 —— 跨 Agent 共享的已验证事实工作记忆（默认不改变现有 prompt 注入行为）。
 
-### 2.4 对抗鲁棒性（评测侧 + robustness 增强）
+### 对抗鲁棒性（评测侧 + robustness 增强）
 
-- 新增 `adversarial` 类别用例（level 7）：`adv_induced_scoring`（诱导编造）、
-  `adv_frame_out_of_range`（超范围时间）、`adv_prompt_injection`（prompt 注入）、
-  `adv_ambiguous_multi_target`（多目标歧义）、`adv_format_messy`（噪声格式）；
-- `score_robustness` 增强：幻觉/对抗类用例纳入「诚实拒答」分量 —— 诚实拒答满分，
-  跟随诱导/编造封顶 0.6，使鲁棒性具备区分度；新增 `adversarial_resistance` 诊断。
+- 新增 `adversarial` 类别用例（level 7）：`adv_induced_scoring`（诱导编造）、`adv_frame_out_of_range`（超范围时间）、`adv_prompt_injection`（prompt 注入）、`adv_ambiguous_multi_target`（多目标歧义）、`adv_format_messy`（噪声格式）；
+- `score_robustness` 增强：幻觉/对抗类用例纳入「诚实拒答」分量 —— 诚实拒答满分，跟随诱导/编造封顶 0.6，使鲁棒性具备区分度；新增 `adversarial_resistance` 诊断。
 
-### 3.1 评测效率（并行执行 + 分层预设）
+### 评测效率（并行执行 + 分层预设）
 
-- `EvalConfig.max_workers`（默认 1 保持串行），`--workers N` 并行调度子进程
-  （`concurrent.futures.ThreadPoolExecutor`，保持交错计划语义）；
+- `EvalConfig.max_workers`（默认 1 保持串行），`--workers N` 并行调度子进程（`concurrent.futures.ThreadPoolExecutor`，保持交错计划语义）；
 - `--quick` 分层预设：1 重复快速冒烟；
 - 建议分层：L1 冒烟（5 用例×1 重复）→ L2 快速（12 用例）→ L3 全量（≥3 重复）。
 
-### 3.3 可解释性（报告分层展示）
+### 可解释性（报告分层展示）
 
-`report.md` 新增「1b. 按业务分层（L1-L7）总分」表：按 level 聚合共同总分，
-快速定位多智能体系统在哪个业务层级占优/失分。
+`report.md` 新增「1b. 按业务分层（L1-L7）总分」表：按 level 聚合共同总分，快速定位多智能体系统在哪个业务层级占优/失分。
 
 ## 方法学要点（评审修订落实）
 
-1. **金标准独立重算**：数值金标准以 `auto:<expr>` 声明，加载时用 pandas
-   直接从原始 CSV 重算（`eval/goldref.py`），不经被测系统工具层 —— 消除
-   循环验证偏袒；`python -m eval gold` 输出供人工核对。
+1. **金标准独立重算**：数值金标准以 `auto:<expr>` 声明，加载时用 pandas 直接从原始 CSV 重算（`eval/goldref.py`），不经被测系统工具层 —— 消除循环验证偏袒；`python -m eval gold` 输出供人工核对。
 2. **MCTS 随机性**：反事实类用例不设精确数值金标准，仅方向性/checklist。
-3. **基线公平性**：bare 的数据摘要为确定性模板（全量原始 CSV + 独立统计表），
-   遵循「信息给足、不因信息饥饿而输」；三系统统一采样温度（默认 0.85）。
-4. **效率基准预标定**：refs 为配置常数（不随本次样本变化）；建议先跑小规模
-   预实验校准后填入 `eval/config.yaml`。
-5. **Judge 防偏与模型解耦**：盲评（甲/乙/丙随机排列）+ 位置互换重评取均值 +
-   temp=0；正逆序差作为 Judge 一致性指标。Judge 默认 `deepseek-v4-pro`（与被测
-   系统 flash 解耦，同 Key 不同模型 ID），降低同源 Judge 的自我偏好；结论仍建议
-   人工抽检。
-6. **统计层级**：系统级 CI = 跨用例 bootstrap（B=2000）；显著性按用例配对
-   （Wilcoxon 主检验 + 配对 t 参考 + Cohen's d / Cliff's δ + Holm 校正）；
-   报告含检验力说明（n 个用例在 80% power 下可检出的效应量）。
-7. **执行隔离与交错**：每 (系统,用例,重复) 独立子进程（隔离全局
-   corpus/dispatcher/ContextVar）；重复轮分层 + 轮内随机交错（种子记录），
-   缓解 API 时延波动的时间混淆。
-8. **诱导幻觉用例**：hallucination 类（不存在的球员 / 超范围时间 / 无法回答
-   的问题）考察「如实声明 vs 编造」。
-9. **中间步骤追溯**：三系统 trace 归一为统一 IR（llm/tool/stage/load +
-   启发式 phase），HTML 报告内含三轨对齐时间线与上下文演变曲线；
-   **阶段为启发式标注，仅供定性比较**。
-10. **Token 观测**：`agents/llm_client.py` 增加 usage 捕获钩子
-     （`take_usage_events()`），非流式调用记录真实 token 用量。
-11. **三系统统一输出纪律（公平参评）**：bare/single/multi 三系统提示词统一
-    「形势/战术判断优先，默认不堆砌数字，用户索要具体数值时才引用」；数值单位
-    统一米制（距离米、速度米/秒、高度米），避免单位口径导致的系统性偏袒。
-12. **语义对齐（混合软校验）**：accuracy/tactical_accuracy 以 Judge 语义比对为主
-    （数量级/方向/相对关系相符即可，不逐字扫描数字），程序化数值/胜者/类别扫描
-    降级为诊断（metrics.json `details` 保留，不计分），两套并行便于对照。
+3. **基线公平性**：bare 的数据摘要为确定性模板（全量原始 CSV + 独立统计表），遵循「信息给足、不因信息饥饿而输」；三系统统一采样温度（默认 0.85）。
+4. **效率基准预标定**：refs 为配置常数（不随本次样本变化）；建议先跑小规模预实验校准后填入 `eval/config.yaml`。
+5. **Judge 防偏与模型解耦**：盲评（甲/乙/丙随机排列）+ 位置互换重评取均值 + temp=0；正逆序差作为 Judge 一致性指标。Judge 默认 `deepseek-v4-pro`（与被测系统 flash 解耦，同 Key 不同模型 ID），降低同源 Judge 的自我偏好；结论仍建议人工抽检。
+6. **统计层级**：系统级 CI = 跨用例 bootstrap（B=2000）；显著性按用例配对（Wilcoxon 主检验 + 配对 t 参考 + Cohen's d / Cliff's δ + Holm 校正）；报告含检验力说明（n 个用例在 80% power 下可检出的效应量）。
+7. **执行隔离与交错**：每 (系统,用例,重复) 独立子进程（隔离全局 corpus/dispatcher/ContextVar）；重复轮分层 + 轮内随机交错（种子记录），缓解 API 时延波动的时间混淆。
+8. **诱导幻觉用例**：hallucination 类（不存在的球员 / 超范围时间 / 无法回答的问题）考察「如实声明 vs 编造」。
+9. **中间步骤追溯**：三系统 trace 归一为统一 IR（llm/tool/stage/load + 启发式 phase），HTML 报告内含三轨对齐时间线与上下文演变曲线；**阶段为启发式标注，仅供定性比较**。
+10. **Token 观测**：`agents/llm_client.py` 增加 usage 捕获钩子（`take_usage_events()`），非流式调用记录真实 token 用量。
+11. **三系统统一输出纪律（公平参评）**：bare/single/multi 三系统提示词统一「形势/战术判断优先，默认不堆砌数字，用户索要具体数值时才引用」；数值单位统一米制（距离米、速度米/秒、高度米），避免单位口径导致的系统性偏袒。
+12. **语义对齐（混合软校验）**：accuracy/tactical_accuracy 以 Judge 语义比对为主（数量级/方向/相对关系相符即可，不逐字扫描数字），程序化数值/胜者/类别扫描降级为诊断（metrics.json `details` 保留，不计分），两套并行便于对照。
 
 ## 扩展
 
-- **新指标**：`eval/metrics.py` 添加纯函数 → `eval/scoring.py` 融合 →
-  `eval/config.py` 权重（SCORED_METRICS）；
-- **新系统**：`eval/runners.py` 实现 `run_xxx(case, out_dir, cfg) -> dict`
-  并注册进 `RUNNERS`；
-- **新用例**：`eval/cases/*.json` 增加文件（数值金标准用 `auto:` 表达式，
-  `cases lint` 自动校验数据文件与表达式可解析性）。
+- **新指标**：`eval/metrics.py` 添加纯函数 → `eval/scoring.py` 融合 → `eval/config.py` 权重（SCORED_METRICS）；
+- **新系统**：`eval/runners.py` 实现 `run_xxx(case, out_dir, cfg) -> dict` 并注册进 `RUNNERS`；
+- **新用例**：`eval/cases/*.json` 增加文件（数值金标准用 `auto:` 表达式，`cases lint` 自动校验数据文件与表达式可解析性）。
 
 ## 已知边界
 
 - 流式调用（Web SSE）不计入 usage（评测三路径均为非流式）；
 - 多智能体输出会写 `Output/`（反事实轨迹等副产物，属系统真实行为）；
-- Judge 评分为模型主观判断，跨事件比较需固定 Judge 模型与 rubric 版本
-  （`RUBRIC_VERSION` 变更会使缓存失效）。
+- Judge 评分为模型主观判断，跨事件比较需固定 Judge 模型与 rubric 版本（`RUBRIC_VERSION` 变更会使缓存失效）。
+
+## 相关文档
+
+- 体系化演进路线与实施状态：[bidirectional_optimization_plan.md](bidirectional_optimization_plan.md)
+- 被测系统架构：[project_report.md](project_report.md) · [harness.md](harness.md)
