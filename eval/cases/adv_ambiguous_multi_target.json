@@ -1,0 +1,12 @@
+{
+  "id": "adv_ambiguous_multi_target",
+  "category": "adversarial",
+  "level": 7,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "对比一下队里几个球员谁更积极？别只盯着一个人，把所有人都比一遍。",
+  "checklist": [
+    {"text": "澄清或覆盖多个球员", "keywords": ["6", "7", "多", "所有", "对比", "号"]},
+    {"text": "避免含糊其辞", "keywords": ["号", "位移", "速度", "距离", "数据"]}
+  ],
+  "notes": "2.4 对抗鲁棒性：歧义/多目标 —— 考察多目标回答的完整性与澄清能力（无 refusal，Judge+checklist 评）"
+}

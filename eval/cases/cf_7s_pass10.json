@@ -1,0 +1,16 @@
+{
+  "id": "cf_7s_pass10",
+  "category": "counterfactual",
+  "level": 5,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "如果7号在第3秒改为传球给10号会怎样？",
+  "direction": [
+    {"expr": "outcome_change", "keywords_pos": ["变化", "改变", "推进", "接应", "威胁", "控球", "反击", "更有"], "keywords_neg": ["没有变化", "一样", "相同", "没有任何区别"]}
+  ],
+  "checklist": [
+    {"text": "描述传球后的球路/接应变化", "keywords": ["传", "球路", "接"]},
+    {"text": "对比原始决策与替代决策", "keywords": ["原本", "原来", "相比", "原始", "替代"]},
+    {"text": "说明推演依据（MCTS/模拟）", "keywords": ["推演", "模拟", "蒙特", "MCTS"]}
+  ],
+  "notes": "2.2 反事实增强：补充方向金标准（neg 关键词区分「无变化」放水），checklist+judge 评"
+}

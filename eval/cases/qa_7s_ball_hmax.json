@@ -1,0 +1,9 @@
+{
+  "id": "qa_7s_ball_hmax",
+  "category": "general_qa",
+  "dataset": {"person": "TestInput/Files/7s-person.csv", "ball": "TestInput/Files/7s-ball.csv"},
+  "input": "这段7秒片段中球最高到过多少高度？",
+  "numeric": [{"expr": "ball_zmax", "value": "auto:ball_zmax", "tolerance": 0.5}],
+  "checklist": [{"text": "给出高度数值（米）", "keywords": ["米"]}],
+  "notes": "7s 数据集：球心离地高度峰值 z"
+}

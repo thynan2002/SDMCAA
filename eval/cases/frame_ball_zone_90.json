@@ -1,0 +1,18 @@
+{
+  "id": "frame_ball_zone_90",
+  "category": "frame",
+  "level": 3,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "numeric": [
+    {"expr": "threat_at_frame@90", "value": "auto:threat_at_frame@90", "tolerance": 0.15}
+  ],
+  "category_gold": [
+    {"expr": "ball_zone@90", "label": "前场边路", "aliases": ["前场边路", "前场", "前场区域", "边路"]}
+  ],
+  "checklist": [
+    {"text": "指出球所在区域", "keywords": ["前场", "中场", "禁区", "边路"]},
+    {"text": "给出威胁程度判断", "keywords": ["威胁", "危险", "机会"]}
+  ],
+  "notes": "L3 战术指标：区域分类金标准 + 威胁值数值金标准（1.1 新增，双球门对称模型）"
+}

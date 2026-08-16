@@ -5,11 +5,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from agents.professional.simulation.llm_brain import SemanticTierBatcher
-
 # ═══════════════════════════════════════════════════════════════════
 # TrajectoryCompositionAgent  — 最终输出解说稿
 # ═══════════════════════════════════════════════════════════════════
@@ -54,24 +49,7 @@ COMPOSITION_SYSTEM_PROMPT = """你是一位专业的足球比赛解说员。你�
 
 
 # ═══════════════════════════════════════════════════════════════════
-# PlayerDecisionAgent  — 比赛态势判断
-# ═══════════════════════════════════════════════════════════════════
-
-DECISION_FAST_TEMPO = "本段比赛节奏很快，球员跑动非常积极，攻防转换频繁。"
-DECISION_NORMAL_TEMPO = "比赛节奏正常，双方阵型保持得比较有组织。"
-DECISION_SLOW_TEMPO = "这个片段整体节奏偏慢，队形变化不大。"
-
-
-# ═══════════════════════════════════════════════════════════════════
-# PlayerComparisonAgent  — 球员对比摘要
-# ═══════════════════════════════════════════════════════════════════
-
-COMPARISON_SUMMARY_TEMPLATE = "{active}是本段跑动最积极的球员"
-COMPARISON_BALL_ADDON = "，而{ball_player}与球的距离最近、最有可能在控球"
-
-
-# ═══════════════════════════════════════════════════════════════════
-# 辅助：档位标签化（数值 → 语义）
+# 辅助：档位标签化（数值 → 语义，确定性阈值，零 LLM 调用）
 # ═══════════════════════════════════════════════════════════════════
 
 def _tier_from_ranges(value: float, tiers: list[tuple[float, str]]) -> str:
@@ -81,12 +59,8 @@ def _tier_from_ranges(value: float, tiers: list[tuple[float, str]]) -> str:
     return tiers[-1][1] if tiers else "未知"
 
 
-def speed_tier(speed: float, batcher: SemanticTierBatcher | None = None) -> str:
-    """速度语义描述（LLM 优先，回退阈值）。"""
-    if batcher is not None:
-        desc = batcher.tier(speed, "speed")
-        if desc is not None:
-            return desc
+def speed_tier(speed: float) -> str:
+    """速度语义描述（确定性阈值）。"""
     return _tier_from_ranges(speed, [(800, "极高"), (400, "高"), (100, "中"), (0, "低")])
 
 
@@ -102,21 +76,13 @@ def distance_tier(
     dist: float,
     y1: float | None = None,
     y2: float | None = None,
-    batcher: SemanticTierBatcher | None = None,
 ) -> str:
-    """传球距离语义描述（LLM 优先，回退阈值）。
+    """传球距离语义描述（确定性阈值）。
 
     Args:
         dist: 移动距离（px）
         y1, y2: 起点/终点 y 坐标（可选；提供时用于「跨越半场」判定）
     """
-    if batcher is not None:
-        extra = None
-        if y1 is not None and y2 is not None:
-            extra = {"起点y": round(y1, 0), "终点y": round(y2, 0)}
-        desc = batcher.tier(dist, "distance", extra)
-        if desc is not None:
-            return desc
     if (
         y1 is not None and y2 is not None
         and (y1 - MID_LINE_Y) * (y2 - MID_LINE_Y) < 0
@@ -126,48 +92,28 @@ def distance_tier(
     return _tier_from_ranges(dist, [(330, "长距离转移"), (165, "中距离"), (0, "短距离")])
 
 
-def coverage_tier(pct: float, batcher: SemanticTierBatcher | None = None) -> str:
-    """场地覆盖率语义描述（LLM 优先，回退阈值）。"""
-    if batcher is not None:
-        desc = batcher.tier(pct, "coverage")
-        if desc is not None:
-            return desc
+def coverage_tier(pct: float) -> str:
+    """场地覆盖率语义描述（确定性阈值）。"""
     return _tier_from_ranges(pct, [(8, "极大"), (3, "较大"), (1, "中等"), (0, "较小")])
 
 
-def activity_tier(pct: float, batcher: SemanticTierBatcher | None = None) -> str:
-    """活跃度语义描述（LLM 优先，回退阈值）。"""
-    if batcher is not None:
-        desc = batcher.tier(pct, "activity")
-        if desc is not None:
-            return desc
+def activity_tier(pct: float) -> str:
+    """活跃度语义描述（确定性阈值）。"""
     return _tier_from_ranges(pct, [(70, "极高"), (40, "高"), (15, "中"), (0, "低")])
 
 
-def sprint_tier(count: int, batcher: SemanticTierBatcher | None = None) -> str:
-    """冲刺特征语义描述（LLM 优先，回退阈值）。"""
-    if batcher is not None:
-        desc = batcher.tier(float(count), "sprint")
-        if desc is not None:
-            return desc
+def sprint_tier(count: int) -> str:
+    """冲刺特征语义描述（确定性阈值）。"""
     return _tier_from_ranges(float(count), [(8, "频繁爆发"), (3, "多次冲刺"), (1, "偶尔提速"), (0, "以匀速为主")])
 
 
-def ball_height_tier(aerial_pct: float, batcher: SemanticTierBatcher | None = None) -> str:
-    """球高度风格语义描述（LLM 优先，回退阈值）。"""
-    if batcher is not None:
-        desc = batcher.tier(aerial_pct, "ball_height")
-        if desc is not None:
-            return desc
+def ball_height_tier(aerial_pct: float) -> str:
+    """球高度风格语义描述（确定性阈值）。"""
     return _tier_from_ranges(aerial_pct, [(30, "长传冲吊"), (15, "高低结合"), (0, "地面渗透")])
 
 
-def motion_trend_tier(approaching_pct: float, batcher: SemanticTierBatcher | None = None) -> str:
-    """球员相对球运动趋势语义描述（LLM 优先，回退阈值）。"""
-    if batcher is not None:
-        desc = batcher.tier(approaching_pct, "motion_trend")
-        if desc is not None:
-            return desc
+def motion_trend_tier(approaching_pct: float) -> str:
+    """球员相对球运动趋势语义描述（确定性阈值）。"""
     if approaching_pct > 55:
         return "积极靠拢"
     elif approaching_pct > 45:

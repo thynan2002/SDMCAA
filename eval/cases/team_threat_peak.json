@@ -1,0 +1,15 @@
+{
+  "id": "team_threat_peak",
+  "category": "team",
+  "level": 3,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "numeric": [
+    {"expr": "threat_max", "value": "auto:threat_max", "tolerance": 0.12}
+  ],
+  "checklist": [
+    {"text": "给出威胁值数值", "keywords": ["威胁", "危险", "0.", "概率"]},
+    {"text": "结合球路位置说明", "keywords": ["前场", "禁区", "中路", "球门"]}
+  ],
+  "notes": "L3 战术指标：球路威胁峰值独立核算（1.1 新增，参考 xT 方法论）"
+}

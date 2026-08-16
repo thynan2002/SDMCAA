@@ -1,4 +1,4 @@
-"""球员轨迹追踪器。
+﻿"""球员轨迹追踪器。
 
 从 CSV 中按 track_id 提取每个球员的完整运动轨迹，
 计算跑动距离、速度、活动热区、与球的关系等指标。
@@ -356,93 +356,6 @@ def _compute_player_trajectory(
         ball_proximity_pct=ball_proximity_pct,
         avg_ball_distance=round(avg_ball_distance, 2),
     )
-
-
-def build_player_corpus(test_input_dir: str | Path) -> dict[str, PrefixPlayerCorpus]:
-    """读入 TestInput 中所有 CSV，按前缀构建每位球员的轨迹。
-
-    返回 {prefix: PrefixPlayerCorpus}。
-    """
-    layout = resolve_test_input_layout(test_input_dir)
-    csv_dir = layout.csv_dir
-
-    # 按前缀收集文件
-    prefix_files: dict[str, dict[str, Path]] = defaultdict(dict)
-    for file_path in sorted(csv_dir.iterdir()):
-        if not file_path.is_file():
-            continue
-        match = FILE_PATTERN.match(file_path.name)
-        if not match:
-            continue
-        prefix = match.group("prefix")
-        kind = match.group("kind")
-        prefix_files[prefix][kind] = file_path
-
-    all_corpora: dict[str, PrefixPlayerCorpus] = {}
-
-    for prefix, files in sorted(prefix_files.items()):
-        # 读取所有 person 行
-        all_person_rows: list[dict[str, str]] = []
-        person_files = {k: v for k, v in files.items() if k.startswith("person")}
-        for file_path in person_files.values():
-            _, rows = _read_csv_rows(file_path)
-            all_person_rows.extend(rows)
-
-        # 读取所有 ball/soccer 行，构建 frame→(x,y,z) 映射
-        ball_by_frame: dict[int, tuple[float, float, float]] = {}
-        ball_files = {k: v for k, v in files.items() if k in ("ball", "soccer", "soccer3d")}
-        for file_path in ball_files.values():
-            _, rows = _read_csv_rows(file_path)
-            for row in rows:
-                frame = _safe_int(row.get("frame_num"))
-                if frame is None:
-                    continue
-                try:
-                    x = float(row.get("x", ""))
-                    y = float(row.get("y", ""))
-                    z = float(row.get("z", "0") or 0)
-                except (TypeError, ValueError):
-                    continue
-                ball_by_frame[frame] = (x, y, z)
-
-        # 校验数据
-        _validate_coord_range(all_person_rows, "球员")
-        _validate_coord_range(
-            [{"x": str(v[0]), "y": str(v[1])} for v in ball_by_frame.values()],
-            "球",
-        )
-
-        # 按 track_id 分组
-        by_track: dict[str, list[dict[str, str]]] = defaultdict(list)
-        for row in all_person_rows:
-            tid = str(row.get("track_id", "")).strip()
-            if not tid:
-                continue
-            by_track[tid].append(row)
-
-        # 为每个 track_id 构建轨迹
-        players: dict[str, PlayerTrajectory] = {}
-        for tid, rows in by_track.items():
-            players[tid] = _compute_player_trajectory(prefix, tid, rows, ball_by_frame)
-
-        # 标记守门员
-        _detect_goalkeepers(players)
-
-        # 构建帧索引
-        frame_player_index = _build_frame_player_index(players)
-
-        # 分析球轨迹
-        ball_analysis = _analyze_ball_trajectory(ball_by_frame, players)
-
-        all_corpora[prefix] = PrefixPlayerCorpus(
-            prefix=prefix,
-            players=players,
-            ball_frames=ball_by_frame,
-            ball_analysis=ball_analysis,
-            frame_player_index=frame_player_index,
-        )
-
-    return all_corpora
 
 
 def _validate_coord_range(

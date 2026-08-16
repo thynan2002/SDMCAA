@@ -1,0 +1,8 @@
+{
+  "id": "qa_player_team",
+  "category": "general_qa",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "7号球员是哪个队的？",
+  "checklist": [{"text": "给出球队归属（A队/红队）", "keywords": ["A", "红"]}],
+  "notes": "track_id=7 的 color 列；winner 类语义由 checklist+judge 评"
+}

@@ -168,7 +168,7 @@ def make_llm_mock():
     """
     calls: list[str] = []
 
-    def fake_call_llm(system_prompt, user_message, config=None, max_tokens=None, retries=1):
+    def fake_call_llm(system_prompt, user_message, config=None, max_tokens=None, retries=1, **kwargs):
         calls.append("script" if "Scriptwriter" in system_prompt or "战术教练" in system_prompt
                      else "decide")
         if calls[-1] == "script":
@@ -194,6 +194,6 @@ def make_llm_mock():
 
 def make_bad_llm():
     """始终返回非法内容，验证 LLM 回退启发式。"""
-    def bad_call_llm(system_prompt, user_message, config=None, max_tokens=None, retries=1):
+    def bad_call_llm(system_prompt, user_message, config=None, max_tokens=None, retries=1, **kwargs):
         return "这不是JSON"
     return bad_call_llm

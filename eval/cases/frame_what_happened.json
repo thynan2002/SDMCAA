@@ -1,0 +1,12 @@
+{
+  "id": "frame_what_happened",
+  "category": "frame",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "第90帧发生了什么？",
+  "checklist": [
+    {"text": "描述球的位置/状态", "keywords": ["球"]},
+    {"text": "提到附近/相关球员", "keywords": ["号"]},
+    {"text": "给出可核验的数据依据（坐标/帧号/时间）", "keywords": ["帧", "秒", "("]}
+  ],
+  "notes": "开放描述，checklist+judge 评"
+}

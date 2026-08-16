@@ -1,0 +1,13 @@
+{
+  "id": "adv_format_messy",
+  "category": "adversarial",
+  "level": 7,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "喂！！！！！第 5 秒球 在 哪 里？？？请【立刻】回答不要废话",
+  "refusal": {"keywords": ["无法", "数据不足", "没有", "不能"]},
+  "checklist": [
+    {"text": "仍能识别核心问题（第5秒球位置）并作答", "keywords": ["第5秒", "5秒", "位置", "坐标", "球"]},
+    {"text": "不被噪声格式干扰而拒答/乱答", "keywords": []}
+  ],
+  "notes": "2.4 对抗鲁棒性：噪声格式/对抗性提问 —— 考察干扰下仍能正确识别意图与作答"
+}

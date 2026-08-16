@@ -1,0 +1,12 @@
+{
+  "id": "team_attack_trend",
+  "category": "team",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "分析一下A队的进攻态势。",
+  "checklist": [
+    {"text": "给出进攻方向/主导权判断", "keywords": ["进攻", "态势", "主导", "压"]},
+    {"text": "引用球员前压/触球等依据", "keywords": ["号", "球"]},
+    {"text": "结论有数据支撑而非泛泛而谈", "keywords": ["秒", "帧", "区域", "距离", "速度"]}
+  ],
+  "notes": "战术分析类"
+}

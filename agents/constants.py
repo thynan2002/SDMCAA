@@ -38,14 +38,37 @@ SPEED_LOW = 30.0                # 低速（带球）
 # 标准球场 ~105m × 68m，映射到 1200 × 700 像素
 PIXELS_PER_METER = 11           # 约 11 px/m，用于粗略换算
 
+# ── 精确米制标定（1200×700 px → 标准 105×68 m） ──
+# x 轴（1200px）= 长度（门线到门线，105m）
+# y 轴（700px） = 宽度（边线到边线，68m）
+PITCH_LENGTH_M = 105.0
+PITCH_WIDTH_M = 68.0
+PX_PER_M_X = FIELD_WIDTH / PITCH_LENGTH_M   # ≈ 11.43 px/m
+PX_PER_M_Y = FIELD_HEIGHT / PITCH_WIDTH_M   # ≈ 10.29 px/m
+
 
 def px_to_m(pixels: float) -> float:
-    """像素 → 米"""
+    """像素 → 米（粗略单标量换算）"""
     return round(pixels / PIXELS_PER_METER, 2)
+
+
+def px_x_to_m(px: float) -> float:
+    """x 轴像素 → 米（长度方向，PX_PER_M_X）"""
+    return round(px / PX_PER_M_X, 2)
+
+
+def px_y_to_m(px: float) -> float:
+    """y 轴像素 → 米（宽度方向，PX_PER_M_Y）"""
+    return round(px / PX_PER_M_Y, 2)
 
 
 def px_s_to_kmh(px_s: float) -> float:
     """像素/秒 → 公里/小时"""
     m_s = px_s / PIXELS_PER_METER
     return round(m_s * 3.6, 2)
+
+
+def px_s_to_ms(px_s: float) -> float:
+    """像素/秒 → 米/秒（按进攻轴 x 的比例折算）"""
+    return round(px_s / PX_PER_M_X, 2)
 

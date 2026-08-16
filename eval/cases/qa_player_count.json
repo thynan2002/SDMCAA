@@ -1,0 +1,9 @@
+{
+  "id": "qa_player_count",
+  "category": "general_qa",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "这份数据里一共追踪了多少名球员？",
+  "numeric": [{"expr": "player_count", "value": "auto:player_count", "tolerance": 0}],
+  "checklist": [{"text": "给出具体人数", "keywords": ["名"]}],
+  "notes": "程序可验算：unique track_id 数"
+}

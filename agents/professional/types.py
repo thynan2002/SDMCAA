@@ -106,6 +106,8 @@ class PlayerProfile:
     dominant_zone: str = ""
     speed_stats: dict[str, float] = field(default_factory=dict)
     # {"avg": ..., "max": ..., "sprint_count": ...}
+    total_distance_m: float = 0.0       # 累计跑动距离（米，x/y 分轴标定，与独立金标准同口径）
+    ball_proximity_pct: float = 0.0     # 接近球时间占比（%）
 
     acceleration_distribution: dict[str, float] = field(default_factory=dict)
     # {"high": 0.2, "medium": 0.5, "low": 0.3}
@@ -131,6 +133,9 @@ class PlayerProfile:
             "主要活动区域": self.dominant_zone,
             "区域分布": self.zone_distribution,
             "平均纵向位置": self.avg_position[1],  # y 坐标，供特征向量使用
+            "跑动距离(米)": self.total_distance_m,
+            "场地覆盖率(%)": self.coverage_area,
+            "接近球时间占比(%)": self.ball_proximity_pct,
             "速度统计": self.speed_stats,
             "加速度分布": self.acceleration_distribution,
             "进攻风格": {

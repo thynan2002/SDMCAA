@@ -35,6 +35,7 @@ class ReportGeneratorAgent:
         self,
         profile: PlayerProfile,
         model: PlayerBehaviorModel,
+        question: str = "",
     ) -> str:
         """生成单个球员的风格分析报告。"""
         system_prompt = """## 角色
@@ -43,6 +44,7 @@ class ReportGeneratorAgent:
 ## 输入
 - 球员画像：战术角色、活动区域、速度统计、进攻风格、防守风格
 - 行为模型：特征向量、风格标签、动作权重、传球偏好
+- 用户问题（可选）：报告应侧重回答该问题
 
 ## 输出
 纯文本报告，分段清晰，不要 markdown 格式。篇幅不设硬性上限：内容需要充分展开时不要吝啬篇幅，内容简单时保持精炼，根据事实的丰富程度自然决定长短，不要为凑字数而重复或为求短而丢失信息。
@@ -54,11 +56,11 @@ class ReportGeneratorAgent:
 4. **战术价值**：该球员在体系中的作用、最佳使用方式
 
 ## 写作规则
-0. **数值输出规则（最高优先级）**：默认严禁输出任何具体数值（次数、占比、百分比、评分等），先理解数据再翻译为感受性语言（"频繁"、"偶尔"、"擅长"、"偏弱"、"绝大多数时间"、"几乎不"）。用户明确索要具体数据时才可引用。
+0. **数值与区域输出规则（最高优先级）**：默认严禁输出任何具体数值（次数、占比、百分比、评分等），先理解数据再翻译为感受性语言（"频繁"、"偶尔"、"擅长"、"偏弱"、"绝大多数时间"、"几乎不"）。但当用户明确索要具体数据/数值/主要活动区域/战术区域时，必须如实引用画像中的精确数值或区域标签作答（如主要活动区域、速度、跑动距离等），不得含糊、不得拒绝、不得换成其他数值。
 1. 语言专业但不晦涩，像资深球探报告
 2. 如果是门将，报告结构调整为：门线技术、出击范围、出球能力、指挥防线"""
 
-        user_msg = self._build_player_data_prompt(profile, model)
+        user_msg = self._build_player_data_prompt(profile, model, question)
 
         result = call_llm(system_prompt, user_msg, stream=True)
         if result:
@@ -71,6 +73,7 @@ class ReportGeneratorAgent:
         self,
         profiles: list[PlayerProfile],
         models: list[PlayerBehaviorModel],
+        question: str = "",
     ) -> str:
         """生成球员对比分析报告。"""
         if len(profiles) < 2:
@@ -80,7 +83,8 @@ class ReportGeneratorAgent:
 你是足球战术分析师 (Comparison Reporter)。职责是对比分析两名或多名球员的风格特点和战术角色差异。
 
 ## 输入
-多名球员的画像数据（球衣号、风格标签、战术角色、风格描述、主要区域）
+多名球员的画像数据（球衣号、风格标签、战术角色、风格描述、主要区域、跑动距离(米)、速度统计、场地覆盖率、接近球时间占比）
+用户问题（可选）：报告应侧重回答该问题
 
 ## 输出
 纯文本报告，不要 markdown 格式。篇幅不设硬性上限：根据对比内容的丰富程度自然展开，该详则详、该简则简。
@@ -90,23 +94,25 @@ class ReportGeneratorAgent:
 2. **差异分析**：他们最核心的差异是什么（如一个偏进攻一个偏防守）
 3. **互补/冲突**：如果他们在同一体系中，会如何互补或产生冲突
 4. **场景建议**：什么战术场景下适合使用哪名球员
+5. **明确结论**：若用户问的是比较/胜负类问题（如"谁更积极""谁跑得最多"），必须以「跑动距离(米)」为第一依据、"速度统计"与"场地覆盖率"、"接近球时间占比"为辅助，逐项对比后点名哪名球员更优，并引用具体数据作为依据。**严禁以"画像相同/标签相同"为由拒绝判定**——风格标签/描述相同是正常现象，必须基于硬数据（跑动距离等）给出结论。
 
 ## 写作规则
-- 语言专业，先理解数据再下判断，用自然语言表达差异（"明显更积极"、"略偏防守"、"几乎相同"），不罗列具体数值
+- 语言专业，先理解数据再下判断，用自然语言表达差异（"明显更积极"、"略偏防守"、"几乎相同"）
+- **数值输出规则（最高优先级）**：默认严禁输出任何具体数值（次数、占比、百分比、评分等），先理解数据再翻译为感受性语言（"频繁"、"偶尔"、"擅长"、"偏弱"、"绝大多数时间"、"几乎不"）。**但当用户明确索要具体数据/数值/跑动距离/速度时，必须如实引用画像中的精确数值作答**。**当用户问的是比较/胜负类问题（如"谁更积极"）时，必须引用跑动距离(米)、速度统计、场地覆盖率中的硬数据作为判断依据，并给出明确结论。**
 - 公平公正：不要偏袒某一方，客观描述差异
-- 如果两人风格相似，重点说明细微差异和各自的适用场景"""
+- 如果两人风格相似，重点说明细微差异和各自的适用场景
+- 风格标签/描述相同时，跑动距离(米)、速度统计（平均速度、峰值速度、冲刺次数）、场地覆盖率、接近球时间占比是区分两者的依据，必须仔细对比这些数据后给出结论"""
 
         players_data = []
         for profile, model in zip(profiles, models):
             players_data.append({
-                "球衣号": profile.jersey_label,
-                "风格标签": model.style_label,
-                "战术角色": profile.tactical_role,
-                "风格描述": model.style_description,
-                "主要区域": profile.dominant_zone,
+                "球员画像": profile.to_dict(),
+                "行为模型": model.to_dict(),
             })
 
         user_msg = f"请对比分析以下球员：\n\n{json.dumps(players_data, ensure_ascii=False, indent=2)}"
+        if question:
+            user_msg = f"用户问题：{question}\n\n{user_msg}"
 
         result = call_llm(system_prompt, user_msg, stream=True)
         if result:
@@ -213,19 +219,19 @@ class ReportGeneratorAgent:
         self,
         profile: PlayerProfile,
         model: PlayerBehaviorModel,
+        question: str = "",
     ) -> str:
         """构建球员数据的 LLM 提示词。"""
         data = profile.to_dict()
         model_data = model.to_dict()
 
-        return json.dumps(
-            {
-                "球员": data,
-                "行为模型": model_data,
-            },
-            ensure_ascii=False,
-            indent=2,
-        )
+        payload: dict[str, Any] = {
+            "球员": data,
+            "行为模型": model_data,
+        }
+        if question:
+            payload["用户问题"] = question
+        return json.dumps(payload, ensure_ascii=False, indent=2)
 
 
 def _simulation_stats_note(total_simulations: int, confidence: float) -> str:

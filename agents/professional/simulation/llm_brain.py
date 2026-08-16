@@ -1,4 +1,4 @@
-"""LLM 战术决策引擎。
+﻿"""LLM 战术决策引擎。
 
 以 LLM 为核心决策引擎，替代规则硬编码的战术判断：
 
@@ -10,9 +10,8 @@
 数值计算仅保留在物理执行与数据格式化层；所有"判断"均来自 LLM。
 LLM 不可用 / 输出非法时，回退到内置启发式（保证流程不中断）。
 
-提供 SemanticTierBatcher 批量语义推断，用 LLM 替代硬编码阈值档位判定：
-- semantic_tier()  / SemanticTierBatcher.tier()  — 查询缓存或加入批量队列
-- SemanticTierBatcher.flush()                    — 批量 LLM 调用并回填缓存
+语义档位描述（数值 → 自然语言标签）由 agents/prompts.py 的确定性
+阈值函数承担（零 LLM 调用），最终自然语言化交给各回答 LLM 完成。
 """
 
 from __future__ import annotations
@@ -22,7 +21,7 @@ import re
 from math import hypot
 from typing import Any
 
-from agents.constants import FIELD_WIDTH, FIELD_HEIGHT, PIXELS_PER_METER, px_to_m, px_s_to_kmh
+from agents.constants import FIELD_WIDTH, FIELD_HEIGHT, PIXELS_PER_METER
 from agents.llm_client import call_llm
 from agents.logging_config import get_logger
 from agents.player.tracker import _which_zone
@@ -132,8 +131,8 @@ class LLMDecisionEngine:
             {"反事实设定": scenario_desc, "比赛上下文": context},
             ensure_ascii=False, indent=2,
         )
-        # 统一使用全局 max_tokens（81920），推理模型思维链不再被截断
-        result = call_llm(SCRIPT_SYSTEM_PROMPT, user_msg)
+        # 结构化决策输出：低温 + 小预算（输出仅小 JSON，防推理链吃满预算）
+        result = call_llm(SCRIPT_SYSTEM_PROMPT, user_msg, temperature=0.2, max_tokens=4096)
         parsed = _parse_json(result)
         if parsed:
             self.script = parsed
@@ -163,7 +162,7 @@ class LLMDecisionEngine:
 
         user_msg = json.dumps(snapshot, ensure_ascii=False, indent=2)
         for attempt in range(2):  # 非法输出重试一次
-            result = call_llm(DECIDE_SYSTEM_PROMPT, user_msg)
+            result = call_llm(DECIDE_SYSTEM_PROMPT, user_msg, temperature=0.2, max_tokens=2048)
             decision = _validate_decision(_parse_json(result), snapshot)
             if decision:
                 self.call_count += 1
@@ -201,7 +200,7 @@ class LLMDecisionEngine:
             },
             ensure_ascii=False, indent=2,
         )
-        result = call_llm(STRATEGY_SYSTEM_PROMPT, user_msg)
+        result = call_llm(STRATEGY_SYSTEM_PROMPT, user_msg, temperature=0.2, max_tokens=4096)
         parsed = _parse_json(result)
         if not parsed:
             return None
@@ -439,311 +438,6 @@ def _validate_decision(
 
 
 # ═══════════════════════════════════════════════════════════════════
-# 语义档位推断（Semantic Tier — LLM 驱动，替代硬编码阈值）
-# ═══════════════════════════════════════════════════════════════════
-
-SEMANTIC_TIER_SYSTEM_PROMPT = """## 角色
-你是足球数据分析师。根据比赛上下文（球场尺寸、球员人数、比赛阶段等），
-将追踪数据中的数值指标转化为足球语境下的自然语言描述。
-
-## 输出
-直接输出纯 JSON 对象（不要用 markdown 代码块包裹，不要输出思考过程）：
-{
-  "results": {
-    "<请求ID>": "自然语言描述"
-  }
-}
-
-## 档位类型与解读规则
-- speed: 帧间移动速度（px/s），需结合球场大小判断快慢。标准球场约 105m×68m，
-  1m ≈ 11px。通常 30-50 px/s 为步行，100-200 px/s 为慢跑，300-500 px/s 为快跑，
-  600+ px/s 为冲刺。足球比赛平均跑动速度约 150-250 px/s。
-- distance: 帧间位移距离（px），需结合球场大小与事件类型判断。短传通常
-  50-150px（约5-14m），中距离传球 150-330px（约14-30m），
-  长传/转移 330+ px（30m+），跨越半场的大范围转移 400+ px。
-- coverage: 场地覆盖率（百分比），反映球员活动范围。通常 0.5-2% 为站位固定，
-  3-5% 为活动积极，8%+ 为覆盖极大。
-- activity: 高活跃时段占比（百分比），反映球员参与度。通常 <15% 为低参与，
-  15-40% 为中等，40-70% 为积极，70%+ 为极其活跃。
-- sprint: 冲刺次数（次），需结合比赛时长判断。通常 0 次为全程匀速，
-  1-2 次为偶有加速，3-8 次为多次冲刺，8+ 次为频繁爆发。
-- ball_height: 空中球占比（百分比）。通常 <10% 为地面渗透为主，
-  10-30% 为高低结合，30%+ 为长传冲吊风格。
-- motion_trend: 向球靠近帧占比（百分比）。>55% 积极靠拢，45-55% 保持距离，
-  35-45% 略微拉开，<35% 远离球路。
-
-## 要求
-- 每个描述 5-15 字，简洁自然，像足球解说员的口吻
-- 结合上下文灵活判断，不要套用死板标签
-- 如果某些请求 ID 数据不足无法判断，返回 "数据不足"
-- 每个请求 ID 必须出现在 results 中"""
-
-
-# 档位类型中文标签
-_TIER_TYPE_LABELS: dict[str, str] = {
-    "speed": "速度",
-    "distance": "距离",
-    "coverage": "覆盖率",
-    "activity": "活跃度",
-    "sprint": "冲刺",
-    "ball_height": "空中球占比",
-    "motion_trend": "运动趋势",
-}
-
-# 批次请求单次最大条目数（超过则分批调用）
-_MAX_BATCH_SIZE = 50
-
-
-def _make_tier_cache_key(tier_type: str, value: float, extra: dict[str, Any] | None = None) -> str:
-    """构建缓存键（含粗糙分桶以复用相似值）。"""
-    # 对 value 做轻度分桶，使相近值命中缓存
-    if tier_type in ("speed", "distance"):
-        bucket = round(value / 20) * 20  # 20px 一档
-    elif tier_type in ("sprint",):
-        bucket = value  # 整数，不分组
-    else:
-        bucket = round(value / 5) * 5  # 5% 一档
-    extra_str = json.dumps(extra, ensure_ascii=False, sort_keys=True) if extra else ""
-    return f"{tier_type}:{bucket:.1f}:{extra_str}"
-
-
-class SemanticTierBatcher:
-    """批量 LLM 语义档位推断，避免循环中的爆炸式 API 请求。
-
-    典型用法::
-
-        batcher = SemanticTierBatcher()
-        batcher.set_context(field_width_px=1200, field_height_px=700,
-                            num_players=20, duration_seconds=30)
-
-        # 第一遍：收集中间值（自动入队；已缓存项直接返回描述）
-        for event in events:
-            batcher.tier(event.speed, "speed")
-            batcher.tier(event.distance, "distance")
-
-        # 批量 LLM 调用
-        batcher.flush()
-
-        # 第二遍：取回已缓存的描述
-        for event in events:
-            desc_speed = batcher.tier(event.speed, "speed")
-            desc_dist = batcher.tier(event.distance, "distance")
-    """
-
-    def __init__(self) -> None:
-        self._cache: dict[str, str] = {}
-        self._pending: list[tuple[str, float, str, dict[str, Any] | None]] = []
-        self._context: dict[str, Any] = {}
-        self._llm_available: bool = True
-        self._call_count: int = 0
-
-    def set_context(
-        self,
-        *,
-        field_width_px: int = FIELD_WIDTH,
-        field_height_px: int = FIELD_HEIGHT,
-        pixels_per_meter: int = PIXELS_PER_METER,
-        num_players: int = 0,
-        duration_seconds: float = 0.0,
-        **extra: Any,
-    ) -> None:
-        """设置比赛上下文，影响 LLM 的语义判断口径。
-
-        调用方应在构造数据前调用此方法，传入当前片段的实际参数。
-        """
-        self._context = {
-            "球场宽度(px)": field_width_px,
-            "球场高度(px)": field_height_px,
-            "像素/米": pixels_per_meter,
-            "场上球员数": num_players,
-            "片段时长(秒)": round(duration_seconds, 1),
-            "球场尺寸": f"约{px_to_m(field_width_px)}m × {px_to_m(field_height_px)}m",
-        }
-        self._context.update(extra)
-
-    def tier(
-        self,
-        value: float,
-        tier_type: str,
-        extra_context: dict[str, Any] | None = None,
-    ) -> str | None:
-        """查询语义档位描述。
-
-        - 缓存命中 → 返回自然语言描述
-        - 缓存未命中 + LLM 可用 → 入队待批量调用，返回 None
-        - LLM 不可用 → 返回 None（调用方应回退阈值逻辑）
-
-        Args:
-            value: 原始数值
-            tier_type: 档位类型（speed / distance / coverage / activity /
-                       sprint / ball_height / motion_trend）
-            extra_context: 该条目的额外上下文（如 y1/y2 坐标）
-        """
-        key = _make_tier_cache_key(tier_type, value, extra_context)
-        if key in self._cache:
-            return self._cache[key]
-        if not self._llm_available:
-            return None
-        self._pending.append((key, value, tier_type, extra_context))
-        return None
-
-    def flush(self) -> int:
-        """批量调用 LLM 解析所有待处理档位值。
-
-        Returns:
-            成功解析并写入缓存的条目数。
-        """
-        if not self._pending:
-            return 0
-        if not self._llm_available:
-            self._pending.clear()
-            return 0
-
-        total_resolved = 0
-        batch = self._pending
-        self._pending = []
-
-        # 分批处理，避免单次请求过长
-        for offset in range(0, len(batch), _MAX_BATCH_SIZE):
-            chunk = batch[offset : offset + _MAX_BATCH_SIZE]
-            resolved = self._resolve_batch(chunk)
-            total_resolved += resolved
-
-        if total_resolved == 0:
-            self._llm_available = False
-        return total_resolved
-
-    def _resolve_batch(
-        self, items: list[tuple[str, float, str, dict[str, Any] | None]],
-    ) -> int:
-        """调用 LLM 解析一批档位值。"""
-        prompt = self._build_batch_prompt(items)
-        result = call_llm(SEMANTIC_TIER_SYSTEM_PROMPT, prompt)
-        if not result:
-            logger.debug("语义档位 LLM 调用失败（第%d次累计失败），回退阈值逻辑",
-                         self._call_count + 1)
-            return 0
-
-        parsed = _parse_semantic_tier_result(result, [key for key, _, _, _ in items])
-        if not parsed:
-            return 0
-
-        resolved = 0
-        for key, desc in parsed.items():
-            desc_clean = desc.strip()
-            if desc_clean and desc_clean not in ("", "数据不足"):
-                self._cache[key] = desc_clean
-                resolved += 1
-        self._call_count += 1
-        return resolved
-
-    def _build_batch_prompt(
-        self, items: list[tuple[str, float, str, dict[str, Any] | None]],
-    ) -> str:
-        """构建批量推断的用户消息。"""
-        context_text = json.dumps(self._context, ensure_ascii=False, indent=2)
-
-        lines: list[str] = []
-        for idx, (key, value, tier_type, extra) in enumerate(items):
-            label = _TIER_TYPE_LABELS.get(tier_type, tier_type)
-            unit_map = {
-                "speed": "px/s",
-                "distance": "px",
-                "coverage": "%",
-                "activity": "%",
-                "sprint": "次",
-                "ball_height": "%",
-                "motion_trend": "%",
-            }
-            unit = unit_map.get(tier_type, "")
-            # 附加换算：速度也标 km/h，距离也标米
-            extra_meta = ""
-            if tier_type == "speed":
-                extra_meta = f"（≈{px_s_to_kmh(value):.1f}km/h）"
-            elif tier_type == "distance":
-                extra_meta = f"（≈{px_to_m(value):.1f}m）"
-            lines.append(
-                f"  \"req_{idx}\": {{\"类型\": \"{label}\", "
-                f"\"数值\": {value:.0f}{unit}{extra_meta}}}"
-            )
-            if extra:
-                lines[-1] = lines[-1].rstrip("}") + f", \"附加\": \"{json.dumps(extra, ensure_ascii=False)}\"}}"
-
-        items_json = ",\n".join(lines)
-        return (
-            "请为以下指标生成足球语境下的自然语言描述。\n\n"
-            f"## 比赛上下文\n{context_text}\n\n"
-            f"## 待描述指标（共{len(items)}项）\n"
-            f"{{\n{items_json}\n}}\n\n"
-            "请返回 JSON，results 中 key 使用上述请求 ID（req_0, req_1, ...）。"
-        )
-
-    def get_cache_size(self) -> int:
-        return len(self._cache)
-
-    def get_pending_size(self) -> int:
-        return len(self._pending)
-
-
-def _parse_semantic_tier_result(
-    text: str, expected_keys: list[str],
-) -> dict[str, str] | None:
-    """解析 LLM 批量语义推断的 JSON 响应。
-
-    响应中的键为请求 ID（req_0, req_1, ...）；按索引映射回调用方的
-    缓存键（expected_keys），否则档位描述写不进缓存、二次查询永远
-    落空（迁移时修复的既有缺陷：映射缺失导致 LLM 档位描述在实网
-    从未生效；回放路径全部为 None，不受影响）。
-    """
-    if not text:
-        return None
-    cleaned = text.strip()
-    try:
-        data = json.loads(cleaned)
-    except json.JSONDecodeError:
-        fence = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", cleaned, re.DOTALL)
-        if fence:
-            try:
-                data = json.loads(fence.group(1))
-            except json.JSONDecodeError:
-                return None
-        else:
-            start = cleaned.find("{")
-            if start != -1:
-                depth = 0
-                for i in range(start, len(cleaned)):
-                    ch = cleaned[i]
-                    if ch == "{":
-                        depth += 1
-                    elif ch == "}":
-                        depth -= 1
-                        if depth == 0:
-                            try:
-                                data = json.loads(cleaned[start : i + 1])
-                            except json.JSONDecodeError:
-                                return None
-                            break
-                else:
-                    return None
-            else:
-                return None
-    if not isinstance(data, dict):
-        return None
-    results = data.get("results")
-    if not isinstance(results, dict):
-        return None
-    out: dict[str, str] = {}
-    for k, v in results.items():
-        if not k or v is None:
-            continue
-        m = re.match(r"^req_(\d+)$", str(k))
-        if m:
-            idx = int(m.group(1))
-            if 0 <= idx < len(expected_keys):
-                out[expected_keys[idx]] = str(v)
-                continue
-        out[str(k)] = str(v)
-    return out
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -751,7 +445,7 @@ def _parse_semantic_tier_result(
 # ═══════════════════════════════════════════════════════════════════
 # 模型经 submit_* 终止型工具提交结构化结果（工具参数即 JSON 契约，
 # 与原有文本契约字段一致）→ call_llm 返回 json.dumps(参数)，既有
-# _parse_json / _validate_decision / _parse_semantic_tier_result 原样
+# _parse_json / _validate_decision 原样
 # 复用；模型直接返回文本（mock/旧 golden/模型行为差异）时文本解析
 # 路径照常工作；LLM 失败时启发式兜底不变。
 # 调用点签名未改（conftest 的 mock 以固定签名替换 call_llm）。
@@ -759,11 +453,9 @@ from agents.llm_client import bind_prompt_tools  # noqa: E402
 from agents.tools.schemas import (  # noqa: E402
     build_decision_tool,
     build_script_tool,
-    build_semantic_tiers_tool,
     build_strategy_tool,
 )
 
 bind_prompt_tools(SCRIPT_SYSTEM_PROMPT, [build_script_tool()], tool_choice="auto")
 bind_prompt_tools(DECIDE_SYSTEM_PROMPT, [build_decision_tool()], tool_choice="auto")
 bind_prompt_tools(STRATEGY_SYSTEM_PROMPT, [build_strategy_tool()], tool_choice="auto")
-bind_prompt_tools(SEMANTIC_TIER_SYSTEM_PROMPT, [build_semantic_tiers_tool()], tool_choice="auto")

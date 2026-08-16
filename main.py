@@ -51,9 +51,9 @@ def run_once(person_csv: Path, ball_csv: Path, focus_jerseys: list[str] | None =
 
     suffix = "_" + "_".join(focus_jerseys) if focus_jerseys else ""
     txt_path = output_dir / f"{corpus.prefix}{suffix}_summary.txt"
-    txt_path.write_text(decision.composed_summary, encoding="utf-8")
+    txt_path.write_text(decision, encoding="utf-8")
 
-    print("\n" + decision.composed_summary)
+    print("\n" + decision)
     print(f"\n解说稿已写入: {txt_path}")
 
 

@@ -1,0 +1,12 @@
+{
+  "id": "timeline_ball_height",
+  "category": "timeline",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "球在哪些时刻离开过地面（高度大于0）？请按时间列出。",
+  "numeric": [{"expr": "ball_zmax", "value": "auto:ball_zmax", "tolerance": 0.5}],
+  "checklist": [
+    {"text": "按时间列出离地时刻", "keywords": ["秒"]},
+    {"text": "给出高度数值", "keywords": ["米", "高"]}
+  ],
+  "notes": "z>0 帧的时间枚举 + 峰值校验"
+}

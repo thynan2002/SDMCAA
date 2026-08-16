@@ -65,7 +65,7 @@ class ProfessionalAnalysisOrchestrator:
         # 共享 LLM 决策引擎：驱动 MCTS 策略与轨迹模拟的战术判断
         self.llm_engine = LLMDecisionEngine()
         self.counterfactual_engine = CounterfactualEngineAgent(
-            num_simulations=2000, llm_engine=self.llm_engine,
+            num_simulations=1000, llm_engine=self.llm_engine,
         )
         self.report_generator = ReportGeneratorAgent()
         self.general_qa_agent = GeneralQAAgent()
@@ -123,7 +123,18 @@ class ProfessionalAnalysisOrchestrator:
         push_stage("model_styles", "正在构建球员行为模型…")
         profiles = state.get("profiles", [])
         memory = state.get("memory")
-        models = self.style_modeler.build_models_batch(profiles)
+        models: list[Any] = []
+        # 复用记忆缓存中已建好的行为模型（避免逐人重复 LLM 风格标注）
+        uncached_profiles: list[Any] = []
+        for profile in profiles:
+            cached = memory.get_cached_model(profile.jersey_label) if memory else None
+            if cached is not None:
+                models.append(cached)
+            else:
+                uncached_profiles.append(profile)
+        # 仅为未缓存的球员构建模型；传球偏好仍以全量画像为参照
+        if uncached_profiles:
+            models.extend(self.style_modeler.build_models_batch(uncached_profiles, all_profiles=profiles))
         model_map = {m.jersey_label: m for m in models}
         push_stage("model_styles", "行为模型构建完成", status="done")
         # 更新记忆缓存
@@ -250,12 +261,22 @@ class ProfessionalAnalysisOrchestrator:
         query = state.get("query")
         model_list = [models[p.jersey_label] for p in profiles if p.jersey_label in models]
 
+        # 空画像兜底：目标球员不在数据中时如实声明，不返回空报告
+        if not profiles:
+            wanted = "、".join(query.target_players) if query and query.target_players else "指定球员"
+            push_stage("report", "无匹配球员画像", status="done")
+            return {"output_text": (
+                f"数据不足：未找到 {wanted} 的任何轨迹数据，"
+                "无法进行风格分析。请确认球员在当前数据中存在。"
+            )}
+
         texts: list[str] = []
+        question = query.original_text if query else ""
         if query and query.intent == IntentType.COMPARISON and len(profiles) >= 2:
-            texts.append(self.report_generator.generate_comparison_report(profiles, model_list))
+            texts.append(self.report_generator.generate_comparison_report(profiles, model_list, question))
         else:
             for profile, model in zip(profiles, model_list):
-                texts.append(self.report_generator.generate_style_report(profile, model))
+                texts.append(self.report_generator.generate_style_report(profile, model, question))
 
         push_stage("report", "报告生成完成", status="done")
         return {"output_text": "\n\n".join(texts)}

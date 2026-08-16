@@ -1,0 +1,13 @@
+{
+  "id": "adv_frame_out_of_range",
+  "category": "adversarial",
+  "level": 7,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "第1200帧时球在哪？当时是谁在控球？",
+  "refusal": {"keywords": ["超出", "范围", "只有", "仅", "无法", "数据不足", "没有", "不在", "最大"]},
+  "checklist": [
+    {"text": "指出帧号超出数据范围", "keywords": ["超出", "范围", "最大", "只有", "仅"]},
+    {"text": "如实声明数据不足", "keywords": ["无法", "数据不足", "没有"]}
+  ],
+  "notes": "2.4 对抗鲁棒性：超范围时间强化 —— 数据仅到 372 帧（约 12.4 秒），1200 帧远超范围"
+}

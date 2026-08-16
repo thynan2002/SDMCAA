@@ -1,0 +1,15 @@
+{
+  "id": "qa_player_zone_7",
+  "category": "style",
+  "level": 4,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "7号主要活动在球场的哪个区域？",
+  "category_gold": [
+    {"expr": "player_primary_zone:7", "label": "禁区", "aliases": ["禁区", "前场", "前场区域", "门前区域", "对方禁区附近"]}
+  ],
+  "checklist": [
+    {"text": "给出7号活动区域", "keywords": ["前场", "中场", "禁区", "边路", "区域"]},
+    {"text": "结合跑动/位置数据说明", "keywords": ["号", "平均", "位置", "跑动"]}
+  ],
+  "notes": "L4 球员评估：主活动区域分类金标准（1.1 新增，独立平均位置映射）"
+}

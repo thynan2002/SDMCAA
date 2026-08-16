@@ -1,0 +1,12 @@
+{
+  "id": "qa_ball_5s_short",
+  "category": "general_qa",
+  "dataset": {"person": "TestInput/Files/5s-person.csv", "ball": "TestInput/Files/5s-ball.csv"},
+  "input": "这份数据里一共有多少名球员？球最高到过多少？",
+  "numeric": [
+    {"expr": "player_count", "value": "auto:player_count", "tolerance": 0},
+    {"expr": "ball_zmax", "value": "auto:ball_zmax", "tolerance": 0.5}
+  ],
+  "checklist": [{"text": "两个子问题都有回答", "keywords": ["名"]}],
+  "notes": "第二数据集（5s）泛化 + 多子问题"
+}

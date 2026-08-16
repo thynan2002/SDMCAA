@@ -1,7 +1,7 @@
 """球员与足球三维位置关系分析智能体。
 
-在 PlayerMovementAgent / PlayerBallInteractionAgent 基础上，
-增加 Z 轴高度维度、相对运动趋势、争顶检测等融合分析。
+增加 Z 轴高度维度、相对运动趋势、争顶检测等融合分析，
+输出供解说链路（commentary.build_user_message）消费。
 """
 
 from __future__ import annotations

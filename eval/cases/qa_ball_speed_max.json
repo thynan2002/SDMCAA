@@ -1,0 +1,14 @@
+{
+  "id": "qa_ball_speed_max",
+  "category": "general_qa",
+  "level": 2,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "这段比赛中足球移动的最快速度大约是多少？（米/秒）",
+  "numeric": [
+    {"expr": "ball_speed_max", "value": "auto:ball_speed_max", "tolerance": 3.0}
+  ],
+  "checklist": [
+    {"text": "给出具体速度数值", "keywords": ["米", "秒", "速度", "速"]}
+  ],
+  "notes": "L2 事件/运动：球峰值速度独立核算（1.1 新增领域量化指标，单位米/秒）"
+}

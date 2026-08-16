@@ -1,0 +1,12 @@
+{
+  "id": "frame_ball_pos_90",
+  "category": "frame",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "第90帧球在什么位置？",
+  "numeric": [
+    {"expr": "ball_x@90", "value": "auto:ball_x@90", "tolerance": 3.0},
+    {"expr": "ball_y@90", "value": "auto:ball_y@90", "tolerance": 3.0}
+  ],
+  "checklist": [{"text": "给出坐标或区域位置描述", "keywords": ["(", "场", "路", "区"]}],
+  "notes": "球位置线性插值（独立实现）；坐标单位为米（1200×700px → 105×68m），容差 3m"
+}

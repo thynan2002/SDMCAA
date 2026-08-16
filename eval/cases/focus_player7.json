@@ -1,0 +1,12 @@
+{
+  "id": "focus_player7",
+  "category": "focus",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "聚焦7号",
+  "checklist": [
+    {"text": "包含7号的跑动/位置分析", "keywords": ["跑", "移动", "位置"]},
+    {"text": "提到与球的互动或距离", "keywords": ["球"]},
+    {"text": "形成连贯解说而非零散数据", "keywords": ["。"]}
+  ],
+  "notes": "多智能体聚焦解说 vs 基线直接生成"
+}

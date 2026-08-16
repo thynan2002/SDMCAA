@@ -1,0 +1,14 @@
+{
+  "id": "timeline_event_types",
+  "category": "timeline",
+  "level": 2,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "这段比赛主要发生了哪些球路事件类型？",
+  "numeric": [
+    {"expr": "event_types", "value": "auto:event_types"}
+  ],
+  "checklist": [
+    {"text": "提到至少两类事件", "keywords": ["传球", "长传", "带球", "控球", "射门", "推进"]}
+  ],
+  "notes": "L2 事件检测：事件类型 F1 金标准（1.1 新增独立事件检测，不经被测系统）"
+}

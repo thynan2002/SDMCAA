@@ -223,30 +223,6 @@ def build_challenge_tool() -> ToolSpec:
     )
 
 
-# ── 语义档位批量推断（SemanticTierBatcher.flush） ──────────────
-
-class SemanticTierResults(_Base):
-    """批量语义档位推断结果。"""
-
-    results: dict[str, str] = Field(
-        default_factory=dict,
-        description="请求ID → 自然语言描述；数据不足的条目返回「数据不足」；每个请求ID必须出现",
-    )
-
-
-def build_semantic_tiers_tool() -> ToolSpec:
-    def handler(args: dict[str, Any]) -> dict[str, Any]:
-        return _validated(SemanticTierResults, args)
-
-    return ToolSpec(
-        name="submit_semantic_tiers",
-        description="提交批量语义档位推断结果（results 中 key 使用请求中的 req_0, req_1, ...）。",
-        parameters=SemanticTierResults.model_json_schema(),
-        handler=handler,
-        terminal=True,
-    )
-
-
 def _validated(model: type[_Base], args: dict[str, Any]) -> dict[str, Any]:
     """pydantic 校验并返回规范化字典；失败按 invalid_arguments 分类。"""
     try:

@@ -1,0 +1,9 @@
+{
+  "id": "qa_duration",
+  "category": "general_qa",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "numeric": [{"expr": "duration_s", "value": "auto:duration_s", "tolerance": 1.0}],
+  "checklist": [{"text": "提到秒数", "keywords": ["秒"]}],
+  "notes": "max_frame/30"
+}

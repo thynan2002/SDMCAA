@@ -1,0 +1,12 @@
+{
+  "id": "team_formation",
+  "category": "team",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "分析一下两队的大致阵型和站位特点。",
+  "checklist": [
+    {"text": "分别描述A队与B队站位", "keywords": ["A", "B"]},
+    {"text": "概括阵型特征（密集/分散/前后层次）", "keywords": ["阵型", "密集", "分散", "站位", "层次"]},
+    {"text": "引用位置/区域数据支撑", "keywords": ["区域", "位置", "坐标", "路"]}
+  ],
+  "notes": "战术分析类，checklist+judge 评"
+}

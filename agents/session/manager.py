@@ -73,7 +73,11 @@ class SessionManager:
 
         # 路由解析（LLM 驱动）— 这是首个耗时步骤，必须推送状态
         push_stage("routing", "正在理解问题意图…")
-        query = self.router.parse(user_text)
+        available = (
+            sorted({p.jersey_label for p in self.corpus.players.values()})
+            if self.corpus is not None else None
+        )
+        query = self.router.parse(user_text, available_players=available)
         push_stage("routing", "意图识别完成", status="done")
 
         # clear 命令特殊处理：在记录对话之前清除，避免记忆被重新污染
@@ -224,6 +228,23 @@ class SessionManager:
 
     # ── 处理器 ──
 
+    # ── 球员存在性校验（数据不足如实声明，不得静默编造/返回空） ──
+
+    def _validate_players(self, jerseys: list[str]) -> str | None:
+        """校验球衣号在数据中存在；返回 None 表示通过，否则返回错误消息。"""
+        if self.corpus is None:
+            return "请先加载比赛数据。"
+        if not jerseys:
+            return None
+        existing = {p.jersey_label for p in self.corpus.players.values()}
+        missing = [j for j in jerseys if j not in existing]
+        if missing:
+            order = sorted(existing, key=lambda x: int(''.join(filter(str.isdigit, x))) if any(c.isdigit() for c in x) else 9999)
+            return (f"数据中未找到以下球员：{'、'.join(missing)}。"
+                    f"当前数据中的可用球员：{'、'.join(order)}。"
+                    "请确认球衣号后重试。")
+        return None
+
     def _handle_focus(self, query) -> str:
         """处理聚焦球员请求。"""
         # 先校验数据是否已加载，再写入 focus_jerseys，避免脏状态
@@ -233,11 +254,9 @@ class SessionManager:
         if not query.target_players:
             return "请指定要聚焦的球员，如：'聚焦7号'"
 
-        # 校验球衣号在数据中存在
-        existing = {p.jersey_label for p in self.corpus.players.values()}
-        missing = [j for j in query.target_players if j not in existing]
-        if missing:
-            return f"数据中未找到以下球员：{'、'.join(missing)}。可用球员：{'、'.join(sorted(existing, key=lambda x: int(''.join(filter(str.isdigit, x))) if any(c.isdigit() for c in x) else 9999))}"
+        invalid = self._validate_players(query.target_players)
+        if invalid:
+            return invalid
 
         self.focus_jerseys = query.target_players
 
@@ -248,7 +267,7 @@ class SessionManager:
             focus_jerseys=query.target_players,
         )
         push_stage("tracking", "聚焦解说完成", status="done")
-        return decision.composed_summary
+        return decision
 
     def _handle_style_analysis(self, query) -> str:
         """处理风格分析请求。"""
@@ -265,6 +284,12 @@ class SessionManager:
                     query.target_players = team_jerseys
                     query.intent = IntentType.COMPARISON
                     return self._handle_comparison(query)
+                # 未指名球员也未提球队（如"哪个球员跑动距离最长"）→ 展开为全体球员对比
+                all_jerseys = self._all_field_jerseys()
+                if all_jerseys:
+                    query.target_players = all_jerseys
+                    query.intent = IntentType.COMPARISON
+                    return self._handle_comparison(query)
                 return "请指定要分析的球员，如：'7号的跑动风格是什么'"
 
         # 检查缓存
@@ -274,6 +299,10 @@ class SessionManager:
                 cached.append(jersey)
         if cached:
             print(f"  [记忆] {', '.join(cached)} 已有缓存，跳过重复分析")
+
+        invalid = self._validate_players(query.target_players)
+        if invalid:
+            return invalid
 
         print(f"\n[系统] 正在分析 {', '.join(query.target_players)} 的风格特征 ...")
         push_stage("style", "正在分析球员风格…")
@@ -295,6 +324,14 @@ class SessionManager:
                 "  '假如6号选择盘带突破而不是回传'\n"
                 "  '如果球传给了另一侧的9号'"
             )
+
+        # 主体（及传球目标）必须存在于数据，避免 MCTS 对虚构球员推演
+        involved = [query.scenario.subject_player]
+        if query.scenario.altered_target:
+            involved.append(query.scenario.altered_target)
+        invalid = self._validate_players(involved)
+        if invalid:
+            return invalid
 
         print(
             f"\n[系统] 正在进行反事实模拟"
@@ -334,7 +371,16 @@ class SessionManager:
             return "请先加载比赛数据。"
 
         if len(query.target_players) < 2:
-            return "对比分析需要至少两名球员，如：'对比7号和11号'"
+            # 未足两名球员：若为"谁最X"类无指名提问 → 展开为全体球员对比
+            all_jerseys = self._all_field_jerseys()
+            if all_jerseys:
+                query.target_players = all_jerseys
+            else:
+                return "对比分析需要至少两名球员，如：'对比7号和11号'"
+
+        invalid = self._validate_players(query.target_players)
+        if invalid:
+            return invalid
 
         print(f"\n[系统] 正在对比 {', '.join(query.target_players)} ...")
         push_stage("comparison", "正在对比球员风格…")
@@ -361,6 +407,16 @@ class SessionManager:
 
     # 球队别名 → 数据中的颜色标识
     _TEAM_ALIASES: dict[str, str] = {"a": "A", "b": "B"}
+
+    def _all_field_jerseys(self) -> list[str]:
+        """返回全部非门将球员的球衣号（"谁最X"类无指名提问的展开目标）。"""
+        if self.corpus is None:
+            return []
+        return [
+            p.jersey_label
+            for p in self.corpus.players.values()
+            if not p.is_goalkeeper
+        ]
 
     def _resolve_team_players(self, text: str) -> list[str]:
         """从文本中识别球队提及（如"A队"/"B队"），返回该队全部球员球衣号。"""
@@ -389,6 +445,12 @@ class SessionManager:
         if self.corpus is None:
             return "请先加载比赛数据。"
 
+        # 目标球员全部不存在时提前拒答（避免注定幻觉的完整事实提取+LLM 调用）
+        if query.target_players:
+            invalid = self._validate_players(query.target_players)
+            if invalid:
+                return invalid
+
         print(f"\n[系统] 正在查询...")
         push_stage("qa", "正在查询比赛信息…")
         result = self.professional_orchestrator.run_general_qa(
@@ -408,6 +470,12 @@ class SessionManager:
         """
         if self.corpus is None:
             return "请先加载比赛数据。"
+
+        # 核验对象全部不存在时提前拒答（如实声明，而非回溯空数据）
+        if query.target_players:
+            invalid = self._validate_players(query.target_players)
+            if invalid:
+                return invalid
 
         print(f"\n[系统] 正在进行数据核验...")
         push_stage("verify", "正在核验原始数据…")

@@ -1,0 +1,18 @@
+{
+  "id": "verify_ball_owner_3s",
+  "category": "verify",
+  "level": 2,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "再确认一下，第3秒的时候球离7号有多远？",
+  "numeric": [
+    {"expr": "ball_player_distance_at_second:7,3", "value": "auto:ball_player_distance_at_second:7,3", "tolerance": 4.0}
+  ],
+  "category_gold": [
+    {"expr": "nearest_player_at_second:3", "label": "10号", "aliases": ["10号", "第10号"]}
+  ],
+  "checklist": [
+    {"text": "给出第3秒球与7号的距离或相对位置", "keywords": ["米", "距离", "位置", "坐标"]},
+    {"text": "给出可核验的数据锚点（帧/坐标）", "keywords": ["帧", "(", "秒"]}
+  ],
+  "notes": "核验类：距离数值金标准（单位米）+ 最近球员分类金标准（1.1 新增）"
+}

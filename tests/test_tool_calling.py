@@ -510,7 +510,8 @@ class TestRecordReplayToolCalls:
                     },
                 })
                 assert h.load_data(PERSON_CSV, BALL_CSV)
-                resp = h.handle_input("聚焦7号")
+                # 规则未覆盖的输入（无聚焦/对比/风格等关键词）→ 走 LLM 路由
+                resp = h.handle_input("介绍一下球员情况")
                 assert resp, "路由工具契约应产出非空响应"
         finally:
             llm_client_module._call_llm_impl = orig_llm

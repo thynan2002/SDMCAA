@@ -1,0 +1,9 @@
+{
+  "id": "compare_fastest",
+  "category": "comparison",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "所有球员里谁的速度最快？",
+  "numeric": [{"expr": "speed_winner:0,999", "value": "auto:speed_winner_top", "tolerance": 0}],
+  "checklist": [{"text": "给出峰值速度数值或对比依据", "keywords": ["速度", "米", "最快"]}],
+  "notes": "金标准由 gen 时展开为全部球员的 top_speed 最大者；此处 value 占位在加载期替换"
+}

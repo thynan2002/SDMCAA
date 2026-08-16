@@ -1,0 +1,13 @@
+{
+  "id": "team_7s_threat",
+  "category": "team",
+  "level": 3,
+  "dataset": {"person": "TestInput/Files/7s-person.csv", "ball": "TestInput/Files/7s-ball.csv"},
+  "input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）",
+  "numeric": [{"expr": "threat_max", "value": "auto:threat_max", "tolerance": 0.12}],
+  "checklist": [
+    {"text": "给出威胁值数值", "keywords": ["威胁", "危险", "0.", "程度"]},
+    {"text": "结合球路/区域说明", "keywords": ["前场", "禁区", "边路", "中路"]}
+  ],
+  "notes": "7s 数据集：L3 战术指标，球路威胁峰值（独立核算，参考 xT 思路）"
+}

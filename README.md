@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/LLM-DeepSeek-4B8BBE?style=flat-square" alt="LLM: DeepSeek">
   <img src="https://img.shields.io/badge/orchestration-LangGraph-2C8C5A?style=flat-square" alt="Orchestration: LangGraph">
   <img src="https://img.shields.io/badge/architecture-tool--calling-8B5CF6?style=flat-square" alt="Architecture: tool-calling">
-  <img src="https://img.shields.io/badge/tests-58%20passed-2EA043?style=flat-square" alt="Tests: 58 passed">
+  <img src="https://img.shields.io/badge/tests-113%20passed-2EA043?style=flat-square" alt="Tests: 113 passed">
 </p>
 
 输入球员追踪 CSV 与足球轨迹 CSV，由 LLM 驱动的多智能体流水线自动完成足球比赛数据分析，输出专业级比赛解说、球员表现分析与反事实（What-If）推演。系统以 **function calling（工具调用）** 为架构核心：结构化决策经工具契约交付、外部信息只能经工具获取，全链路经 LangGraph 编排，可通过 CLI 对话、单次解说或 Web 可视化界面使用。
@@ -71,18 +71,17 @@ python -m web.backend
 ## 架构组成
 
 - **数据层** — CSV 经帧插值与球员/球数据融合为 `PrefixPlayerCorpus`
-- **分析层** — 两条 LangGraph 流水线：球员追踪（运动/互动/球路/对比/决策/解说）与专业分析（采集/风格建模/MCTS 反事实/报告），节点间状态流转由 `StateGraph` + `MemorySaver` 管理
+- **分析层** — 两条流水线：球员追踪解说（球关系分析 + LLM 解说，精简后两步）与专业分析（采集/风格建模/MCTS 反事实/报告，LangGraph 编排）
 - **LLM 层** — 统一 `call_llm` 客户端（DeepSeek，流式/非流式 + function calling）：`tools` 参数与多轮工具循环经 ContextVar 交换通道透传，不改变传输签名与 harness 钩子；无工具调用时行为与纯文本接口完全一致
 - **工具层** — `agents/tools/`：`ToolSpec`/`ToolRegistry` 注册表 + pydantic 决策工具 schema + 6 个数据工具，覆盖失败分类（参数非法/执行异常/数据不足）
 - **交互层** — CLI（REPL/单次解说）与 Web（FastAPI + SSE）双入口，均接入统一 Harness（透明包装：trace 记录、golden 录制、mock 回放）
 
 | 智能体 / 模块 | 职责 |
 |--------|------|
-| PlayerMovementAgent / BallInteractionAgent / BallRelationAgent | 跑动、触球控球、球路事件分析 |
-| PlayerComparisonAgent / DecisionAgent / CompositionAgent | 对比排名、态势判断、解说稿生成 |
-| QueryRouter | 意图路由（`submit_intent` 工具契约，关键词规则兜底） |
+| BallPositionRelationAgent / PlayerCompositionAgent | 球员-球三维关系分析、聚焦解说稿生成（精简后球员追踪路径仅两步：确定性分析 + 单次 LLM 解说） |
+| QueryRouter | 意图路由（关键词规则优先，`submit_intent` 工具契约 LLM 兜底） |
 | LLMDecisionEngine / SemanticTierBatcher | MCTS 决策引擎与语义档位推断（工具契约 + 启发式回退） |
-| DataCollectorAgent / StyleModelingAgent | 数据采集、球员风格建模 |
+| DataCollectorAgent / StyleModelingAgent | 数据采集、球员风格建模（特征向量/风格标签为确定性推导，零 LLM 调用） |
 | CounterfactualEngineAgent | MCTS 反事实推演与轨迹模拟 |
 | ReportGeneratorAgent / GeneralQAAgent / DataVerifierAgent | 报告生成、综合问答（数据工具）、数据核验（质疑判断工具契约） |
 | agents/tools | 终止型决策工具（submit_*）+ 数据工具（战术事实/球路/帧核验/球员数据/反事实模拟） |
@@ -90,7 +89,7 @@ python -m web.backend
 ## 测试
 
 ```bash
-pytest            # 全部用例（真实 API 冒烟默认跳过，共 58 个：37 原有 + 21 工具调用）
+pytest            # 全部用例（真实 API 冒烟默认跳过，共 113 个）
 pytest -m smoke   # 需要 DEEPSEEK_API_KEY 的真实 API 冒烟
 
 # Harness golden 回放回归（不触网，验证代码改动不破坏等价性）
@@ -123,5 +122,6 @@ python -m harness verify harness/golden/standard
 |------|------|
 | 安装与使用 | 本文件「安装」「快速开始」 |
 | 统一 Harness（运行模式/等价性论证/验证套件/已知边界） | [docs/harness.md](docs/harness.md) |
+| 对比评测框架（单 LLM vs 多智能体：指标/统计/追溯/报告） | [docs/eval.md](docs/eval.md) |
 | 工具调用重构（选型理由/迁移方案/执行总结/审查修复记录） | [docs/tool_calling_refactor.md](docs/tool_calling_refactor.md) |
 | 输入数据格式 | 本文件「输入数据格式」 |

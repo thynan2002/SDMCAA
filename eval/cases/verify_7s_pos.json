@@ -1,0 +1,17 @@
+{
+  "id": "verify_7s_pos",
+  "category": "verify",
+  "level": 2,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "不对吧，7号第3秒的时候明明在中场附近，你确定吗？请核验数据。",
+  "numeric": [
+    {"expr": "player_x_at_second:7,3", "value": "auto:player_x_at_second:7,3", "tolerance": 4.0},
+    {"expr": "player_y_at_second:7,3", "value": "auto:player_y_at_second:7,3", "tolerance": 4.0}
+  ],
+  "checklist": [
+    {"text": "回溯原始数据核验（给出帧号/坐标）", "keywords": ["帧", "坐标", "(", "核验", "数据"]},
+    {"text": "给出核验结论（确认/纠正）", "keywords": ["实际", "核验", "确认", "结论"]},
+    {"text": "引用7号第3秒的具体位置", "keywords": ["号"]}
+  ],
+  "notes": "数据核验：独立插值位置金标准（1.1 新增数值金标准），坐标单位为米，容差 4m"
+}

@@ -52,21 +52,21 @@ class MemoryStore:
         self._full_history: list[dict[str, str]] = [] # 原始对话（用于摘要生成）
         self.turn_count: int = 0
         self._summary_interval: int = 3  # 每 N 轮对话更新一次摘要
+        self._summary_dirty: bool = False  # 摘要是否过期（懒加载）
 
     # ── 摘要管理 ──
 
     def update_after_turn(self, user_input: str, assistant_response: str) -> None:
-        """每轮对话后更新（必要时触发 LLM 摘要）。"""
-        # 不再硬截断：保留完整响应供摘要生成使用
-        # 仅对超长响应（>2000字符）保留全文，避免内存问题
+        """每轮对话后更新（摘要改为惰性生成，避免阻塞响应）。"""
+        # 仅对超长响应（>2000字符）截断，避免内存问题
         truncated = assistant_response[:2000] if len(assistant_response) > 2000 else assistant_response
         self._full_history.append({"role": "user", "content": user_input})
         self._full_history.append({"role": "assistant", "content": truncated})
         self.turn_count += 1
 
-        # 每 N 轮触发一次摘要重生成（turn_count >= N 时开始）
+        # 每 N 轮标记摘要为过期（下次 get_summary 时惰性重生成）
         if self.turn_count >= self._summary_interval and self.turn_count % self._summary_interval == 0:
-            self._regenerate_summary()
+            self._summary_dirty = True
 
     def _regenerate_summary(self) -> None:
         """用 LLM 重新生成上下文摘要。"""
@@ -85,7 +85,10 @@ class MemoryStore:
             self.context_summary = result.strip()
 
     def get_summary(self) -> str:
-        """获取当前对话上下文摘要。"""
+        """获取当前对话上下文摘要（惰性生成：过期时才重算）。"""
+        if self._summary_dirty:
+            self._regenerate_summary()
+            self._summary_dirty = False
         if not self.context_summary:
             return "（尚未建立对话上下文）"
         return self.context_summary
@@ -162,5 +165,6 @@ class MemoryStore:
         self.analyzed_profiles.clear()
         self.analyzed_models.clear()
         self.context_summary = ""
+        self._summary_dirty = False
         self._full_history.clear()
         self.turn_count = 0

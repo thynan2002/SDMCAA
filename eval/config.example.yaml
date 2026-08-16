@@ -1,0 +1,28 @@
+# 评测配置示例 —— 复制为 eval/config.yaml 即生效（或 --config 指定）
+# 权重之和必须为 1.0；效率基准为预标定常数（建议先跑小规模预实验校准）
+
+# repeats: 5
+# systems: [bare, single, multi]
+# temperature: 0.85          # 三系统统一采样温度
+# seed: 42                   # 交错调度随机种子（记录保证可复现）
+# job_timeout_s: 900
+# judge_enabled: true
+# max_workers: 1             # 并行执行作业数（3.1：>1 启用多进程并发，建议 ≤ API 限速容忍度）
+
+# weights:
+#   accuracy: 0.30
+#   grounding: 0.20
+#   completeness: 0.15
+#   reasoning: 0.15
+#   efficiency: 0.10
+#   robustness: 0.10
+
+# refs:                      # 效率归一化基准（预标定，勿随本次样本变化）
+#   latency_ms: 120000
+#   llm_calls: 10
+#   total_tokens: 12000
+
+# judge:                     # 默认与被测系统同模型；可用 EVAL_JUDGE_* 环境变量切换
+#   sample_repeats: 2        # 每用例抽评的重复数
+#   order_swap: true         # 位置互换重评（消除 Judge 位置偏好）
+#   temperature: 0.0

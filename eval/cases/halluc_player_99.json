@@ -1,0 +1,9 @@
+{
+  "id": "halluc_player_99",
+  "category": "hallucination",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "99号球员这场比赛的表现怎么样？",
+  "refusal": {"keywords": ["不存在", "没有", "未找到", "无法", "数据不足", "未包含", "找不到", "无99"]},
+  "checklist": [{"text": "明确指出数据中没有99号", "keywords": ["99"]}],
+  "notes": "诱导幻觉（修订 #9）：数据中不存在 track_id=99"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "cf_7s_shoot",
+  "category": "counterfactual",
+  "level": 5,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "如果7号在第3秒改为直接射门会怎样？",
+  "direction": [
+    {"expr": "outcome_change", "keywords_pos": ["变化", "改变", "提高", "提升", "更高", "更有威胁", "增加", "上升"], "keywords_neg": ["没有变化", "一样", "相同", "没有任何区别"]}
+  ],
+  "checklist": [
+    {"text": "描述推演后的态势/结果变化方向", "keywords": ["提高", "提升", "上升", "下降", "变化", "改变"]},
+    {"text": "提到轨迹或胜率等量化影响", "keywords": ["轨迹", "胜率", "概率", "路线"]},
+    {"text": "说明这是反事实假设而非真实发生", "keywords": ["如果", "假设", "反事实", "改为"]}
+  ],
+  "notes": "MCTS 随机性大（修订 #2）：不设精确数值金标准，方向性+checklist 评；1.1 修复：direction 增加 neg 关键词（变化方向），避免纯过程词放水"
+}

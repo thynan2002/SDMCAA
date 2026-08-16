@@ -1,0 +1,9 @@
+{
+  "id": "qa_ball_hmax",
+  "category": "general_qa",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "比赛中球最高到过多少高度？",
+  "numeric": [{"expr": "ball_zmax", "value": "auto:ball_zmax", "tolerance": 0.5}],
+  "checklist": [{"text": "说明高度单位（米/离地）", "keywords": ["米"]}],
+  "notes": "z 列最大值"
+}

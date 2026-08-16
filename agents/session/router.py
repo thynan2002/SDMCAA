@@ -1,7 +1,7 @@
 """查询路由器。
 
-**全部意图由 LLM 判断**，不硬编码关键词映射。
-LLM 不可用时回退到 GENERAL_QA（综合问答兜底）。
+关键词规则优先（确定性、零 LLM 调用），规则未覆盖时 LLM 兜底
+（submit_intent 工具契约），LLM 不可用时回退到 GENERAL_QA。
 """
 
 from __future__ import annotations
@@ -20,10 +20,10 @@ from agents.professional.types import (
 
 
 class QueryRouter:
-    """自然语言意图路由器（LLM 驱动）。
+    """自然语言意图路由器（规则优先 + LLM 兜底）。
 
-    所有意图识别由 LLM 完成，
-    无硬编码关键词 → 意图映射。
+    常见意图由关键词规则确定性判定（零 LLM 调用），
+    规则未覆盖时经 LLM submit_intent 工具契约判定。
     """
 
     name = "QueryRouter"
@@ -134,14 +134,17 @@ class QueryRouter:
 
     # ── 公开接口 ──
 
-    def parse(self, user_text: str) -> RoutedQuery:
-        """LLM 驱动的意图解析。
+    def parse(self, user_text: str, available_players: list[str] | None = None) -> RoutedQuery:
+        """意图解析（精简后：关键词规则优先，LLM 兜底）。
 
         路由优先级：
         1. 系统命令（快速通道，避免 LLM 调用）
-        2. LLM 解析（第一意图来源）
-        3. 关键词规则兜底（LLM 不可用时）
+        2. 关键词规则（确定性、零 LLM 调用，覆盖常见意图）
+        3. LLM 解析（规则未覆盖时，经 submit_intent 工具契约）
         4. 回退 → GENERAL_QA（永不返回 UNKNOWN）
+
+        available_players: 当前数据中的球衣号列表（注入路由 prompt，供
+        target_players 合法性判断，降低不存在球员的误路由）。
         """
         text = user_text.strip()
 
@@ -154,18 +157,18 @@ class QueryRouter:
                 confidence=1.0,
             )
 
-        # ── LLM 解析 ──
+        # ── 关键词规则优先 ──
+        ruled = self._rule_based_parse(text)
+        if ruled:
+            return ruled
+
+        # ── LLM 解析（规则未覆盖时兜底） ──
         try:
-            result = self._parse_with_llm(user_text)
+            result = self._parse_with_llm(user_text, available_players)
             if result:
                 return result
         except Exception:
             pass
-
-        # ── 关键词规则兜底（LLM 不可用或解析失败时） ──
-        fallback = self._rule_based_parse(text)
-        if fallback:
-            return fallback
 
         # ── 回退：一切未识别走综合问答 ──
         return RoutedQuery(
@@ -176,9 +179,16 @@ class QueryRouter:
 
     # ── LLM 解析 ──
 
-    def _parse_with_llm(self, user_text: str) -> RoutedQuery | None:
+    def _parse_with_llm(self, user_text: str, available_players: list[str] | None = None) -> RoutedQuery | None:
         """调用 LLM 解析意图。"""
-        llm_result = call_llm(self.SYSTEM_PROMPT, user_text)
+        message = user_text
+        if available_players:
+            message = (
+                f"{user_text}\n\n[数据中存在的球衣号] {', '.join(available_players)}。"
+                "target_players 只能从上述球衣号中选取；若问题提及的号码不在其中，"
+                "请降低 confidence 并优先判断为 general_qa（由下游如实声明数据不足）。"
+            )
+        llm_result = call_llm(self.SYSTEM_PROMPT, message, temperature=0.2, max_tokens=4096)
         if not llm_result:
             return None
 
@@ -395,12 +405,21 @@ class QueryRouter:
             )
 
         # --- general_analysis ---
-        if re.search(r"整体|全场|比赛.*分析|节奏|攻防|阵型|战术|进攻方式|进攻空间|空间利用|漏洞|核心球员|转换", text) and not jerseys:
+        if re.search(r"整体|全场|比赛.*分析|节奏|攻防|阵型|战术|进攻方式|进攻空间|漏洞|核心球员|转换", text) and not jerseys:
             return RoutedQuery(
                 intent=IntentType.GENERAL_ANALYSIS,
                 target_players=jerseys,
                 original_text=text,
                 confidence=0.4,
+            )
+
+        # --- 纯事实类疑问 → 直达 general_qa（省一次 LLM 兜底调用） ---
+        if re.search(r"多少|几.*个|是什么|是谁|哪个|哪支|什么.*队|怎么|怎样|如何|是否|有没有", text) or text.endswith("?") or text.endswith("？"):
+            return RoutedQuery(
+                intent=IntentType.GENERAL_QA,
+                target_players=jerseys,
+                original_text=text,
+                confidence=0.35,
             )
 
         return None

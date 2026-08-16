@@ -1,0 +1,14 @@
+{
+  "id": "team_collab_breakdown",
+  "category": "team",
+  "level": 6,
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "从攻防两端全面分析这段比赛：进攻端谁在组织、防守端站位如何、攻防转换的弱点在哪？请给出多视角的综合结论。",
+  "checklist": [
+    {"text": "覆盖进攻端分析", "keywords": ["进攻", "组织", "推进", "威胁", "创造"]},
+    {"text": "覆盖防守端分析", "keywords": ["防守", "站位", "逼抢", "失位", "拦截"]},
+    {"text": "给出攻防转换判断", "keywords": ["转换", "反击", "攻防"]},
+    {"text": "结合数据给出综合结论", "keywords": ["数据", "依据", "号", "区域"]}
+  ],
+  "notes": "L6 综合战术分析：多视角（攻防两端）+ 综合结论，考察多 Agent 协作/多视角综合能力（2.1）"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "compare_6_7_active",
+  "category": "comparison",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "对比6号和7号谁更积极？",
+  "numeric": [{"expr": "distance_winner:6,7", "value": "auto:distance_winner:6,7", "tolerance": 0}],
+  "checklist": [
+    {"text": "给出明确的胜者结论", "keywords": ["更", "相比"]},
+    {"text": "用跑动距离/速度等数据支撑对比", "keywords": ["距离", "速度", "位移", "跑动"]}
+  ],
+  "notes": "winner=累计位移更多者（独立重算）；答案须包含该球衣号"
+}

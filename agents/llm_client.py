@@ -25,6 +25,7 @@ import contextvars
 import json
 import logging
 import os
+import threading
 import time
 from dataclasses import dataclass
 from typing import Any, Callable, Generator
@@ -44,6 +45,13 @@ _stream_callback: contextvars.ContextVar[Callable[[str], None] | None] = context
     "_opencode_stream_callback", default=None,
 )
 
+# 单次调用温度覆盖：结构化决策（路由/决策/档位）用低温降低 JSON 抖动与重试，
+# 叙述报告保持 config 默认温度。与流式回调同构的 ContextVar 通道，不改动
+# dispatcher / _call_llm_impl 的既有签名（harness 拦截器与测试 mock 无需感知）。
+_temperature_override: contextvars.ContextVar[float | None] = contextvars.ContextVar(
+    "_opencode_temperature", default=None,
+)
+
 
 def set_stream_callback(cb: Callable[[str], None] | None) -> contextvars.Token:
     """设置当前作用域的流式回调（每个增量 chunk 调用一次）。"""
@@ -58,6 +66,39 @@ def reset_stream_callback(token: contextvars.Token) -> None:
 def get_stream_callback() -> Callable[[str], None] | None:
     """只读访问器：返回当前作用域的流式回调（Harness 观测/回放用，不修改状态）。"""
     return _stream_callback.get()
+
+
+def get_temperature_override() -> float | None:
+    """只读访问器：当前作用域的温度覆盖值（None = 使用 config.temperature）。"""
+    return _temperature_override.get()
+
+
+# ── Token usage 捕获（评测效率指标观测用，最小侵入） ────────────
+# 非流式响应中的 usage 字段被原样累积记录；评测框架经 take_usage_events()
+# 取走。不改变任何调用路径行为，不影响既有 golden/hook 契约。
+_usage_events: list[dict[str, Any]] = []
+_usage_lock = threading.Lock()
+
+
+def _record_usage(data: dict[str, Any]) -> None:
+    """记录一次成功响应的 token usage（无 usage 字段时忽略）。"""
+    usage = (data or {}).get("usage") or {}
+    if usage:
+        with _usage_lock:
+            _usage_events.append({
+                "prompt_tokens": usage.get("prompt_tokens") or 0,
+                "completion_tokens": usage.get("completion_tokens") or 0,
+                "total_tokens": usage.get("total_tokens") or 0,
+                "ts": time.time(),
+            })
+
+
+def take_usage_events() -> list[dict[str, Any]]:
+    """取走并清空已捕获的 usage 记录（评测/观测用，只读语义）。"""
+    with _usage_lock:
+        events = list(_usage_events)
+        _usage_events.clear()
+        return events
 
 
 # ── 调用分派器（Harness 最小钩子） ─────────────────────────────
@@ -162,6 +203,7 @@ def call_llm(
     tools: list[Any] | None = None,
     tool_choice: Any = None,
     max_rounds: int | None = None,
+    temperature: float | None = None,
 ) -> str | None:
     """调用 DeepSeek Chat API 生成文本。
 
@@ -201,6 +243,7 @@ def call_llm(
         stream=stream,
         has_tools=bool(effective_tools),
     )
+    temp_token = _temperature_override.set(temperature) if temperature is not None else None
     try:
         if effective_tools:
             result = _call_llm_with_tools(
@@ -221,6 +264,9 @@ def call_llm(
     except Exception as exc:
         push_op("llm_end", ok=False, error=str(exc))
         raise
+    finally:
+        if temp_token is not None:
+            _temperature_override.reset(temp_token)
     push_op("llm_end", ok=result is not None, length=len(result) if result else 0)
     return result
 
@@ -457,7 +503,7 @@ def _call_llm_impl(
     payload: dict[str, Any] = {
         "model": config.model,
         "messages": messages,
-        "temperature": config.temperature,
+        "temperature": _temperature_override.get() if _temperature_override.get() is not None else config.temperature,
     }
     if exchange is not None:
         payload["tools"] = exchange.tools
@@ -491,6 +537,7 @@ def _call_llm_impl(
                     continue
             response.raise_for_status()
             data = response.json()
+            _record_usage(data)
             choice = (data.get("choices") or [{}])[0]
             message = choice.get("message") or {}
             content = message.get("content") or ""
@@ -571,7 +618,7 @@ def _call_llm_streaming(
     payload: dict[str, Any] = {
         "model": config.model,
         "messages": messages,
-        "temperature": config.temperature,
+        "temperature": _temperature_override.get() if _temperature_override.get() is not None else config.temperature,
         "max_tokens": max_tokens or config.max_tokens,
         "stream": True,
         "stream_options": {"include_usage": False},

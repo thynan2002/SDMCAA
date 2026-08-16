@@ -1,0 +1,12 @@
+{
+  "id": "style_player7",
+  "category": "style",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "7号的跑动风格是什么？",
+  "checklist": [
+    {"text": "给出风格概括（如积极/稳健/速度型）", "keywords": ["风格", "特点", "型"]},
+    {"text": "引用速度/距离等数据支撑", "keywords": ["速度", "距离", "位移", "冲刺"]},
+    {"text": "描述活动区域偏好", "keywords": ["区域", "路", "侧", "前场", "后场"]}
+  ],
+  "notes": "开放类，checklist+judge 评"
+}

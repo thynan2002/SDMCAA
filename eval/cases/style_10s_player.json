@@ -1,0 +1,12 @@
+{
+  "id": "style_10s_player",
+  "category": "style",
+  "dataset": {"person": "TestInput/Files/10s-person.csv", "ball": "TestInput/Files/10s-ball.csv"},
+  "input": "哪个球员的跑动距离最长？他的风格特点是什么？",
+  "numeric": [{"expr": "distance_winner_top", "value": "auto:distance_winner_top", "tolerance": 0}],
+  "checklist": [
+    {"text": "给出风格概括", "keywords": ["风格", "特点", "型"]},
+    {"text": "用距离/速度数据支撑", "keywords": ["距离", "速度", "位移", "跑动"]}
+  ],
+  "notes": "第三数据集（10s）+ 组合问题（winner + 风格）"
+}

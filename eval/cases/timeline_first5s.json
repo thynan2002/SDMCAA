@@ -1,0 +1,12 @@
+{
+  "id": "timeline_first5s",
+  "category": "timeline",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "描述一下比赛前5秒的球路变化。",
+  "checklist": [
+    {"text": "按时间顺序描述球路", "keywords": ["秒"]},
+    {"text": "提到控球/触球球员", "keywords": ["号"]},
+    {"text": "描述方向或速度变化", "keywords": ["向", "速度", "移动", "传", "带"]}
+  ],
+  "notes": "时间线类，checklist+judge 评"
+}

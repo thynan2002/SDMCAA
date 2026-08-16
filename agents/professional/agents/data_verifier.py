@@ -16,7 +16,6 @@ from typing import Any
 from agents.player.tracker import (
     PrefixPlayerCorpus,
     PlayerTrajectory,
-    BallTrajectoryAnalysis,
     BallEvent,
 )
 from agents.llm_client import call_llm
@@ -41,7 +40,7 @@ VERIFY_SYSTEM_PROMPT = """## 角色
 ## 核心规则
 - 只基于提供的数据描述，不编造任何信息
 - 说明数据来源（帧号、帧率等核验依据）
-- 不使用具体数值（坐标、距离），用感受性语言
+- 默认用感受性语言描述形势，不堆砌数字；但用户明确索要具体数值/坐标/距离/威胁值/战术区域时，必须如实引用核验数据中的精确数值作答，不得含糊、不得拒绝、不得换成其他数值
 - 如果某些数据缺失，诚实说明
 - 自行判断球路事件类型：不要依赖预标注类型，根据「球路」字段和方向判断（传球/长传/射门/盘带/解围等）
 - 「未知」表示该端球员因跟踪缺失无法确定"""
@@ -135,7 +134,14 @@ class DataVerifierAgent:
         自动判断查询类型（帧查询/球员核验/质疑响应），
         执行对应核验流程，返回 LLM 生成的核验报告。
         """
-        # Step 1: 判断是否为质疑
+        # Step 1: 提取帧号/时间点。帧/秒明确的精确查询直接走帧级核验，
+        # 无需质疑判断 LLM（省一次串行调用）；含质疑关键词的帧级质疑
+        # 仍走质疑判断（回溯上下文核验）。
+        frame_info = self._extract_frame_info(question)
+        if frame_info["frame"] is not None and not self._has_challenge_keywords(question):
+            return self._verify_frame_detail(question, frame_info, corpus, memory_context)
+
+        # Step 2: 判断是否为质疑
         challenge_result = self._judge_challenge(question, conversation_history)
 
         if challenge_result.get("is_challenge"):
@@ -144,10 +150,7 @@ class DataVerifierAgent:
                 conversation_history,
             )
 
-        # Step 2: 提取帧号/时间点
-        frame_info = self._extract_frame_info(question)
-
-        # Step 3: 帧级查询
+        # Step 3: 帧级查询（含帧但被判定为非质疑时）
         if frame_info["frame"] is not None:
             return self._verify_frame_detail(question, frame_info, corpus, memory_context)
 
@@ -155,6 +158,14 @@ class DataVerifierAgent:
         return self._verify_player_detail(question, corpus, memory_context)
 
     # ── 质疑判断 ──
+
+    # 与 _judge_challenge LLM 回退口径一致的质疑关键词
+    _CHALLENGE_KEYWORDS = ("不对", "不是", "错了", "你错", "明明", "应该是", "搞错")
+
+    @staticmethod
+    def _has_challenge_keywords(text: str) -> bool:
+        """是否包含明确的质疑/纠正关键词（与 LLM 回退判定一致）。"""
+        return any(kw in text for kw in DataVerifierAgent._CHALLENGE_KEYWORDS)
 
     def _judge_challenge(
         self,
@@ -186,8 +197,7 @@ class DataVerifierAgent:
                 pass
 
         # 回退：关键词判断
-        challenge_keywords = ["不对", "不是", "错了", "你错", "明明", "应该是", "搞错"]
-        is_challenge = any(kw in text for kw in challenge_keywords)
+        is_challenge = self._has_challenge_keywords(text)
         return {
             "is_challenge": is_challenge,
             "challenge_target": text,
@@ -324,20 +334,30 @@ class DataVerifierAgent:
     def _capture_frame(
         self, frame: int, corpus: PrefixPlayerCorpus,
     ) -> FrameSnapshot | None:
-        """捕获指定帧的完整状态快照。"""
+        """捕获指定帧的完整状态快照。
+
+        球位置：原始采样帧命中或相邻采样帧线性插值（与独立金标准
+        goldref.ball_at_frame 同口径）；插值区间外（早于首帧/晚于末帧）
+        返回 None，由上层如实声明数据不存在。
+        """
         ball_frames = corpus.ball_frames
         ball_pos = ball_frames.get(frame)
 
-        # 找最近的球帧（容差 ±2 帧）
+        # 未命中采样帧 → 相邻原始采样帧线性插值
         if ball_pos is None:
-            for delta in range(1, 3):
-                ball_pos = ball_frames.get(frame + delta) or ball_frames.get(frame - delta)
-                if ball_pos:
-                    frame = frame + delta if ball_frames.get(frame + delta) else frame - delta
+            lo: int | None = None
+            hi: int | None = None
+            for f in sorted(ball_frames):
+                if f <= frame:
+                    lo = f
+                elif hi is None:
+                    hi = f
                     break
-
-        if ball_pos is None:
-            return None
+            if lo is None or hi is None:
+                return None
+            p0, p1 = ball_frames[lo], ball_frames[hi]
+            t = (frame - lo) / (hi - lo)
+            ball_pos = tuple(p0[k] + t * (p1[k] - p0[k]) for k in range(3))
 
         bx, by, bz = ball_pos
 
@@ -389,7 +409,7 @@ class DataVerifierAgent:
         """格式化帧快照为 LLM 可读文本。"""
         lines = [
             f"帧号: {snap.frame}（约第{snap.time_second}秒）",
-            f"球位置: 坐标已核验",
+            f"球位置: (x={snap.ball_x:.0f}, y={snap.ball_y:.0f}, z={snap.ball_z:.0f})",
             f"离球最近球员: {snap.nearest_to_ball}",
         ]
 
@@ -429,23 +449,43 @@ class DataVerifierAgent:
             )
 
         # LLM 生成帧级描述
+        from math import hypot
+
+        from agents.constants import PX_PER_M_X, PX_PER_M_Y
+        from .tactical_facts import threat_value, tactical_zone
+
+        # 问题中明确索要的球员与该帧球的距离（米，x/y 分轴标定）
+        queried_dists: dict[str, str] = {}
+        for j in self._extract_all_jerseys(question):
+            info = snap.player_positions.get(j)
+            if info is not None:
+                dx = (info["x"] - snap.ball_x) / PX_PER_M_X
+                dy = (info["y"] - snap.ball_y) / PX_PER_M_Y
+                queried_dists[j] = f"{hypot(dx, dy):.1f}米"
+
+        payload_data: dict[str, Any] = {
+            "帧号": snap.frame,
+            "时间": f"第{snap.time_second}秒",
+            "球位置": f"(x={snap.ball_x:.0f}, y={snap.ball_y:.0f}, z={snap.ball_z:.0f})",
+            "战术区域": tactical_zone(snap.ball_x, snap.ball_y),
+            "威胁值": threat_value(snap.ball_x, snap.ball_y),
+            "离球最近": snap.nearest_to_ball,
+            "该帧事件": snap.events_at_frame,
+            "球员位置概要": {
+                j: f"距球{d['distance_to_ball']:.0f}"
+                for j, d in sorted(
+                    snap.player_positions.items(),
+                    key=lambda x: x[1]["distance_to_ball"],
+                )[:5]
+            },
+        }
+        if queried_dists:
+            payload_data["所询球员与球距离(米)"] = queried_dists
+
         user_msg = json.dumps(
             {
                 "原始问题": question,
-                "核验数据": {
-                    "帧号": snap.frame,
-                    "时间": f"第{snap.time_second}秒",
-                    "球位置": f"(x={snap.ball_x:.0f}, y={snap.ball_y:.0f}, z={snap.ball_z:.0f})",
-                    "离球最近": snap.nearest_to_ball,
-                    "该帧事件": snap.events_at_frame,
-                    "球员位置概要": {
-                        j: f"距球{d['distance_to_ball']:.0f}"
-                        for j, d in sorted(
-                            snap.player_positions.items(),
-                            key=lambda x: x[1]["distance_to_ball"],
-                        )[:5]
-                    },
-                },
+                "核验数据": payload_data,
             },
             ensure_ascii=False,
             indent=2,

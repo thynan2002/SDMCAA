@@ -25,7 +25,6 @@ from ..prompts import (
     activity_tier,
     sprint_tier,
 )
-from ..professional.simulation.llm_brain import SemanticTierBatcher
 
 # 向后兼容的别名
 SYSTEM_PROMPT = COMPOSITION_SYSTEM_PROMPT
@@ -58,10 +57,8 @@ def build_user_message(
 ) -> str:
     """将结构化赛场数据组装成 JSON 用户消息。
 
-    采用两遍模式：
-    1. 第一遍收集中间值入队（batcher.tier）；
-    2. 批量 LLM 调用（batcher.flush）；
-    3. 第二遍用已缓存的语义描述构建数据。
+    档位描述为确定性阈值（prompts.py），零额外 LLM 调用；
+    自然语言化由最终解说 LLM 负责。
     """
     # ── 整体时间范围 ──
     total_frames = 0
@@ -74,22 +71,8 @@ def build_user_message(
     total_duration_sec = total_frames / FPS
     total_duration = f"{_frame_to_sec(total_frames)}秒（{total_frames}帧，30fps）" if total_frames else ""
 
-    # ── 语义推断批量器 ──
-    batcher = SemanticTierBatcher()
-    batcher.set_context(
-        num_players=len(field) + len(goalkeepers),
-        duration_seconds=total_duration_sec,
-    )
-    # 第一遍：入队所有待推断值
-    _queue_commentary_tiers(
-        batcher, field, goalkeepers, ball, episodes,
-        focus_jerseys, ball_relation_results,
-    )
-    # 批量 LLM 调用
-    batcher.flush()
-
     # ═══════════════════════════════════════════════════════════════
-    # 第二遍：构建数据（batcher 缓存已填充，tier 函数返回 LLM 描述）
+    # 构建数据（档位字段为确定性阈值描述）
     # ═══════════════════════════════════════════════════════════════
 
     # ── 阵型概况 ──
@@ -118,7 +101,7 @@ def build_user_message(
                 "人数": d["count"],
                 "阵型位置": position_label,
                 "攻击侧重": "右路" if round(mean(d["avg_x"]), 0) > 800 else "左路" if round(mean(d["avg_x"]), 0) < 400 else "中路均衡",
-                "跑动量": coverage_tier(avg_coverage_pct, batcher),
+                "跑动量": coverage_tier(avg_coverage_pct),
             }
 
     gk_list: list[str] = [gk.jersey_label for gk in goalkeepers]
@@ -148,9 +131,9 @@ def build_user_message(
                 "球路": ball_route,
                 "方向": e.direction,
                 "速度(px/s)": round(e.speed, 0),
-                "速度描述": speed_tier(e.speed, batcher),
+                "速度描述": speed_tier(e.speed),
                 "距离(px)": round(e.distance, 0),
-                "距离描述": distance_tier(e.distance, e.start_pos[1], e.end_pos[1], batcher),
+                "距离描述": distance_tier(e.distance, e.start_pos[1], e.end_pos[1]),
                 "球高度": height_ctx,
                 "帧范围": [e.start_frame, e.end_frame],
             })
@@ -178,9 +161,9 @@ def build_user_message(
             "赛段时间": time_range,
             "球权流转": route_desc,
             "移动距离(px)": round(ep["total_dist"], 0),
-            "移动距离描述": distance_tier(ep["total_dist"], batcher=batcher),
+            "移动距离描述": distance_tier(ep["total_dist"]),
             "峰值速度(px/s)": round(ep["max_spd"], 0),
-            "峰值速度描述": speed_tier(ep["max_spd"], batcher),
+            "峰值速度描述": speed_tier(ep["max_spd"]),
             "事件数": len(ep["events"]),
         })
 
@@ -201,9 +184,9 @@ def build_user_message(
         ball_features = {
             "空中球占比": "高" if ball.aerial_pct > 40 else "中" if ball.aerial_pct > 10 else "低",
             "整体球速(px/s)": round(ball.avg_speed, 0),
-            "整体球速描述": speed_tier(ball.avg_speed, batcher),
+            "整体球速描述": speed_tier(ball.avg_speed),
             "峰值球速(px/s)": round(ball.max_speed, 0),
-            "峰值球速描述": speed_tier(ball.max_speed, batcher),
+            "峰值球速描述": speed_tier(ball.max_speed),
             "主要方向": _top_directions(ball.direction_counts),
         }
 
@@ -253,16 +236,16 @@ def build_user_message(
                     player_info: dict[str, Any] = {
                         "球衣号": p.jersey_label,
                         "所属队伍": tn.get(p.color, ""),
-                        "跑动量": coverage_tier(p.field_coverage_pct, batcher),
+                        "跑动量": coverage_tier(p.field_coverage_pct),
                         "活跃纵深度": "前场" if p.avg_y() > 400 else "后场" if p.avg_y() < 280 else "中场",
                         "活跃宽度": "右路" if p.avg_x() > 800 else "左路" if p.avg_x() < 400 else "中路",
                         "主要区域": p.dominant_zone,
                         "触球频率": "高" if p.ball_proximity_pct > 50 else "中" if p.ball_proximity_pct > 20 else "低",
                         "球距远近": "贴身的" if p.avg_ball_distance < 30 else "较近的" if p.avg_ball_distance < 100 else "较远的",
                         "峰值速度(px/s)": round(p.max_speed, 0),
-                        "速度描述": speed_tier(p.max_speed, batcher),
+                        "速度描述": speed_tier(p.max_speed),
                         "冲刺次数": sprint_count,
-                        "冲刺描述": sprint_tier(sprint_count, batcher),
+                        "冲刺描述": sprint_tier(sprint_count),
                     }
                     # 注入球高度关系数据
                     if ball_relation_results:
@@ -290,57 +273,6 @@ def build_user_message(
 
     json_text = json.dumps(data, ensure_ascii=False, indent=2)
     return f"{instruction}\n\n{json_text}"
-
-
-def _queue_commentary_tiers(
-    batcher: SemanticTierBatcher,
-    field: list[PlayerTrajectory],
-    goalkeepers: list[PlayerTrajectory],
-    ball: BallTrajectoryAnalysis | None,
-    episodes: list[dict[str, Any]],
-    focus_jerseys: list[str] | None,
-    ball_relation_results: list[dict[str, Any]] | None,
-) -> None:
-    """第一遍：收集所有需要语义推断的原始数值到 batcher 队列。"""
-    # ── 阵型概况：队伍平均跑动量 ──
-    if field:
-        color_data: dict[str, dict[str, Any]] = {}
-        for p in field:
-            c = p.color
-            if c not in color_data:
-                color_data[c] = {"total_dist": []}
-            color_data[c]["total_dist"].append(p.total_distance)
-        for d in color_data.values():
-            batcher.tier(round(mean(d["total_dist"]), 0), "coverage")
-
-    # ── 球路事件：速度 / 距离 ──
-    if ball and ball.events:
-        for e in ball.events:
-            batcher.tier(e.speed, "speed")
-            extra = {"起点y": round(e.start_pos[1], 0), "终点y": round(e.end_pos[1], 0)}
-            batcher.tier(e.distance, "distance", extra)
-
-    # ── episode：移动距离 / 峰值速度 ──
-    for ep in episodes:
-        batcher.tier(ep["total_dist"], "distance")
-        batcher.tier(ep["max_spd"], "speed")
-
-    # ── 球整体特征：球速 ──
-    if ball and ball.total_frames > 0:
-        batcher.tier(ball.avg_speed, "speed")
-        batcher.tier(ball.max_speed, "speed")
-
-    # ── 聚焦球员：跑动量 / 峰值速度 / 冲刺次数 ──
-    if focus_jerseys:
-        all_players = list(field) + list(goalkeepers)
-        for fj in focus_jerseys:
-            for p in all_players:
-                if p.track_id == fj or p.jersey_label == f"{fj}号":
-                    batcher.tier(p.field_coverage_pct, "coverage")
-                    batcher.tier(p.max_speed, "speed")
-                    sprint_count = float(sum(1 for s in p.speed_curve if s > 300))
-                    batcher.tier(sprint_count, "sprint")
-                    break
 
 
 def _top_directions(dir_counts: dict[str, int]) -> str:

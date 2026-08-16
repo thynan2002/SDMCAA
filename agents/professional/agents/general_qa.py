@@ -9,19 +9,16 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, field
 from typing import Any
 
 from agents.player.tracker import (
     PrefixPlayerCorpus,
     PlayerTrajectory,
     BallTrajectoryAnalysis,
-    BallEvent,
 )
 from agents.llm_client import call_llm
 from agents.prompts import speed_tier, distance_tier
-from agents.constants import GROUND_Z_THRESHOLD, LOW_BALL_Z_MAX, FIELD_WIDTH, FIELD_HEIGHT
-from agents.professional.simulation.llm_brain import SemanticTierBatcher
+from agents.constants import GROUND_Z_THRESHOLD, LOW_BALL_Z_MAX, px_s_to_ms
 from .tactical_facts import extract_tactical_facts
 
 
@@ -43,7 +40,7 @@ SYSTEM_PROMPT = """## 角色
 - 先给结论，再给数据依据（"因为……所以……"的推理结构）
 - 用简洁专业的语言，像资深球探或战术分析师
 - 纯文本输出，不要 markdown 格式
-- **数值输出规则（最高优先级，无条件遵守）**：默认严禁罗列统计数值（次数、占比、百分比等）。必须先把数据理解，再翻译为自然语言判断（"绝大多数时间"、"极少"、"几乎每次"、"明显更活跃"）。**唯一例外**：用户问题中明确索要具体数据（如"具体几次""数据是多少""占比多少"）时，才引用"比赛事实"中已给出的统计数值
+- **数值输出规则（无条件遵守）**：默认将统计数值翻译为自然语言判断（"绝大多数时间"、"极少"、"几乎每次"、"明显更活跃"），严禁罗列成串的统计数字。**但当用户明确索要具体数值/数据时（如"最快速度是多少""峰值是多少""平均速度多少""具体几次""数据是多少"），必须直接引用「比赛事实」中的精确数值字段作答（如球峰值速度、平均速度、事件总数），不得拒绝、不得含糊，也不得擅自换成其他数值**
 - 严禁输出坐标数值，严禁编造数据中没有的数字
 - **多子问题处理**：如果用户一次提出多个问题（如"从谁开始传出，随后路径如何"、"谁最积极？谁最长？"），必须逐一作答，用"首先/其次/随后"等衔接词组织，不得遗漏任何子问题，也不要因为问题有多个就声称数据不足
 
@@ -120,17 +117,7 @@ class GeneralQAAgent:
             corpus: 比赛语料
             memory_context: 对话记忆上下文
         """
-        # ── 语义推断批量器 ──
-        batcher = SemanticTierBatcher()
-        batcher.set_context(
-            num_players=len(corpus.players),
-            duration_seconds=self._total_duration_sec(corpus),
-        )
-        # 第一遍：入队待推断值，随后 batch LLM 调用
-        self._queue_qa_tiers(batcher, corpus)
-        batcher.flush()
-
-        facts = self._extract_facts(corpus, batcher)
+        facts = self._extract_facts(corpus)
         user_msg = self._build_prompt(facts, question, memory_context)
         result = call_llm(SYSTEM_PROMPT, user_msg, stream=True)
         if result:
@@ -145,9 +132,7 @@ class GeneralQAAgent:
 
     # ── 事实提取 ──
 
-    def _extract_facts(
-        self, corpus: PrefixPlayerCorpus, batcher: SemanticTierBatcher,
-    ) -> dict[str, Any]:
+    def _extract_facts(self, corpus: PrefixPlayerCorpus) -> dict[str, Any]:
         """从 corpus 提取比赛结构化事实。"""
         players = list(corpus.players.values())
         field = corpus.field_players()
@@ -166,36 +151,10 @@ class GeneralQAAgent:
             "球员清单": self._extract_player_list(players),
             "球队概况": self._extract_team_summary(players),
             "球员位置分布": self._extract_position_summary(players),
-            "球路线索": self._extract_ball_timeline(ball, batcher),
+            "球路线索": self._extract_ball_timeline(ball),
             "球特征": self._extract_ball_features(ball),
-            "战术事实": extract_tactical_facts(corpus, batcher),
+            "战术事实": extract_tactical_facts(corpus),
         }
-
-    def _total_duration_sec(self, corpus: PrefixPlayerCorpus) -> float:
-        """计算总时长（秒）。"""
-        return self._total_frames(corpus) / 30
-
-    def _queue_qa_tiers(
-        self, batcher: SemanticTierBatcher, corpus: PrefixPlayerCorpus,
-    ) -> None:
-        """第一遍：收集所有需要语义推断的原始数值到 batcher 队列。"""
-        ball = corpus.ball_analysis
-        if ball and ball.events:
-            # 球路事件：速度 / 距离
-            for e in ball.events:
-                batcher.tier(e.speed, "speed")
-                extra = {"起点y": round(e.start_pos[1], 0), "终点y": round(e.end_pos[1], 0)}
-                batcher.tier(e.distance, "distance", extra)
-
-            # 球整体特征（供 tactical_facts 使用）
-            batcher.tier(ball.avg_speed, "speed")
-            avg_dist = sum(e.distance for e in ball.events) / len(ball.events)
-            batcher.tier(avg_dist, "distance")
-
-        # 球员冲刺次数（供 tactical_facts 使用）
-        for p in corpus.players.values():
-            sprint_count = sum(1 for s in p.speed_curve if s > 300)
-            batcher.tier(float(sprint_count), "sprint")
 
     def _total_frames(self, corpus: PrefixPlayerCorpus) -> int:
         """计算总帧数。"""
@@ -283,7 +242,7 @@ class GeneralQAAgent:
         return result
 
     def _extract_ball_timeline(
-        self, ball: BallTrajectoryAnalysis | None, batcher: SemanticTierBatcher,
+        self, ball: BallTrajectoryAnalysis | None,
     ) -> list[dict[str, Any]]:
         """提取球路时间线（去类型化：不提供硬编码事件类型，由 LLM 自行判断）。"""
         if not ball or not ball.events:
@@ -315,12 +274,9 @@ class GeneralQAAgent:
                 "时间": f"{time_start:.1f}~{time_end:.1f}秒",
                 "球路": ball_route,
                 "方向": e.direction,
-                "距离(px)": round(e.distance, 0),
-                "距离描述": distance_tier(e.distance, e.start_pos[1], e.end_pos[1], batcher),
-                "速度(px/s)": round(e.speed, 0),
-                "速度描述": speed_tier(e.speed, batcher),
+                "距离描述": distance_tier(e.distance, e.start_pos[1], e.end_pos[1]),
+                "速度描述": speed_tier(e.speed),
                 "球高度": height_ctx,
-                "描述": self._describe_event(e, batcher),
             })
 
         # 合并相邻同类事件，保持时间线精简
@@ -351,6 +307,8 @@ class GeneralQAAgent:
 
         return {
             "整体球速": speed_label,
+            "球峰值速度(米/秒)": px_s_to_ms(ball.max_speed),
+            "球平均速度(米/秒)": px_s_to_ms(ball.avg_speed),
             "空中球特征": aerial_label,
             "事件总数": len(ball.events) if ball.events else 0,
         }
@@ -387,14 +345,6 @@ class GeneralQAAgent:
             return f"{pos}（{side}路）"
         return f"{pos}（{side}路）"
 
-    def _describe_event(self, event: BallEvent, batcher: SemanticTierBatcher) -> str:
-        """为球路事件生成简短文本描述（去类型化，纯描述球从哪到哪）。"""
-        start_player = event.nearest_player if event.nearest_player != "?" else "未知"
-        end_player = event.nearest_player_end if event.nearest_player_end != "?" else "未知"
-        dist_label = distance_tier(event.distance, event.start_pos[1], event.end_pos[1], batcher)
-        spd_label = speed_tier(event.speed, batcher)
-        return f"{start_player}→{end_player}（{dist_label}，{spd_label}，{event.direction}）"
-
     def _merge_timeline(
         self, timeline: list[dict[str, Any]],
     ) -> list[dict[str, Any]]:
@@ -409,7 +359,6 @@ class GeneralQAAgent:
             same_route = item.get("球路") == prev.get("球路")
             if same_route:
                 prev["时间"] = prev["时间"].split("~")[0] + "~" + item["时间"].split("~")[-1]
-                prev["描述"] = prev["描述"] + " ; " + item["描述"]
             else:
                 merged.append(item)
         return merged

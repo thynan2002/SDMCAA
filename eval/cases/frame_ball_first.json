@@ -1,0 +1,12 @@
+{
+  "id": "frame_ball_first",
+  "category": "frame",
+  "dataset": {"person": "TestInput/Files/12s_person2d.csv", "ball": "TestInput/Files/12s_soccer3d.csv"},
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "checklist": [
+    {"text": "描述第0帧球的位置", "keywords": ["球"]},
+    {"text": "描述球员站位概况", "keywords": ["球员", "站位", "阵型", "号"]},
+    {"text": "有时间/帧号锚点", "keywords": ["0", "开"]}
+  ],
+  "notes": "帧查询开放描述"
+}

@@ -6,9 +6,11 @@
 
 from __future__ import annotations
 
+from math import hypot
 from statistics import mean, stdev
 from typing import Any
 
+from agents.constants import PX_PER_M_X, PX_PER_M_Y
 from agents.player.tracker import (
     PlayerTrajectory,
     PrefixPlayerCorpus,
@@ -79,6 +81,7 @@ class DataCollectorAgent:
         # 空间特征
         speed_stats = self._build_speed_stats(player)
         accel_dist = self._build_acceleration_distribution(player)
+        total_distance_m = self._total_distance_m(player)
 
         profile = PlayerProfile(
             track_id=player.track_id,
@@ -90,6 +93,8 @@ class DataCollectorAgent:
             zone_distribution=player.zone_distribution,
             dominant_zone=player.dominant_zone,
             speed_stats=speed_stats,
+            total_distance_m=total_distance_m,
+            ball_proximity_pct=player.ball_proximity_pct,
             acceleration_distribution=accel_dist,
             tactical_role=tactical_role,
             attacking=AttackingProfile(
@@ -131,6 +136,19 @@ class DataCollectorAgent:
             "sprint_count": sprint_count,
             "median": round(median_speed, 1),
         }
+
+    @staticmethod
+    def _total_distance_m(player: PlayerTrajectory) -> float:
+        """累计跑动距离（米）：x/y 分轴标定（1200px→105m、700px→68m），
+        与 eval/goldref 独立重算同口径。"""
+        if len(player.xs) < 2:
+            return 0.0
+        total = 0.0
+        for i in range(1, len(player.xs)):
+            dx = (player.xs[i] - player.xs[i - 1]) / PX_PER_M_X
+            dy = (player.ys[i] - player.ys[i - 1]) / PX_PER_M_Y
+            total += hypot(dx, dy)
+        return round(total, 2)
 
     def _build_acceleration_distribution(self, player: PlayerTrajectory) -> dict[str, float]:
         """构建加速度分布。"""
@@ -197,47 +215,3 @@ class DataCollectorAgent:
         """颜色 → 队名。"""
         mapping = {"A": "A队", "B": "B队", "C": "门将"}
         return mapping.get(color, f"{color}队")
-
-    def generate_style_summary(self, profile: PlayerProfile) -> str:
-        """使用 LLM 生成球员风格概括（所有输出由 LLM 完成）。"""
-        system_prompt = """## 角色
-你是足球战术分析师 (Style Summarizer)。职责是用一句话精准概括球员的核心风格特点。
-
-## 输入
-球员的完整画像数据（战术角色、活动区域、进攻风格、防守风格、速度统计等）
-
-## 输出
-简洁的一句话概括，直接输出文本，不要前缀或引号。篇幅自然，以说清楚为准。
-
-## 要求
-- 语言精炼，不使用具体数值
-- 突出球员最鲜明的 1-2 个战术特点
-- 使用足球专业术语
-- 示例："右路突破型前锋，擅长内切射门" / "覆盖面积大的扫荡型后腰，协防意识出色"
-- 如果球员是门将，以"门将"开头"""
-
-        data = profile.to_dict()
-        user_msg = f"请概括这名球员的风格特点：\n\n{_format_dict(data)}"
-
-        result = call_llm(system_prompt, user_msg)
-        if result:
-            return result.strip()
-        # LLM 不可用的回退
-        return f"{profile.tactical_role}，活动于{profile.dominant_zone}区域"
-
-
-def _format_dict(d: dict, indent: int = 0) -> str:
-    """格式化字典为 LLM 可读文本。"""
-    lines = []
-    prefix = "  " * indent
-    for k, v in d.items():
-        if isinstance(v, dict):
-            lines.append(f"{prefix}{k}:")
-            lines.append(_format_dict(v, indent + 1))
-        elif isinstance(v, list):
-            lines.append(f"{prefix}{k}: {v}")
-        elif isinstance(v, float):
-            lines.append(f"{prefix}{k}: {v:.2f}")
-        else:
-            lines.append(f"{prefix}{k}: {v}")
-    return "\n".join(lines)

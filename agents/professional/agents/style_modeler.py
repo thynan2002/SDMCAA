@@ -1,16 +1,15 @@
-"""风格学习与建模智能体。
+"""风格建模智能体（精简版）。
 
-基于球员画像构建行为预测模型，
-生成特征向量、风格标签和决策权重。
-所有输出文本由 LLM 生成。
+基于球员画像构建行为预测模型：特征向量、确定性风格标签、MCTS 决策权重、
+传球目标偏好。原 LLM 风格标注步骤已随中间层精简移除 —— 风格标签/描述
+由特征向量确定性推导（消除 LLM 中间文本的夸大与误差累积），风格描述
+在报告中仅作辅助，报告以硬数据（距离/速度/冲刺/区域）为依据。
 """
 
 from __future__ import annotations
 
-import json
 from typing import Any
 
-from agents.llm_client import call_llm
 from ..types import PlayerProfile, PlayerBehaviorModel
 from ..models.feature_vector import (
     build_feature_vector,
@@ -56,8 +55,8 @@ class StyleModelingAgent:
         # 3. 传球目标偏好
         pass_preferences = self._build_pass_preferences(profile, all_profiles)
 
-        # 4. LLM 生成风格标签和描述
-        style_label, style_desc = self._generate_style_with_llm(profile_dict, feature_vec)
+        # 4. 确定性风格标签和描述（基于特征向量极值，不再经 LLM）
+        style_label, style_desc = _deterministic_style(profile_dict, feature_vec)
 
         # 5. 模型置信度评估
         confidence = self._evaluate_confidence(profile, feature_vec)
@@ -76,9 +75,41 @@ class StyleModelingAgent:
     def build_models_batch(
         self,
         profiles: list[PlayerProfile],
+        all_profiles: list[PlayerProfile] | None = None,
     ) -> list[PlayerBehaviorModel]:
-        """批量构建球员行为模型。"""
-        return [self.build_model(p, profiles) for p in profiles]
+        """批量构建球员行为模型。
+
+        all_profiles：全体球员画像（传球偏好等相对指标参照）；
+        缺省时用 profiles 自身（兼容原有调用）。
+
+        风格标签/描述为确定性推导（每名球员零 LLM 调用）。
+        """
+        reference = all_profiles if all_profiles is not None else profiles
+
+        # 1. 预计算纯 Python 部分（特征向量 / 风格标注 / 传球偏好 / 置信度）
+        prepared: list[tuple[PlayerProfile, dict, list[float], dict, float]] = []
+        for profile in profiles:
+            profile_dict = profile.to_dict()
+            feature_vec = build_feature_vector(profile_dict)
+            pass_pref = self._build_pass_preferences(profile, reference)
+            confidence = self._evaluate_confidence(profile, feature_vec)
+            prepared.append((profile, profile_dict, feature_vec, pass_pref, confidence))
+
+        # 2. 组装行为模型（确定性风格标注）
+        models: list[PlayerBehaviorModel] = []
+        for (profile, profile_dict, feature_vec, pass_pref, confidence) in prepared:
+            label, desc = _deterministic_style(profile_dict, feature_vec)
+            models.append(PlayerBehaviorModel(
+                track_id=profile.track_id,
+                jersey_label=profile.jersey_label,
+                feature_vector=feature_vec,
+                style_label=label,
+                style_description=desc,
+                action_weights=features_to_action_weights(feature_vec),
+                pass_target_preference=pass_pref,
+                confidence_score=confidence,
+            ))
+        return models
 
     def _build_pass_preferences(
         self,
@@ -123,58 +154,6 @@ class StyleModelingAgent:
 
         return preferences
 
-    def _generate_style_with_llm(
-        self,
-        profile_dict: dict[str, Any],
-        feature_vec: list[float],
-    ) -> tuple[str, str]:
-        """使用 LLM 生成风格标签和详细描述。"""
-        system_prompt = """## 角色
-你是足球战术分析师 (Style Labeler)。职责是为球员生成风格标签和描述。你的输出是下游分析的重要基础——风格标签会被 MCTS 用于决策模拟，描述会出现在最终报告中。
-
-## 输入
-- 球员数据：球衣号、战术角色、主要活动区域、进攻贡献评分
-- 行为特征向量：8 个维度的 0-1 数值（传球侵略性、射门信心、盘带倾向、防守侵略性、站位纪律、风险承受、团队倾向、前插倾向）
-
-## 输出格式（严格二行结构）
-第一行: 风格标签（2-8 个汉字，不要前缀）
-第二行起: 风格描述（不使用具体数值；篇幅根据内容自然展开，不设硬性上限）
-
-## 风格标签规则
-- 长度：2-8 个汉字。**不是必须 5 字以内**——"出球型中后卫"(6字)、"抢点型边锋"(5字)、"防守工兵"(4字) 都允许
-- 结构：特点/动作 + 位置。如"扫荡型后腰"、"组织型中场"、"突破型边锋"
-- 精准度优先：宁可略长也要准确，不要为凑字数用模糊标签
-- 禁止使用：球员号、队伍名、具体数值
-
-## 风格描述规则
-- 分析维度：技术特点 → 战术角色 → 对比赛的影响
-- 语言风格：像资深球探报告，专业但不晦涩
-- 禁止使用：任何具体数值（坐标、距离、百分比）
-- 篇幅：根据内容自然展开，不设硬性上限
-
-## 注意
-- 你的输出会被程序自动解析：第一行截取为标签，剩余行为描述
-- 不要添加"风格标签："、"描述："等前缀
-- 如果不确定，宁可选更通用的标签（如"中场球员"）也不要强行创造不准确的标签"""
-
-        user_msg = json.dumps(
-            {
-                "球员数据": profile_dict,
-                "特征向量": dict(zip(FEATURE_NAMES, [round(v, 3) for v in feature_vec])),
-            },
-            ensure_ascii=False,
-            indent=2,
-        )
-        result = call_llm(system_prompt, user_msg)
-        if result:
-            lines = result.strip().split("\n")
-            label = lines[0].strip() if lines else "未分类"
-            desc = "\n".join(lines[1:]).strip() if len(lines) > 1 else result.strip()
-            return label, desc
-
-        # 回退
-        return profile_dict.get("战术角色", "球员"), f"基于数据推断的{profile_dict.get('战术角色', '球员')}"
-
     def _evaluate_confidence(
         self,
         profile: PlayerProfile,
@@ -203,6 +182,35 @@ class StyleModelingAgent:
         confidence += extreme_count * 0.03
 
         return round(min(confidence, 0.95), 3)
+
+
+# ── 确定性风格标注（替代原 LLM 标注步骤）────────────────────────
+# 特征维度 → 风格特点词，取最突出的两个维度组成标签；
+# 描述为确定性文本（标注数据来源，不夸大、不编造）。
+
+_DIM_TRAITS = {
+    "传球侵略性": "组织", "射门信心": "抢点", "盘带倾向": "突破",
+    "防守侵略性": "压迫", "站位纪律": "站位", "风险承受": "冒险",
+    "团队倾向": "团队", "前插倾向": "前插",
+}
+
+
+def _deterministic_style(
+    profile_dict: dict[str, Any],
+    feature_vec: list[float],
+) -> tuple[str, str]:
+    """基于特征向量极值确定性推导风格标签与描述（零 LLM 调用）。"""
+    role = str(profile_dict.get("战术角色") or "球员")
+    order = sorted(range(len(feature_vec)), key=lambda i: -feature_vec[i])
+    top = order[:2]
+    traits = "".join(_DIM_TRAITS[FEATURE_NAMES[i]] for i in top)
+    label = f"{traits}型{role}"
+    desc = (
+        f"基于数据特征向量的确定性风格标注："
+        f"{FEATURE_NAMES[top[0]]}与{FEATURE_NAMES[top[1]]}维度最突出，"
+        f"战术角色为{role}。"
+    )
+    return label, desc
 
 
 def _euclidean(x1: float, y1: float, x2: float, y2: float) -> float:
