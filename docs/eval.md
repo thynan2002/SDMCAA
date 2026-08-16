@@ -159,7 +159,14 @@ v2 扩用例：启用 7s 数据集，新增 `qa_7s_player_count` / `qa_7s_ball_h
 - 多智能体输出会写 `Output/`（反事实轨迹等副产物，属系统真实行为）；
 - Judge 评分为模型主观判断，跨事件比较需固定 Judge 模型与 rubric 版本（`RUBRIC_VERSION` 变更会使缓存失效）。
 
+## 暂缓方向（已评估，ROI 不足未实施）
+
+以下方向经评估对本项目实际收益有限，未列入实施计划（完整评估见 git 历史中的优化方案文档）：
+
+- **MAMCTS 多智能体博弈反事实** — 需行为模型训练数据与 PPO/ISMCTS 工程投入；现有启发式 MCTS 已在反事实类用例大幅领先（multi 0.874 vs bare 0.577）
+- **双 Judge 制** — 需第二家付费 API；现有单 Judge（deepseek-v4-pro）+ 盲评 + 位置互换 + temp=0 已控制偏差
+- **插件化架构 / 工具市场 / 多数据源 / 动态模型路由 / Docker 部署** — 无第三方生态与部署场景，属推测性工程
+
 ## 相关文档
 
-- 体系化演进路线与实施状态：[bidirectional_optimization_plan.md](bidirectional_optimization_plan.md)
 - 被测系统架构：[project_report.md](project_report.md) · [harness.md](harness.md)

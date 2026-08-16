@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-live-2EA043?style=flat-square" alt="Status: live">
-  <img src="https://img.shields.io/badge/docs-6%20pages-4B8BBE?style=flat-square" alt="Docs: 6 pages">
+  <img src="https://img.shields.io/badge/docs-5%20pages-4B8BBE?style=flat-square" alt="Docs: 5 pages">
 </p>
 
 这里是 Football Agent 的全部技术文档入口。文档按「阅读路径」组织：从安装使用出发，向内逐层深入架构、观测、评测与演进规划。
@@ -16,7 +16,6 @@
 | 统一 Harness：运行模式 / 等价性论证 / 回放回归 | [harness.md](harness.md) |
 | 评测框架：指标 / 统计 / 追溯 / 报告 | [eval.md](eval.md) |
 | 工具调用（tool_calls）重构：选型 / 迁移 / 总结 | [tool_calling_refactor.md](tool_calling_refactor.md) |
-| 双向协同优化方案：评测体系 × 系统升级路线图 | [bidirectional_optimization_plan.md](bidirectional_optimization_plan.md) |
 
 ## 推荐阅读顺序
 
@@ -25,8 +24,7 @@ README（入门）
   └─ project_report.md（为什么这么做：背景与挑战）
        ├─ harness.md（如何保证可观测、可回归）
        ├─ eval.md（如何证明系统更好）
-       ├─ tool_calling_refactor.md（架构核心演进的完整记录）
-       └─ bidirectional_optimization_plan.md（正在发生什么、接下来做什么）
+       └─ tool_calling_refactor.md（架构核心演进的完整记录）
 ```
 
 ## 文档速览
@@ -37,7 +35,6 @@ README（入门）
 | [harness.md](harness.md) | 透明包装层：三种运行模式（passthrough/record/replay）、四维 golden 回放、工具层等价性论证 | 维护者、重构者 |
 | [eval.md](eval.md) | 单 LLM 裸调用 vs 单智能体 vs 多智能体的对比评测体系：指标体系、用例分层、方法学要点 | 评测者、研究者 |
 | [tool_calling_refactor.md](tool_calling_refactor.md) | 从纯文本 JSON 契约迁移到 OpenAI 风格 function calling 的全过程：约束盘点、选型、方案、落地、审查修复 | 架构师、贡献者 |
-| [bidirectional_optimization_plan.md](bidirectional_optimization_plan.md) | 评测体系重构 × 系统能力升级的双向优化方案：诊断、建议、实施状态、路线图 | 规划者、贡献者 |
 
 ## 目录结构
 

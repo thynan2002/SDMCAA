@@ -116,7 +116,6 @@ python -m harness verify harness/golden/standard
 | Evaluation framework (single-LLM vs multi-agent: metrics / stats / tracing / reports) | [docs/eval.md](docs/eval.md) |
 | Tool-calling refactor (rationale / migration plan / execution summary / review fixes) | [docs/tool_calling_refactor.md](docs/tool_calling_refactor.md) |
 | Project report (background / challenges / solutions / results) | [docs/project_report.md](docs/project_report.md) |
-| Bidirectional optimization plan (evaluation × system upgrade roadmap) | [docs/bidirectional_optimization_plan.md](docs/bidirectional_optimization_plan.md) |
 | Input data format | This file, «Input data format» |
 
 ## License

@@ -116,7 +116,6 @@ python -m harness verify harness/golden/standard
 | 对比评测框架（单 LLM vs 多智能体：指标/统计/追溯/报告） | [docs/eval.md](docs/eval.md) |
 | 工具调用重构（选型理由/迁移方案/执行总结/审查修复记录） | [docs/tool_calling_refactor.md](docs/tool_calling_refactor.md) |
 | 项目报告（背景/挑战/解决方案/结果） | [docs/project_report.md](docs/project_report.md) |
-| 双向协同优化方案（评测体系 × 系统升级路线图） | [docs/bidirectional_optimization_plan.md](docs/bidirectional_optimization_plan.md) |
 | 输入数据格式 | 本文件「输入数据格式」 |
 
 ## License
