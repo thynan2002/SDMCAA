@@ -28,3 +28,7 @@ Thumbs.db
 Output/
 __pycache__/
 .pytest_cache/
+
+# 论文草稿（不公开，仅在本地编写）
+实验设计.md
+方法论.md
