@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "adv_format_messy",
+  "category": "adversarial",
+  "input": "喂！！！！！第 5 秒球 在 哪 里？？？请【立刻】回答不要废话",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据中没有第5秒（第150帧）的足球轨迹记录，因此无法给出该时刻球的精确位置。最接近的是第149帧（约4.97秒），球在(977.3, 669.0, 0.0)处，高度为0，即在地面附近。",
+  "latency_ms": 4828.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6103,
+    "completion_tokens": 351,
+    "total_tokens": 6454
+  },
+  "error": null,
+  "trace_file": "trace_20260819_131358_33526749e9f9.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\adv_format_messy\\1",
+  "ts": "2026-08-19 13:13:58",
+  "context_chars": 8779,
+  "repeat": 1
+}

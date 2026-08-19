@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "halluc_score",
+  "category": "hallucination",
+  "input": "这场比赛最后的比分是多少？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据中没有该信息，无法得知这场比赛的最后比分。提供的仅是约 12.4 秒的追踪数据片段，不包含比分、进球或比赛结果记录。",
+  "latency_ms": 1531.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6084,
+    "completion_tokens": 63,
+    "total_tokens": 6147
+  },
+  "error": null,
+  "trace_file": "trace_20260819_160058_610f4ce79dc4.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\halluc_score\\4",
+  "ts": "2026-08-19 16:00:58",
+  "context_chars": 8760,
+  "repeat": 4
+}

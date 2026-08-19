@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "02d4f927c6b4", "ts": 1787125078.670785}
+{"type": "span_start", "run_id": "02d4f927c6b4", "span_id": "02d4f927c6b4-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787125078.670785, "attrs": {"input": "这段7秒片段中球最高到过多少高度？", "system": "bare"}}
+{"type": "span_start", "run_id": "02d4f927c6b4", "span_id": "02d4f927c6b4-00002", "parent_id": "02d4f927c6b4-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787125078.670785, "attrs": {"system_len": 293, "user_len": 6453}}
+{"type": "span_end", "run_id": "02d4f927c6b4", "span_id": "02d4f927c6b4-00002", "parent_id": "02d4f927c6b4-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787125080.4899807, "dur_ms": 1819.2, "status": "ok"}
+{"type": "span_end", "run_id": "02d4f927c6b4", "span_id": "02d4f927c6b4-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787125080.4899807, "dur_ms": 1819.2, "status": "ok"}
+{"type": "run_end", "run_id": "02d4f927c6b4", "ts": 1787125080.4899807}

@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "前5秒（约0~150帧）的球路呈现“先短促推进、再长距离转移、随后停顿后折返”的变化，整体以地面滚动为主，尚未形成有威胁的攻门。\n\n**数据依据：**  \n- 开场时球位于场地靠边线一侧的底线附近，随后向场地中央方向缓慢滚动，大约到第50帧时已移动到中后场区域，高度始终为0，说明是贴地传递。  \n- 之后球出现一次大幅度的位置跳变：从第50帧附近直接移动到场地另一侧的中场区域，并在那里停留了约0.7秒（约第102至123帧），位置几乎固定，可能是一次长传转移或球出界后的重新摆放。  \n- 第149帧时球又向回滚动，回到靠近原侧的中场位置，高度仍为0。  \n\n整体前5秒的球权更多在场地中后部流转，没有推进到对方危险区域，威胁程度低；节奏上呈现出“短传推进—长传转移—停球—回传”的段落感。",
+  "latency_ms": 21734.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6090,
+    "completion_tokens": 1994,
+    "total_tokens": 8084
+  },
+  "error": null,
+  "trace_file": "trace_20260819_160310_3233393a390d.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\timeline_first5s\\4",
+  "ts": "2026-08-19 16:03:10",
+  "context_chars": 8762,
+  "repeat": 4
+}

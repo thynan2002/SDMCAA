@@ -1,0 +1,38 @@
+{
+  "system": "multi",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "先说结论：前5秒是A队在右路的一次\"回撤控球—原地调整—突然向前\"的节奏变化，球权始终掌握在A队右路前场三人组（6号、7号、10号）脚下，全程以短距离地面球和低速盘带为主，直到第5秒才出现第一次向前推进。\n\n具体过程如下：\n\n首先，开局第0.7秒，6号短传给7号，球路向左后方向，是一记中等速度的地面球，说明A队开场并没有急于向前，而是先把球向本方半场方向转移、拉开空间。\n\n其次，0.8到1.7秒，7号接球后低速向左后盘带，延续回撤节奏，属于控球过渡，而非推进。\n\n随后，第3.4秒，7号用一记中距离地面球传给10号，方向仍是向左后，这是前5秒内唯一一次中距离传递，但依旧没有改变向后的总体方向。3.7到4.1秒，10号在原地低速控球，几乎没有移动，球在这一刻基本静止，是前5秒的\"停顿点\"。\n\n最后，第5.0秒，10号向右前方向短传回给6号，这是前5秒第一次向前传球。结合战术事实中\"第5.0秒由守转攻\"的转换时刻，这记传球正是A队从控球倒脚切换为向前进攻的信号。\n\n战术含义：前5秒A队的球路呈现\"先退后进\"的特征——绝大多数时间球在向后或横向流动，短传占比高、无长传无高空球，说明球队在耐心控球寻找结构；而第5秒的突然向前，标志着节奏切换，进攻开始起势。整个阶段球路都集中在右路，也印证了A队攻击侧重偏向右路。",
+  "latency_ms": 15750.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 12113,
+    "completion_tokens": 1561,
+    "total_tokens": 13674
+  },
+  "error": null,
+  "trace_file": "trace_20260819_132334_4a300c25f879.jsonl",
+  "tool_records": [
+    {
+      "name": "submit_intent",
+      "args": {
+        "intent": "general_qa",
+        "target_players": [],
+        "confidence": 0.65,
+        "scenario": null
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\timeline_first5s\\1",
+  "ts": "2026-08-19 13:23:34",
+  "repeat": 1
+}

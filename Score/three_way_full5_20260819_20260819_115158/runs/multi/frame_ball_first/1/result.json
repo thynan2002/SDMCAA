@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第0帧并非开球瞬间的常规中圈局面——球并不在中圈，而是处于禁区附近（战术区域为禁区）。此时6号与球位置重合（距球0），位于右路前场；B队19号也在右路前场。其余可见球员绝大多数分布在右路中场区域：A队除6号外，7号在前场，1、2、3、4、5、8、9号在中场；B队除19号外，11—18号及20号均在中场；另有C队21号在中场。场上共可见20名球员，10号该帧未出现。整体阵型呈中场压缩、前场接应点有限的状态，该位置静态威胁潜力较高，但该帧没有事件记录，尚不存在实际进攻动作。\n\n核验依据：第0帧，时间0.0秒；球位置（1194，696，0），战术区域“禁区”，威胁值0.653；离球最近为6号（距球0）；该帧事件列表为空；全队站位数据如上。\n\n[核验过程：回溯原始数据 → 定位第0帧（0.0秒）→ 提取20名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 21203.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1108,
+    "completion_tokens": 2021,
+    "total_tokens": 3129
+  },
+  "error": null,
+  "trace_file": "trace_20260819_130309_1b6d50e8e0c7.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_ball_first\\1",
+  "ts": "2026-08-19 13:03:09",
+  "repeat": 1
+}

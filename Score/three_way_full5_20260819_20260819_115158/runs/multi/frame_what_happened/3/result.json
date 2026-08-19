@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_what_happened",
+  "category": "frame",
+  "input": "第90帧发生了什么？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧（时间第3.0秒）时，球位于前场边路，比较靠近A队进攻方向的右路区域。该位置静态威胁潜力中等（威胁值0.45），具备一定的连续进攻可能性。离球最近的是A队10号球员，他在右路前场，距离球约84。A队阵型整体压得比较靠前，多名球员分布在右路前场和中场，形成对球权的局部包围；B队同样将兵力部署在右路中场和前场，防守站位相对紧凑，也有18号、19号等球员靠近球区；C队仅一名球员（21号）出现在右路中场，距球较远。该帧没有记录到任何事件，属静态对峙或准备传导状态。\n\n数据依据：帧号90，时间3.0秒，球位置(922,587)，战术区域“前场边路”，威胁值0.45，离球最近10号（距球84），全队站位覆盖A、B、C三队共21名可见球员。\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 10281.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1102,
+    "completion_tokens": 915,
+    "total_tokens": 2017
+  },
+  "error": null,
+  "trace_file": "trace_20260819_151043_7537fb6c1d86.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_what_happened\\3",
+  "ts": "2026-08-19 15:10:43",
+  "repeat": 3
+}

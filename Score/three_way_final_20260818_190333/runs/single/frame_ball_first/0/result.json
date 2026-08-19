@@ -1,0 +1,36 @@
+{
+  "system": "single",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**形势判断：**\n\n第0帧正是开球瞬间，场上处于标准的开球站位。\n\n**数据依据：**\n- 球位于场地中央开球点（坐标 x=1194, y=696），离地高度为0，即球静止停在中圈点上。\n- 距离球最近的是**6号球员**，与球的距离为0，也就是他正踩在球旁边，负责开球。\n- 其余球员围绕中圈依次散开：7号距球约94单位，19号约147单位，再往外是15号、18号、14号、16号、4号，距离在约293到327单位之间。\n- 该帧没有任何球路事件记录，符合开球前球尚未踢出的状态。\n\n简单说，这是一次由6号球员站在球旁发起、队友在中圈周围呈环形散开的常规开场站位。",
+  "latency_ms": 4938.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 2781,
+    "completion_tokens": 331,
+    "total_tokens": 3112
+  },
+  "error": null,
+  "trace_file": "trace_20260818_191543_4cbf3de62649.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 0
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 322
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final_20260818_190333\\runs\\single\\frame_ball_first\\0",
+  "ts": "2026-08-18 19:15:43",
+  "repeat": 0
+}

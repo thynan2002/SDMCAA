@@ -1,0 +1,9 @@
+{"type": "run_start", "run_id": "113d19ce1091", "ts": 1787114375.2431026}
+{"type": "span_start", "run_id": "113d19ce1091", "span_id": "113d19ce1091-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114375.248104, "attrs": {"input": "球在哪些时刻离开过地面（高度大于0）？请按时间列出。", "system": "single"}}
+{"type": "span_start", "run_id": "113d19ce1091", "span_id": "113d19ce1091-00002", "parent_id": "113d19ce1091-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114375.2486038, "attrs": {"system_len": 311, "user_len": 26, "tool_round": 0}}
+{"type": "span_end", "run_id": "113d19ce1091", "span_id": "113d19ce1091-00002", "parent_id": "113d19ce1091-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114376.6242135, "dur_ms": 1375.61, "status": "ok"}
+{"type": "event", "run_id": "113d19ce1091", "span_id": "113d19ce1091-00001", "kind": "tool", "name": "tool[0]", "ts": 1787114376.6251273, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "113d19ce1091", "span_id": "113d19ce1091-00003", "parent_id": "113d19ce1091-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787114376.6251273, "attrs": {"system_len": 311, "user_len": 26, "tool_round": 1}}
+{"type": "span_end", "run_id": "113d19ce1091", "span_id": "113d19ce1091-00003", "parent_id": "113d19ce1091-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787114386.0768795, "dur_ms": 9451.75, "status": "ok"}
+{"type": "span_end", "run_id": "113d19ce1091", "span_id": "113d19ce1091-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114386.0768795, "dur_ms": 10828.78, "status": "ok"}
+{"type": "run_end", "run_id": "113d19ce1091", "ts": 1787114386.0768795}

@@ -1,0 +1,4202 @@
+[
+  {
+    "system": "bare",
+    "case_id": "adv_induced_scoring",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 0
+  },
+  {
+    "system": "bare",
+    "case_id": "style_7s_player11",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 1
+  },
+  {
+    "system": "multi",
+    "case_id": "team_attack_trend",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 2
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_7s_pos",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 3
+  },
+  {
+    "system": "multi",
+    "case_id": "team_7s_threat",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 4
+  },
+  {
+    "system": "bare",
+    "case_id": "focus_player7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 5
+  },
+  {
+    "system": "bare",
+    "case_id": "team_attack_trend",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 6
+  },
+  {
+    "system": "bare",
+    "case_id": "style_player7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 7
+  },
+  {
+    "system": "bare",
+    "case_id": "team_collab_breakdown",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 8
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_event_types",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 9
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_frame_600",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 10
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_zone_7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 11
+  },
+  {
+    "system": "single",
+    "case_id": "style_player7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 12
+  },
+  {
+    "system": "multi",
+    "case_id": "focus_player7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 13
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_pass10",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 14
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 15
+  },
+  {
+    "system": "single",
+    "case_id": "style_10s_player",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 16
+  },
+  {
+    "system": "single",
+    "case_id": "team_collab_breakdown",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 17
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_score",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 18
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 19
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 20
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 21
+  },
+  {
+    "system": "multi",
+    "case_id": "team_collab_breakdown",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 22
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_event_types",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 23
+  },
+  {
+    "system": "single",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 24
+  },
+  {
+    "system": "single",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 25
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_zone_7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 26
+  },
+  {
+    "system": "single",
+    "case_id": "qa_duration",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 27
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_7s_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 28
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_zone_7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 29
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_6_7_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 30
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_score",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 31
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 32
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_player_99",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 33
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 34
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 35
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 36
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_first",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 37
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 38
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 39
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_player_count",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 40
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 41
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_team",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 42
+  },
+  {
+    "system": "single",
+    "case_id": "compare_6_7_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 43
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_hmax",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 44
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_hmax",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 45
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_6_7_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 46
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 47
+  },
+  {
+    "system": "bare",
+    "case_id": "team_formation",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 48
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_first5s",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 49
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_7s_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 50
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 51
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 52
+  },
+  {
+    "system": "bare",
+    "case_id": "team_7s_threat",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 53
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_shoot",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 54
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_player_99",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 55
+  },
+  {
+    "system": "single",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 56
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_what_happened",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 57
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 58
+  },
+  {
+    "system": "single",
+    "case_id": "team_threat_peak",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 59
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_count",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 60
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_count",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 61
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 62
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_frame_600",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 63
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 64
+  },
+  {
+    "system": "single",
+    "case_id": "adv_induced_scoring",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 65
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_count",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 66
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_pass10",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 67
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_player_count",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 68
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_format_messy",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 69
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_first",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 70
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_what_happened",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 71
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_frame_600",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 72
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_prompt_injection",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 73
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_player_99",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 74
+  },
+  {
+    "system": "multi",
+    "case_id": "team_formation",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 75
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_event_types",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 76
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 77
+  },
+  {
+    "system": "single",
+    "case_id": "team_formation",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 78
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_shoot",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 79
+  },
+  {
+    "system": "single",
+    "case_id": "style_7s_player11",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 80
+  },
+  {
+    "system": "single",
+    "case_id": "frame_what_happened",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 81
+  },
+  {
+    "system": "multi",
+    "case_id": "team_threat_peak",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 82
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_shoot",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 83
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 84
+  },
+  {
+    "system": "single",
+    "case_id": "verify_7s_pos",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 85
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_ball_height",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 86
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_player_count",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 87
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_first5s",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 88
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_score",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 89
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_ball_height",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 90
+  },
+  {
+    "system": "multi",
+    "case_id": "style_player7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 91
+  },
+  {
+    "system": "multi",
+    "case_id": "style_10s_player",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 92
+  },
+  {
+    "system": "single",
+    "case_id": "team_7s_threat",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 93
+  },
+  {
+    "system": "single",
+    "case_id": "compare_7s_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 94
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_duration",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 95
+  },
+  {
+    "system": "bare",
+    "case_id": "team_threat_peak",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 96
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_team",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 97
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_hmax",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 98
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_fastest",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 99
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_fastest",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 100
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_ball_height",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 101
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 102
+  },
+  {
+    "system": "single",
+    "case_id": "adv_format_messy",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 103
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 104
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_team",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 105
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_induced_scoring",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 106
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_duration",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 107
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_first5s",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 108
+  },
+  {
+    "system": "multi",
+    "case_id": "style_7s_player11",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 109
+  },
+  {
+    "system": "single",
+    "case_id": "adv_prompt_injection",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 110
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_7s_pos",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 111
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_pass10",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 112
+  },
+  {
+    "system": "single",
+    "case_id": "compare_fastest",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 113
+  },
+  {
+    "system": "single",
+    "case_id": "focus_player7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 114
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_first",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 115
+  },
+  {
+    "system": "single",
+    "case_id": "team_attack_trend",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 116
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_format_messy",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 117
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_prompt_injection",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 118
+  },
+  {
+    "system": "bare",
+    "case_id": "style_10s_player",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 119
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_score",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 0
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_7s_pos",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 1
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_induced_scoring",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 2
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_what_happened",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 3
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 4
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_duration",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 5
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_player_99",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 6
+  },
+  {
+    "system": "multi",
+    "case_id": "style_7s_player11",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 7
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 8
+  },
+  {
+    "system": "single",
+    "case_id": "style_player7",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 9
+  },
+  {
+    "system": "single",
+    "case_id": "verify_7s_pos",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 10
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 11
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_fastest",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 12
+  },
+  {
+    "system": "multi",
+    "case_id": "team_collab_breakdown",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 13
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_7s_pos",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 14
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_7s_active",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 15
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_zone_7",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 16
+  },
+  {
+    "system": "single",
+    "case_id": "style_7s_player11",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 17
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_6_7_active",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 18
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 19
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 20
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_shoot",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 21
+  },
+  {
+    "system": "single",
+    "case_id": "team_7s_threat",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 22
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_frame_600",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 23
+  },
+  {
+    "system": "single",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 24
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_7s_active",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 25
+  },
+  {
+    "system": "single",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 26
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_player_count",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 27
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_team",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 28
+  },
+  {
+    "system": "single",
+    "case_id": "team_collab_breakdown",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 29
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 30
+  },
+  {
+    "system": "single",
+    "case_id": "compare_fastest",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 31
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_6_7_active",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 32
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_count",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 33
+  },
+  {
+    "system": "single",
+    "case_id": "team_formation",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 34
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_prompt_injection",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 35
+  },
+  {
+    "system": "single",
+    "case_id": "team_threat_peak",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 36
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_team",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 37
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_fastest",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 38
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_event_types",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 39
+  },
+  {
+    "system": "bare",
+    "case_id": "style_10s_player",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 40
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_pass10",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 41
+  },
+  {
+    "system": "single",
+    "case_id": "adv_induced_scoring",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 42
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_first",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 43
+  },
+  {
+    "system": "bare",
+    "case_id": "focus_player7",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 44
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_what_happened",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 45
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_count",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 46
+  },
+  {
+    "system": "multi",
+    "case_id": "team_threat_peak",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 47
+  },
+  {
+    "system": "bare",
+    "case_id": "team_7s_threat",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 48
+  },
+  {
+    "system": "bare",
+    "case_id": "team_threat_peak",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 49
+  },
+  {
+    "system": "single",
+    "case_id": "adv_format_messy",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 50
+  },
+  {
+    "system": "single",
+    "case_id": "focus_player7",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 51
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 52
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_ball_height",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 53
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_format_messy",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 54
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 55
+  },
+  {
+    "system": "multi",
+    "case_id": "style_10s_player",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 56
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_format_messy",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 57
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_pass10",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 58
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_count",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 59
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_score",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 60
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_score",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 61
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 62
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_frame_600",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 63
+  },
+  {
+    "system": "single",
+    "case_id": "team_attack_trend",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 64
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 65
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 66
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 67
+  },
+  {
+    "system": "multi",
+    "case_id": "style_player7",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 68
+  },
+  {
+    "system": "bare",
+    "case_id": "team_formation",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 69
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_duration",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 70
+  },
+  {
+    "system": "bare",
+    "case_id": "style_7s_player11",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 71
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_frame_600",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 72
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_first5s",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 73
+  },
+  {
+    "system": "single",
+    "case_id": "compare_7s_active",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 74
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_zone_7",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 75
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 76
+  },
+  {
+    "system": "single",
+    "case_id": "adv_prompt_injection",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 77
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_first5s",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 78
+  },
+  {
+    "system": "single",
+    "case_id": "compare_6_7_active",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 79
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_hmax",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 80
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_first",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 81
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 82
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_player_count",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 83
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_event_types",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 84
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 85
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 86
+  },
+  {
+    "system": "bare",
+    "case_id": "team_attack_trend",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 87
+  },
+  {
+    "system": "single",
+    "case_id": "frame_what_happened",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 88
+  },
+  {
+    "system": "single",
+    "case_id": "style_10s_player",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 89
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_first",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 90
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 91
+  },
+  {
+    "system": "multi",
+    "case_id": "team_attack_trend",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 92
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_first5s",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 93
+  },
+  {
+    "system": "multi",
+    "case_id": "team_7s_threat",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 94
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_ball_height",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 95
+  },
+  {
+    "system": "single",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 96
+  },
+  {
+    "system": "single",
+    "case_id": "qa_duration",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 97
+  },
+  {
+    "system": "multi",
+    "case_id": "focus_player7",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 98
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 99
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_player_count",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 100
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_ball_height",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 101
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_player_99",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 102
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_player_99",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 103
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 104
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_team",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 105
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 106
+  },
+  {
+    "system": "bare",
+    "case_id": "style_player7",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 107
+  },
+  {
+    "system": "multi",
+    "case_id": "team_formation",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 108
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_shoot",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 109
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_zone_7",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 110
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_shoot",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 111
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_prompt_injection",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 112
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_event_types",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 113
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 114
+  },
+  {
+    "system": "bare",
+    "case_id": "team_collab_breakdown",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 115
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_induced_scoring",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 116
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_hmax",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 117
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_hmax",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 118
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_pass10",
+    "repeat": 1,
+    "round": 1,
+    "order_in_round": 119
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 0
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 1
+  },
+  {
+    "system": "single",
+    "case_id": "style_7s_player11",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 2
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_zone_7",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 3
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_pass10",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 4
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_prompt_injection",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 5
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_count",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 6
+  },
+  {
+    "system": "single",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 7
+  },
+  {
+    "system": "single",
+    "case_id": "adv_format_messy",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 8
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_7s_active",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 9
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 10
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 11
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_count",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 12
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 13
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_team",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 14
+  },
+  {
+    "system": "single",
+    "case_id": "team_collab_breakdown",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 15
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_7s_pos",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 16
+  },
+  {
+    "system": "single",
+    "case_id": "compare_6_7_active",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 17
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_score",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 18
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_frame_600",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 19
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_player_99",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 20
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_hmax",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 21
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_hmax",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 22
+  },
+  {
+    "system": "single",
+    "case_id": "compare_7s_active",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 23
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_shoot",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 24
+  },
+  {
+    "system": "single",
+    "case_id": "compare_fastest",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 25
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_format_messy",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 26
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_ball_height",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 27
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 28
+  },
+  {
+    "system": "bare",
+    "case_id": "style_10s_player",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 29
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_hmax",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 30
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 31
+  },
+  {
+    "system": "single",
+    "case_id": "adv_induced_scoring",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 32
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_first",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 33
+  },
+  {
+    "system": "multi",
+    "case_id": "focus_player7",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 34
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_duration",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 35
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 36
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 37
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_shoot",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 38
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_player_99",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 39
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_first",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 40
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 41
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_format_messy",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 42
+  },
+  {
+    "system": "single",
+    "case_id": "team_7s_threat",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 43
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_ball_height",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 44
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_team",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 45
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_zone_7",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 46
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_zone_7",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 47
+  },
+  {
+    "system": "multi",
+    "case_id": "team_threat_peak",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 48
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_what_happened",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 49
+  },
+  {
+    "system": "bare",
+    "case_id": "team_collab_breakdown",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 50
+  },
+  {
+    "system": "multi",
+    "case_id": "team_collab_breakdown",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 51
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_frame_600",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 52
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_what_happened",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 53
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 54
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_shoot",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 55
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_fastest",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 56
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_player_count",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 57
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_player_99",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 58
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_pass10",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 59
+  },
+  {
+    "system": "bare",
+    "case_id": "style_player7",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 60
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 61
+  },
+  {
+    "system": "single",
+    "case_id": "style_player7",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 62
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_team",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 63
+  },
+  {
+    "system": "single",
+    "case_id": "team_attack_trend",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 64
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_first5s",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 65
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_fastest",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 66
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 67
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 68
+  },
+  {
+    "system": "bare",
+    "case_id": "team_threat_peak",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 69
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_6_7_active",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 70
+  },
+  {
+    "system": "bare",
+    "case_id": "focus_player7",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 71
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_induced_scoring",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 72
+  },
+  {
+    "system": "single",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 73
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_duration",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 74
+  },
+  {
+    "system": "bare",
+    "case_id": "team_formation",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 75
+  },
+  {
+    "system": "multi",
+    "case_id": "team_attack_trend",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 76
+  },
+  {
+    "system": "single",
+    "case_id": "qa_duration",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 77
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 78
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_induced_scoring",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 79
+  },
+  {
+    "system": "bare",
+    "case_id": "team_7s_threat",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 80
+  },
+  {
+    "system": "multi",
+    "case_id": "team_formation",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 81
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_first",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 82
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_6_7_active",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 83
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_first5s",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 84
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_pass10",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 85
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_player_count",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 86
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 87
+  },
+  {
+    "system": "multi",
+    "case_id": "style_player7",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 88
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_event_types",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 89
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_7s_pos",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 90
+  },
+  {
+    "system": "single",
+    "case_id": "adv_prompt_injection",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 91
+  },
+  {
+    "system": "single",
+    "case_id": "frame_what_happened",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 92
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_score",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 93
+  },
+  {
+    "system": "single",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 94
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_ball_height",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 95
+  },
+  {
+    "system": "single",
+    "case_id": "style_10s_player",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 96
+  },
+  {
+    "system": "multi",
+    "case_id": "style_10s_player",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 97
+  },
+  {
+    "system": "multi",
+    "case_id": "style_7s_player11",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 98
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 99
+  },
+  {
+    "system": "bare",
+    "case_id": "team_attack_trend",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 100
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_player_count",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 101
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_event_types",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 102
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 103
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_frame_600",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 104
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 105
+  },
+  {
+    "system": "bare",
+    "case_id": "style_7s_player11",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 106
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_event_types",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 107
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_prompt_injection",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 108
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_7s_active",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 109
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_score",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 110
+  },
+  {
+    "system": "single",
+    "case_id": "team_threat_peak",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 111
+  },
+  {
+    "system": "single",
+    "case_id": "verify_7s_pos",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 112
+  },
+  {
+    "system": "single",
+    "case_id": "team_formation",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 113
+  },
+  {
+    "system": "single",
+    "case_id": "focus_player7",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 114
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 115
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 116
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_count",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 117
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_first5s",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 118
+  },
+  {
+    "system": "multi",
+    "case_id": "team_7s_threat",
+    "repeat": 2,
+    "round": 2,
+    "order_in_round": 119
+  },
+  {
+    "system": "multi",
+    "case_id": "team_attack_trend",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 0
+  },
+  {
+    "system": "bare",
+    "case_id": "style_player7",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 1
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 2
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 3
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_player_count",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 4
+  },
+  {
+    "system": "single",
+    "case_id": "compare_7s_active",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 5
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_zone_7",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 6
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_duration",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 7
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_hmax",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 8
+  },
+  {
+    "system": "bare",
+    "case_id": "style_7s_player11",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 9
+  },
+  {
+    "system": "single",
+    "case_id": "team_attack_trend",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 10
+  },
+  {
+    "system": "single",
+    "case_id": "style_player7",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 11
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_ball_height",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 12
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_pass10",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 13
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_event_types",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 14
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_shoot",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 15
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 16
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_frame_600",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 17
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_ball_height",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 18
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_hmax",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 19
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_fastest",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 20
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 21
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_event_types",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 22
+  },
+  {
+    "system": "multi",
+    "case_id": "team_collab_breakdown",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 23
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 24
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_7s_active",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 25
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 26
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_format_messy",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 27
+  },
+  {
+    "system": "bare",
+    "case_id": "focus_player7",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 28
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_player_99",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 29
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 30
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_event_types",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 31
+  },
+  {
+    "system": "single",
+    "case_id": "compare_6_7_active",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 32
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_team",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 33
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_what_happened",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 34
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_team",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 35
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_count",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 36
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_player_count",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 37
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_score",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 38
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_score",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 39
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_player_99",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 40
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 41
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_6_7_active",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 42
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 43
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_team",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 44
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_ball_height",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 45
+  },
+  {
+    "system": "single",
+    "case_id": "team_formation",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 46
+  },
+  {
+    "system": "single",
+    "case_id": "adv_format_messy",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 47
+  },
+  {
+    "system": "single",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 48
+  },
+  {
+    "system": "bare",
+    "case_id": "team_attack_trend",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 49
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_score",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 50
+  },
+  {
+    "system": "multi",
+    "case_id": "team_threat_peak",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 51
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_frame_600",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 52
+  },
+  {
+    "system": "multi",
+    "case_id": "team_7s_threat",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 53
+  },
+  {
+    "system": "single",
+    "case_id": "compare_fastest",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 54
+  },
+  {
+    "system": "single",
+    "case_id": "team_collab_breakdown",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 55
+  },
+  {
+    "system": "single",
+    "case_id": "adv_induced_scoring",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 56
+  },
+  {
+    "system": "multi",
+    "case_id": "team_formation",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 57
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_7s_pos",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 58
+  },
+  {
+    "system": "bare",
+    "case_id": "team_formation",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 59
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_player_99",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 60
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_6_7_active",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 61
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 62
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_format_messy",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 63
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_first",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 64
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 65
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_induced_scoring",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 66
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 67
+  },
+  {
+    "system": "multi",
+    "case_id": "focus_player7",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 68
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 69
+  },
+  {
+    "system": "single",
+    "case_id": "team_threat_peak",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 70
+  },
+  {
+    "system": "bare",
+    "case_id": "style_10s_player",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 71
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_count",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 72
+  },
+  {
+    "system": "single",
+    "case_id": "frame_what_happened",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 73
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_7s_active",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 74
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_first5s",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 75
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_first",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 76
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_shoot",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 77
+  },
+  {
+    "system": "multi",
+    "case_id": "style_7s_player11",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 78
+  },
+  {
+    "system": "multi",
+    "case_id": "style_player7",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 79
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_prompt_injection",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 80
+  },
+  {
+    "system": "bare",
+    "case_id": "team_threat_peak",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 81
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_pass10",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 82
+  },
+  {
+    "system": "single",
+    "case_id": "adv_prompt_injection",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 83
+  },
+  {
+    "system": "single",
+    "case_id": "team_7s_threat",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 84
+  },
+  {
+    "system": "single",
+    "case_id": "qa_duration",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 85
+  },
+  {
+    "system": "single",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 86
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_first5s",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 87
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 88
+  },
+  {
+    "system": "multi",
+    "case_id": "style_10s_player",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 89
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_zone_7",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 90
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_7s_pos",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 91
+  },
+  {
+    "system": "bare",
+    "case_id": "team_7s_threat",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 92
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_duration",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 93
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 94
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_shoot",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 95
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 96
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_frame_600",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 97
+  },
+  {
+    "system": "single",
+    "case_id": "focus_player7",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 98
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 99
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_what_happened",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 100
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 101
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_first",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 102
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_hmax",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 103
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_fastest",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 104
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 105
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_first5s",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 106
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_prompt_injection",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 107
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_count",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 108
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_zone_7",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 109
+  },
+  {
+    "system": "single",
+    "case_id": "verify_7s_pos",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 110
+  },
+  {
+    "system": "single",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 111
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_induced_scoring",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 112
+  },
+  {
+    "system": "bare",
+    "case_id": "team_collab_breakdown",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 113
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 114
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_player_count",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 115
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 116
+  },
+  {
+    "system": "single",
+    "case_id": "style_10s_player",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 117
+  },
+  {
+    "system": "single",
+    "case_id": "style_7s_player11",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 118
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_pass10",
+    "repeat": 3,
+    "round": 3,
+    "order_in_round": 119
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_pass10",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 0
+  },
+  {
+    "system": "single",
+    "case_id": "focus_player7",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 1
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_7s_pos",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 2
+  },
+  {
+    "system": "multi",
+    "case_id": "style_player7",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 3
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_event_types",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 4
+  },
+  {
+    "system": "bare",
+    "case_id": "style_10s_player",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 5
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_6_7_active",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 6
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_player_count",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 7
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 8
+  },
+  {
+    "system": "multi",
+    "case_id": "team_attack_trend",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 9
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_event_types",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 10
+  },
+  {
+    "system": "multi",
+    "case_id": "team_7s_threat",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 11
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_frame_600",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 12
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_zone_7",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 13
+  },
+  {
+    "system": "single",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 14
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_ball_height",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 15
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_induced_scoring",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 16
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 17
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_count",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 18
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_pass10",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 19
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_pass10",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 20
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 21
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_6_7_active",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 22
+  },
+  {
+    "system": "single",
+    "case_id": "frame_what_happened",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 23
+  },
+  {
+    "system": "bare",
+    "case_id": "focus_player7",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 24
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_zone_7",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 25
+  },
+  {
+    "system": "single",
+    "case_id": "adv_induced_scoring",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 26
+  },
+  {
+    "system": "bare",
+    "case_id": "team_collab_breakdown",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 27
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_first",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 28
+  },
+  {
+    "system": "bare",
+    "case_id": "style_player7",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 29
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 30
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_fastest",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 31
+  },
+  {
+    "system": "single",
+    "case_id": "style_7s_player11",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 32
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_player_99",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 33
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 34
+  },
+  {
+    "system": "single",
+    "case_id": "qa_duration",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 35
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_frame_600",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 36
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_player_99",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 37
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_player_count",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 38
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_pos_90",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 39
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 40
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_induced_scoring",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 41
+  },
+  {
+    "system": "single",
+    "case_id": "style_player7",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 42
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_score",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 43
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_score",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 44
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_prompt_injection",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 45
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_hmax",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 46
+  },
+  {
+    "system": "single",
+    "case_id": "team_formation",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 47
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_shoot",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 48
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_first5s",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 49
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 50
+  },
+  {
+    "system": "single",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 51
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_7s_active",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 52
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_5s_short",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 53
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 54
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_team",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 55
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_shoot",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 56
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_duration",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 57
+  },
+  {
+    "system": "single",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 58
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 59
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_hmax",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 60
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_shoot",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 61
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_7s_pos",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 62
+  },
+  {
+    "system": "bare",
+    "case_id": "team_attack_trend",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 63
+  },
+  {
+    "system": "bare",
+    "case_id": "team_threat_peak",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 64
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_duration",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 65
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_frame_600",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 66
+  },
+  {
+    "system": "single",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 67
+  },
+  {
+    "system": "single",
+    "case_id": "team_attack_trend",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 68
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 69
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 70
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_zone_7",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 71
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_format_messy",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 72
+  },
+  {
+    "system": "multi",
+    "case_id": "focus_player7",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 73
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_ball_height",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 74
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_count",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 75
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_player_99",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 76
+  },
+  {
+    "system": "single",
+    "case_id": "team_7s_threat",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 77
+  },
+  {
+    "system": "single",
+    "case_id": "team_collab_breakdown",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 78
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_team",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 79
+  },
+  {
+    "system": "multi",
+    "case_id": "style_10s_player",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 80
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 81
+  },
+  {
+    "system": "bare",
+    "case_id": "team_formation",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 82
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 83
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_team",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 84
+  },
+  {
+    "system": "single",
+    "case_id": "adv_prompt_injection",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 85
+  },
+  {
+    "system": "single",
+    "case_id": "adv_format_messy",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 86
+  },
+  {
+    "system": "bare",
+    "case_id": "team_7s_threat",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 87
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_count",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 88
+  },
+  {
+    "system": "single",
+    "case_id": "compare_6_7_active",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 89
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_first",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 90
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_prompt_injection",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 91
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_event_types",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 92
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 93
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_speed_max",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 94
+  },
+  {
+    "system": "multi",
+    "case_id": "style_7s_player11",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 95
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_first5s",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 96
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_ball_hmax",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 97
+  },
+  {
+    "system": "single",
+    "case_id": "style_10s_player",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 98
+  },
+  {
+    "system": "single",
+    "case_id": "verify_7s_pos",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 99
+  },
+  {
+    "system": "single",
+    "case_id": "team_threat_peak",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 100
+  },
+  {
+    "system": "multi",
+    "case_id": "team_collab_breakdown",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 101
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_frame_out_of_range",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 102
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_first",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 103
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_what_happened",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 104
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_score",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 105
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_7s_active",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 106
+  },
+  {
+    "system": "bare",
+    "case_id": "style_7s_player11",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 107
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_format_messy",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 108
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 109
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_fastest",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 110
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_first5s",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 111
+  },
+  {
+    "system": "multi",
+    "case_id": "team_formation",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 112
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_ball_height",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 113
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 114
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_what_happened",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 115
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_player_count",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 116
+  },
+  {
+    "system": "multi",
+    "case_id": "team_threat_peak",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 117
+  },
+  {
+    "system": "single",
+    "case_id": "compare_7s_active",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 118
+  },
+  {
+    "system": "single",
+    "case_id": "compare_fastest",
+    "repeat": 4,
+    "round": 4,
+    "order_in_round": 119
+  }
+]

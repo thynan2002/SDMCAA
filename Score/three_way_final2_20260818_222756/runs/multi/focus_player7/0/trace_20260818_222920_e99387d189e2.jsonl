@@ -1,0 +1,17 @@
+{"type": "run_start", "run_id": "e99387d189e2", "ts": 1787063360.9402146}
+{"type": "event", "run_id": "e99387d189e2", "span_id": null, "kind": "session", "name": "session_reset", "ts": 1787063360.9497108, "attrs": {}}
+{"type": "span_start", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787063360.9497108, "attrs": {"person": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_person2d.csv", "ball": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_soccer3d.csv"}}
+{"type": "span_end", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787063360.9542139, "dur_ms": 4.5, "status": "ok"}
+{"type": "event", "run_id": "e99387d189e2", "span_id": null, "kind": "load", "name": "corpus_ready", "ts": 1787063360.954714, "attrs": {"prefix": "12s", "player_count": 21}}
+{"type": "span_start", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787063360.954714, "attrs": {"input": "聚焦7号"}}
+{"type": "event", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00002", "kind": "stage", "name": "routing", "ts": 1787063360.954714, "attrs": {"content": "正在理解问题意图…", "status": "active"}}
+{"type": "event", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00002", "kind": "stage", "name": "routing", "ts": 1787063360.9562144, "attrs": {"content": "意图识别完成", "status": "done"}}
+{"type": "event", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00002", "kind": "stage", "name": "tracking", "ts": 1787063360.9562144, "attrs": {"content": "正在生成聚焦解说…", "status": "active"}}
+{"type": "span_start", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00003", "parent_id": "e99387d189e2-00002", "kind": "llm", "name": "llm_call[0]", "ts": 1787063360.9592147, "attrs": {"seq": 0, "stream": true, "system_sha256": "3547d717112351ab77fcfd2a906c0dceacbd6587a6e24984a1e5a9452ef67a24", "user_sha256": "43bbedcbdb00b9e87d0e89f1423147eca7a663ccc08317c802e0c399c58602bd", "system_len": 2151, "user_len": 4109}}
+{"type": "event", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00003", "kind": "llm_result", "name": "llm_result[0]", "ts": 1787063412.887701, "attrs": {"seq": 0, "ok": true, "tool_calls": false, "response_sha256": "73d414d6cd20cca4779d59c9a4230a2fbc60413b5bca56ba1c993895d690502a", "response_len": 734}}
+{"type": "span_end", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00003", "parent_id": "e99387d189e2-00002", "kind": "llm", "name": "llm_call[0]", "ts": 1787063412.887701, "dur_ms": 51928.49, "status": "ok"}
+{"type": "event", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00002", "kind": "stage", "name": "tracking", "ts": 1787063412.8882015, "attrs": {"content": "聚焦解说完成", "status": "done"}}
+{"type": "event", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00002", "kind": "stream", "name": "stream_summary", "ts": 1787063412.8882015, "attrs": {"chunks": 0, "chars": 0}}
+{"type": "event", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00002", "kind": "output", "name": "output[0]", "ts": 1787063412.8882015, "attrs": {"response_sha256": "73d414d6cd20cca4779d59c9a4230a2fbc60413b5bca56ba1c993895d690502a", "response_len": 734, "is_exit_signal": false}}
+{"type": "span_end", "run_id": "e99387d189e2", "span_id": "e99387d189e2-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787063412.8882015, "dur_ms": 51933.49, "status": "ok"}
+{"type": "run_end", "run_id": "e99387d189e2", "ts": 1787063412.8882015}

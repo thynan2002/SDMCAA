@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第0帧并非开球局面：数据显示球并不在中圈，而是位于禁区内（坐标 x=1194, y=696, z=0），战术区域标注为“禁区”。该位置静态威胁潜力较高（威胁值0.653）。6号球员就在球的位置（距球0），因此该帧球权/接触点集中在6号脚下。\n\n场上站位方面，双方整体都压向同一侧半场的右路区域：A队以6号、7号在右路前场，其余1、2、3、4、5、8、9号均分布在右路中场；B队除19号在右路前场外，11至18号以及20号也全部集中在右路中场；C队21号同样在右路中场。可见此时双方阵型都向该侧禁区方向聚拢，属于球在禁区内、攻防人员密集的静态局面。\n\n数据依据：帧号0，时间第0.0秒，球位置(x=1194, y=696, z=0)，战术区域“禁区”，离球最近球员6号（距球0），该帧可见球员20人，10号未出现。\n\n[核验过程：回溯原始数据 → 定位第0帧（0.0秒）→ 提取20名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 6546.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1108,
+    "completion_tokens": 658,
+    "total_tokens": 1766
+  },
+  "error": null,
+  "trace_file": "trace_20260819_124439_226eaec624cc.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_ball_first\\0",
+  "ts": "2026-08-19 12:44:39",
+  "repeat": 0
+}

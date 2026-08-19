@@ -1,0 +1,13 @@
+{"type": "run_start", "run_id": "f655e129b3dc", "ts": 1787115022.40633}
+{"type": "span_start", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787115022.4118369, "attrs": {"input": "不对吧，7号第3秒的时候明明在中场附近，你确定吗？请核验数据。", "system": "single"}}
+{"type": "span_start", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00002", "parent_id": "f655e129b3dc-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787115022.4118369, "attrs": {"system_len": 311, "user_len": 31, "tool_round": 0}}
+{"type": "span_end", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00002", "parent_id": "f655e129b3dc-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787115023.8389707, "dur_ms": 1427.13, "status": "ok"}
+{"type": "event", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00001", "kind": "tool", "name": "tool[0]", "ts": 1787115023.8394706, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00001", "kind": "tool", "name": "tool[1]", "ts": 1787115023.8394706, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00003", "parent_id": "f655e129b3dc-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787115023.8394706, "attrs": {"system_len": 311, "user_len": 31, "tool_round": 1}}
+{"type": "span_end", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00003", "parent_id": "f655e129b3dc-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787115027.3611639, "dur_ms": 3521.69, "status": "ok"}
+{"type": "event", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00001", "kind": "tool", "name": "tool[2]", "ts": 1787115027.3616664, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00004", "parent_id": "f655e129b3dc-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787115027.3616664, "attrs": {"system_len": 311, "user_len": 31, "tool_round": 2}}
+{"type": "span_end", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00004", "parent_id": "f655e129b3dc-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787115035.506021, "dur_ms": 8144.35, "status": "ok"}
+{"type": "span_end", "run_id": "f655e129b3dc", "span_id": "f655e129b3dc-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787115035.506021, "dur_ms": 13094.18, "status": "ok"}
+{"type": "run_end", "run_id": "f655e129b3dc", "ts": 1787115035.506021}

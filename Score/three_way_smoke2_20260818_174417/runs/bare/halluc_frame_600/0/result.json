@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据中没有“第20秒”的信息——这份数据总共只有0～372帧，约12.4秒。若您指的是第20帧（按30fps算约0.67秒），那么那一刻的攻防形势可以这样判断：\n\n**形势判断：A队掌握球权，正在B队防线右侧区域形成一次有威胁的地面推进；B队处于整体收缩、尚未贴身逼抢的防守状态。**\n\n数据依据：\n\n- 第20帧时，球的位置是 `(1115.1, 688.2, 0.0)`，高度为0，说明是地面球。\n- 同一帧，A队7号正好出现在球的位置，因此可以判断7号正在接球或控球。\n- 更早的第0帧，球在 `(1194.5, 695.5)`，附近是A队6号；到第20帧，球已经转移到A队7号脚下。这更像是一次从右侧角旗区附近发起的短传配合，由A队6号把球交给套边接应的A队7号。\n- 此时B队多数防守球员集中在中路区域，比如第23～26帧时，B队11、12、14、16、17、18号等大多分布在 `x=1100~1170、y=300~410` 之间，离A队7号较远。因此A队7号拿球时没有明显贴身防守。\n- A队其他球员也有接应：A队4号、5号等在中路偏禁区附近活动，A队6号仍在角旗区附近，形成右路持球、中路包抄的进攻层次。\n\n所以，若问的是第20帧，那一瞬间是A队在一次右路地面配合后，由7号在B队防线外侧拿球；B队虽然中路人员密集，但球侧防守并未及时压上，A队有继续传中或回做的空间。",
+  "latency_ms": 68516.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 7538,
+    "total_tokens": 13631
+  },
+  "error": null,
+  "trace_file": "trace_20260818_174640_e0c1cc43f8c7.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke2_20260818_174417\\runs\\bare\\halluc_frame_600\\0",
+  "ts": "2026-08-18 17:46:40",
+  "context_chars": 8771,
+  "repeat": 0
+}

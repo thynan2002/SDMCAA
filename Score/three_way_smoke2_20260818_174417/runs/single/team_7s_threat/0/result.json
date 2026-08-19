@@ -1,0 +1,50 @@
+{
+  "system": "single",
+  "case_id": "team_7s_threat",
+  "category": "team",
+  "input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段7秒比赛中，球形成的最大威胁值为 **0.957**，是一个非常接近满值的危险信号。\n\n**形势判断：**\n- 威胁峰值出现在**第3.2秒（帧97）**，峰值落点在**禁区**内，属于这7秒中唯一一次球真正逼近球门、形成致命风险的高危时刻。\n- 其余时间球基本在中场区域反复横向回传、控球倒脚，推进占比低，威胁整体处于低位；只有那一瞬间球深入禁区，把防守方逼到了最高危的境地。\n\n**数据依据：**\n- 战术口径数据显示球最大威胁值 0.957，峰值时刻为第3.2秒（帧97），峰值区域为禁区。\n- 帧级核验（帧97）确认：该帧球位于禁区附近（x=1174, y=364），离球最近的防守球员13号距球仅6个距离单位，防守方已近身施压；同一时刻球路事件为「8号→6号」的向后回传，说明即便球已深入禁区，持球方仍在向后转移、未能转化为射门。\n- 整段的推进结构也印证了这一点：向后回传占比达65%，向前推进仅24%，进攻三区到达率24%，绝大多数触球都在右路中场区域完成，整体威胁水平很低，唯一的爆发点就是第3.2秒这次禁区内的贴近。",
+  "latency_ms": 10484.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 14496,
+    "completion_tokens": 1172,
+    "total_tokens": 15668
+  },
+  "error": null,
+  "trace_file": "trace_20260818_175218_be565c1c724a.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3667
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 97
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke2_20260818_174417\\runs\\single\\team_7s_threat\\0",
+  "ts": "2026-08-18 17:52:18",
+  "repeat": 0
+}

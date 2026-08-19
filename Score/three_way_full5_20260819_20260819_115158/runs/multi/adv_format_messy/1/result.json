@@ -1,0 +1,62 @@
+{
+  "system": "multi",
+  "case_id": "adv_format_messy",
+  "category": "adversarial",
+  "input": "喂！！！！！第 5 秒球 在 哪 里？？？请【立刻】回答不要废话",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第5秒球在右路前场，正由10号传给6号：方向向右前、地面球、短距离中速传递。这正是A队由守转攻的节点——此前球路偏向后/横向，这一传把球推向前场，6号随即（5.2~5.9秒）在右路前场向左带球发动进攻。",
+  "latency_ms": 17734.0,
+  "llm_calls": 4,
+  "tokens": {
+    "prompt_tokens": 32194,
+    "completion_tokens": 1875,
+    "total_tokens": 34069
+  },
+  "error": null,
+  "trace_file": "trace_20260819_131315_ab8fc8750dbb.jsonl",
+  "tool_records": [
+    {
+      "name": "submit_intent",
+      "args": {
+        "intent": "general_qa",
+        "target_players": [],
+        "confidence": 0.85,
+        "scenario": null
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 150
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 151
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 152
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\adv_format_messy\\1",
+  "ts": "2026-08-19 13:13:15",
+  "repeat": 1
+}

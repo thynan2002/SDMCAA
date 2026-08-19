@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "verify_7s_pos",
+  "category": "verify",
+  "input": "不对吧，7号第3秒的时候明明在中场附近，你确定吗？请核验数据。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "核验结果：数据不支持“7号第3秒在中场附近”的说法。\n\n第3秒按30fps换算约是第90帧。原始数据中没有第90帧的7号直接记录，但前后最近的两帧是：\n\n- 第71帧（约2.37秒）：7号在 (1072.1, 657.8)\n- 第97帧（约3.23秒）：7号在 (1068.9, 600.1)\n\n按线性插值，第90帧的7号大约在 **(1069.8, 615.6)**。换算到场地坐标，约在 **x≈93.6米、y≈59.8米** 的位置。\n\n这个位置更接近右侧底线和右边线，属于右侧禁区角外侧、靠近边线的区域，距离中圈很远——中圈中心大约在 x=52.5米。所以7号第3秒并不在中场附近，而是在右侧靠边线、离底线不远的区域。您可能记错了球衣号或时间点。",
+  "latency_ms": 34625.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6102,
+    "completion_tokens": 3754,
+    "total_tokens": 9856
+  },
+  "error": null,
+  "trace_file": "trace_20260818_162254_d60da7c81ee0.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke_20260818_161234\\runs\\bare\\verify_7s_pos\\0",
+  "ts": "2026-08-18 16:22:54",
+  "context_chars": 8778,
+  "repeat": 0
+}

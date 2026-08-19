@@ -1,0 +1,11 @@
+{"type": "run_start", "run_id": "e928254d11fe", "ts": 1787117753.3513489}
+{"type": "span_start", "run_id": "e928254d11fe", "span_id": "e928254d11fe-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117753.3558593, "attrs": {"input": "如果7号在第3秒改为直接射门会怎样？", "system": "single"}}
+{"type": "span_start", "run_id": "e928254d11fe", "span_id": "e928254d11fe-00002", "parent_id": "e928254d11fe-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117753.3558593, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 0}}
+{"type": "span_end", "run_id": "e928254d11fe", "span_id": "e928254d11fe-00002", "parent_id": "e928254d11fe-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117756.08911, "dur_ms": 2733.25, "status": "ok"}
+{"type": "event", "run_id": "e928254d11fe", "span_id": "e928254d11fe-00001", "kind": "tool", "name": "tool[0]", "ts": 1787117756.0956202, "attrs": {"tool": "run_counterfactual_simulation", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "e928254d11fe", "span_id": "e928254d11fe-00001", "kind": "tool", "name": "tool[1]", "ts": 1787117756.0956202, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "e928254d11fe", "span_id": "e928254d11fe-00001", "kind": "tool", "name": "tool[2]", "ts": 1787117756.0956202, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "e928254d11fe", "span_id": "e928254d11fe-00003", "parent_id": "e928254d11fe-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117756.0956202, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 1}}
+{"type": "span_end", "run_id": "e928254d11fe", "span_id": "e928254d11fe-00003", "parent_id": "e928254d11fe-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117763.0552623, "dur_ms": 6959.64, "status": "ok"}
+{"type": "span_end", "run_id": "e928254d11fe", "span_id": "e928254d11fe-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117763.0552623, "dur_ms": 9699.4, "status": "ok"}
+{"type": "run_end", "run_id": "e928254d11fe", "ts": 1787117763.0552623}

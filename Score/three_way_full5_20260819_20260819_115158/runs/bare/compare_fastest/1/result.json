@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "compare_fastest",
+  "category": "comparison",
+  "input": "所有球员里谁的速度最快？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "8号球员速度最快。从峰值速度来看，8号明显高于其他所有球员，是全场冲刺能力最突出的一个。数据依据：球员统计表中8号的峰值速度为7.7米/秒，为全场最高。",
+  "latency_ms": 4015.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 334,
+    "total_tokens": 6420
+  },
+  "error": null,
+  "trace_file": "trace_20260819_125926_6e4b8cb586fd.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\compare_fastest\\1",
+  "ts": "2026-08-19 12:59:26",
+  "context_chars": 8759,
+  "repeat": 1
+}

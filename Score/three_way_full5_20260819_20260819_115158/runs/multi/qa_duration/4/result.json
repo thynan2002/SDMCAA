@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_duration",
+  "category": "general_qa",
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这份数据只覆盖了约12.4秒的比赛片段，对应372帧（按30帧/秒的帧率折算，帧号约等于秒数乘以30）。需要说明的是，这并非整场比赛数据，而是一段特定的短时片段——球路事件从第0.7秒（6号传给7号）一直延续到第11.6秒（8号控球移动结束），整段期间双方阵型保持紧凑、整体压向右侧区域。数据来源为比赛信息字段中的\"总帧数：372\"与\"总时长：12.4秒\"。",
+  "latency_ms": 3766.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9436,
+    "completion_tokens": 346,
+    "total_tokens": 9782
+  },
+  "error": null,
+  "trace_file": "trace_20260819_154206_83363a418f7e.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_duration\\4",
+  "ts": "2026-08-19 15:42:06",
+  "repeat": 4
+}

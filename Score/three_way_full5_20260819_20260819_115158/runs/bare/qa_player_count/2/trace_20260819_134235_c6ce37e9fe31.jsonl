@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "c6ce37e9fe31", "ts": 1787118155.9198337}
+{"type": "span_start", "run_id": "c6ce37e9fe31", "span_id": "c6ce37e9fe31-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118155.920332, "attrs": {"input": "这份数据里一共追踪了多少名球员？", "system": "bare"}}
+{"type": "span_start", "run_id": "c6ce37e9fe31", "span_id": "c6ce37e9fe31-00002", "parent_id": "c6ce37e9fe31-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118155.920332, "attrs": {"system_len": 293, "user_len": 8763}}
+{"type": "span_end", "run_id": "c6ce37e9fe31", "span_id": "c6ce37e9fe31-00002", "parent_id": "c6ce37e9fe31-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118157.5081542, "dur_ms": 1587.82, "status": "ok"}
+{"type": "span_end", "run_id": "c6ce37e9fe31", "span_id": "c6ce37e9fe31-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118157.5086586, "dur_ms": 1588.33, "status": "ok"}
+{"type": "run_end", "run_id": "c6ce37e9fe31", "ts": 1787118157.5086586}

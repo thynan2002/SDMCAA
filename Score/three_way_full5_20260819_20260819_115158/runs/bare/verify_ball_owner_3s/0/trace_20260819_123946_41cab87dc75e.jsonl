@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "41cab87dc75e", "ts": 1787114386.9612749}
+{"type": "span_start", "run_id": "41cab87dc75e", "span_id": "41cab87dc75e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114386.9612749, "attrs": {"input": "再确认一下，第3秒的时候球离7号有多远？", "system": "bare"}}
+{"type": "span_start", "run_id": "41cab87dc75e", "span_id": "41cab87dc75e-00002", "parent_id": "41cab87dc75e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114386.9612749, "attrs": {"system_len": 293, "user_len": 8767}}
+{"type": "span_end", "run_id": "41cab87dc75e", "span_id": "41cab87dc75e-00002", "parent_id": "41cab87dc75e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114444.626314, "dur_ms": 57665.04, "status": "ok"}
+{"type": "span_end", "run_id": "41cab87dc75e", "span_id": "41cab87dc75e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114444.6268146, "dur_ms": 57665.54, "status": "ok"}
+{"type": "run_end", "run_id": "41cab87dc75e", "ts": 1787114444.6268146}

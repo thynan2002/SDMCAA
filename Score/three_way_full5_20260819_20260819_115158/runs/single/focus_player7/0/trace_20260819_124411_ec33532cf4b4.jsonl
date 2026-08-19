@@ -1,0 +1,12 @@
+{"type": "run_start", "run_id": "ec33532cf4b4", "ts": 1787114651.4839213}
+{"type": "span_start", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114651.488423, "attrs": {"input": "聚焦7号", "system": "single"}}
+{"type": "span_start", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00002", "parent_id": "ec33532cf4b4-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114651.488423, "attrs": {"system_len": 311, "user_len": 4, "tool_round": 0}}
+{"type": "span_end", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00002", "parent_id": "ec33532cf4b4-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114653.38563, "dur_ms": 1897.21, "status": "ok"}
+{"type": "event", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00001", "kind": "tool", "name": "tool[0]", "ts": 1787114653.3861325, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00001", "kind": "tool", "name": "tool[1]", "ts": 1787114653.3861325, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00001", "kind": "tool", "name": "tool[2]", "ts": 1787114653.388131, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00001", "kind": "tool", "name": "tool[3]", "ts": 1787114653.388632, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00003", "parent_id": "ec33532cf4b4-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787114653.388632, "attrs": {"system_len": 311, "user_len": 4, "tool_round": 1}}
+{"type": "span_end", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00003", "parent_id": "ec33532cf4b4-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787114678.2863572, "dur_ms": 24897.73, "status": "ok"}
+{"type": "span_end", "run_id": "ec33532cf4b4", "span_id": "ec33532cf4b4-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114678.2863572, "dur_ms": 26797.93, "status": "ok"}
+{"type": "run_end", "run_id": "ec33532cf4b4", "ts": 1787114678.2863572}

@@ -1,0 +1,43 @@
+{
+  "system": "single",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "## 开球瞬间（第0帧）形势判断\n\n**开球由 A 队 6 号完成**——球就停在他脚下，他本人与球的距离为 0，是标准的开球执行者。开球点位于球场右半侧（x=1194），球落地高度为 0，处于静止待发状态。\n\n**周边站位呈扇形收拢**：离球最近的一圈球员全部聚集在球附近约 330 距离单位以内。除 6 号外，最近的是 A 队 7 号（约94）、B 队 19 号（约147），随后是 B 队的 15、18、14、16 号（约290–330），以及 A 队 4 号（约327）。从球衣分布看，双方球员在这一刻已压缩在开球点周围，B 队有多达 4 名球员（15/18/14/16号）贴近球点，说明 B 队在开球瞬间就把防线前压、就近布防，而不是退守本方半场。\n\n**结合球队整体站位**：A 队开球前整体压在前场、阵型紧凑、站位偏右路，B 队则主要在中场区域活动——这与开球点偏右、6/7号等右路攻击手就近接应的画面一致。\n\n**数据依据**：帧0快照显示球位置（x=1194, y=696），离球最近球员为6号（距球0.0），附近依次为7号（94）、19号（147）、15号（293）、18号（300）、14号（314）、16号（325）、4号（327）；该帧尚无球路事件记录，属于开球待发状态。",
+  "latency_ms": 8500.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 5249,
+    "completion_tokens": 882,
+    "total_tokens": 6131
+  },
+  "error": null,
+  "trace_file": "trace_20260819_152850_d3af87de85c6.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 0
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 322
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\frame_ball_first\\4",
+  "ts": "2026-08-19 15:28:50",
+  "repeat": 4
+}

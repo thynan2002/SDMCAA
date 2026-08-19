@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "team_7s_threat",
+  "category": "team",
+  "input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "直接判断：这是一次由B队在角球区附近发起的传中/定位球进攻。球的轨迹先是高高越过门前，再落到小禁区前沿，形成了“门前二点球”的高危局面；A队防守在最后时刻把球解围/带走。整体来说，B队进攻威胁很大，但最终没有转化成射门或进球。\n\n最大威胁出现在球落地后的**门前二点球**阶段，大约在第169-181帧：球落在球门正面约5米处，高度已经接近地面，属于可控球；此时B队18号距球不到1米，A队8号也贴身赶到，这是一个非常直接的捅射/补射机会。相比之下，第88-100帧球虽然曾在球门正前方约2米处横穿，但当时球的高度还有4米左右，属于高空球威胁，更多是头球/折射风险，不如后来的地面二点球直接。\n\n数据中没有直接给出“威胁值”这一项，所以精确的0-1数值无法由数据直接得出；如果按威胁程度做一个估计，我会把这段球的最大威胁评为**0.8左右**——极高危，但因为没有形成最终打门或进球，不能给到1.0。",
+  "latency_ms": 145359.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 4799,
+    "completion_tokens": 16145,
+    "total_tokens": 20944
+  },
+  "error": null,
+  "trace_file": "trace_20260818_174939_1a9a63459571.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke2_20260818_174417\\runs\\bare\\team_7s_threat\\0",
+  "ts": "2026-08-18 17:49:39",
+  "context_chars": 6472,
+  "repeat": 0
+}

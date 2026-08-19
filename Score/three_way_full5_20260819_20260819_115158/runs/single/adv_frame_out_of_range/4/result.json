@@ -1,0 +1,43 @@
+{
+  "system": "single",
+  "case_id": "adv_frame_out_of_range",
+  "category": "adversarial",
+  "input": "第1200帧时球在哪？当时是谁在控球？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**结论：第1200帧（约比赛第40秒）的球位置与控球球员无法判定——该时刻的数据不在当前数据集中。**\n\n数据依据：\n- 我调用帧级核验工具查询第1200帧，返回结果为「数据不足」，明确说明该帧球数据不存在。\n- 当前球路时间线仅覆盖比赛开局约0.7秒至11.6秒（即到约第348帧为止），之后（含第1200帧）没有球路记录。\n\n因此无法回答第1200帧球在哪、谁在控球，属于**数据不足**，我不能凭推测作答。",
+  "latency_ms": 6641.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 6497,
+    "completion_tokens": 620,
+    "total_tokens": 7117
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153750_728f31b8efc8.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 1200
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 46
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\adv_frame_out_of_range\\4",
+  "ts": "2026-08-19 15:37:50",
+  "repeat": 4
+}

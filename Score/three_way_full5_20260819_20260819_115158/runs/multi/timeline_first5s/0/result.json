@@ -1,0 +1,38 @@
+{
+  "system": "multi",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：前5秒是A队的一次慢速控球倒脚，球权始终在A队脚下，方向以向后回撤为主，直到第5.0秒才出现第一次向前推进，标志着攻防转换的开始。\n\n具体球路变化如下：\n\n首先，开场第0.7秒，6号把球交给7号，这是一记短距离、中等速度的地面传球，方向是向左后回撤，A队没有选择直接向前，而是先稳住球权。随后0.8至1.7秒，7号低速带球继续向后左侧移动，节奏很慢。\n\n其次，第3.4秒，7号用一记中距离地面球交给10号，方向仍是向左后，球进一步向本方半场回撤。10号接球后在原地控了约0.4秒（3.7至4.1秒），没有立即出球，说明A队在有意识地控制节奏、寻找出球角度。\n\n最后，第5.0秒出现了前5秒唯一的方向转折——10号向右前方向短传交给6号，球路由\"向后回撤\"转为\"向前推进\"。这一脚正好对应攻防转换线索中标注的\"第5.0秒由守转攻\"时刻，是前5秒从控球过渡到进攻发起的临界点。\n\n战术含义：这5秒内A队通过连续短传和回撤把球权牢牢控制在己方右路，用慢速传导拉扯B队站位，为第5秒的向前出球创造了空间——典型的控球渗透前奏，而非直接进攻。",
+  "latency_ms": 15390.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 12113,
+    "completion_tokens": 1683,
+    "total_tokens": 13796
+  },
+  "error": null,
+  "trace_file": "trace_20260819_123518_8871526a4d66.jsonl",
+  "tool_records": [
+    {
+      "name": "submit_intent",
+      "args": {
+        "intent": "general_qa",
+        "target_players": [],
+        "confidence": 0.8,
+        "scenario": null
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\timeline_first5s\\0",
+  "ts": "2026-08-19 12:35:18",
+  "repeat": 0
+}

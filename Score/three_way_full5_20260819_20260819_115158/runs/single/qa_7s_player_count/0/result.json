@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "qa_7s_player_count",
+  "category": "general_qa",
+  "input": "这段7秒的数据一共跟踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段7秒的数据一共跟踪了 **19名球员**。\n\n数据依据如下：\n- **A队 10人**：1号至10号（阵型按平均站位推断为0-7-3，即7名中场、3名前锋）；\n- **B队 8人**：11号至18号（阵型推断为0-5-2，即5名中场、2名前锋，另含16号也有轨迹记录）；\n- **门将 1人**：21号。\n\n这19名球员都有轨迹记录，其中绝大多数时间内都处于右路中场区域，整体阵型相当紧凑；真正接触到球路的只有其中一部分（以7号、1号、17号参与度最高），其余球员主要以无球跑动和站位覆盖为主。",
+  "latency_ms": 10031.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7497,
+    "completion_tokens": 1149,
+    "total_tokens": 8646
+  },
+  "error": null,
+  "trace_file": "trace_20260819_122608_ed99651f24c9.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3667
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_7s_player_count\\0",
+  "ts": "2026-08-19 12:26:08",
+  "repeat": 0
+}

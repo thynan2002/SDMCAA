@@ -1,0 +1,9 @@
+{"type": "run_start", "run_id": "f223b4e27596", "ts": 1787112093.2461174}
+{"type": "span_start", "run_id": "f223b4e27596", "span_id": "f223b4e27596-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787112093.2506242, "attrs": {"input": "如果7号在第3秒改为传球给10号会怎样？", "system": "single"}}
+{"type": "span_start", "run_id": "f223b4e27596", "span_id": "f223b4e27596-00002", "parent_id": "f223b4e27596-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787112093.2506242, "attrs": {"system_len": 311, "user_len": 20, "tool_round": 0}}
+{"type": "span_end", "run_id": "f223b4e27596", "span_id": "f223b4e27596-00002", "parent_id": "f223b4e27596-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787112095.2258604, "dur_ms": 1975.24, "status": "ok"}
+{"type": "event", "run_id": "f223b4e27596", "span_id": "f223b4e27596-00001", "kind": "tool", "name": "tool[0]", "ts": 1787112095.2373652, "attrs": {"tool": "run_counterfactual_simulation", "ok": true, "dur_ms": 16.0}}
+{"type": "span_start", "run_id": "f223b4e27596", "span_id": "f223b4e27596-00003", "parent_id": "f223b4e27596-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787112095.2373652, "attrs": {"system_len": 311, "user_len": 20, "tool_round": 1}}
+{"type": "span_end", "run_id": "f223b4e27596", "span_id": "f223b4e27596-00003", "parent_id": "f223b4e27596-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787112104.9728043, "dur_ms": 9735.44, "status": "ok"}
+{"type": "span_end", "run_id": "f223b4e27596", "span_id": "f223b4e27596-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787112104.9733043, "dur_ms": 11722.68, "status": "ok"}
+{"type": "run_end", "run_id": "f223b4e27596", "ts": 1787112104.9733043}

@@ -1,0 +1,9 @@
+{"type": "run_start", "run_id": "c4dc2c803df6", "ts": 1787122106.037626}
+{"type": "span_start", "run_id": "c4dc2c803df6", "span_id": "c4dc2c803df6-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787122106.0466237, "attrs": {"input": "第1200帧时球在哪？当时是谁在控球？", "system": "single"}}
+{"type": "span_start", "run_id": "c4dc2c803df6", "span_id": "c4dc2c803df6-00002", "parent_id": "c4dc2c803df6-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787122106.0466237, "attrs": {"system_len": 311, "user_len": 19, "tool_round": 0}}
+{"type": "span_end", "run_id": "c4dc2c803df6", "span_id": "c4dc2c803df6-00002", "parent_id": "c4dc2c803df6-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787122107.3536623, "dur_ms": 1307.04, "status": "ok"}
+{"type": "event", "run_id": "c4dc2c803df6", "span_id": "c4dc2c803df6-00001", "kind": "tool", "name": "tool[0]", "ts": 1787122107.3541615, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "c4dc2c803df6", "span_id": "c4dc2c803df6-00003", "parent_id": "c4dc2c803df6-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787122107.3541615, "attrs": {"system_len": 311, "user_len": 19, "tool_round": 1}}
+{"type": "span_end", "run_id": "c4dc2c803df6", "span_id": "c4dc2c803df6-00003", "parent_id": "c4dc2c803df6-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787122109.146559, "dur_ms": 1792.4, "status": "ok"}
+{"type": "span_end", "run_id": "c4dc2c803df6", "span_id": "c4dc2c803df6-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787122109.146559, "dur_ms": 3099.94, "status": "ok"}
+{"type": "run_end", "run_id": "c4dc2c803df6", "ts": 1787122109.146559}

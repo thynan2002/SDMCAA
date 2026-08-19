@@ -1,0 +1,12 @@
+{"type": "run_start", "run_id": "487e520443d7", "ts": 1787124303.8380167}
+{"type": "span_start", "run_id": "487e520443d7", "span_id": "487e520443d7-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124303.8425298, "attrs": {"input": "如果7号在第3秒改为传球给10号会怎样？", "system": "single"}}
+{"type": "span_start", "run_id": "487e520443d7", "span_id": "487e520443d7-00002", "parent_id": "487e520443d7-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124303.8425298, "attrs": {"system_len": 311, "user_len": 20, "tool_round": 0}}
+{"type": "span_end", "run_id": "487e520443d7", "span_id": "487e520443d7-00002", "parent_id": "487e520443d7-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124306.7974625, "dur_ms": 2954.93, "status": "ok"}
+{"type": "event", "run_id": "487e520443d7", "span_id": "487e520443d7-00001", "kind": "tool", "name": "tool[0]", "ts": 1787124306.809987, "attrs": {"tool": "run_counterfactual_simulation", "ok": true, "dur_ms": 16.0}}
+{"type": "event", "run_id": "487e520443d7", "span_id": "487e520443d7-00001", "kind": "tool", "name": "tool[1]", "ts": 1787124306.809987, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "487e520443d7", "span_id": "487e520443d7-00001", "kind": "tool", "name": "tool[2]", "ts": 1787124306.809987, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "487e520443d7", "span_id": "487e520443d7-00001", "kind": "tool", "name": "tool[3]", "ts": 1787124306.8129866, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "487e520443d7", "span_id": "487e520443d7-00003", "parent_id": "487e520443d7-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787124306.8129866, "attrs": {"system_len": 311, "user_len": 20, "tool_round": 1}}
+{"type": "span_end", "run_id": "487e520443d7", "span_id": "487e520443d7-00003", "parent_id": "487e520443d7-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787124321.2230382, "dur_ms": 14410.05, "status": "ok"}
+{"type": "span_end", "run_id": "487e520443d7", "span_id": "487e520443d7-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124321.2230382, "dur_ms": 17380.51, "status": "ok"}
+{"type": "run_end", "run_id": "487e520443d7", "ts": 1787124321.2230382}

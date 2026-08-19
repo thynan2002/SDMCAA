@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "deb4df51b736", "ts": 1787114707.3937583}
+{"type": "span_start", "run_id": "deb4df51b736", "span_id": "deb4df51b736-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114707.3937583, "attrs": {"input": "喂！！！！！第 5 秒球 在 哪 里？？？请【立刻】回答不要废话", "system": "bare"}}
+{"type": "span_start", "run_id": "deb4df51b736", "span_id": "deb4df51b736-00002", "parent_id": "deb4df51b736-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114707.3937583, "attrs": {"system_len": 293, "user_len": 8779}}
+{"type": "span_end", "run_id": "deb4df51b736", "span_id": "deb4df51b736-00002", "parent_id": "deb4df51b736-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114711.282117, "dur_ms": 3888.36, "status": "ok"}
+{"type": "span_end", "run_id": "deb4df51b736", "span_id": "deb4df51b736-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114711.282621, "dur_ms": 3888.86, "status": "ok"}
+{"type": "run_end", "run_id": "deb4df51b736", "ts": 1787114711.282621}

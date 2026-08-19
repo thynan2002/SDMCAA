@@ -1,0 +1,230 @@
+{
+  "system": "single",
+  "case_id": "compare_fastest",
+  "category": "comparison",
+  "input": "所有球员里谁的速度最快？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**结论：全场速度最快的球员是 B 队的 14 号**，其峰值速度明显高出其他球员一档。\n\n**数据依据：**\n- 14号（B队，右路中场/前锋）最大速度 96.1 px/s，为全场唯一逼近百位数的球员；\n- 紧随其后的是 A 队 8 号（92.3 px/s）和 B 队 18 号（77.8 px/s）；\n- 其余球员峰值速度基本集中在 20～65 px/s 区间，与 14 号差距明显。\n\n需要说明的是，虽然 14 号拥有全场最快的瞬时速度，但它的参与球路次数不多（4次），属于\"关键时刻加速\"型的球员；而 A 队 8 号虽然峰值略低，却是全场触球参与度最高（23次球路、跑动量\"大\"）的核心持球者。两人分别代表了\"爆发冲刺型\"与\"持续高参与型\"两种不同特点。\n\n另外补充一句：所有球员的冲刺次数统计均为 0，即数据中无人达到\"冲刺\"档位判定标准，14 号的峰值速度是在快速跑动中达到的，并非冲刺档。",
+  "latency_ms": 14875.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 17345,
+    "completion_tokens": 1805,
+    "total_tokens": 19150
+  },
+  "error": null,
+  "trace_file": "trace_20260819_134646_e4d2b5e4bb1f.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 16.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "1号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "2号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "3号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "4号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "5号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "8号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 220
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "9号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 220
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "10号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 220
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "11号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "12号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 224
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "13号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 224
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "14号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "15号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "16号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 224
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "17号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "18号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "19号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "20号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "21号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 221
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\compare_fastest\\2",
+  "ts": "2026-08-19 13:46:46",
+  "repeat": 2
+}

@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_7s_ball_hmax",
+  "category": "general_qa",
+  "input": "这段7秒片段中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段7秒片段中，球到达的最高高度为5.1米，出现在约第2.5秒（对应第75帧，按30fps帧率推算），数据来自比赛事实中的「球峰值高度(米)」字段。\n\n这个峰值出现在球路的爬升阶段——结合球路线索，第1.6至2.6秒期间球先后经17号传出并由未知球员承接，球高度均标记为\"高空\"，峰值正好落在这段高空球的飞行弧顶，随后球路开始转向、高度回落。需要说明的是，虽然片段整体以短传为主，但这段开场处理采用了挑高球的方式，形成了全片唯一的高弧线顶点。",
+  "latency_ms": 5265.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9277,
+    "completion_tokens": 541,
+    "total_tokens": 9818
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150931_cc023562e8f7.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_7s_ball_hmax\\3",
+  "ts": "2026-08-19 15:09:31",
+  "repeat": 3
+}

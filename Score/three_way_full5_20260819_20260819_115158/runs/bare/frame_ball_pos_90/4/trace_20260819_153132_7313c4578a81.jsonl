@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "7313c4578a81", "ts": 1787124692.5383878}
+{"type": "span_start", "run_id": "7313c4578a81", "span_id": "7313c4578a81-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124692.5383878, "attrs": {"input": "第90帧球在什么位置？", "system": "bare"}}
+{"type": "span_start", "run_id": "7313c4578a81", "span_id": "7313c4578a81-00002", "parent_id": "7313c4578a81-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124692.5383878, "attrs": {"system_len": 293, "user_len": 8758}}
+{"type": "span_end", "run_id": "7313c4578a81", "span_id": "7313c4578a81-00002", "parent_id": "7313c4578a81-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124697.802173, "dur_ms": 5263.79, "status": "ok"}
+{"type": "span_end", "run_id": "7313c4578a81", "span_id": "7313c4578a81-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124697.8026762, "dur_ms": 5264.29, "status": "ok"}
+{"type": "run_end", "run_id": "7313c4578a81", "ts": 1787124697.803176}

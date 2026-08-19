@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "verify_7s_pos",
+  "category": "verify",
+  "input": "不对吧，7号第3秒的时候明明在中场附近，你确定吗？请核验数据。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "核验后：**7号在第3秒并不在中场附近，而是在右边路、靠近端线一侧的区域**。你如果说“他在中场附近”，这个判断与数据不符。\n\n按 30fps 计算，第3秒对应约第90帧。数据里没有第90帧的7号直接采样，取前后最近两帧做线性插值：\n\n- 第71帧：7号位置 (1072.1, 657.8)\n- 第97帧：7号位置 (1068.9, 600.1)\n- 插值到第90帧约为：(1069.8, 615.6)\n\n如果按105m×68m场地标定折算，这个位置大约在 **(93.6, 59.8) 米**。也就是说：\n\n- 距离右侧端线约 **11米**；\n- 距离中线约 **41米**；\n- 同时靠近边线，并不在中路。\n\n所以，7号当时是在**右路接近禁区边角/肋部的位置**，而不是中场。整体来看，他开局阶段是从靠近角旗区的位置向场内移动，但第3秒时还没走到中场区域。",
+  "latency_ms": 47531.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6102,
+    "completion_tokens": 4758,
+    "total_tokens": 10860
+  },
+  "error": null,
+  "trace_file": "trace_20260819_124528_ecdb757cea7a.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\verify_7s_pos\\1",
+  "ts": "2026-08-19 12:45:28",
+  "context_chars": 8778,
+  "repeat": 1
+}

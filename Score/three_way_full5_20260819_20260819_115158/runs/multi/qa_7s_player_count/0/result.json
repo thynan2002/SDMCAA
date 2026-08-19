@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_7s_player_count",
+  "category": "general_qa",
+  "input": "这段7秒的数据一共跟踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段数据一共跟踪了19名球员。依据是比赛信息中的球员总数字段，其中场上球员17名、门将2名（A队10人、B队8人，另有1名门将）。这19名球员在7.2秒（217帧）的片段里均有位置轨迹记录，不过从参与度看，真正触球或接近球的只有少数人，绝大多数球员在本片段中是站位型角色，未直接参与球路。",
+  "latency_ms": 2547.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9275,
+    "completion_tokens": 230,
+    "total_tokens": 9505
+  },
+  "error": null,
+  "trace_file": "trace_20260819_121239_30896d8484d0.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_7s_player_count\\0",
+  "ts": "2026-08-19 12:12:39",
+  "repeat": 0
+}

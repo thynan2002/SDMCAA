@@ -1,0 +1,34 @@
+{
+  "system": "single",
+  "case_id": "qa_ball_speed_max",
+  "category": "general_qa",
+  "input": "这段比赛中足球移动的最快速度大约是多少？（米/秒）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "我先核对了球路时间线数据。需要如实说明：**这套数据中球的移动速度只记录为定性档位（「低」「中」），并没有给出米/秒的精确数值，因此无法据此得出\"最快速度大约多少米/秒\"的具体数字——这一点数据不足。**\n\n数据依据：\n- 整段球路时间线里，所有球的移动都被标记为「低」或「中」两个速度档位，其中最快的一档是**「中速」**，共出现于十余次球路事件（如 6号→18号、18号→19号、15号→16号、16号→14号、3号→8号等传球，以及若干次控球移动）；\n- 该档位覆盖的是短距离地面球/低平球和短距离高空球，方向以向右后（回传）为主；\n- 全段没有出现「高」速度档位的球路，也就是说这段比赛里**没有长传、直塞或大力抽射这类高速球的记录**。\n\n所以：就现有数据看，这段比赛球的整体移动节奏偏慢，绝大多数是短传和带球，属于**控球传导型、低风险回传居多**的节奏；但具体峰值是多少米/秒，**数据中没有记录，无法给出精确数值**。如果你能提供包含逐帧球坐标或米/秒速度字段的数据源，我可以再帮你计算。",
+  "latency_ms": 7812.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 4850,
+    "completion_tokens": 710,
+    "total_tokens": 5560
+  },
+  "error": null,
+  "trace_file": "trace_20260819_121156_f7477d007a16.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_ball_speed_max\\0",
+  "ts": "2026-08-19 12:11:56",
+  "repeat": 0
+}

@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_ball_speed_max",
+  "category": "general_qa",
+  "input": "这段比赛中足球移动的最快速度大约是多少？（米/秒）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段比赛里足球移动的最快速度约为 22.02 米/秒。\n\n对应时刻：该峰值出现在球路中段的高空球连续传递阶段，与球峰值高度（4.2米）出现的约第6.7秒（第201帧，30fps）同期——从球路线索看，第6.2秒起18号→19号、19号→7号、7号→15号这一串高空球快速流转，正是全场球速最快、球运行最剧烈的区间，峰值应落在这一出球瞬间附近，随后随控球节奏放缓而回落。\n\n数据来源：该数值直接取自「比赛事实」中球特征的\"球峰值速度(米/秒)\"字段；峰值时刻的对应关系依据\"峰值高度出现时刻\"字段及球路线索中高空球序列推断。补充一句，全场主导球速仅为 8.48 米/秒、整体球速偏慢，说明 22.02 米/秒是一个短促的爆发峰值，而非常态速度——这也印证了这段比赛以短传控球为主、偶发高空球提速的节奏特征。",
+  "latency_ms": 12250.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9443,
+    "completion_tokens": 1276,
+    "total_tokens": 10719
+  },
+  "error": null,
+  "trace_file": "trace_20260819_120331_a48cb2972fc6.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_ball_speed_max\\0",
+  "ts": "2026-08-19 12:03:31",
+  "repeat": 0
+}

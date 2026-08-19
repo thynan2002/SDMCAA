@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_player_zone_7",
+  "category": "style",
+  "input": "7号主要活动在球场的哪个区域？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "7号的主要活动区域可以概括为：**本方半场的左路（靠近边线），且活动重心偏后场，从中后场边线附近一直延伸到接近中线一带**。他并未频繁进入中路或前场，整体属于防守侧翼的站位。\n\n数据依据：从7号各帧的位置看，他的横向坐标始终贴近球场的一侧边线区域，纵向位置则从靠近本方底线附近逐步前移，最终稳定在中线附近。整个过程中，他基本没有出现在场地中央或对方半场纵深，也没有明显的大范围横移，因此判断其活动区域集中在**左路边路的中后场区间**。",
+  "latency_ms": 18312.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6089,
+    "completion_tokens": 1807,
+    "total_tokens": 7896
+  },
+  "error": null,
+  "trace_file": "trace_20260818_175641_4745ec79f974.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke2_20260818_174417\\runs\\bare\\qa_player_zone_7\\0",
+  "ts": "2026-08-18 17:56:41",
+  "context_chars": 8762,
+  "repeat": 0
+}

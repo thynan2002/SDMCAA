@@ -1,0 +1,9 @@
+{"type": "run_start", "run_id": "f5fa6fddca86", "ts": 1787124757.1195135}
+{"type": "span_start", "run_id": "f5fa6fddca86", "span_id": "f5fa6fddca86-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124757.1270227, "attrs": {"input": "比赛中球最高到过多少高度？", "system": "single"}}
+{"type": "span_start", "run_id": "f5fa6fddca86", "span_id": "f5fa6fddca86-00002", "parent_id": "f5fa6fddca86-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124757.1270227, "attrs": {"system_len": 311, "user_len": 13, "tool_round": 0}}
+{"type": "span_end", "run_id": "f5fa6fddca86", "span_id": "f5fa6fddca86-00002", "parent_id": "f5fa6fddca86-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124758.3980324, "dur_ms": 1271.01, "status": "ok"}
+{"type": "event", "run_id": "f5fa6fddca86", "span_id": "f5fa6fddca86-00001", "kind": "tool", "name": "tool[0]", "ts": 1787124758.399036, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "f5fa6fddca86", "span_id": "f5fa6fddca86-00003", "parent_id": "f5fa6fddca86-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787124758.399036, "attrs": {"system_len": 311, "user_len": 13, "tool_round": 1}}
+{"type": "span_end", "run_id": "f5fa6fddca86", "span_id": "f5fa6fddca86-00003", "parent_id": "f5fa6fddca86-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787124763.5562625, "dur_ms": 5157.23, "status": "ok"}
+{"type": "span_end", "run_id": "f5fa6fddca86", "span_id": "f5fa6fddca86-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124763.5567627, "dur_ms": 6429.74, "status": "ok"}
+{"type": "run_end", "run_id": "f5fa6fddca86", "ts": 1787124763.5567627}

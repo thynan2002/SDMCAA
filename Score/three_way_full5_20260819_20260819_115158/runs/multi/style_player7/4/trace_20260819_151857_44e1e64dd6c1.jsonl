@@ -1,0 +1,23 @@
+{"type": "run_start", "run_id": "44e1e64dd6c1", "ts": 1787123937.8240285}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": null, "kind": "session", "name": "session_reset", "ts": 1787123937.834541, "attrs": {}}
+{"type": "span_start", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787123937.834541, "attrs": {"person": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_person2d.csv", "ball": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_soccer3d.csv"}}
+{"type": "span_end", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787123937.8390417, "dur_ms": 4.5, "status": "ok"}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": null, "kind": "load", "name": "corpus_ready", "ts": 1787123937.8395417, "attrs": {"prefix": "12s", "player_count": 21}}
+{"type": "span_start", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123937.8395417, "attrs": {"input": "7号的跑动风格是什么？"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "routing", "ts": 1787123937.8395417, "attrs": {"content": "正在理解问题意图…", "status": "active"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "routing", "ts": 1787123937.8405457, "attrs": {"content": "意图识别完成", "status": "done"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "style", "ts": 1787123937.8405457, "attrs": {"content": "正在分析球员风格…", "status": "active"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "collect_data", "ts": 1787123937.8425517, "attrs": {"content": "正在采集球员数据…", "status": "active"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "collect_data", "ts": 1787123937.843552, "attrs": {"content": "球员数据采集完成", "status": "done"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "model_styles", "ts": 1787123937.8440516, "attrs": {"content": "正在构建球员行为模型…", "status": "active"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "model_styles", "ts": 1787123937.8440516, "attrs": {"content": "行为模型构建完成", "status": "done"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "report", "ts": 1787123937.8440516, "attrs": {"content": "正在生成分析报告…", "status": "active"}}
+{"type": "span_start", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00003", "parent_id": "44e1e64dd6c1-00002", "kind": "llm", "name": "llm_call[0]", "ts": 1787123937.8445513, "attrs": {"seq": 0, "stream": true, "system_sha256": "2fc4e7a2ab931b02b6a4a843626c4001c5b10d1382eab99b1b692f32c5041a2f", "user_sha256": "67682f05175ac7685f7eade4de6ca2f7756b5f45708a6ce235eeca5af81ecb0b", "system_len": 821, "user_len": 1578}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00003", "kind": "llm_result", "name": "llm_result[0]", "ts": 1787123962.2365806, "attrs": {"seq": 0, "ok": true, "tool_calls": false, "response_sha256": "e1699e81f36eb2fdb48c9804646548b6f7cc757bb5dfce23c4dd92201800a336", "response_len": 1099}}
+{"type": "span_end", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00003", "parent_id": "44e1e64dd6c1-00002", "kind": "llm", "name": "llm_call[0]", "ts": 1787123962.2365806, "dur_ms": 24392.03, "status": "ok"}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "report", "ts": 1787123962.2365806, "attrs": {"content": "报告生成完成", "status": "done"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stage", "name": "style", "ts": 1787123962.2370806, "attrs": {"content": "风格分析完成", "status": "done"}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "stream", "name": "stream_summary", "ts": 1787123962.2370806, "attrs": {"chunks": 0, "chars": 0}}
+{"type": "event", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "kind": "output", "name": "output[0]", "ts": 1787123962.2370806, "attrs": {"response_sha256": "e1699e81f36eb2fdb48c9804646548b6f7cc757bb5dfce23c4dd92201800a336", "response_len": 1099, "is_exit_signal": false}}
+{"type": "span_end", "run_id": "44e1e64dd6c1", "span_id": "44e1e64dd6c1-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123962.2370806, "dur_ms": 24397.54, "status": "ok"}
+{"type": "run_end", "run_id": "44e1e64dd6c1", "ts": 1787123962.2370806}

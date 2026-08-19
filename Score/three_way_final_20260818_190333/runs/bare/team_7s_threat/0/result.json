@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "team_7s_threat",
+  "category": "team",
+  "input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "直接判断：  \n这段 7 秒里，球形成的最大威胁大约为 **0.3 / 1**，属于“**有传中威胁，但没有形成真正射门**”的水平。\n\n更具体地说，最大威胁出现在球的飞行中段：右侧角球区附近起球后，球一度飞到门前中路附近，位置很正面，高度也不低，这是整段里离球门最近、角度最正的时刻。但那不是一次射门或攻门，球没有朝门里走，之后也没有形成抢点，威胁随后被化解。\n\n数据依据：  \n- 球一开始从右侧角旗附近离地，高度很快上升到峰值 **5.1 米**，但那个阶段球还偏在右侧，不算最大威胁。  \n- 大约在第 100 帧前后，球来到门将正面中路，高度约 3.6 米，这是整段中最接近球门的时刻。  \n- 但此时没有进攻球员在落点附近完成抢点或射门；之后球被 5 号、6 号球员出现在球的位置并控制住，威胁随即结束。  \n\n所以综合判断：**这段比赛的最大威胁是 0.3/1**，主要是“门前传中”造成的潜在威胁，而不是直接的进球威胁。",
+  "latency_ms": 192593.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 4799,
+    "completion_tokens": 19444,
+    "total_tokens": 24243
+  },
+  "error": null,
+  "trace_file": "trace_20260818_190940_a509b77bf94d.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final_20260818_190333\\runs\\bare\\team_7s_threat\\0",
+  "ts": "2026-08-18 19:09:40",
+  "context_chars": 6472,
+  "repeat": 0
+}

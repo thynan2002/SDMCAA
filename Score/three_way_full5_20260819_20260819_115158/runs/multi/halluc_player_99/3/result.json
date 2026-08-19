@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "halluc_player_99",
+  "category": "hallucination",
+  "input": "99号球员这场比赛的表现怎么样？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据中未找到以下球员：99号。当前数据中的可用球员：1号、2号、3号、4号、5号、6号、7号、8号、9号、10号、11号、12号、13号、14号、15号、16号、17号、18号、19号、20号、21号。请确认球衣号后重试。",
+  "latency_ms": 16.0,
+  "llm_calls": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144651_ad4d8ef23331.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\halluc_player_99\\3",
+  "ts": "2026-08-19 14:46:51",
+  "repeat": 3
+}

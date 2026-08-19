@@ -1,0 +1,59 @@
+{
+  "system": "single",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**结论：第20秒的攻防态势无法描述——该时刻的数据不存在（数据不足）。**\n\n我核查了两个数据源：\n\n- **帧级快照**：第20秒对应第600帧（20秒×30帧），系统返回\"第600帧的球数据不存在\"。\n- **球路时间线**：整场比赛的数据仅覆盖到约第11.6秒（最后一条球路事件记录为\"8号控球移动\"，发生在11.6秒），之后没有任何球路事件记录；连第11.6秒对应的第350帧快照也查询不到。\n\n因此，第20秒发生什么、当时的攻防态势如何，在现有数据中没有任何记录，无法核实，我不能凭空推断。\n\n**作为参考**，现有数据只覆盖了开球后的前约11.6秒，这段有限片段呈现的特征是：A队整体压上至前场、控球权绝大多数时间掌握在A队手中，球主要在右路流转，且以短传和向后回传为主（回传占比明显偏高），比赛节奏偏慢、以匀速推进为主。但这些信息仅代表前11.6秒，不能用来回答第20秒的具体情况。\n\n若你需要，我可以基于已有的前段数据继续分析其他问题。",
+  "latency_ms": 14953.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 11591,
+    "completion_tokens": 1382,
+    "total_tokens": 12973
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135714_8fc73d187dff.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 600
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 350
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\halluc_frame_600\\2",
+  "ts": "2026-08-19 13:57:14",
+  "repeat": 2
+}

@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "ad98a3922750", "ts": 1787120783.6650467}
+{"type": "span_start", "run_id": "ad98a3922750", "span_id": "ad98a3922750-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787120783.6650467, "attrs": {"input": "对比6号和11号谁跑动更积极？", "system": "bare"}}
+{"type": "span_start", "run_id": "ad98a3922750", "span_id": "ad98a3922750-00002", "parent_id": "ad98a3922750-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787120783.6650467, "attrs": {"system_len": 293, "user_len": 6451}}
+{"type": "span_end", "run_id": "ad98a3922750", "span_id": "ad98a3922750-00002", "parent_id": "ad98a3922750-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787120788.273033, "dur_ms": 4607.99, "status": "ok"}
+{"type": "span_end", "run_id": "ad98a3922750", "span_id": "ad98a3922750-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787120788.2735364, "dur_ms": 4608.49, "status": "ok"}
+{"type": "run_end", "run_id": "ad98a3922750", "ts": 1787120788.2735364}

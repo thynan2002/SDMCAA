@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_duration",
+  "category": "general_qa",
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这份数据覆盖的比赛片段时长为12.4秒，共372帧（帧率30fps，帧号≈秒数×30）。数据来源为「比赛信息」字段的\"总时长/总帧数\"。也就是说，我们分析的是约12秒的一个连续攻防片段，而非整场比赛。",
+  "latency_ms": 2344.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9436,
+    "completion_tokens": 174,
+    "total_tokens": 9610
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135114_dd736c50f810.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_duration\\2",
+  "ts": "2026-08-19 13:51:14",
+  "repeat": 2
+}

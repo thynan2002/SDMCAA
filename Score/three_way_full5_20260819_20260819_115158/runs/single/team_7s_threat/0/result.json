@@ -1,0 +1,50 @@
+{
+  "system": "single",
+  "case_id": "team_7s_threat",
+  "category": "team",
+  "input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**直接结论**：这段7秒片段里，球的最大威胁值达到 **0.957**（非常接近1，属极高危险等级）。\n\n**威胁峰值细节**\n- **峰值时刻**：第3.2秒（帧97）\n- **峰值区域**：禁区\n- **当时局面**：球位于禁区内（坐标 x≈1174, y≈364），离球最近的防守方13号仅约6个像素单位，属于贴身短兵相接、随时可能被抢断转化为射门机会的高危瞬间。帧级核验也确认该时刻球路正处于8号→6号的回传过程中——也就是说，威胁峰值并不产生在直接射门动作上，而是产生在**禁区内的贴身缠斗/回传风险区**。\n\n**形势判断**\n- 这7秒整体是**典型的低位控球/回传消耗**：全程短传、几乎没有向前直塞威胁，绝大多数球路方向是向后回传（约三分之二），进入进攻三区的比例不高。\n- 唯一的高危窗口就是第3.2秒附近，球短暂进入禁区且防守贴身，威胁瞬间飙至0.957；其余时段威胁水平明显低得多（大量回传、低平/高空慢速倒脚）。\n- 攻防转换线索显示，第4.3秒才由守转攻出现向前推进，但推进质量不高，未再形成同等级别的威胁。\n\n需要补充的是：威胁值本身并非由工具直接逐帧返回，而是战术事实数据中给出的峰值口径（0.957，第3.2秒，禁区），我已通过帧97快照做了交叉核验，数据一致。",
+  "latency_ms": 11640.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 14401,
+    "completion_tokens": 1147,
+    "total_tokens": 15548
+  },
+  "error": null,
+  "trace_file": "trace_20260819_123632_bf30c31f05ab.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3667
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 97
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\team_7s_threat\\0",
+  "ts": "2026-08-19 12:36:32",
+  "repeat": 0
+}

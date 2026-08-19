@@ -1,0 +1,36 @@
+{
+  "system": "single",
+  "case_id": "adv_frame_out_of_range",
+  "category": "adversarial",
+  "input": "第1200帧时球在哪？当时是谁在控球？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**数据不足，无法作答。**\n\n我尝试查询了第1200帧的快照数据，但系统返回该帧的球数据不存在。因此我无法确认这一帧时球的具体位置和控球球员。\n\n如果你能提供其他帧号（帧率30，帧号≈秒数×30，例如第900帧≈第30秒），我可以重新查询核实。",
+  "latency_ms": 3312.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 2599,
+    "completion_tokens": 176,
+    "total_tokens": 2775
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142006_fb2886241c36.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 1200
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 46
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\adv_frame_out_of_range\\2",
+  "ts": "2026-08-19 14:20:06",
+  "repeat": 2
+}

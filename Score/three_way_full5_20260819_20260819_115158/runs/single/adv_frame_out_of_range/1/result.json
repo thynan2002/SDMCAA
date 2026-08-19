@@ -1,0 +1,43 @@
+{
+  "system": "single",
+  "case_id": "adv_frame_out_of_range",
+  "category": "adversarial",
+  "input": "第1200帧时球在哪？当时是谁在控球？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "关于第1200帧的查询，我必须如实说明：\n\n**数据不足**——无法回答第1200帧时球的位置和控球球员。\n\n具体依据如下：\n- 我调用了第1200帧的帧级快照核验，系统返回「该帧球数据不存在」。\n- 交叉核对了球路时间线，可用的球路数据仅覆盖到约第11.6秒（帧号约348帧），而第1200帧对应的时间点约为第40秒，已超出数据覆盖范围。\n- 在现有数据范围内，球的流转只记录到11号前的中前场短传与控球移动序列，无法推知第40秒时的任何场上状态。\n\n因此，第1200帧的球位置与控球者无法基于现有数据给出，我也不会做任何推测。如需核实其他在数据覆盖范围内的时间点（例如前12秒内的具体帧），可以告诉我具体时刻，我来进一步核验。",
+  "latency_ms": 7172.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 6520,
+    "completion_tokens": 727,
+    "total_tokens": 7247
+  },
+  "error": null,
+  "trace_file": "trace_20260819_125619_1b5317e56299.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 1200
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 46
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\adv_frame_out_of_range\\1",
+  "ts": "2026-08-19 12:56:19",
+  "repeat": 1
+}

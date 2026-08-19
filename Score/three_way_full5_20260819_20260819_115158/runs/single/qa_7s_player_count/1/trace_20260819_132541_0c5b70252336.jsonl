@@ -1,0 +1,10 @@
+{"type": "run_start", "run_id": "0c5b70252336", "ts": 1787117141.2221055}
+{"type": "span_start", "run_id": "0c5b70252336", "span_id": "0c5b70252336-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117141.228114, "attrs": {"input": "这段7秒的数据一共跟踪了多少名球员？", "system": "single"}}
+{"type": "span_start", "run_id": "0c5b70252336", "span_id": "0c5b70252336-00002", "parent_id": "0c5b70252336-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117141.228114, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 0}}
+{"type": "span_end", "run_id": "0c5b70252336", "span_id": "0c5b70252336-00002", "parent_id": "0c5b70252336-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117143.718039, "dur_ms": 2489.93, "status": "ok"}
+{"type": "event", "run_id": "0c5b70252336", "span_id": "0c5b70252336-00001", "kind": "tool", "name": "tool[0]", "ts": 1787117143.720654, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "0c5b70252336", "span_id": "0c5b70252336-00001", "kind": "tool", "name": "tool[1]", "ts": 1787117143.721154, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "0c5b70252336", "span_id": "0c5b70252336-00003", "parent_id": "0c5b70252336-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117143.721154, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 1}}
+{"type": "span_end", "run_id": "0c5b70252336", "span_id": "0c5b70252336-00003", "parent_id": "0c5b70252336-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117151.2825787, "dur_ms": 7561.42, "status": "ok"}
+{"type": "span_end", "run_id": "0c5b70252336", "span_id": "0c5b70252336-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117151.2825787, "dur_ms": 10054.46, "status": "ok"}
+{"type": "run_end", "run_id": "0c5b70252336", "ts": 1787117151.2825787}

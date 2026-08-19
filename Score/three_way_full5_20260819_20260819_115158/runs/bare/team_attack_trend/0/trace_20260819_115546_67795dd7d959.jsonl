@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "67795dd7d959", "ts": 1787111746.1945515}
+{"type": "span_start", "run_id": "67795dd7d959", "span_id": "67795dd7d959-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787111746.1950562, "attrs": {"input": "分析一下A队的进攻态势。", "system": "bare"}}
+{"type": "span_start", "run_id": "67795dd7d959", "span_id": "67795dd7d959-00002", "parent_id": "67795dd7d959-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787111746.1950562, "attrs": {"system_len": 293, "user_len": 8759}}
+{"type": "span_end", "run_id": "67795dd7d959", "span_id": "67795dd7d959-00002", "parent_id": "67795dd7d959-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787111879.6779888, "dur_ms": 133482.93, "status": "ok"}
+{"type": "span_end", "run_id": "67795dd7d959", "span_id": "67795dd7d959-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787111879.6779888, "dur_ms": 133482.93, "status": "ok"}
+{"type": "run_end", "run_id": "67795dd7d959", "ts": 1787111879.6779888}

@@ -1,0 +1,50 @@
+{
+  "system": "single",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "## 直接结论\n\n整场比赛对球门威胁最大的时刻出现在**第7.4秒（帧223）**，峰值威胁值约为 **0.862**，已相当接近\"1\"的危险上限，属于**高度危险**的进攻机会。该威胁发生在**禁区内**。\n\n## 数据依据\n\n- 战术数据口径显示，全场比赛\"球最大威胁值\"为 **0.862**，对应时刻为第7.4秒（帧223），威胁峰值区域为**禁区**。\n- 帧级核验（帧223）显示：该时刻球已进入**禁区**，由16号向14号送出传球，14号正处在**距球0.0**的接球位置（即持球点），是离球最近的球员，处于可立即起脚的区域。\n- 防守端距离最近的球员为A队5号（距球6个单位）与13号（距球13个单位），后续防守力量（12号34、16号36、1号48等）均拉开一定距离，说明这一瞬间14号在禁区内的接球空间较宽松，形成了对球门的实质性威胁。\n- 结合全场攻防背景：A队整体压上、进入进攻三区21次，但传球以短传、向后回传为主（回传占比六成），绝大多数时间威胁有限，唯独这次禁区内的快速衔接把球打进了最高危区域。\n\n综上，全场比赛的最大威胁峰值约为 **0.862**，是一次出现在第7.4秒禁区内、由14号接球形成的实质得分机会。",
+  "latency_ms": 10015.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 14013,
+    "completion_tokens": 981,
+    "total_tokens": 14994
+  },
+  "error": null,
+  "trace_file": "trace_20260819_122308_b74981435bc5.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 223
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\team_threat_peak\\0",
+  "ts": "2026-08-19 12:23:08",
+  "repeat": 0
+}

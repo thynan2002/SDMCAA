@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "verify_ball_owner_3s",
+  "category": "verify",
+  "input": "再确认一下，第3秒的时候球离7号有多远？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据第3.0秒（帧号90）的追踪数据，此时球位于前场边路区域，离球最近的是10号。7号此时并不在球的第一落点附近，与球的直线距离约为13.2米。\n\n[核验过程：回溯帧号90（第3.0秒）的球位置（x=922, y=587）与球员位置概要中7号的记录，所询球员与球距离字段直接给出7号为13.2米，故采用该精确数值。]\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 2171.6,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 562,
+    "completion_tokens": 144,
+    "total_tokens": 706
+  },
+  "error": null,
+  "trace_file": "trace_20260816_144138_de95c69bba2e.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\smoke3_20260816_143907\\runs\\multi\\verify_ball_owner_3s\\0",
+  "ts": "2026-08-16 14:41:38",
+  "repeat": 0
+}

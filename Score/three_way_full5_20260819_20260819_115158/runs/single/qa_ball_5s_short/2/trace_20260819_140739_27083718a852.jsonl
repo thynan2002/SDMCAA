@@ -1,0 +1,10 @@
+{"type": "run_start", "run_id": "27083718a852", "ts": 1787119659.0430765}
+{"type": "span_start", "run_id": "27083718a852", "span_id": "27083718a852-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787119659.0485775, "attrs": {"input": "这份数据里一共有多少名球员？球最高到过多少？", "system": "single"}}
+{"type": "span_start", "run_id": "27083718a852", "span_id": "27083718a852-00002", "parent_id": "27083718a852-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787119659.0490773, "attrs": {"system_len": 311, "user_len": 22, "tool_round": 0}}
+{"type": "span_end", "run_id": "27083718a852", "span_id": "27083718a852-00002", "parent_id": "27083718a852-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787119662.1003835, "dur_ms": 3051.31, "status": "ok"}
+{"type": "event", "run_id": "27083718a852", "span_id": "27083718a852-00001", "kind": "tool", "name": "tool[0]", "ts": 1787119662.1028132, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "27083718a852", "span_id": "27083718a852-00001", "kind": "tool", "name": "tool[1]", "ts": 1787119662.1028132, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "27083718a852", "span_id": "27083718a852-00003", "parent_id": "27083718a852-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787119662.1028132, "attrs": {"system_len": 311, "user_len": 22, "tool_round": 1}}
+{"type": "span_end", "run_id": "27083718a852", "span_id": "27083718a852-00003", "parent_id": "27083718a852-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787119669.7098053, "dur_ms": 7606.99, "status": "ok"}
+{"type": "span_end", "run_id": "27083718a852", "span_id": "27083718a852-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787119669.7098053, "dur_ms": 10661.23, "status": "ok"}
+{"type": "run_end", "run_id": "27083718a852", "ts": 1787119669.7098053}

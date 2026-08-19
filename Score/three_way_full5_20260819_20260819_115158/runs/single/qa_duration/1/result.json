@@ -1,0 +1,59 @@
+{
+  "system": "single",
+  "case_id": "qa_duration",
+  "category": "general_qa",
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据数据内容，这份比赛数据覆盖的时长很短——**从开球约0.7秒起，到约11.6秒结束，合计覆盖约12秒的比赛片段**，并非完整的一场比赛。\n\n**数据依据：**\n- 球路时间线中的首个球路事件发生在第0.7秒，最后一个事件发生在第11.6秒，之后没有更多记录。\n- 攻防转换线索显示，在这段不足半分钟的片段里出现过多次节奏转换（第5.0秒、第5.4秒、第7.9秒、第9.4秒），说明这是一段攻防来回交替的短片段，而非整场比赛。\n- 球员原始轨迹数据帧数也印证了片段之短（例如7号总帧数19帧、8号总帧数24帧，按30帧/秒折算均不足1秒，属于球员实际参与球路的记录）。\n\n因此，如需分析更长时间的比赛内容或完整比赛走势，当前数据覆盖不足；仅能就这约12秒的片段做战术解读。",
+  "latency_ms": 11125.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 13974,
+    "completion_tokens": 1014,
+    "total_tokens": 14988
+  },
+  "error": null,
+  "trace_file": "trace_20260819_133146_14c7c7d97a1e.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "8号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 220
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_duration\\1",
+  "ts": "2026-08-19 13:31:46",
+  "repeat": 1
+}

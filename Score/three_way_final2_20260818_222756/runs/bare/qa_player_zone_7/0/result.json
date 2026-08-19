@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_player_zone_7",
+  "category": "style",
+  "input": "7号主要活动在球场的哪个区域？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "7号的活动区域高度集中在球场右路，是一条沿边线的纵向通道。整个片段里，他从本方后场右边路开始，逐渐沿边线向前推进到中场右侧；没有向中路或左路明显横向移动。他的战术角色更像是一名右路攻防参与者，负责边路的上下往返，由守转攻时具备一定的前插意识，但始终没有进入中路核心威胁区，对球门的直接威胁有限。\n\n数据依据：从7号各帧的位置看，他的横坐标始终稳定在右侧区间，纵坐标从接近边线的位置逐渐向中场方向移动，说明他一直在右路完成由后向前的推进。整个过程中他几乎没有离开右路走廊，属于典型的边路活动模式。",
+  "latency_ms": 27282.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6089,
+    "completion_tokens": 2561,
+    "total_tokens": 8650
+  },
+  "error": null,
+  "trace_file": "trace_20260818_223709_9325697119c9.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final2_20260818_222756\\runs\\bare\\qa_player_zone_7\\0",
+  "ts": "2026-08-18 22:37:09",
+  "context_chars": 8762,
+  "repeat": 0
+}

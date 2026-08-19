@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_what_happened",
+  "category": "frame",
+  "input": "第90帧发生了什么？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据中没有第90帧的直接记录，因此无法精确说明第90帧具体发生了什么。\n\n从相邻帧可以看出的趋势是：A队10号正在向中后场左侧移动，朝向足球后续的落点区域靠近；到第102帧时，10号与足球的位置完全重合，说明第90帧前后最可能的画面是他在跑动迎球/准备接球。但这一判断是基于前后帧的推断，不能确认为第90帧的真实瞬时事件。\n\n数据依据：球员轨迹表中没有 frame_num=90 的采样，第89帧之后下一个球员数据是第92帧；足球轨迹中也没有第90帧的记录。第102帧足球位于 (871.4,559.9)，同时10号也位于同一位置，所以只能推断他在此过程中接近了球的落点。",
+  "latency_ms": 19797.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6084,
+    "completion_tokens": 1932,
+    "total_tokens": 8016
+  },
+  "error": null,
+  "trace_file": "trace_20260819_122207_b93d38f2963a.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_what_happened\\0",
+  "ts": "2026-08-19 12:22:07",
+  "context_chars": 8757,
+  "repeat": 0
+}

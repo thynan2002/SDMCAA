@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧（第3.0秒）时，球处于前场边路区域，坐标为（922, 587），该位置距离球门较近、属于对方半场边路，静态威胁潜力中等偏高（威胁值0.45），但仅代表该位置本身的进攻潜力，不意味着已形成实际得分机会或进攻敏感局面。\n\n从全队站位看，A队整体压至中前场右路，10号、6号、7号位于前场，其余多数球员分布在中场右路，形成右路进攻层次；B队防守重心也集中在右路中场区域，其中18号、19号靠近前场，其余队员在中场右路布防，对A队右路形成一定纵深拦截；另有C队21号出现在右路中场区域。整体上双方兵力大量集中在右路，攻防对抗密集。\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 4203.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1116,
+    "completion_tokens": 297,
+    "total_tokens": 1413
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135117_5f1d59e5b596.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_ball_zone_90\\2",
+  "ts": "2026-08-19 13:51:17",
+  "repeat": 2
+}

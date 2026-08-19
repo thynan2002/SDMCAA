@@ -1,0 +1,974 @@
+{
+  "event_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\smoke2_20260816_130706",
+  "n_cases": 6,
+  "aggregate": {
+    "systems": {
+      "bare": {
+        "n_cases": 6,
+        "total_mean": 0.8364,
+        "total_ci95": [
+          0.7542,
+          0.8983
+        ],
+        "metrics": {
+          "accuracy": {
+            "n": 6,
+            "mean": 0.85,
+            "std": 0.2345,
+            "ci95": [
+              0.65,
+              0.9833
+            ]
+          },
+          "grounding": {
+            "n": 6,
+            "mean": 0.9167,
+            "std": 0.1438,
+            "ci95": [
+              0.8,
+              1.0
+            ]
+          },
+          "completeness": {
+            "n": 6,
+            "mean": 0.9583,
+            "std": 0.0801,
+            "ci95": [
+              0.8917,
+              1.0
+            ]
+          },
+          "reasoning": {
+            "n": 6,
+            "mean": 0.6667,
+            "std": 0.1862,
+            "ci95": [
+              0.5167,
+              0.8
+            ]
+          },
+          "efficiency": {
+            "n": 6,
+            "mean": 0.9638,
+            "std": 0.0669,
+            "ci95": [
+              0.9083,
+              1.0
+            ]
+          },
+          "robustness": {
+            "n": 6,
+            "mean": 1.0,
+            "std": 0.0,
+            "ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "tactical_accuracy": {
+            "n": 6,
+            "mean": 0.7667,
+            "std": 0.1472,
+            "ci95": [
+              0.6417,
+              0.8667
+            ]
+          }
+        },
+        "stability": {
+          "n": 0,
+          "mean": null,
+          "std": null
+        },
+        "tool_use": {
+          "n": 0,
+          "mean": null,
+          "std": null
+        },
+        "extended_total_mean": null,
+        "extended_total_ci95": null
+      },
+      "multi": {
+        "n_cases": 6,
+        "total_mean": 0.6738,
+        "total_ci95": [
+          0.5242,
+          0.803
+        ],
+        "metrics": {
+          "accuracy": {
+            "n": 6,
+            "mean": 0.5083,
+            "std": 0.4364,
+            "ci95": [
+              0.2083,
+              0.8087
+            ]
+          },
+          "grounding": {
+            "n": 6,
+            "mean": 0.8917,
+            "std": 0.131,
+            "ci95": [
+              0.7875,
+              0.975
+            ]
+          },
+          "completeness": {
+            "n": 6,
+            "mean": 0.6542,
+            "std": 0.373,
+            "ci95": [
+              0.3583,
+              0.8958
+            ]
+          },
+          "reasoning": {
+            "n": 6,
+            "mean": 0.45,
+            "std": 0.1975,
+            "ci95": [
+              0.3167,
+              0.6
+            ]
+          },
+          "efficiency": {
+            "n": 6,
+            "mean": 0.9672,
+            "std": 0.0802,
+            "ci95": [
+              0.9017,
+              1.0
+            ]
+          },
+          "robustness": {
+            "n": 6,
+            "mean": 1.0,
+            "std": 0.0,
+            "ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "tactical_accuracy": {
+            "n": 6,
+            "mean": 0.625,
+            "std": 0.2928,
+            "ci95": [
+              0.4167,
+              0.8167
+            ]
+          }
+        },
+        "stability": {
+          "n": 0,
+          "mean": null,
+          "std": null
+        },
+        "tool_use": {
+          "n": 3,
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "extended_total_mean": 0.6626,
+        "extended_total_ci95": [
+          0.4443,
+          0.8473
+        ]
+      },
+      "single": {
+        "n_cases": 6,
+        "total_mean": 0.6917,
+        "total_ci95": [
+          0.54,
+          0.8292
+        ],
+        "metrics": {
+          "accuracy": {
+            "n": 6,
+            "mean": 0.5417,
+            "std": 0.4104,
+            "ci95": [
+              0.2417,
+              0.8417
+            ]
+          },
+          "grounding": {
+            "n": 6,
+            "mean": 0.7583,
+            "std": 0.2035,
+            "ci95": [
+              0.6083,
+              0.9
+            ]
+          },
+          "completeness": {
+            "n": 6,
+            "mean": 0.8125,
+            "std": 0.2322,
+            "ci95": [
+              0.6292,
+              0.9708
+            ]
+          },
+          "reasoning": {
+            "n": 6,
+            "mean": 0.6,
+            "std": 0.1414,
+            "ci95": [
+              0.5,
+              0.7
+            ]
+          },
+          "efficiency": {
+            "n": 6,
+            "mean": 1.0,
+            "std": 0.0,
+            "ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "robustness": {
+            "n": 6,
+            "mean": 1.0,
+            "std": 0.0,
+            "ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "tactical_accuracy": {
+            "n": 6,
+            "mean": 0.5333,
+            "std": 0.3502,
+            "ci95": [
+              0.2667,
+              0.7667
+            ]
+          }
+        },
+        "stability": {
+          "n": 0,
+          "mean": null,
+          "std": null
+        },
+        "tool_use": {
+          "n": 6,
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "extended_total_mean": 0.7225,
+        "extended_total_ci95": [
+          0.586,
+          0.8463
+        ]
+      }
+    },
+    "comparisons": {
+      "bare_vs_multi": {
+        "total": {
+          "n": 6,
+          "mean_diff": 0.1626,
+          "wilcoxon_p": 0.0464,
+          "ttest_p": 0.07158,
+          "cohens_d_paired": 0.931,
+          "cliffs_delta": 0.639,
+          "wilcoxon_p_holm": 0.8816
+        },
+        "accuracy": {
+          "n": 6,
+          "mean_diff": 0.3417,
+          "wilcoxon_p": 0.06789,
+          "ttest_p": 0.06223,
+          "cohens_d_paired": 0.977,
+          "cliffs_delta": 0.444,
+          "wilcoxon_p_holm": 1.0
+        },
+        "grounding": {
+          "n": 6,
+          "mean_diff": 0.025,
+          "wilcoxon_p": 0.715,
+          "ttest_p": 0.72937,
+          "cohens_d_paired": 0.149,
+          "cliffs_delta": 0.222,
+          "wilcoxon_p_holm": 1.0
+        },
+        "completeness": {
+          "n": 6,
+          "mean_diff": 0.3042,
+          "wilcoxon_p": 0.06789,
+          "ttest_p": 0.06089,
+          "cohens_d_paired": 0.984,
+          "cliffs_delta": 0.556,
+          "wilcoxon_p_holm": 1.0
+        },
+        "reasoning": {
+          "n": 6,
+          "mean_diff": 0.2167,
+          "wilcoxon_p": 0.10406,
+          "ttest_p": 0.09311,
+          "cohens_d_paired": 0.846,
+          "cliffs_delta": 0.583,
+          "wilcoxon_p_holm": 1.0
+        },
+        "efficiency": {
+          "n": 6,
+          "mean_diff": -0.0035,
+          "wilcoxon_p": 1.0,
+          "ttest_p": 0.9451,
+          "cohens_d_paired": -0.03,
+          "cliffs_delta": -0.111,
+          "wilcoxon_p_holm": 1.0
+        },
+        "robustness": {
+          "n": 6,
+          "mean_diff": 0.0,
+          "wilcoxon_p": null,
+          "ttest_p": NaN,
+          "cohens_d_paired": null,
+          "cliffs_delta": 0.0,
+          "wilcoxon_p_holm": null
+        },
+        "tactical_accuracy": {
+          "n": 6,
+          "mean_diff": 0.1417,
+          "wilcoxon_p": 0.28505,
+          "ttest_p": 0.27559,
+          "cohens_d_paired": 0.5,
+          "cliffs_delta": 0.139,
+          "wilcoxon_p_holm": 1.0
+        }
+      },
+      "bare_vs_single": {
+        "total": {
+          "n": 6,
+          "mean_diff": 0.1447,
+          "wilcoxon_p": 0.11585,
+          "ttest_p": 0.12954,
+          "cohens_d_paired": 0.74,
+          "cliffs_delta": 0.389,
+          "wilcoxon_p_holm": 1.0
+        },
+        "accuracy": {
+          "n": 6,
+          "mean_diff": 0.3083,
+          "wilcoxon_p": 0.06789,
+          "ttest_p": 0.09627,
+          "cohens_d_paired": 0.835,
+          "cliffs_delta": 0.389,
+          "wilcoxon_p_holm": 1.0
+        },
+        "grounding": {
+          "n": 6,
+          "mean_diff": 0.1583,
+          "wilcoxon_p": 0.13057,
+          "ttest_p": 0.12843,
+          "cohens_d_paired": 0.743,
+          "cliffs_delta": 0.444,
+          "wilcoxon_p_holm": 1.0
+        },
+        "completeness": {
+          "n": 6,
+          "mean_diff": 0.1458,
+          "wilcoxon_p": 0.06789,
+          "ttest_p": 0.1048,
+          "cohens_d_paired": 0.808,
+          "cliffs_delta": 0.417,
+          "wilcoxon_p_holm": 1.0
+        },
+        "reasoning": {
+          "n": 6,
+          "mean_diff": 0.0667,
+          "wilcoxon_p": 0.52823,
+          "ttest_p": 0.55488,
+          "cohens_d_paired": 0.258,
+          "cliffs_delta": 0.25,
+          "wilcoxon_p_holm": 1.0
+        },
+        "efficiency": {
+          "n": 6,
+          "mean_diff": -0.0362,
+          "wilcoxon_p": null,
+          "ttest_p": 0.24225,
+          "cohens_d_paired": -0.541,
+          "cliffs_delta": -0.333,
+          "wilcoxon_p_holm": null
+        },
+        "robustness": {
+          "n": 6,
+          "mean_diff": 0.0,
+          "wilcoxon_p": null,
+          "ttest_p": NaN,
+          "cohens_d_paired": null,
+          "cliffs_delta": 0.0,
+          "wilcoxon_p_holm": null
+        },
+        "tactical_accuracy": {
+          "n": 6,
+          "mean_diff": 0.2333,
+          "wilcoxon_p": 0.06789,
+          "ttest_p": 0.11458,
+          "cohens_d_paired": 0.779,
+          "cliffs_delta": 0.361,
+          "wilcoxon_p_holm": 1.0
+        }
+      },
+      "multi_vs_single": {
+        "total": {
+          "n": 6,
+          "mean_diff": -0.0179,
+          "wilcoxon_p": 0.75315,
+          "ttest_p": 0.8315,
+          "cohens_d_paired": -0.092,
+          "cliffs_delta": -0.167,
+          "wilcoxon_p_holm": 1.0
+        },
+        "accuracy": {
+          "n": 6,
+          "mean_diff": -0.0333,
+          "wilcoxon_p": 0.70546,
+          "ttest_p": 0.74115,
+          "cohens_d_paired": -0.143,
+          "cliffs_delta": -0.028,
+          "wilcoxon_p_holm": 1.0
+        },
+        "grounding": {
+          "n": 6,
+          "mean_diff": 0.1333,
+          "wilcoxon_p": 0.06789,
+          "ttest_p": 0.0326,
+          "cohens_d_paired": 1.197,
+          "cliffs_delta": 0.333,
+          "wilcoxon_p_holm": 1.0
+        },
+        "completeness": {
+          "n": 6,
+          "mean_diff": -0.1583,
+          "wilcoxon_p": 0.10881,
+          "ttest_p": 0.12511,
+          "cohens_d_paired": -0.751,
+          "cliffs_delta": -0.194,
+          "wilcoxon_p_holm": 1.0
+        },
+        "reasoning": {
+          "n": 6,
+          "mean_diff": -0.15,
+          "wilcoxon_p": 0.22492,
+          "ttest_p": 0.23742,
+          "cohens_d_paired": -0.548,
+          "cliffs_delta": -0.528,
+          "wilcoxon_p_holm": 1.0
+        },
+        "efficiency": {
+          "n": 6,
+          "mean_diff": -0.0328,
+          "wilcoxon_p": null,
+          "ttest_p": 0.36322,
+          "cohens_d_paired": -0.408,
+          "cliffs_delta": -0.167,
+          "wilcoxon_p_holm": null
+        },
+        "robustness": {
+          "n": 6,
+          "mean_diff": 0.0,
+          "wilcoxon_p": null,
+          "ttest_p": NaN,
+          "cohens_d_paired": null,
+          "cliffs_delta": 0.0,
+          "wilcoxon_p_holm": null
+        },
+        "tactical_accuracy": {
+          "n": 6,
+          "mean_diff": 0.0917,
+          "wilcoxon_p": 0.59298,
+          "ttest_p": 0.61968,
+          "cohens_d_paired": 0.216,
+          "cliffs_delta": 0.278,
+          "wilcoxon_p_holm": 1.0
+        }
+      }
+    },
+    "power_note_total": "n=6（配对用例数），α=0.05，配对 t 检验在 80% power 下约可检出 |d|≥1.14 的效应；更小差异仅作描述性参考。",
+    "n_cases": 6
+  },
+  "category_breakdown": {
+    "comparison": {
+      "bare": 0.938,
+      "single": 0.775,
+      "multi": 0.505
+    },
+    "frame": {
+      "bare": 0.653,
+      "single": 0.52,
+      "multi": 0.383
+    },
+    "hallucination": {
+      "bare": 0.85,
+      "single": 0.91,
+      "multi": 0.83
+    },
+    "general_qa": {
+      "bare": 0.83,
+      "single": 0.87,
+      "multi": 0.83
+    },
+    "style": {
+      "bare": 0.863,
+      "single": 0.67,
+      "multi": 0.833
+    },
+    "verify": {
+      "bare": 0.885,
+      "single": 0.405,
+      "multi": 0.662
+    }
+  },
+  "failure_modes": {
+    "答非所问": {
+      "count": 3,
+      "samples": [
+        "multi/compare_6_7_active#r0",
+        "multi/frame_ball_zone_90#r0",
+        "multi/verify_ball_owner_3s#r0"
+      ]
+    },
+    "编造数据": {
+      "count": 3,
+      "samples": [
+        "bare/frame_ball_zone_90#r0",
+        "single/frame_ball_zone_90#r0",
+        "single/verify_ball_owner_3s#r0"
+      ]
+    },
+    "无依据夸大": {
+      "count": 1,
+      "samples": [
+        "single/compare_6_7_active#r0"
+      ]
+    }
+  },
+  "cost": {
+    "bare": {
+      "latency_ms": [
+        42083.8,
+        "n=6"
+      ],
+      "llm_calls": [
+        1.0,
+        "n=6"
+      ],
+      "total_tokens": [
+        10023.7,
+        "n=6"
+      ]
+    },
+    "single": {
+      "latency_ms": [
+        9572.6,
+        "n=6"
+      ],
+      "llm_calls": [
+        2.3,
+        "n=6"
+      ],
+      "total_tokens": [
+        7432.5,
+        "n=6"
+      ]
+    },
+    "multi": {
+      "latency_ms": [
+        24829.7,
+        "n=6"
+      ],
+      "llm_calls": [
+        1.5,
+        "n=6"
+      ],
+      "total_tokens": [
+        8197.2,
+        "n=5"
+      ]
+    }
+  },
+  "per_case_summary": {
+    "compare_6_7_active": {
+      "bare": {
+        "total": 0.938,
+        "stability": null
+      },
+      "single": {
+        "total": 0.775,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.505,
+        "stability": null
+      }
+    },
+    "frame_ball_zone_90": {
+      "bare": {
+        "total": 0.653,
+        "stability": null
+      },
+      "single": {
+        "total": 0.52,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.383,
+        "stability": null
+      }
+    },
+    "halluc_player_99": {
+      "bare": {
+        "total": 0.85,
+        "stability": null
+      },
+      "single": {
+        "total": 0.91,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.83,
+        "stability": null
+      }
+    },
+    "qa_player_count": {
+      "bare": {
+        "total": 0.83,
+        "stability": null
+      },
+      "single": {
+        "total": 0.87,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.83,
+        "stability": null
+      }
+    },
+    "style_player7": {
+      "bare": {
+        "total": 0.863,
+        "stability": null
+      },
+      "single": {
+        "total": 0.67,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.833,
+        "stability": null
+      }
+    },
+    "verify_ball_owner_3s": {
+      "bare": {
+        "total": 0.885,
+        "stability": null
+      },
+      "single": {
+        "total": 0.405,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.662,
+        "stability": null
+      }
+    }
+  },
+  "system_labels": {
+    "bare": "单次LLM裸调用",
+    "single": "单智能体+工具",
+    "multi": "多智能体系统"
+  },
+  "alignment_case": "compare_6_7_active",
+  "alignment": {
+    "heuristic": true,
+    "systems": {
+      "bare": {
+        "repeat": 0,
+        "steps": [
+          {
+            "idx": 0,
+            "kind": "llm",
+            "name": "llm_call[0]",
+            "dur_ms": 18656.62,
+            "status": "ok",
+            "phase": "synthesis",
+            "tools": null,
+            "tool_round": null,
+            "context_chars": 9052,
+            "attrs": {
+              "system_len": 293,
+              "user_len": 8759
+            }
+          }
+        ],
+        "latency_ms": 18657.0,
+        "llm_calls": 1,
+        "answer_excerpt": "从这 12 秒左右的片段来看：**6号明显比 7号更积极。**\n\n6号更像是一个持续移动、沿右路不断参与推进的球员，活动范围从本方右路纵深一路扩展到中前场，属于红队这一时段右侧的重要接应点；7号则更多停留在中右路一个相对固定的区域内，后期站位趋向稳定，更像是在执行区域保护或协防任务，并没有持续向前的跑动投入。\n\n数据依据上，6号的总跑动量和平均速度都明显高于7号，说明他绝大多数时间都在移动，覆盖范围更大；7号虽然出现过一次比6号更高的瞬时冲刺峰值，但整体跑动量和平均速度都明显偏低，说明那只是偶发的爆发，而不是持续的高投入。因此，**从“持续跑动和覆盖面积”来看，6号更积极。**\n\n需要说明的是，这里的“积极”主要基于跑动数据判断，无法评估逼抢、触球、争顶等比赛细节。"
+      },
+      "single": {
+        "repeat": 0,
+        "steps": [
+          {
+            "idx": 0,
+            "kind": "llm",
+            "name": "llm_call[0]",
+            "dur_ms": 1881.78,
+            "status": "ok",
+            "phase": "retrieval",
+            "tools": null,
+            "tool_round": 0,
+            "context_chars": 323,
+            "attrs": {
+              "system_len": 311,
+              "user_len": 12,
+              "tool_round": 0
+            }
+          },
+          {
+            "idx": 1,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.1,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 623,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 2,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 923,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 3,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.1,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 1223,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 4,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 1523,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 5,
+            "kind": "tool",
+            "name": "get_tactical_facts",
+            "dur_ms": 1.7,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 1823,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 6,
+            "kind": "llm",
+            "name": "llm_call[1]",
+            "dur_ms": 9123.93,
+            "status": "ok",
+            "phase": "synthesis",
+            "tools": null,
+            "tool_round": 1,
+            "context_chars": 2146,
+            "attrs": {
+              "system_len": 311,
+              "user_len": 12,
+              "tool_round": 1
+            }
+          }
+        ],
+        "latency_ms": 11008.8,
+        "llm_calls": 2,
+        "answer_excerpt": "**直接判断：6号明显更积极。** 虽然两人都踢右路前锋、位置几乎完全重叠，但从跑动范围、移动节奏和贴球度三个维度看，6号的活跃程度明显高于7号；7号只是峰值速度更高、显得更\"冲\"，但整体活动面和参与度都不如6号。\n\n**数据依据：**\n- **跑动覆盖面**：6号的移动覆盖范围远大于7号，场地覆盖率约是7号的5倍，横向活动宽度明显更宽，说明6号在前场右路不断拉开、扯动，活动范围大；7号活动区间非常集中，几乎固定在右路前场一个较小的走廊里。\n- **移动节奏**：6号的平均移动速度明显快于7号，属于持续高频移动；7号虽然最大速度（冲刺峰值）更高，但整体以慢速居多，属于\"偶尔爆发、多数时间站桩\"的类型。\n- **贴球程度**：6号几乎全程贴着球、一直在球的接应半径内，是右路进攻的持续接应点；7号只有约三分之二时间接近球，其余时间游离在球路之外。\n- **参与度**：两人触球/参与球路的次数基"
+      },
+      "multi": {
+        "repeat": 0,
+        "steps": [
+          {
+            "idx": 0,
+            "kind": "load",
+            "name": "load_data",
+            "dur_ms": 3.79,
+            "status": "ok",
+            "phase": "load",
+            "context_chars": 0,
+            "attrs": {
+              "person": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_person2d.csv",
+              "ball": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_soccer3d.csv"
+            }
+          },
+          {
+            "idx": 1,
+            "kind": "load",
+            "name": "corpus_ready",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "load",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 2,
+            "kind": "stage",
+            "name": "routing",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 3,
+            "kind": "stage",
+            "name": "routing",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 4,
+            "kind": "stage",
+            "name": "comparison",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 5,
+            "kind": "stage",
+            "name": "collect_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 6,
+            "kind": "stage",
+            "name": "collect_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 7,
+            "kind": "stage",
+            "name": "model_styles",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 8,
+            "kind": "stage",
+            "name": "model_styles",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 9,
+            "kind": "stage",
+            "name": "report",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 10,
+            "kind": "llm",
+            "name": "llm_call[0]",
+            "dur_ms": 17808.64,
+            "status": "ok",
+            "phase": "routing",
+            "tools": null,
+            "tool_round": null,
+            "context_chars": 895,
+            "attrs": {
+              "system_len": 570,
+              "user_len": 325,
+              "seq": 0,
+              "stream": true
+            }
+          },
+          {
+            "idx": 11,
+            "kind": "stage",
+            "name": "report",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 895,
+            "attrs": {}
+          },
+          {
+            "idx": 12,
+            "kind": "stage",
+            "name": "comparison",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 895,
+            "attrs": {}
+          }
+        ],
+        "latency_ms": 17825.0,
+        "llm_calls": 1,
+        "answer_excerpt": "6号和7号的画像数据在本次输入中完全一致，都是站位压迫型右边锋。两人战术角色相同，主要活动区域都在右路前场，风格描述也指向站位纪律与防守侵略性两个维度最为突出。换言之，从现有数据看，两者在风格标签、战术定位和活动区域上没有任何可观察到的差别。\n\n从差异分析来看，最核心的结论是：目前不存在差异。6号与7号并没有一个偏进攻、一个偏防守这样的分工错位，也没有活动热区和压迫强度上的明显区分。两者同属于在右路前场通过站位纪律和逼抢压迫来限制对手出球的右边锋类型。因此，在“谁更积极”这个维度上，现有画像没有给出任何区分依据，无法指出其中一人明显领先或略胜一筹。\n\n如果两人同时出现在同一体系中，由于位置和职责高度重合，容易出现右边路功能重叠甚至站位冲突。两人都习惯在右路前场实施压迫，若缺乏明确轮转或换位设计，可能同时扑向同一个防守对象，导致阵型在右路过度集中，而中路或左路的压迫强度下降。若要发挥其互补性"
+      }
+    },
+    "tool_diff": {
+      "get_player_raw_data": [
+        "single"
+      ],
+      "get_tactical_facts": [
+        "single"
+      ],
+      "get_player_profile": [
+        "single"
+      ]
+    }
+  }
+}

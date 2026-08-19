@@ -1,0 +1,9 @@
+{"type": "run_start", "run_id": "ffd66ea3812d", "ts": 1787125845.7273736}
+{"type": "span_start", "run_id": "ffd66ea3812d", "span_id": "ffd66ea3812d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787125845.731874, "attrs": {"input": "喂！！！！！第 5 秒球 在 哪 里？？？请【立刻】回答不要废话", "system": "single"}}
+{"type": "span_start", "run_id": "ffd66ea3812d", "span_id": "ffd66ea3812d-00002", "parent_id": "ffd66ea3812d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787125845.731874, "attrs": {"system_len": 311, "user_len": 32, "tool_round": 0}}
+{"type": "span_end", "run_id": "ffd66ea3812d", "span_id": "ffd66ea3812d-00002", "parent_id": "ffd66ea3812d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787125846.8852592, "dur_ms": 1153.39, "status": "ok"}
+{"type": "event", "run_id": "ffd66ea3812d", "span_id": "ffd66ea3812d-00001", "kind": "tool", "name": "tool[0]", "ts": 1787125846.885759, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "ffd66ea3812d", "span_id": "ffd66ea3812d-00003", "parent_id": "ffd66ea3812d-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787125846.885759, "attrs": {"system_len": 311, "user_len": 32, "tool_round": 1}}
+{"type": "span_end", "run_id": "ffd66ea3812d", "span_id": "ffd66ea3812d-00003", "parent_id": "ffd66ea3812d-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787125848.0948987, "dur_ms": 1209.14, "status": "ok"}
+{"type": "span_end", "run_id": "ffd66ea3812d", "span_id": "ffd66ea3812d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787125848.0953987, "dur_ms": 2363.52, "status": "ok"}
+{"type": "run_end", "run_id": "ffd66ea3812d", "ts": 1787125848.0953987}

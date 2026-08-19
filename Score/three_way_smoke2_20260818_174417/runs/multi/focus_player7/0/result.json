@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "focus_player7",
+  "category": "focus",
+  "input": "聚焦7号",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "0~3s：开场后A队迅速将球推进到右路，6号拿球后没有犹豫，稳稳将球交给前场右侧的7号。7号接球时位置相当开阔，他的跑动范围一直压缩在中前场右侧，随时准备制造压力。\n\n3~5s：7号拿球后并没有急于出球，而是先用自己的身体护住球权，同时观察场上队友的站位。随后他送出一脚中距离转移，将球交到10号脚下。这脚传球质量很高，直接把进攻方向带到了中路，7号自己则顺势往右肋方向移动，准备接应后续配合。\n\n5~7s：球权在中场短暂交接，经过几脚快速传递后，A队的节奏一度放缓，10号和6号之间连续倒脚控场。而此时7号继续保持着自己的位置，站在前场右侧肋部，不断拉开进攻宽度，虽然没有直接触球，却让防守方不得不分心盯住他这一侧的跑动线路。\n\n7~12s：比赛进入相持阶段，B队开始掌控中场，通过连续传递试图扭转节奏，而A队整体略微回收稳固阵型。这段时间里，7号的参与度有所下降，主要是在前场右侧保持站位，随时准备抓反击机会，但他并未获得更多触球机会，比赛的焦点暂时转向了中场区域的争夺。",
+  "latency_ms": 9125.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 3155,
+    "completion_tokens": 880,
+    "total_tokens": 4035
+  },
+  "error": null,
+  "trace_file": "trace_20260818_174522_4acbcec7816c.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke2_20260818_174417\\runs\\multi\\focus_player7\\0",
+  "ts": "2026-08-18 17:45:22",
+  "repeat": 0
+}

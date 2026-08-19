@@ -1,0 +1,12 @@
+{"type": "run_start", "run_id": "308ddd5ad02d", "ts": 1787113886.6514482}
+{"type": "span_start", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787113886.6574485, "attrs": {"input": "如果7号在第3秒改为直接射门会怎样？", "system": "single"}}
+{"type": "span_start", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00002", "parent_id": "308ddd5ad02d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787113886.6574485, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 0}}
+{"type": "span_end", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00002", "parent_id": "308ddd5ad02d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787113888.4577322, "dur_ms": 1800.28, "status": "ok"}
+{"type": "event", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00001", "kind": "tool", "name": "tool[0]", "ts": 1787113888.4687352, "attrs": {"tool": "run_counterfactual_simulation", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00003", "parent_id": "308ddd5ad02d-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787113888.4687352, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 1}}
+{"type": "span_end", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00003", "parent_id": "308ddd5ad02d-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787113890.8330991, "dur_ms": 2364.36, "status": "ok"}
+{"type": "event", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00001", "kind": "tool", "name": "tool[1]", "ts": 1787113890.8335993, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00004", "parent_id": "308ddd5ad02d-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787113890.8335993, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 2}}
+{"type": "span_end", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00004", "parent_id": "308ddd5ad02d-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787113895.0608258, "dur_ms": 4227.23, "status": "ok"}
+{"type": "span_end", "run_id": "308ddd5ad02d", "span_id": "308ddd5ad02d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787113895.0608258, "dur_ms": 8403.38, "status": "ok"}
+{"type": "run_end", "run_id": "308ddd5ad02d", "ts": 1787113895.0608258}

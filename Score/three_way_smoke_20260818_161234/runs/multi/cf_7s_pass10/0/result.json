@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "cf_7s_pass10",
+  "category": "counterfactual",
+  "input": "如果7号在第3秒改为传球给10号会怎样？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "请描述反事实场景，例如：\n  '如果7号在第3秒时不传给11号而是直接打门会怎样'\n  '假如6号选择盘带突破而不是回传'\n  '如果球传给了另一侧的9号'",
+  "latency_ms": 16.0,
+  "llm_calls": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "error": null,
+  "trace_file": "trace_20260818_161249_65011b63a41b.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke_20260818_161234\\runs\\multi\\cf_7s_pass10\\0",
+  "ts": "2026-08-18 16:12:49",
+  "repeat": 0
+}

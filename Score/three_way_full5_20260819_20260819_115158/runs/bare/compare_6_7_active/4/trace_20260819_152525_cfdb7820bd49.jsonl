@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "cfdb7820bd49", "ts": 1787124325.1264083}
+{"type": "span_start", "run_id": "cfdb7820bd49", "span_id": "cfdb7820bd49-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124325.126914, "attrs": {"input": "对比6号和7号谁更积极？", "system": "bare"}}
+{"type": "span_start", "run_id": "cfdb7820bd49", "span_id": "cfdb7820bd49-00002", "parent_id": "cfdb7820bd49-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124325.126914, "attrs": {"system_len": 293, "user_len": 8759}}
+{"type": "span_end", "run_id": "cfdb7820bd49", "span_id": "cfdb7820bd49-00002", "parent_id": "cfdb7820bd49-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124336.3309906, "dur_ms": 11204.08, "status": "ok"}
+{"type": "span_end", "run_id": "cfdb7820bd49", "span_id": "cfdb7820bd49-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124336.331496, "dur_ms": 11204.58, "status": "ok"}
+{"type": "run_end", "run_id": "cfdb7820bd49", "ts": 1787124336.331496}

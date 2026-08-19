@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_pos_90",
+  "category": "frame",
+  "input": "第90帧球在什么位置？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧（第3.0秒），球位于前场边路，坐标为 (922, 587)，球在地面。离球最近的球员是A队10号。\n\n场上双方站位方面：A队进攻重心明显在右路前场，10号、6号、7号等球员分布在球附近区域，8号、4号、3号等多名球员则处于右路中场；B队整体阵型偏向右路中场，其中18号、19号已进入前场，靠近球侧，其余球员如15号、16号、17号等分布在中场右路。此外，C队21号出现在右路中场。\n\n该球位置处于前场边路，静态威胁潜力中等。\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 9516.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1105,
+    "completion_tokens": 949,
+    "total_tokens": 2054
+  },
+  "error": null,
+  "trace_file": "trace_20260819_151706_b330436ad538.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_ball_pos_90\\3",
+  "ts": "2026-08-19 15:17:06",
+  "repeat": 3
+}

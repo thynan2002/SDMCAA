@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "直接判断：整段 12.4 秒内，真正构成球门威胁的只有 1 次，发生在第 223 帧附近。那是一次传入禁区的高空球，球先飞到约 4.2 米高度，随后下落到门前；第 223 帧时球已到门框投影范围内、距门线约 6.7 米的位置。但同一帧 B 队 14 号正好出现在球的落点，下一帧球已经变向落到左侧地面，说明这波进攻被防守方解围/封堵了。\n\n因此，最大威胁大约是 **0.5（中等偏上）**。它属于“有威胁但被后卫及时解围”，不是一次必进球或直接射正。\n\n数据依据：球在 201/207 帧达到最高点后开始下落，第 223 帧到达门前危险区域；B 队 14 号在该帧与球几乎重叠，随后球离开球门方向。其余时间球多在边路、中后场或停在界外，门将 21 号整段累计只移动 3.5 米，基本没有出现更高威胁。",
+  "latency_ms": 131860.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6105,
+    "completion_tokens": 13853,
+    "total_tokens": 19958
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150334_a0c324fa6f1d.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\team_threat_peak\\3",
+  "ts": "2026-08-19 15:03:34",
+  "context_chars": 8786,
+  "repeat": 3
+}

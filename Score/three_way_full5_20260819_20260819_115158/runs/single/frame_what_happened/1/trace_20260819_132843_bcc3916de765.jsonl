@@ -1,0 +1,9 @@
+{"type": "run_start", "run_id": "bcc3916de765", "ts": 1787117323.4898088}
+{"type": "span_start", "run_id": "bcc3916de765", "span_id": "bcc3916de765-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117323.494321, "attrs": {"input": "第90帧发生了什么？", "system": "single"}}
+{"type": "span_start", "run_id": "bcc3916de765", "span_id": "bcc3916de765-00002", "parent_id": "bcc3916de765-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117323.494822, "attrs": {"system_len": 311, "user_len": 10, "tool_round": 0}}
+{"type": "span_end", "run_id": "bcc3916de765", "span_id": "bcc3916de765-00002", "parent_id": "bcc3916de765-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117325.6340227, "dur_ms": 2139.2, "status": "ok"}
+{"type": "event", "run_id": "bcc3916de765", "span_id": "bcc3916de765-00001", "kind": "tool", "name": "tool[0]", "ts": 1787117325.634313, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "bcc3916de765", "span_id": "bcc3916de765-00003", "parent_id": "bcc3916de765-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117325.634313, "attrs": {"system_len": 311, "user_len": 10, "tool_round": 1}}
+{"type": "span_end", "run_id": "bcc3916de765", "span_id": "bcc3916de765-00003", "parent_id": "bcc3916de765-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117327.5396664, "dur_ms": 1905.35, "status": "ok"}
+{"type": "span_end", "run_id": "bcc3916de765", "span_id": "bcc3916de765-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117327.5396664, "dur_ms": 4045.35, "status": "ok"}
+{"type": "run_end", "run_id": "bcc3916de765", "ts": 1787117327.5396664}

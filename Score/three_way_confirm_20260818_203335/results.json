@@ -1,0 +1,1580 @@
+{
+  "event_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_confirm_20260818_203335",
+  "n_cases": 11,
+  "aggregate": {
+    "systems": {
+      "bare": {
+        "n_cases": 11,
+        "total_mean": 0.7319,
+        "total_ci95": [
+          0.6474,
+          0.8023
+        ],
+        "metrics": {
+          "accuracy": {
+            "n": 11,
+            "mean": 0.6659,
+            "std": 0.3125,
+            "ci95": [
+              0.4863,
+              0.8182
+            ]
+          },
+          "grounding": {
+            "n": 11,
+            "mean": 0.9273,
+            "std": 0.1603,
+            "ci95": [
+              0.8182,
+              1.0
+            ]
+          },
+          "completeness": {
+            "n": 11,
+            "mean": 0.8303,
+            "std": 0.1574,
+            "ci95": [
+              0.7363,
+              0.916
+            ]
+          },
+          "reasoning": {
+            "n": 11,
+            "mean": 0.5545,
+            "std": 0.1809,
+            "ci95": [
+              0.4545,
+              0.6545
+            ]
+          },
+          "efficiency": {
+            "n": 11,
+            "mean": 0.9362,
+            "std": 0.093,
+            "ci95": [
+              0.881,
+              0.9833
+            ]
+          },
+          "robustness": {
+            "n": 11,
+            "mean": 1.0,
+            "std": 0.0,
+            "ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "tactical_accuracy": {
+            "n": 11,
+            "mean": 0.6068,
+            "std": 0.2505,
+            "ci95": [
+              0.4636,
+              0.7318
+            ]
+          }
+        },
+        "stability": {
+          "n": 0,
+          "mean": null,
+          "std": null
+        },
+        "tool_use": {
+          "n": 0,
+          "mean": null,
+          "std": null
+        },
+        "extended_total_mean": null,
+        "extended_total_ci95": null
+      },
+      "multi": {
+        "n_cases": 11,
+        "total_mean": 0.8434,
+        "total_ci95": [
+          0.7813,
+          0.8974
+        ],
+        "metrics": {
+          "accuracy": {
+            "n": 11,
+            "mean": 0.7932,
+            "std": 0.1946,
+            "ci95": [
+              0.6773,
+              0.8955
+            ]
+          },
+          "grounding": {
+            "n": 11,
+            "mean": 0.8932,
+            "std": 0.0672,
+            "ci95": [
+              0.8568,
+              0.9318
+            ]
+          },
+          "completeness": {
+            "n": 11,
+            "mean": 0.9364,
+            "std": 0.0701,
+            "ci95": [
+              0.8977,
+              0.975
+            ]
+          },
+          "reasoning": {
+            "n": 11,
+            "mean": 0.7727,
+            "std": 0.1555,
+            "ci95": [
+              0.6727,
+              0.8545
+            ]
+          },
+          "efficiency": {
+            "n": 11,
+            "mean": 0.9657,
+            "std": 0.0765,
+            "ci95": [
+              0.9156,
+              1.0
+            ]
+          },
+          "robustness": {
+            "n": 11,
+            "mean": 1.0,
+            "std": 0.0,
+            "ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "tactical_accuracy": {
+            "n": 11,
+            "mean": 0.7614,
+            "std": 0.1715,
+            "ci95": [
+              0.659,
+              0.8545
+            ]
+          }
+        },
+        "stability": {
+          "n": 0,
+          "mean": null,
+          "std": null
+        },
+        "tool_use": {
+          "n": 4,
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "extended_total_mean": 0.8182,
+        "extended_total_ci95": [
+          0.7488,
+          0.8614
+        ]
+      },
+      "single": {
+        "n_cases": 11,
+        "total_mean": 0.7922,
+        "total_ci95": [
+          0.7221,
+          0.8585
+        ],
+        "metrics": {
+          "accuracy": {
+            "n": 11,
+            "mean": 0.7091,
+            "std": 0.2131,
+            "ci95": [
+              0.5864,
+              0.8182
+            ]
+          },
+          "grounding": {
+            "n": 11,
+            "mean": 0.862,
+            "std": 0.1053,
+            "ci95": [
+              0.7997,
+              0.9188
+            ]
+          },
+          "completeness": {
+            "n": 11,
+            "mean": 0.8348,
+            "std": 0.1845,
+            "ci95": [
+              0.7265,
+              0.9341
+            ]
+          },
+          "reasoning": {
+            "n": 11,
+            "mean": 0.7091,
+            "std": 0.1758,
+            "ci95": [
+              0.6091,
+              0.8091
+            ]
+          },
+          "efficiency": {
+            "n": 11,
+            "mean": 0.9423,
+            "std": 0.0742,
+            "ci95": [
+              0.8992,
+              0.9807
+            ]
+          },
+          "robustness": {
+            "n": 11,
+            "mean": 1.0,
+            "std": 0.0,
+            "ci95": [
+              1.0,
+              1.0
+            ]
+          },
+          "tactical_accuracy": {
+            "n": 11,
+            "mean": 0.7205,
+            "std": 0.1867,
+            "ci95": [
+              0.6068,
+              0.8182
+            ]
+          }
+        },
+        "stability": {
+          "n": 0,
+          "mean": null,
+          "std": null
+        },
+        "tool_use": {
+          "n": 11,
+          "mean": 0.9955,
+          "std": 0.0151
+        },
+        "extended_total_mean": 0.8125,
+        "extended_total_ci95": [
+          0.7494,
+          0.8722
+        ]
+      }
+    },
+    "comparisons": {
+      "bare_vs_multi": {
+        "total": {
+          "n": 11,
+          "mean_diff": -0.1115,
+          "wilcoxon_p": 0.05046,
+          "ttest_p": 0.08273,
+          "cohens_d_paired": -0.581,
+          "cliffs_delta": -0.504,
+          "wilcoxon_p_holm": 0.90378
+        },
+        "accuracy": {
+          "n": 11,
+          "mean_diff": -0.1273,
+          "wilcoxon_p": 0.32699,
+          "ttest_p": 0.24574,
+          "cohens_d_paired": -0.372,
+          "cliffs_delta": -0.24,
+          "wilcoxon_p_holm": 1.0
+        },
+        "grounding": {
+          "n": 11,
+          "mean_diff": 0.0341,
+          "wilcoxon_p": 0.38472,
+          "ttest_p": 0.49741,
+          "cohens_d_paired": 0.212,
+          "cliffs_delta": 0.471,
+          "wilcoxon_p_holm": 1.0
+        },
+        "completeness": {
+          "n": 11,
+          "mean_diff": -0.1061,
+          "wilcoxon_p": 0.05021,
+          "ttest_p": 0.03281,
+          "cohens_d_paired": -0.746,
+          "cliffs_delta": -0.405,
+          "wilcoxon_p_holm": 0.90378
+        },
+        "reasoning": {
+          "n": 11,
+          "mean_diff": -0.2182,
+          "wilcoxon_p": 0.02553,
+          "ttest_p": 0.01079,
+          "cohens_d_paired": -0.942,
+          "cliffs_delta": -0.645,
+          "wilcoxon_p_holm": 0.53613
+        },
+        "efficiency": {
+          "n": 11,
+          "mean_diff": -0.0295,
+          "wilcoxon_p": 0.46307,
+          "ttest_p": 0.45534,
+          "cohens_d_paired": -0.234,
+          "cliffs_delta": -0.314,
+          "wilcoxon_p_holm": 1.0
+        },
+        "robustness": {
+          "n": 11,
+          "mean_diff": 0.0,
+          "wilcoxon_p": null,
+          "ttest_p": NaN,
+          "cohens_d_paired": null,
+          "cliffs_delta": 0.0,
+          "wilcoxon_p_holm": null
+        },
+        "tactical_accuracy": {
+          "n": 11,
+          "mean_diff": -0.1545,
+          "wilcoxon_p": 0.20262,
+          "ttest_p": 0.16546,
+          "cohens_d_paired": -0.451,
+          "cliffs_delta": -0.347,
+          "wilcoxon_p_holm": 1.0
+        }
+      },
+      "bare_vs_single": {
+        "total": {
+          "n": 11,
+          "mean_diff": -0.0604,
+          "wilcoxon_p": 0.37394,
+          "ttest_p": 0.33533,
+          "cohens_d_paired": -0.305,
+          "cliffs_delta": -0.24,
+          "wilcoxon_p_holm": 1.0
+        },
+        "accuracy": {
+          "n": 11,
+          "mean_diff": -0.0432,
+          "wilcoxon_p": 0.8938,
+          "ttest_p": 0.69666,
+          "cohens_d_paired": -0.121,
+          "cliffs_delta": -0.017,
+          "wilcoxon_p_holm": 1.0
+        },
+        "grounding": {
+          "n": 11,
+          "mean_diff": 0.0653,
+          "wilcoxon_p": 0.31223,
+          "ttest_p": 0.2713,
+          "cohens_d_paired": 0.351,
+          "cliffs_delta": 0.512,
+          "wilcoxon_p_holm": 1.0
+        },
+        "completeness": {
+          "n": 11,
+          "mean_diff": -0.0045,
+          "wilcoxon_p": 0.54029,
+          "ttest_p": 0.9469,
+          "cohens_d_paired": -0.021,
+          "cliffs_delta": -0.107,
+          "wilcoxon_p_holm": 1.0
+        },
+        "reasoning": {
+          "n": 11,
+          "mean_diff": -0.1545,
+          "wilcoxon_p": 0.12164,
+          "ttest_p": 0.0642,
+          "cohens_d_paired": -0.627,
+          "cliffs_delta": -0.455,
+          "wilcoxon_p_holm": 1.0
+        },
+        "efficiency": {
+          "n": 11,
+          "mean_diff": -0.0061,
+          "wilcoxon_p": 0.77943,
+          "ttest_p": 0.87016,
+          "cohens_d_paired": -0.051,
+          "cliffs_delta": -0.091,
+          "wilcoxon_p_holm": 1.0
+        },
+        "robustness": {
+          "n": 11,
+          "mean_diff": 0.0,
+          "wilcoxon_p": null,
+          "ttest_p": NaN,
+          "cohens_d_paired": null,
+          "cliffs_delta": 0.0,
+          "wilcoxon_p_holm": null
+        },
+        "tactical_accuracy": {
+          "n": 11,
+          "mean_diff": -0.1136,
+          "wilcoxon_p": 0.31351,
+          "ttest_p": 0.306,
+          "cohens_d_paired": -0.325,
+          "cliffs_delta": -0.223,
+          "wilcoxon_p_holm": 1.0
+        }
+      },
+      "multi_vs_single": {
+        "total": {
+          "n": 11,
+          "mean_diff": 0.0512,
+          "wilcoxon_p": 0.091,
+          "ttest_p": 0.10436,
+          "cohens_d_paired": 0.539,
+          "cliffs_delta": 0.24,
+          "wilcoxon_p_holm": 1.0
+        },
+        "accuracy": {
+          "n": 11,
+          "mean_diff": 0.0841,
+          "wilcoxon_p": 0.04614,
+          "ttest_p": 0.05911,
+          "cohens_d_paired": 0.642,
+          "cliffs_delta": 0.256,
+          "wilcoxon_p_holm": 0.87666
+        },
+        "grounding": {
+          "n": 11,
+          "mean_diff": 0.0312,
+          "wilcoxon_p": 0.34283,
+          "ttest_p": 0.28995,
+          "cohens_d_paired": 0.337,
+          "cliffs_delta": 0.132,
+          "wilcoxon_p_holm": 1.0
+        },
+        "completeness": {
+          "n": 11,
+          "mean_diff": 0.1015,
+          "wilcoxon_p": 0.04252,
+          "ttest_p": 0.07815,
+          "cohens_d_paired": 0.592,
+          "cliffs_delta": 0.331,
+          "wilcoxon_p_holm": 0.8504
+        },
+        "reasoning": {
+          "n": 11,
+          "mean_diff": 0.0636,
+          "wilcoxon_p": 0.25909,
+          "ttest_p": 0.24004,
+          "cohens_d_paired": 0.377,
+          "cliffs_delta": 0.24,
+          "wilcoxon_p_holm": 1.0
+        },
+        "efficiency": {
+          "n": 11,
+          "mean_diff": 0.0234,
+          "wilcoxon_p": 0.46307,
+          "ttest_p": 0.47318,
+          "cohens_d_paired": 0.225,
+          "cliffs_delta": 0.207,
+          "wilcoxon_p_holm": 1.0
+        },
+        "robustness": {
+          "n": 11,
+          "mean_diff": 0.0,
+          "wilcoxon_p": null,
+          "ttest_p": NaN,
+          "cohens_d_paired": null,
+          "cliffs_delta": 0.0,
+          "wilcoxon_p_holm": null
+        },
+        "tactical_accuracy": {
+          "n": 11,
+          "mean_diff": 0.0409,
+          "wilcoxon_p": 0.31351,
+          "ttest_p": 0.42643,
+          "cohens_d_paired": 0.25,
+          "cliffs_delta": 0.174,
+          "wilcoxon_p_holm": 1.0
+        }
+      }
+    },
+    "power_note_total": "n=11（配对用例数），α=0.05，配对 t 检验在 80% power 下约可检出 |d|≥0.84 的效应；更小差异仅作描述性参考。",
+    "n_cases": 11
+  },
+  "category_breakdown": {
+    "adversarial": {
+      "bare": 0.843,
+      "single": 0.82,
+      "multi": 0.819
+    },
+    "counterfactual": {
+      "bare": 0.623,
+      "single": 0.673,
+      "multi": 0.855
+    },
+    "comparison": {
+      "bare": 0.886,
+      "single": 0.905,
+      "multi": 0.99
+    },
+    "focus": {
+      "bare": 0.734,
+      "single": 0.943,
+      "multi": 0.86
+    },
+    "frame": {
+      "bare": 0.859,
+      "single": 0.562,
+      "multi": 0.647
+    },
+    "hallucination": {
+      "bare": 0.82,
+      "single": 0.888,
+      "multi": 0.91
+    },
+    "general_qa": {
+      "bare": 0.79,
+      "single": 0.713,
+      "multi": 0.848
+    },
+    "style": {
+      "bare": 0.56,
+      "single": 0.71,
+      "multi": 0.87
+    },
+    "team": {
+      "bare": 0.44,
+      "single": 0.925,
+      "multi": 0.96
+    },
+    "timeline": {
+      "bare": 0.841,
+      "single": 0.77,
+      "multi": 0.836
+    },
+    "verify": {
+      "bare": 0.655,
+      "single": 0.805,
+      "multi": 0.682
+    }
+  },
+  "failure_modes": {
+    "逻辑矛盾": {
+      "count": 3,
+      "samples": [
+        "single/frame_ball_first#r0",
+        "bare/team_7s_threat#r0",
+        "multi/verify_7s_pos#r0"
+      ]
+    },
+    "无依据夸大": {
+      "count": 3,
+      "samples": [
+        "single/qa_player_zone_7#r0",
+        "multi/qa_player_zone_7#r0",
+        "single/verify_7s_pos#r0"
+      ]
+    },
+    "编造数据": {
+      "count": 2,
+      "samples": [
+        "single/qa_7s_ball_hmax#r0",
+        "multi/qa_7s_ball_hmax#r0"
+      ]
+    }
+  },
+  "judge_meta": {
+    "adv_ambiguous_multi_target": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.075,
+        "multi": 0.075,
+        "single": 0.15
+      }
+    },
+    "cf_7s_pass10": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.25,
+        "multi": 0.0,
+        "single": 0.1
+      }
+    },
+    "compare_6_7_active": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.025,
+        "multi": 0.025,
+        "single": 0.0
+      }
+    },
+    "focus_player7": {
+      "orders": [
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.2,
+        "multi": 0.0,
+        "single": 0.1
+      }
+    },
+    "frame_ball_first": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.05,
+        "multi": 0.05,
+        "single": 0.05
+      }
+    },
+    "halluc_frame_600": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.0,
+        "single": 0.05
+      }
+    },
+    "qa_7s_ball_hmax": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.0,
+        "single": 0.0
+      }
+    },
+    "qa_player_zone_7": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.05,
+        "multi": 0.1,
+        "single": 0.15
+      }
+    },
+    "team_7s_threat": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.1,
+        "multi": 0.0,
+        "single": 0.05
+      }
+    },
+    "timeline_ball_height": {
+      "orders": [
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.025,
+        "multi": 0.025,
+        "single": 0.05
+      }
+    },
+    "verify_7s_pos": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.1,
+        "multi": 0.1,
+        "single": 0.1
+      }
+    }
+  },
+  "judge_disagreements": {
+    "counts": {
+      "ok": 15,
+      "disagreement": 3,
+      "n/a": 15
+    },
+    "top": [
+      {
+        "system": "single",
+        "case_id": "timeline_ball_height",
+        "repeat": 0,
+        "program_accuracy": 0.0,
+        "judge_accuracy": 0.65,
+        "diff": 0.65
+      },
+      {
+        "system": "bare",
+        "case_id": "cf_7s_pass10",
+        "repeat": 0,
+        "program_accuracy": 1.0,
+        "judge_accuracy": 0.45,
+        "diff": 0.55
+      },
+      {
+        "system": "single",
+        "case_id": "cf_7s_pass10",
+        "repeat": 0,
+        "program_accuracy": 1.0,
+        "judge_accuracy": 0.5,
+        "diff": 0.5
+      }
+    ]
+  },
+  "cost": {
+    "bare": {
+      "latency_ms": [
+        65461.5,
+        "n=11"
+      ],
+      "llm_calls": [
+        1.0,
+        "n=11"
+      ],
+      "total_tokens": [
+        12631.2,
+        "n=11"
+      ]
+    },
+    "single": {
+      "latency_ms": [
+        15870.7,
+        "n=11"
+      ],
+      "llm_calls": [
+        2.9,
+        "n=11"
+      ],
+      "total_tokens": [
+        12625.7,
+        "n=11"
+      ]
+    },
+    "multi": {
+      "latency_ms": [
+        21384.9,
+        "n=11"
+      ],
+      "llm_calls": [
+        1.4,
+        "n=11"
+      ],
+      "total_tokens": [
+        11106.8,
+        "n=10"
+      ]
+    }
+  },
+  "per_case_summary": {
+    "adv_ambiguous_multi_target": {
+      "bare": {
+        "total": 0.843,
+        "stability": null
+      },
+      "single": {
+        "total": 0.82,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.819,
+        "stability": null
+      }
+    },
+    "cf_7s_pass10": {
+      "bare": {
+        "total": 0.623,
+        "stability": null
+      },
+      "single": {
+        "total": 0.673,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.855,
+        "stability": null
+      }
+    },
+    "compare_6_7_active": {
+      "bare": {
+        "total": 0.886,
+        "stability": null
+      },
+      "single": {
+        "total": 0.905,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.99,
+        "stability": null
+      }
+    },
+    "focus_player7": {
+      "bare": {
+        "total": 0.734,
+        "stability": null
+      },
+      "single": {
+        "total": 0.943,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.86,
+        "stability": null
+      }
+    },
+    "frame_ball_first": {
+      "bare": {
+        "total": 0.859,
+        "stability": null
+      },
+      "single": {
+        "total": 0.562,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.647,
+        "stability": null
+      }
+    },
+    "halluc_frame_600": {
+      "bare": {
+        "total": 0.82,
+        "stability": null
+      },
+      "single": {
+        "total": 0.888,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.91,
+        "stability": null
+      }
+    },
+    "qa_7s_ball_hmax": {
+      "bare": {
+        "total": 0.79,
+        "stability": null
+      },
+      "single": {
+        "total": 0.713,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.848,
+        "stability": null
+      }
+    },
+    "qa_player_zone_7": {
+      "bare": {
+        "total": 0.56,
+        "stability": null
+      },
+      "single": {
+        "total": 0.71,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.87,
+        "stability": null
+      }
+    },
+    "team_7s_threat": {
+      "bare": {
+        "total": 0.44,
+        "stability": null
+      },
+      "single": {
+        "total": 0.925,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.96,
+        "stability": null
+      }
+    },
+    "timeline_ball_height": {
+      "bare": {
+        "total": 0.841,
+        "stability": null
+      },
+      "single": {
+        "total": 0.77,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.836,
+        "stability": null
+      }
+    },
+    "verify_7s_pos": {
+      "bare": {
+        "total": 0.655,
+        "stability": null
+      },
+      "single": {
+        "total": 0.805,
+        "stability": null
+      },
+      "multi": {
+        "total": 0.682,
+        "stability": null
+      }
+    }
+  },
+  "system_labels": {
+    "bare": "单次LLM裸调用",
+    "single": "单智能体+工具",
+    "multi": "多智能体系统"
+  },
+  "alignment_case": "adv_ambiguous_multi_target",
+  "alignment": {
+    "heuristic": true,
+    "systems": {
+      "bare": {
+        "repeat": 0,
+        "steps": [
+          {
+            "idx": 0,
+            "kind": "llm",
+            "name": "llm_call[0]",
+            "dur_ms": 95896.16,
+            "status": "ok",
+            "phase": "synthesis",
+            "tools": null,
+            "tool_round": null,
+            "context_chars": 9072,
+            "attrs": {
+              "system_len": 293,
+              "user_len": 8779
+            }
+          }
+        ],
+        "latency_ms": 95906.0,
+        "llm_calls": 1,
+        "answer_excerpt": "这段数据只有约 12.4 秒，所以我评的是“这一片段里的跑动积极性”，不是整场表现。  \n我的判断标准是：**累计跑动距离、平均速度、峰值速度**，同时结合球员轨迹覆盖范围。\n\n## 先给结论\n\n**A队的6号和B队的18号是全场跑动最积极的球员。**  \nA队的8号是最明显的“冲刺爆点”，虽然总跑动量不是最高，但突然加速能力全场最强。  \n门将21号基本不参与跑动，不能和外场球员直接比。\n\n## A队（红）横向比较\n\n- **6号**：跑动量最大、平均速度也最高，轨迹覆盖了一大段边路纵深，是A队最稳定的跑动引擎。\n- **4号**：A队第二积极，跑动量大且平均速度较高，属于持续跟防、接应型。\n- **8号**：总跑动量中上，但有一拍非常明显的爆发冲刺，峰值速度全场最高，是A队里的“提速点”。\n- **3号和7号**：中等活跃。3号跑动量略多一点，7号则更有突然加速能力。\n- **2号和5"
+      },
+      "single": {
+        "repeat": 0,
+        "steps": [
+          {
+            "idx": 0,
+            "kind": "llm",
+            "name": "llm_call[0]",
+            "dur_ms": 2147.77,
+            "status": "ok",
+            "phase": "retrieval",
+            "tools": null,
+            "tool_round": 0,
+            "context_chars": 343,
+            "attrs": {
+              "system_len": 311,
+              "user_len": 32,
+              "tool_round": 0
+            }
+          },
+          {
+            "idx": 1,
+            "kind": "tool",
+            "name": "get_tactical_facts",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 643,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 2,
+            "kind": "tool",
+            "name": "get_ball_timeline",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 943,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 3,
+            "kind": "llm",
+            "name": "llm_call[1]",
+            "dur_ms": 7379.44,
+            "status": "ok",
+            "phase": "retrieval",
+            "tools": null,
+            "tool_round": 1,
+            "context_chars": 1286,
+            "attrs": {
+              "system_len": 311,
+              "user_len": 32,
+              "tool_round": 1
+            }
+          },
+          {
+            "idx": 4,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 1586,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 5,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 1886,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 6,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 2186,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 7,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 2486,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 8,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 2786,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 9,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 3086,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 10,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 3386,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 11,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 3686,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 12,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 3986,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 13,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 4286,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 14,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 4586,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 15,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 4886,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 16,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 5186,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 17,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 5486,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 18,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 5786,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 19,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 6086,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 20,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 6386,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 21,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 6686,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 22,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 6986,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 23,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 7286,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 24,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 7586,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 25,
+            "kind": "llm",
+            "name": "llm_call[2]",
+            "dur_ms": 20832.45,
+            "status": "ok",
+            "phase": "synthesis",
+            "tools": null,
+            "tool_round": 2,
+            "context_chars": 7929,
+            "attrs": {
+              "system_len": 311,
+              "user_len": 32,
+              "tool_round": 2
+            }
+          }
+        ],
+        "latency_ms": 30359.0,
+        "llm_calls": 3,
+        "answer_excerpt": "我已经把两队所有球员的参与度、跑动、覆盖和速度数据都核了一遍。先说结论：**这场比赛的活跃度高度集中在 A 队右路进攻组，B 队绝大多数球员属于\"在跑但摸不到球\"，A 队 8号、7号、6号三人构成明显的核心活跃三角**。\n\n## 总体判断\n\nA 队是绝对的控球方和推进方（全队几乎全员参与球路），B 队只有零星几次触球，多数人全场处于\"空跑\"状态。所以**比\"谁更积极\"，A 队核心球员完胜 B 队**。\n\n## A 队：活跃度从高到低\n\n**8号 —— 全场参与度第一，最核心的持球人。** 他参与球路的次数是全场最高的，过半时间里球都离他很近；而且他的瞬时爆发速度是全场最高的，多次长时间带球向前推进（比赛末段连续十几秒由他控球）。活动区域在中场右路，是A队进攻的发动机。\n\n**7号 —— 黏球率极高，前场接应点。** 球在他附近的时间占比是除6号外全队最高的，多数时间待在前场右路，是进攻终结"
+      },
+      "multi": {
+        "repeat": 0,
+        "steps": [
+          {
+            "idx": 0,
+            "kind": "load",
+            "name": "load_data",
+            "dur_ms": 5.01,
+            "status": "ok",
+            "phase": "load",
+            "context_chars": 0,
+            "attrs": {
+              "person": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_person2d.csv",
+              "ball": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_soccer3d.csv"
+            }
+          },
+          {
+            "idx": 1,
+            "kind": "load",
+            "name": "corpus_ready",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "load",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 2,
+            "kind": "stage",
+            "name": "routing",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 3,
+            "kind": "stage",
+            "name": "routing",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 4,
+            "kind": "stage",
+            "name": "qa",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 5,
+            "kind": "llm",
+            "name": "llm_call[0]",
+            "dur_ms": 9511.81,
+            "status": "ok",
+            "phase": "routing",
+            "tools": [
+              "get_tactical_facts",
+              "get_ball_timeline",
+              "get_frame_snapshot",
+              "get_player_raw_data",
+              "get_player_profile",
+              "run_counterfactual_simulation"
+            ],
+            "tool_round": 0,
+            "context_chars": 20014,
+            "attrs": {
+              "system_len": 2523,
+              "user_len": 17491,
+              "tools": [
+                "get_tactical_facts",
+                "get_ball_timeline",
+                "get_frame_snapshot",
+                "get_player_raw_data",
+                "get_player_profile",
+                "run_counterfactual_simulation"
+              ],
+              "tool_round": 0,
+              "seq": 0,
+              "stream": true
+            }
+          },
+          {
+            "idx": 6,
+            "kind": "llm",
+            "name": "llm_call[1]",
+            "dur_ms": 17119.61,
+            "status": "ok",
+            "phase": "synthesis",
+            "tools": [
+              "get_tactical_facts",
+              "get_ball_timeline",
+              "get_frame_snapshot",
+              "get_player_raw_data",
+              "get_player_profile",
+              "run_counterfactual_simulation"
+            ],
+            "tool_round": 1,
+            "context_chars": 40028,
+            "attrs": {
+              "system_len": 2523,
+              "user_len": 17491,
+              "tools": [
+                "get_tactical_facts",
+                "get_ball_timeline",
+                "get_frame_snapshot",
+                "get_player_raw_data",
+                "get_player_profile",
+                "run_counterfactual_simulation"
+              ],
+              "tool_round": 1,
+              "seq": 1,
+              "stream": true
+            }
+          },
+          {
+            "idx": 7,
+            "kind": "stage",
+            "name": "qa",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 40028,
+            "attrs": {}
+          }
+        ],
+        "latency_ms": 26656.0,
+        "llm_calls": 2,
+        "answer_excerpt": "先给结论：整段12.4秒里，A队的活跃度明显高于B队，A队以8号为核心形成了一条\"右路进攻链\"，B队则是\"跑得多、碰球少\"的空跑型状态。下面按梯队把所有球员都比一遍。\n\n首先看A队，按参与度可以分三档。第一档是8号、7号、6号、3号四人，他们是球权流转的真正引擎。其中8号参与球路的次数是全队最高的，几乎是第二名的两倍，接近球的时间也过半，跑动量大，本段进攻的最后一环（第9.4秒起持球）也是他，所以他是A队当之无愧的第一活跃点、进攻收尾人。7号紧随其后，参与次数和接近球时间占比都排在队内前列，且活动区域顶在右路前场，是接应和推进的支点。6号的特殊之处在于接近球时间占比接近百分之百——也就是说球一旦进入他的区域，基本都过他脚下，他是这条右路链的\"中转站\"，触球后立刻转移、不拖泥带水。3号则是中场线上唯一深度参与的人，参与次数也达到第一档门槛，说明A队的攻势是由中场这一环向前输送的。第二档是10"
+      }
+    },
+    "tool_diff": {
+      "get_player_profile": [
+        "multi",
+        "single"
+      ],
+      "get_ball_timeline": [
+        "single"
+      ],
+      "get_tactical_facts": [
+        "single"
+      ]
+    }
+  }
+}

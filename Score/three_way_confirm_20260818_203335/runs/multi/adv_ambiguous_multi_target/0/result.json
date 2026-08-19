@@ -1,0 +1,123 @@
+{
+  "system": "multi",
+  "case_id": "adv_ambiguous_multi_target",
+  "category": "adversarial",
+  "input": "对比一下队里几个球员谁更积极？别只盯着一个人，把所有人都比一遍。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "先给结论：整段12.4秒里，A队的活跃度明显高于B队，A队以8号为核心形成了一条\"右路进攻链\"，B队则是\"跑得多、碰球少\"的空跑型状态。下面按梯队把所有球员都比一遍。\n\n首先看A队，按参与度可以分三档。第一档是8号、7号、6号、3号四人，他们是球权流转的真正引擎。其中8号参与球路的次数是全队最高的，几乎是第二名的两倍，接近球的时间也过半，跑动量大，本段进攻的最后一环（第9.4秒起持球）也是他，所以他是A队当之无愧的第一活跃点、进攻收尾人。7号紧随其后，参与次数和接近球时间占比都排在队内前列，且活动区域顶在右路前场，是接应和推进的支点。6号的特殊之处在于接近球时间占比接近百分之百——也就是说球一旦进入他的区域，基本都过他脚下，他是这条右路链的\"中转站\"，触球后立刻转移、不拖泥带水。3号则是中场线上唯一深度参与的人，参与次数也达到第一档门槛，说明A队的攻势是由中场这一环向前输送的。第二档是10号，参与度中等，但他是唯一从右路前场向中路前场移动的人（活动区域里出现了中路），说明他在尝试横向拉扯空间，是次要接应点。第三档是1号、2号、4号、5号、9号，这五人全程零参与、零接近球；其中2号和4号跑动量标为大却一次都没碰到球，属于\"被晾在进攻链条之外\"的无球跑动者，1号、5号、9号则是站位型球员，基本不参与球权流转。\n\n再看B队，整体明显更\"被动接球\"。相对最积极的是19号，参与次数在B队里最多，而且他出现在第6.2到6.7秒的一连串高空球传递中，是B队唯一的主动接应点。其次是14号、15号、16号三人，参与次数相近，跑动量都标为大，其中14号还有过一次控球后向前出球（第7.7到7.9秒），是本段B队少有的向A队方向施压的动作，他的瞬时速度也达到全队最高档，说明有冲击力；但15号、16号虽然跑动大，接近球时间却是零，属于跑到位置却没拿到球。18号只参与两次，但活动范围横跨右路前场和中场，覆盖面积在B队里最大，是个游走型前锋。剩下11号、12号、13号、17号、20号全部零参与，其中11、12、13、17跑动量都标为大——这四人和15、16号构成B队\"空跑大队\"：场上无球跑动不吝啬，但球几乎从不经过他们脚下，这也是B队整体参与度远低于A队的直接原因。21号门将跑动量最小，正常。\n\n把两队放在一起看，最核心的结论是：积极性不能只看跑动量。A队是\"跑动＋触球\"双高，8号、7号、6号、3号把球权牢牢攥在右路；B队则是\"跑动大、触球少\"，19号和14号是仅有的两个真正在接球端产生作用的球员。另外需要指出，全场没有任何一次冲刺，所有人都以匀速为主，所以\"积极\"的差异主要体现在参与球路、接近球和有效跑动上，而不是爆发力上。",
+  "latency_ms": 26656.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 21930,
+    "completion_tokens": 3196,
+    "total_tokens": 25126
+  },
+  "error": null,
+  "trace_file": "trace_20260818_204654_5d78516eeec8.jsonl",
+  "tool_records": [
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "8号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "3号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "10号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "19号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "14号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "15号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "16号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "18号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "2号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "11号"
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_confirm_20260818_203335\\runs\\multi\\adv_ambiguous_multi_target\\0",
+  "ts": "2026-08-18 20:46:54",
+  "repeat": 0
+}

@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_ball_5s_short",
+  "category": "general_qa",
+  "input": "这份数据里一共有多少名球员？球最高到过多少？",
+  "dataset": {
+    "person": "TestInput/Files/5s-person.csv",
+    "ball": "TestInput/Files/5s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这份数据中共有 **20 名球员**（两队各 10 人，外加 1 名门将，合计 21 个身份编号，但门将单独标记，球员列表为 20 人）。\n\n足球最高点出现在空中轨迹的顶点附近，最高离地高度为 **5.0 米**。",
+  "latency_ms": 2453.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 4021,
+    "completion_tokens": 140,
+    "total_tokens": 4161
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142738_bfe42b31ba0e.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_ball_5s_short\\2",
+  "ts": "2026-08-19 14:27:38",
+  "context_chars": 5326,
+  "repeat": 2
+}

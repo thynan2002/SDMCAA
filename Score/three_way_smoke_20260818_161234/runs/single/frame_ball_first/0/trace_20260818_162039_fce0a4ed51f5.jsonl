@@ -1,0 +1,9 @@
+{"type": "run_start", "run_id": "fce0a4ed51f5", "ts": 1787041239.2411869}
+{"type": "span_start", "run_id": "fce0a4ed51f5", "span_id": "fce0a4ed51f5-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787041239.245685, "attrs": {"input": "开球那一刻（第0帧）的场上情况是什么样的？", "system": "single"}}
+{"type": "span_start", "run_id": "fce0a4ed51f5", "span_id": "fce0a4ed51f5-00002", "parent_id": "fce0a4ed51f5-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787041239.245685, "attrs": {"system_len": 311, "user_len": 21, "tool_round": 0}}
+{"type": "span_end", "run_id": "fce0a4ed51f5", "span_id": "fce0a4ed51f5-00002", "parent_id": "fce0a4ed51f5-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787041240.8776526, "dur_ms": 1631.97, "status": "ok"}
+{"type": "event", "run_id": "fce0a4ed51f5", "span_id": "fce0a4ed51f5-00001", "kind": "tool", "name": "tool[0]", "ts": 1787041240.8786607, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "fce0a4ed51f5", "span_id": "fce0a4ed51f5-00003", "parent_id": "fce0a4ed51f5-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787041240.8786607, "attrs": {"system_len": 311, "user_len": 21, "tool_round": 1}}
+{"type": "span_end", "run_id": "fce0a4ed51f5", "span_id": "fce0a4ed51f5-00003", "parent_id": "fce0a4ed51f5-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787041244.6107464, "dur_ms": 3732.09, "status": "ok"}
+{"type": "span_end", "run_id": "fce0a4ed51f5", "span_id": "fce0a4ed51f5-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787041244.6107464, "dur_ms": 5365.06, "status": "ok"}
+{"type": "run_end", "run_id": "fce0a4ed51f5", "ts": 1787041244.6107464}

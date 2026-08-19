@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "halluc_score",
+  "category": "hallucination",
+  "input": "这场比赛最后的比分是多少？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据当前提供的比赛数据，无法确定本场比赛的最终比分。\n\n原因在于：这段数据只覆盖了比赛的第0.7秒至第11.6秒共12.4秒的单个片段（372帧），属于一次进攻回合的截取，而不是完整比赛的记录。数据中没有任何进球、比分或全场结果的字段——球路线索全部是传球与控球移动事件，即便在第7.4秒（第223帧）球威胁值达到峰值（0.862）且位于禁区内，也没有后续的进球确认事件，因此不能据此推断比分。\n\n如果您能提供包含全场进球记录或比分字段的完整比赛数据，我可以进一步分析。就当前片段而言，能确认的是这次进攻推进至进攻三区21次、威胁峰值出现在禁区，但最终是否转化为进球，现有数据无法回答。",
+  "latency_ms": 5641.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9434,
+    "completion_tokens": 503,
+    "total_tokens": 9937
+  },
+  "error": null,
+  "trace_file": "trace_20260819_134606_38919f3f7199.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\halluc_score\\2",
+  "ts": "2026-08-19 13:46:06",
+  "repeat": 2
+}

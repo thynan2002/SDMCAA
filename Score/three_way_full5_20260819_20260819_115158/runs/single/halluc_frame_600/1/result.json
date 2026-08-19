@@ -1,0 +1,70 @@
+{
+  "system": "single",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**数据不足，无法描述第20秒的攻防态势。**\n\n我核验了相关数据，情况如下：\n\n- **帧级快照**：第20秒对应第600帧（帧率30），我查询了第590、600、610帧，系统均返回「第600帧的球数据不存在」，即该时间点没有球位置与球员快照数据。\n- **球路时间线**：现有球路数据仅覆盖 **0.7秒～11.6秒** 这一小段，最晚的球路事件停在11.6秒（8号球员控球移动），之后没有任何球路记录，因此无法追踪到第20秒的球权归属与流转。\n- **球员轨迹数据**：以7号球员为例，其原始轨迹仅含19帧（对应约0.6秒），数据覆盖时长极短，不足以支撑到第20秒。\n\n**结论**：现有数据的时间覆盖范围远未到达第20秒，我无法基于工具返回结果判断那一刻的进攻/防守态势、球权或球员位置。若后续数据补充覆盖该时段的球路时间线与帧快照，我可以再为您做详细还原。",
+  "latency_ms": 9313.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 9208,
+    "completion_tokens": 900,
+    "total_tokens": 10108
+  },
+  "error": null,
+  "trace_file": "trace_20260819_131548_3863cf6b2fd2.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 600
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 590
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 610
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\halluc_frame_600\\1",
+  "ts": "2026-08-19 13:15:48",
+  "repeat": 1
+}

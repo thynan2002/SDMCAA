@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_7s_ball_hmax",
+  "category": "general_qa",
+  "input": "这段7秒片段中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：这段7秒片段中球的峰值高度为5.1米，出现在约第2.5秒（第75帧，按30帧/秒换算）。\n\n数据依据与推理：该数值直接取自比赛事实的\"球特征\"字段——\"球峰值高度(米)=5.1\"，对应时刻\"峰值高度出现时刻：约第2.5秒（第75帧）\"。从球路时间线看，这个峰值恰好落在第1.6~2.4秒\"17号→未知\"的高空球事件之后、第2.4~2.6秒\"未知控球移动\"仍维持高空阶段的区间内，说明这是17号起球后球体爬升至最高点的时刻，随后球路转入中段高空传递并逐渐回落。整段球路以短距离高空传递为主，峰值高度5.1米与片段中高空球占比高、连续高空传递的特征一致。",
+  "latency_ms": 5859.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9277,
+    "completion_tokens": 670,
+    "total_tokens": 9947
+  },
+  "error": null,
+  "trace_file": "trace_20260818_203739_f115b9d41362.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_confirm_20260818_203335\\runs\\multi\\qa_7s_ball_hmax\\0",
+  "ts": "2026-08-18 20:37:39",
+  "repeat": 0
+}

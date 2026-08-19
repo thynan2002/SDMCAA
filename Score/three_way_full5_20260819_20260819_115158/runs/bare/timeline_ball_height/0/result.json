@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_ball_height",
+  "category": "timeline",
+  "input": "球在哪些时刻离开过地面（高度大于0）？请按时间列出。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据原始足球轨迹采样数据（帧号 0~372，30fps），球离地高度大于 0 的帧如下，括号内为离地高度（米）：\n\n- 177(0.6)、182(1.8)、186(2.7)、189(3.1)、194(3.8)、201(4.2)、207(4.2)、211(3.9)、214(3.7)、217(3.3)、223(2.5)\n- 236(0.8)、243(1.4)、249(1.5)、256(1.1)、262(0.2)\n- 272(0.3)、274(0.6)、276(1.0)、283(1.6)、288(1.7)、295(1.2)、304(0.3)\n- 312(0.4)、318(0.6)、325(0.5)\n- 338(0.4)、343(0.6)\n\n也就是说，按采样点看，球大致经历了多次腾空：  \n第一次是明显的高球腾空，从 177 帧附近开始，最高到 4.2 米；随后在 232 帧附近落地。  \n之后几次是较低高度的弹跳或重新离地，分别大致发生在 236~262 帧、272~304 帧、312~325 帧、338~343 帧。  \n\n如果只看「从贴地变为离地」的离开地面事件，则出现在：**177帧、236帧、272帧、312帧、338帧**。采样间隔之间的具体触地和弹起瞬间，数据中没有记录。",
+  "latency_ms": 44219.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6097,
+    "completion_tokens": 5435,
+    "total_tokens": 11532
+  },
+  "error": null,
+  "trace_file": "trace_20260819_123430_81e834fbaf1e.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\timeline_ball_height\\0",
+  "ts": "2026-08-19 12:34:30",
+  "context_chars": 8773,
+  "repeat": 0
+}

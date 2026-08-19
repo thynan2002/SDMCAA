@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "style_10s_player",
+  "category": "style",
+  "input": "哪个球员的跑动距离最长？他的风格特点是什么？",
+  "dataset": {
+    "person": "TestInput/Files/10s-person.csv",
+    "ball": "TestInput/Files/10s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "在这段约10.4秒的数据中，**1号球员跑动距离最长**，他的风格特点表现为**典型的边路快速突进型球员**——有球或无球状态下都持续向前场冲击，速度爆发力突出，活动区域集中在左路边路。\n\n数据依据：1号的累计跑动距离、平均速度、峰值速度都排在全场第一，是唯一一名平均速度明显高于其他球员的选手；从轨迹看，他从本方底线附近（y≈8）一路沿边路推进到中场区域（y≈160），移动方向非常明确，多次连续向前，说明他在这一片段中是红队最主要的推进点，带球或接应前插的意愿很强。",
+  "latency_ms": 8734.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 4977,
+    "completion_tokens": 742,
+    "total_tokens": 5719
+  },
+  "error": null,
+  "trace_file": "trace_20260819_124513_bd86ffb61073.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\style_10s_player\\0",
+  "ts": "2026-08-19 12:45:13",
+  "context_chars": 6972,
+  "repeat": 0
+}

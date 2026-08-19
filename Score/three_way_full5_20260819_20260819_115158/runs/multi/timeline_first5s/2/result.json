@@ -1,0 +1,38 @@
+{
+  "system": "multi",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：前5秒是A队在右路中前场的控球组织阶段，球基本在本方右路几名前锋之间短距离倒脚、整体方向偏向后撤，直到第5秒才第一次转为向前推进。\n\n具体球路变化可以拆成四步看：\n\n首先，开场0.7秒由6号将球短传交给7号，这是一记地面短传，方向向左后，属于A队后场拿球后先稳节奏、向后拉出空间的动作。\n\n随后0.8到1.7秒，7号低速带球向左后移动，没有向前冒险出球，说明A队处于控球主导、尚未找到向前线路的状态。\n\n其次，3.4秒7号将球以中距离地面球传给10号，方向仍是向左后；3.7到4.1秒10号接球后在原地控球调整，球几乎不动。这一段延续了向后回传为主的基调，球权稳定在A队右路前场球员脚下。\n\n最后，5.0秒出现关键转折——10号向右前方短传交给6号，球路第一次明确转向进攻方向。这与攻防转换线索中记录的\"第5.0秒由守转攻\"完全吻合，标志着A队结束了前4秒的控球铺垫，开始把球向前场输送、转入进攻组织。\n\n战术含义上，前5秒A队的球路特征与全场\"向后回传占比61%、短传占比89%\"的整体画像一致：这是一段以短传渗透、控制节奏为目的的铺垫期，没有直接向前冲击，真正的向前发起要到第5秒的10号→6号这一脚才出现。",
+  "latency_ms": 14984.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 12113,
+    "completion_tokens": 1628,
+    "total_tokens": 13741
+  },
+  "error": null,
+  "trace_file": "trace_20260819_140718_1fad5d68d2bd.jsonl",
+  "tool_records": [
+    {
+      "name": "submit_intent",
+      "args": {
+        "intent": "general_qa",
+        "target_players": [],
+        "confidence": 0.75,
+        "scenario": null
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\timeline_first5s\\2",
+  "ts": "2026-08-19 14:07:18",
+  "repeat": 2
+}

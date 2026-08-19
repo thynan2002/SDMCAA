@@ -1,0 +1,36 @@
+{
+  "system": "single",
+  "case_id": "frame_what_happened",
+  "category": "frame",
+  "input": "第90帧发生了什么？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**数据不足，无法给出判断。**\n\n我调用了帧级核验工具查询第90帧，工具返回结果为空：**第90帧的球数据不存在**。这可能意味着该帧号超出了本场比赛数据记录的覆盖范围，或该时刻没有可用的球路快照记录。\n\n如您能提供其他帧号（例如比赛实际发生进攻或关键事件的时刻），我可以重新核验。",
+  "latency_ms": 4047.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 2568,
+    "completion_tokens": 168,
+    "total_tokens": 2736
+  },
+  "error": null,
+  "trace_file": "trace_20260819_132843_bcc3916de765.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\frame_what_happened\\1",
+  "ts": "2026-08-19 13:28:43",
+  "repeat": 1
+}

@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_7s_player_count",
+  "category": "general_qa",
+  "input": "这段7秒的数据一共跟踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段7.2秒的片段一共跟踪了19名球员。\n\n具体构成是：17名场上球员（A队10人、B队7人）加上2名门将（16号、21号）。其中A队为10人（1~10号），B队为8人（11~18号，含门将16号）。以上人数直接来自「比赛信息」字段中的球员总数19、场上球员数17与门将数2，与球员清单逐一核对一致。\n\n值得注意的一点是：虽然跟踪了19人，但真正参与球路的只有少数人——A队7号参与球路次数最多，而2号、4号、9号以及B队大部分中场（12、13、14、16号）全程零触球，说明这7秒内绝大多数球员处于观察或站位状态，比赛高度集中在一小片右路区域展开。",
+  "latency_ms": 4844.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9275,
+    "completion_tokens": 550,
+    "total_tokens": 9825
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144636_6582e0e58455.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_7s_player_count\\3",
+  "ts": "2026-08-19 14:46:36",
+  "repeat": 3
+}

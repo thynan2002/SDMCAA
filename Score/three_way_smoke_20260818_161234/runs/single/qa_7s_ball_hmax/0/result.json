@@ -1,0 +1,34 @@
+{
+  "system": "single",
+  "case_id": "qa_7s_ball_hmax",
+  "category": "general_qa",
+  "input": "这段7秒片段中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "我查询了球路时间线数据，但需要如实说明情况：\n\n**结论：这段片段中球最高达到的高度档位为「高空」，但具体的高度数值（如多少米）数据中未记录，因此无法给出精确数字，数据不足。**\n\n**数据依据：**\n\n- 在这段约7秒的片段中，球在**第1.6秒至第3.6秒**之间持续处于「高空」状态。这一时段内球由17号起脚向后传，经8号、6号、10号、15号等多脚衔接，一直保持在高空飞行。\n- 从第3.7秒开始球路高度降至「低平」，随后在第4.5~4.7秒又短暂回升至「高空」（7号→3号），之后基本维持在「低平」乃至「地面」高度。\n- 整段数据中，最高高度档位即为「高空」，未出现更高等级的描述。\n\n需要说明的是：工具返回的数据仅以「低平／高空／地面」这类高度档位来标识球的高度，**没有记录具体的高度数值（米）**，所以我无法给出「最高到过多少米」这样的精确答案。如果您需要精确的峰值高度，目前的数据不支持，请勿将档位描述当作具体数值使用。",
+  "latency_ms": 7031.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 5186,
+    "completion_tokens": 590,
+    "total_tokens": 5776
+  },
+  "error": null,
+  "trace_file": "trace_20260818_161607_41504d26d8e2.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke_20260818_161234\\runs\\single\\qa_7s_ball_hmax\\0",
+  "ts": "2026-08-18 16:16:07",
+  "repeat": 0
+}

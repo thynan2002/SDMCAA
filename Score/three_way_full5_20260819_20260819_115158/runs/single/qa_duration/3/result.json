@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "qa_duration",
+  "category": "general_qa",
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据球路时间线数据，这份数据覆盖了比赛开头约 **11.6 秒** 的时间片段。\n\n**数据依据：**\n- 球路时间线从第 **0.7 秒**（6号传给7号）开始，到第 **11.6 秒**（8号控球移动）结束；\n- 期间共记录了 44 个球路事件；\n- 攻防转换线索显示共发生 4 次方向反转，集中在第 5.0～9.4 秒之间；\n- 战术威胁峰值出现在第 7.4 秒（帧 223）。\n\n也就是说，这并非整场比赛数据，而是比赛开局约 11 秒多的一小段片段。如需了解该片段之后的比赛情况，目前数据不足。",
+  "latency_ms": 5234.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7293,
+    "completion_tokens": 478,
+    "total_tokens": 7771
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150637_50a213d0514e.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 16.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_duration\\3",
+  "ts": "2026-08-19 15:06:37",
+  "repeat": 3
+}

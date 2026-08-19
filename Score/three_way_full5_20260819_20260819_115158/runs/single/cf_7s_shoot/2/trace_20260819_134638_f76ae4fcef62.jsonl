@@ -1,0 +1,10 @@
+{"type": "run_start", "run_id": "f76ae4fcef62", "ts": 1787118398.404255}
+{"type": "span_start", "run_id": "f76ae4fcef62", "span_id": "f76ae4fcef62-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118398.408771, "attrs": {"input": "如果7号在第3秒改为直接射门会怎样？", "system": "single"}}
+{"type": "span_start", "run_id": "f76ae4fcef62", "span_id": "f76ae4fcef62-00002", "parent_id": "f76ae4fcef62-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118398.408771, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 0}}
+{"type": "span_end", "run_id": "f76ae4fcef62", "span_id": "f76ae4fcef62-00002", "parent_id": "f76ae4fcef62-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118400.9916906, "dur_ms": 2582.92, "status": "ok"}
+{"type": "event", "run_id": "f76ae4fcef62", "span_id": "f76ae4fcef62-00001", "kind": "tool", "name": "tool[0]", "ts": 1787118400.9971986, "attrs": {"tool": "run_counterfactual_simulation", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "f76ae4fcef62", "span_id": "f76ae4fcef62-00001", "kind": "tool", "name": "tool[1]", "ts": 1787118400.9971986, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "f76ae4fcef62", "span_id": "f76ae4fcef62-00003", "parent_id": "f76ae4fcef62-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787118400.9971986, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 1}}
+{"type": "span_end", "run_id": "f76ae4fcef62", "span_id": "f76ae4fcef62-00003", "parent_id": "f76ae4fcef62-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787118406.004601, "dur_ms": 5007.4, "status": "ok"}
+{"type": "span_end", "run_id": "f76ae4fcef62", "span_id": "f76ae4fcef62-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118406.004601, "dur_ms": 7595.83, "status": "ok"}
+{"type": "run_end", "run_id": "f76ae4fcef62", "ts": 1787118406.004601}

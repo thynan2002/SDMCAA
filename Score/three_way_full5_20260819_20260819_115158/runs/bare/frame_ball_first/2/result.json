@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第0帧（数据记录的起始时刻）并不是我们通常理解的中圈开球，而更像是A队从右路靠近边线/底角区域持球、准备发起进攻的静止局面。\n\n**形势判断：**\n\n- 球权在A队6号脚下，球停在地面，高度为0。6号位于场地右路非常靠近边线/底角的位置，身边有A队7号在其斜后方/附近接应。\n- A队其余球员并未完全散开，而是主要集中在中场偏右区域，形成对持球人的策应与接应网络；同时8号、9号相对拖后，保持了一定的由守转攻纵深。\n- B队球员此时集中在中场区域，与A队多名队员交错、距离很近，明显处于压迫/贴身盯防的防守姿态，整体阵型被压缩在持球人一侧。\n- 门将21号的位置远离常规球门区，出现在中场偏右区域，这可能说明该片段并非标准比赛门将站位，或存在特殊战术/数据采集因素。\n\n**数据依据：**\n\n第0帧足球坐标为(1194.5, 695.5)，而A队6号球员坐标几乎与球重合（1195, 695.5），且球高度为0，说明球就在6号脚下。A队7号也处在同一侧边线附近（1100.4, 688.2），与持球人相距不远。其他A队队员分布在场地中右侧区域；B队11至20号也集中在中场附近，与A队球员距离接近，形成密集的攻防对峙局面。因此，这一帧呈现的是A队持球、B队贴身防守的静态攻防态势。",
+  "latency_ms": 25188.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6092,
+    "completion_tokens": 2376,
+    "total_tokens": 8468
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135034_5ea0946c1dce.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_ball_first\\2",
+  "ts": "2026-08-19 13:50:34",
+  "context_chars": 8768,
+  "repeat": 2
+}

@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_ball_height",
+  "category": "timeline",
+  "input": "球在哪些时刻离开过地面（高度大于0）？请按时间列出。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据足球轨迹数据中 `z>0` 的采样帧，球离开地面的时刻如下（按帧号顺序；括号内为离地高度，单位米）：\n\n- **第177～223帧**：177(0.6)、182(1.8)、186(2.7)、189(3.1)、194(3.8)、201(4.2)、207(4.2)、211(3.9)、214(3.7)、217(3.3)、223(2.5)\n- **第236～262帧**：236(0.8)、243(1.4)、249(1.5)、256(1.1)、262(0.2)\n- **第272～304帧**：272(0.3)、274(0.6)、276(1.0)、283(1.6)、288(1.7)、295(1.2)、304(0.3)\n- **第312～325帧**：312(0.4)、318(0.6)、325(0.5)\n- **第338～343帧**：338(0.4)、343(0.6)\n\n其余采样帧中足球高度为0，即球在地面上。上述离地过程之间有明显的落回地面时刻，例如第232、265、306、335、349帧等。按30fps换算，第177帧约为第5.9秒，第343帧约为第11.4秒。",
+  "latency_ms": 25375.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6097,
+    "completion_tokens": 3037,
+    "total_tokens": 9134
+  },
+  "error": null,
+  "trace_file": "trace_20260819_133239_1a0e92b3d73b.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\timeline_ball_height\\1",
+  "ts": "2026-08-19 13:32:39",
+  "context_chars": 8773,
+  "repeat": 1
+}

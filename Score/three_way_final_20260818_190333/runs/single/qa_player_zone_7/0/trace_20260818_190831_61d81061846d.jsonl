@@ -1,0 +1,11 @@
+{"type": "run_start", "run_id": "61d81061846d", "ts": 1787051311.6535313}
+{"type": "span_start", "run_id": "61d81061846d", "span_id": "61d81061846d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787051311.657534, "attrs": {"input": "7号主要活动在球场的哪个区域？", "system": "single"}}
+{"type": "span_start", "run_id": "61d81061846d", "span_id": "61d81061846d-00002", "parent_id": "61d81061846d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787051311.6585398, "attrs": {"system_len": 311, "user_len": 15, "tool_round": 0}}
+{"type": "span_end", "run_id": "61d81061846d", "span_id": "61d81061846d-00002", "parent_id": "61d81061846d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787051313.6544664, "dur_ms": 1995.93, "status": "ok"}
+{"type": "event", "run_id": "61d81061846d", "span_id": "61d81061846d-00001", "kind": "tool", "name": "tool[0]", "ts": 1787051313.6554658, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "61d81061846d", "span_id": "61d81061846d-00001", "kind": "tool", "name": "tool[1]", "ts": 1787051313.6554658, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "61d81061846d", "span_id": "61d81061846d-00001", "kind": "tool", "name": "tool[2]", "ts": 1787051313.6574636, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "61d81061846d", "span_id": "61d81061846d-00003", "parent_id": "61d81061846d-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787051313.6574636, "attrs": {"system_len": 311, "user_len": 15, "tool_round": 1}}
+{"type": "span_end", "run_id": "61d81061846d", "span_id": "61d81061846d-00003", "parent_id": "61d81061846d-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787051319.0031352, "dur_ms": 5345.67, "status": "ok"}
+{"type": "span_end", "run_id": "61d81061846d", "span_id": "61d81061846d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787051319.0031352, "dur_ms": 7345.6, "status": "ok"}
+{"type": "run_end", "run_id": "61d81061846d", "ts": 1787051319.0031352}

@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_duration",
+  "category": "general_qa",
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这份数据覆盖的比赛片段为12.4秒，对应372帧（按30fps帧率换算，约合\"12s\"标注片段）。数据来源是「比赛信息」字段中的\"片段标识：12s\"、\"总帧数：372\"、\"总时长：12.4秒（372帧）\"。\n\n需要说明的是，这只是一个局部攻防回合的切片，而非整场比赛——片段内共记录44个球路事件，球路从第0.7秒的\"6号→7号\"开始，到第9.4~11.6秒的\"8号控球移动\"收尾，覆盖了一次完整的由攻转守、再由守转攻的节奏变化。所以12.4秒的时长内，场上节奏转换（方向反转4次）相当密集，比赛处于高频对抗状态。",
+  "latency_ms": 4125.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9436,
+    "completion_tokens": 359,
+    "total_tokens": 9795
+  },
+  "error": null,
+  "trace_file": "trace_20260819_123653_8e7fda5aac11.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_duration\\0",
+  "ts": "2026-08-19 12:36:53",
+  "repeat": 0
+}

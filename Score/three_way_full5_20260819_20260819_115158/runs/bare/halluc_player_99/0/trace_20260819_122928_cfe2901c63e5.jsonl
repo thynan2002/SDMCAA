@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "cfe2901c63e5", "ts": 1787113768.533103}
+{"type": "span_start", "run_id": "cfe2901c63e5", "span_id": "cfe2901c63e5-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787113768.533103, "attrs": {"input": "99号球员这场比赛的表现怎么样？", "system": "bare"}}
+{"type": "span_start", "run_id": "cfe2901c63e5", "span_id": "cfe2901c63e5-00002", "parent_id": "cfe2901c63e5-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787113768.533103, "attrs": {"system_len": 293, "user_len": 8763}}
+{"type": "span_end", "run_id": "cfe2901c63e5", "span_id": "cfe2901c63e5-00002", "parent_id": "cfe2901c63e5-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787113770.768678, "dur_ms": 2235.57, "status": "ok"}
+{"type": "span_end", "run_id": "cfe2901c63e5", "span_id": "cfe2901c63e5-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787113770.7694573, "dur_ms": 2236.35, "status": "ok"}
+{"type": "run_end", "run_id": "cfe2901c63e5", "ts": 1787113770.7694573}

@@ -1,0 +1,50 @@
+{
+  "system": "single",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "关于第20秒，我需要如实说明：**数据不足**。\n\n我核验了第20秒对应的帧快照（第600帧），返回结果为\"第600帧的球数据不存在\"；同时球路时间线的记录也只覆盖到 **第11.6秒**（8号在左后侧区域低速带球）。也就是说，当前数据集中不存在第20秒的球路与场上位置记录，我无法描述那一刻的具体攻防态势，也无法编造当时的情景。\n\n作为参考，我可以提供**数据覆盖到的最后时刻（前11.6秒）**的态势，帮助你了解当时比赛的走向：\n\n- **球权与推进**：比赛开局阶段球权主要掌握在A队手中，控球节奏偏慢，短传为主、绝大多数为地面球，且**回传/横向倒脚占比极高（约八成）**，向前推进仅占约两成，属于典型的耐心控球、寻找节奏的阶段。\n- **进攻侧重**：A队整体压上至前场、重心明显偏右路，右路中场是球路落点最密集的区域，8号、7号、6号是主要参与持球与接应的人。\n- **攻防转换线索**：这段时间内共有4次方向反转，其中第9.4秒刚出现一次由攻转守（球路转为向后），说明A队一次向前尝试被化解后转入回传组织；B队主要退守在中场区域、整体站位紧凑，尚未形成明显的高位逼抢。\n- **威胁峰值**：全场数据显示威胁峰值出现在更早的第7.4秒（禁区附近），此后威胁回落。\n\n如果你需要确认第20秒之后是否还有其他可用数据，或想让我针对其他时刻（如第10秒前后）做详细分析，可以告诉我，我再进一步核验。",
+  "latency_ms": 8063.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7331,
+    "completion_tokens": 857,
+    "total_tokens": 8188
+  },
+  "error": null,
+  "trace_file": "trace_20260819_143851_a93152a98b5d.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 600
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\halluc_frame_600\\3",
+  "ts": "2026-08-19 14:38:51",
+  "repeat": 3
+}

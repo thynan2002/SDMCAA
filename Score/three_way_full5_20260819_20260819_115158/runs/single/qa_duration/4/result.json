@@ -1,0 +1,176 @@
+{
+  "system": "single",
+  "case_id": "qa_duration",
+  "category": "general_qa",
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**直接回答：这份数据只覆盖了大约 11 秒的比赛片段（约从第 0.7 秒到第 11.6 秒），远非一场完整比赛，属于极短时间的战术片段样本。**\n\n数据依据：\n- 球路时间线中，最早的球路事件发生在第 0.7 秒（6号→7号），最晚的事件在第 11.6 秒（8号控球移动），首尾跨度约 10.9 秒。\n- 帧级核验也印证了这一范围：第 20 帧（约第 0.7 秒）有球数据且与时间线起点吻合；第 335、338 帧（约第 11.2～11.3 秒）仍有球数据，而第 339 帧及之后均显示「数据不存在」。\n- 因此，虽然时间线记录到 11.6 秒，但帧数据最晚到约 11.3 秒（第 338 帧）即截止。\n\n需要说明的是，这一片段里其实已经包含了不少信息：总共 44 个球路事件、出现 4 次攻防转换、威胁峰值出现在第 7.4 秒（帧 223）。如果你需要的是完整比赛时长或后续时段的数据，当前样本无法覆盖，属于「数据不足」范围。",
+  "latency_ms": 19360.0,
+  "llm_calls": 6,
+  "tokens": {
+    "prompt_tokens": 38016,
+    "completion_tokens": 2357,
+    "total_tokens": 40373
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153105_206b7ab27277.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 15.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "8号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 220
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 348
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 340
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 345
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 347
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 344
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 330
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 335
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 338
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 339
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 336
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 337
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 20
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 350
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 21
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_duration\\4",
+  "ts": "2026-08-19 15:31:05",
+  "repeat": 4
+}

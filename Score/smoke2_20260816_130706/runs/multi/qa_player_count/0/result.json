@@ -1,0 +1,38 @@
+{
+  "system": "multi",
+  "case_id": "qa_player_count",
+  "category": "general_qa",
+  "input": "这份数据里一共追踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这份片段共追踪了21名球员，其中场上球员20名，外加1名门将（21号）。也就是说A队10人、B队10人、门将1人，构成了这12.4秒片段里完整的追踪对象。",
+  "latency_ms": 65453.5,
+  "llm_calls": 4,
+  "tokens": {
+    "prompt_tokens": 20754,
+    "completion_tokens": 8488,
+    "total_tokens": 29242
+  },
+  "error": null,
+  "trace_file": "trace_20260816_130959_ced58f3e5d00.jsonl",
+  "tool_records": [
+    {
+      "name": "submit_intent",
+      "args": {
+        "intent": "general_qa",
+        "target_players": [],
+        "confidence": 0.9,
+        "scenario": null
+      },
+      "ok": true,
+      "dur_ms": 0.1
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\smoke2_20260816_130706\\runs\\multi\\qa_player_count\\0",
+  "ts": "2026-08-16 13:09:59",
+  "repeat": 0
+}

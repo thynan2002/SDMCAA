@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_duration",
+  "category": "general_qa",
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据覆盖约 **12.4 秒** 的比赛时间（帧号 0 到 372，按 30 帧/秒折算）。",
+  "latency_ms": 1344.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 63,
+    "total_tokens": 6149
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153748_6e007a8fb7e3.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_duration\\4",
+  "ts": "2026-08-19 15:37:48",
+  "context_chars": 8762,
+  "repeat": 4
+}

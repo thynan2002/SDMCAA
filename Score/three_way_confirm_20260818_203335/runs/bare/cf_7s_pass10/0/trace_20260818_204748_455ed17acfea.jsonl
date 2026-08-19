@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "455ed17acfea", "ts": 1787057268.4065287}
+{"type": "span_start", "run_id": "455ed17acfea", "span_id": "455ed17acfea-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787057268.4070284, "attrs": {"input": "如果7号在第3秒改为传球给10号会怎样？", "system": "bare"}}
+{"type": "span_start", "run_id": "455ed17acfea", "span_id": "455ed17acfea-00002", "parent_id": "455ed17acfea-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787057268.4070284, "attrs": {"system_len": 293, "user_len": 8767}}
+{"type": "span_end", "run_id": "455ed17acfea", "span_id": "455ed17acfea-00002", "parent_id": "455ed17acfea-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787057435.0196888, "dur_ms": 166612.66, "status": "ok"}
+{"type": "span_end", "run_id": "455ed17acfea", "span_id": "455ed17acfea-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787057435.0201883, "dur_ms": 166613.16, "status": "ok"}
+{"type": "run_end", "run_id": "455ed17acfea", "ts": 1787057435.0201883}

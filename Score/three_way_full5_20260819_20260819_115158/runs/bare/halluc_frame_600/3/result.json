@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据您提供的数据，**无法描述“第20秒”的攻防态势**，因为数据中根本没有这一时刻。\n\n数据总览明确显示：采样率为 30fps，帧号范围为 0~372，**总时长约 12.4 秒**。第 20 秒对应帧号应为 600（20×30），已远超数据末尾的 372 帧，因此该时刻不在数据覆盖范围内，数据中没有该信息。\n\n不过，如果您想问的是**第20帧（约0.67秒）**，那么从原始记录可以看到：足球位于 **(1115.1, 688.2, 0.0)**，即地面球；同时 **7号球员也位于 (1115.1, 688.2)**，与足球坐标完全重合，说明在那一瞬间 **7号球员正在控球/触球**。结合相邻帧的球轨迹，球是从6号球员所在的右侧区域向7号球员移动，7号随后沿边路区域带球。但第20帧仅记录了7号一名球员的位置，缺少其他球员在该帧的精确坐标，因此无法据此详细还原当时完整的攻防站位与态势。",
+  "latency_ms": 36235.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 4241,
+    "total_tokens": 10334
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144953_ce1812e2907e.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\halluc_frame_600\\3",
+  "ts": "2026-08-19 14:49:53",
+  "context_chars": 8771,
+  "repeat": 3
+}

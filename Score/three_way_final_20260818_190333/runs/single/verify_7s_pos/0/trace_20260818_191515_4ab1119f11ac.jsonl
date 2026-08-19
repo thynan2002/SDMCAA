@@ -1,0 +1,18 @@
+{"type": "run_start", "run_id": "4ab1119f11ac", "ts": 1787051715.7839606}
+{"type": "span_start", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787051715.7894714, "attrs": {"input": "不对吧，7号第3秒的时候明明在中场附近，你确定吗？请核验数据。", "system": "single"}}
+{"type": "span_start", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00002", "parent_id": "4ab1119f11ac-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787051715.7894714, "attrs": {"system_len": 311, "user_len": 31, "tool_round": 0}}
+{"type": "span_end", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00002", "parent_id": "4ab1119f11ac-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787051718.330625, "dur_ms": 2541.15, "status": "ok"}
+{"type": "event", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "kind": "tool", "name": "tool[0]", "ts": 1787051718.331123, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "kind": "tool", "name": "tool[1]", "ts": 1787051718.331123, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "kind": "tool", "name": "tool[2]", "ts": 1787051718.331123, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00003", "parent_id": "4ab1119f11ac-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787051718.331123, "attrs": {"system_len": 311, "user_len": 31, "tool_round": 1}}
+{"type": "span_end", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00003", "parent_id": "4ab1119f11ac-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787051725.2532866, "dur_ms": 6922.16, "status": "ok"}
+{"type": "event", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "kind": "tool", "name": "tool[3]", "ts": 1787051725.2537868, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "kind": "tool", "name": "tool[4]", "ts": 1787051725.2537868, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "kind": "tool", "name": "tool[5]", "ts": 1787051725.2537868, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "kind": "tool", "name": "tool[6]", "ts": 1787051725.2537868, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "kind": "tool", "name": "tool[7]", "ts": 1787051725.2537868, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00004", "parent_id": "4ab1119f11ac-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787051725.2537868, "attrs": {"system_len": 311, "user_len": 31, "tool_round": 2}}
+{"type": "span_end", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00004", "parent_id": "4ab1119f11ac-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787051742.4530494, "dur_ms": 17199.26, "status": "ok"}
+{"type": "span_end", "run_id": "4ab1119f11ac", "span_id": "4ab1119f11ac-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787051742.4530494, "dur_ms": 26663.58, "status": "ok"}
+{"type": "run_end", "run_id": "4ab1119f11ac", "ts": 1787051742.4530494}

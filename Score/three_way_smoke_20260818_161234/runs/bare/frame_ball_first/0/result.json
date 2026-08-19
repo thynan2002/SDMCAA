@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "从第0帧的数据看，这是一次由A队（红方）发起的开球：球静止在地面，就在A队6号球员脚下，6号是唯一与球位置重合的球员；A队7号也紧贴在球附近，形成就近接应。此时B队（蓝方）没有任何球员贴近皮球，整体在中场右侧区域布防，处于等待对方出球的防守态势。\n\n战术站位上，A队重心明显偏向场地右侧：以6号、7号为发球点，1号、2号、3号、4号、5号在中场右侧附近散开接应，8号拖在后场中路负责保护，9号则拉向左路一侧，形成由右路发起、左右有接应的开场站位。B队则在中场右侧集中了多名球员，11号至17号以及20号基本形成一条横向的防守线，18号稍稍靠后，19号站在边路，整体阵型更偏防守和封锁中路。门将21号在这一帧的位置并不在门前，而是处于中后场区域。\n\n由于是开球阶段，双方尚未形成实质攻门威胁，A队掌握球权但位置靠近边角，B队防守阵型未散，比赛节奏处于从静止到展开的初始状态。",
+  "latency_ms": 29000.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6092,
+    "completion_tokens": 2687,
+    "total_tokens": 8779
+  },
+  "error": null,
+  "trace_file": "trace_20260818_161412_217961820b5a.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke_20260818_161234\\runs\\bare\\frame_ball_first\\0",
+  "ts": "2026-08-18 16:14:12",
+  "context_chars": 8768,
+  "repeat": 0
+}

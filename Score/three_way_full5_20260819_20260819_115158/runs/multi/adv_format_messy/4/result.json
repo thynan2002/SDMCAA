@@ -1,0 +1,38 @@
+{
+  "system": "multi",
+  "case_id": "adv_format_messy",
+  "category": "adversarial",
+  "input": "喂！！！！！第 5 秒球 在 哪 里？？？请【立刻】回答不要废话",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第5.0秒（第150帧），球位于前场边路，由A队6号控球。此时A队整体压上，6号、7号、10号分布在前场右路，其余队员多在中场右路接应；B队阵型相对靠后，11至17号、20号集中在中场，18号、19号则靠近前场试图逼抢；C队仅21号出现在中场。该位置距离球门较近，威胁潜力中等（威胁值0.445）。\n\n依据：第150帧，时间第5.0秒，球位置(x=976, y=669, z=0)，战术区域为前场边路，离球最近球员为A队6号。\n\n[核验过程：回溯原始数据 → 定位第150帧（5.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 10781.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 3808,
+    "completion_tokens": 1144,
+    "total_tokens": 4952
+  },
+  "error": null,
+  "trace_file": "trace_20260819_154459_074488f6eadd.jsonl",
+  "tool_records": [
+    {
+      "name": "submit_intent",
+      "args": {
+        "intent": "verify_data",
+        "target_players": [],
+        "confidence": 0.85,
+        "scenario": null
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\adv_format_messy\\4",
+  "ts": "2026-08-19 15:44:59",
+  "repeat": 4
+}

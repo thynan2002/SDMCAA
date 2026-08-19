@@ -1,0 +1,68 @@
+{
+  "system": "single",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "关于第20秒的情况，我需要如实说明：**数据不足，无法描述那一时刻的攻防态势。**\n\n**数据依据：**\n- 我尝试查询第20秒对应的第600帧快照，系统返回「第600帧的球数据不存在」；\n- 进一步核验了第400帧、第348帧（约第11.6秒处），同样返回「球数据不存在」；\n- 可用的球路时间线数据**截至第11.6秒**（最后一笔事件为第11.6秒「8号控球移动」），此后没有更多球路记录。\n\n因此，当前数据覆盖范围只到约第11～12秒，第20秒落在数据记录之外，我无法给出那一刻的场上细节，也不会凭空推测。\n\n若你关心的是数据覆盖范围内（前约11.6秒）的攻防态势，我可以补充说明：该时段内A队整体压上、占据右路，球权主要掌握在A队手中（8号、7号、6号、3号参与度最高），整体以短传为主、回传偏多，出现过4次攻防方向反转，其中第7.4秒（第223帧）球威胁值达到峰值并进入禁区。如果你需要，我可以基于这段有效数据继续展开。",
+  "latency_ms": 10578.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 11683,
+    "completion_tokens": 1167,
+    "total_tokens": 12850
+  },
+  "error": null,
+  "trace_file": "trace_20260818_174532_92baaf7f6a1a.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 600
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 348
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 400
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 16.0,
+      "result_len": 4042
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke2_20260818_174417\\runs\\single\\halluc_frame_600\\0",
+  "ts": "2026-08-18 17:45:32",
+  "repeat": 0
+}

@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "4f67198d4f26", "ts": 1787112618.930966}
+{"type": "span_start", "run_id": "4f67198d4f26", "span_id": "4f67198d4f26-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787112618.930966, "attrs": {"input": "这段比赛中足球移动的最快速度大约是多少？（米/秒）", "system": "bare"}}
+{"type": "span_start", "run_id": "4f67198d4f26", "span_id": "4f67198d4f26-00002", "parent_id": "4f67198d4f26-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787112618.930966, "attrs": {"system_len": 293, "user_len": 8772}}
+{"type": "span_end", "run_id": "4f67198d4f26", "span_id": "4f67198d4f26-00002", "parent_id": "4f67198d4f26-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787112703.0806096, "dur_ms": 84149.64, "status": "ok"}
+{"type": "span_end", "run_id": "4f67198d4f26", "span_id": "4f67198d4f26-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787112703.0811088, "dur_ms": 84150.14, "status": "ok"}
+{"type": "run_end", "run_id": "4f67198d4f26", "ts": 1787112703.0811088}

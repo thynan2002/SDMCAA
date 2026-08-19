@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_ball_hmax",
+  "category": "general_qa",
+  "input": "比赛中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "比赛中足球最高到达的高度为 **4.2 米**。\n\n数据依据：统计摘要中的“球高度峰值 z_max = 4.2”，足球轨迹原始数据中第 201 帧和第 207 帧的高度也均达到 **4.2 米**。",
+  "latency_ms": 3094.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6087,
+    "completion_tokens": 219,
+    "total_tokens": 6306
+  },
+  "error": null,
+  "trace_file": "trace_20260819_134624_da6a187c36d6.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_ball_hmax\\2",
+  "ts": "2026-08-19 13:46:24",
+  "context_chars": 8760,
+  "repeat": 2
+}

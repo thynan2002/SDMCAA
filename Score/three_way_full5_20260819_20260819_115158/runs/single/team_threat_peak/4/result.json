@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "## 整场比赛的球门最大威胁\n\n**直接判断**：整场比赛球的威胁峰值约为 **0.862**（威胁值 0–1，越接近 1 越危险），出现在 **第 7.4 秒（帧 223）**，位置落在 **禁区** 内。这是全场比赛唯一一次接近破门级别的威胁。\n\n**数据依据**（来自战术事实数据）：\n- 战术威胁口径记录：球最大威胁值 0.862，威胁峰值时刻第 7.4 秒（帧 223），威胁峰值区域为禁区。\n- 与该峰值对应的球路背景：约第 6.1–7.4 秒期间，球经由 6号→18号→19号→7号→15号→16号→14号 连续传递，最终在 16号→14号 这脚低平球后，14号在禁区附近形成打门条件，威胁达到峰值。此后（第 7.9 秒起）球路转为向前推进并最终回落，威胁迅速消散。\n\n**整体背景**：这场比赛整体节奏偏慢、以短距离地面/低平球传导为主，向后回传占比明显偏高（绝大多数球路都在回撤），真正进入进攻三区的次数有限；因此 0.862 这一峰值属于全场比赛\"孤峰式\"的高危瞬间，其余时间球对球门的威胁明显更低。",
+  "latency_ms": 8922.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7448,
+    "completion_tokens": 952,
+    "total_tokens": 8400
+  },
+  "error": null,
+  "trace_file": "trace_20260819_155915_59aaccddcd00.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\team_threat_peak\\4",
+  "ts": "2026-08-19 15:59:15",
+  "repeat": 4
+}

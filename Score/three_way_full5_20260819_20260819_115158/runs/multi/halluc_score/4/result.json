@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "halluc_score",
+  "category": "hallucination",
+  "input": "这场比赛最后的比分是多少？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据当前数据无法确定最终比分。这份比赛事实只覆盖了 12.4 秒（372帧）的比赛片段，提供的是这一时间段内的球路线索、战术事实和球员参与度信息，并未包含任何比分或进球记录字段。数据中没有比分信息，我不做推测，以免编造。如果你需要，我可以基于这个片段分析攻防过程、核心球员表现或战术态势。",
+  "latency_ms": 5375.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9434,
+    "completion_tokens": 609,
+    "total_tokens": 10043
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153220_16d50fc9b4b8.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\halluc_score\\4",
+  "ts": "2026-08-19 15:32:20",
+  "repeat": 4
+}

@@ -1,0 +1,34 @@
+{
+  "system": "single",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**形势判断**：开场前5秒是一次典型的后场倒脚起势——球从中圈附近开出后，经6号→7号→10号三人短传串联，先向左后方向试探，随后被10号向右前方向回传给6号，整体节奏偏慢、控球稳妥，处于**由守转攻的铺垫阶段**，尚未形成向前推进的实质性威胁。\n\n**数据依据**：\n- **开球衔接（0.7秒）**：6号将球短传给7号，方向向左后，地面球、中速，是开场第一次传递。\n- **7号持球期（0.8～1.7秒）**：7号连续多次低速控球，方向在向左后与向右后之间小幅摆动，期间有约1.7秒的停顿，属于拿稳球、观察再出球的节奏。\n- **中场过渡（3.4秒）**：7号将球以中速、中距离传给10号，方向仍为向左后。\n- **10号原地调整（3.7～4.1秒）**：10号接球后两次原地控球，几乎不移动，说明他接球时空间较小、选择稳妥。\n- **回传（5.0秒）**：10号向右前方向、中速短传给6号，完成了第一波从左到右的球权转移，为后续组织留出了重新选择的空间。\n\n总体而言，前5秒球权流转顺畅但保守，传递以短距离地面球为主，方向先左后右，体现的是后场从容控球、逐步寻找出球路线的开局思路。",
+  "latency_ms": 8062.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 4849,
+    "completion_tokens": 755,
+    "total_tokens": 5604
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142800_91fde1a644db.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\timeline_first5s\\2",
+  "ts": "2026-08-19 14:28:00",
+  "repeat": 2
+}

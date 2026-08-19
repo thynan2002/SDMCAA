@@ -1,0 +1,187 @@
+{
+  "system": "single",
+  "case_id": "qa_7s_ball_hmax",
+  "category": "general_qa",
+  "input": "这段7秒片段中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**直接判断**：这段7秒片段中，球在约第2.3秒至第2.8秒之间达到了最高点。这一阶段正是比赛开局后场17号回传、球路处于高空弧线飞行中的时段，之后球逐渐下降并转为中后场的低平倒脚。\n\n**数据依据**：我从帧级快照核验了球的z坐标（高度维度）。整段片段中，球高度最高的记录出现在第2.3秒（帧68、70）至第2.8秒（帧85），z坐标均为 **5**。此为全片段峰值；在此之前的高度从第1.6秒的1、第1.7秒的2、第1.8秒的3、第2.0秒的4逐级爬升，在此之后第3.0秒回落到4、第3.5秒降至3，第4.5秒（7号→3号的又一次高空球）最高也只到3。\n\n需要说明的是，工具返回的高度是坐标系中的z值（z=5为最高记录），数据未提供换算为米制的比例关系，因此无法给出真实的米数；若你只需要\"峰值\"这一相对高度，则答案就是 **5**。",
+  "latency_ms": 21532.0,
+  "llm_calls": 6,
+  "tokens": {
+    "prompt_tokens": 32668,
+    "completion_tokens": 2506,
+    "total_tokens": 35174
+  },
+  "error": null,
+  "trace_file": "trace_20260819_143941_abb96f3d2158.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 60
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 51
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 108
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 346
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 135
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 210
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 48
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 55
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 70
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 80
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 100
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 105
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 347
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 63
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 68
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 355
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 72
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 75
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 353
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 85
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_7s_ball_hmax\\3",
+  "ts": "2026-08-19 14:39:41",
+  "repeat": 3
+}

@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_ball_speed_max",
+  "category": "general_qa",
+  "input": "这段比赛中足球移动的最快速度大约是多少？（米/秒）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段数据的足球最快速度出现在一次高空球飞行阶段，速度峰值大约为 **25.5 米/秒**，约合 **92 公里/小时**。\n\n数据依据：足球在第 217 帧位于 (1094.1, 424.8, 3.3)，到第 223 帧移动至 (1118.9, 381.0, 2.5)，间隔 6 帧，即 0.2 秒。按场地坐标换算后，水平位移约 5.03 米，高度下降 0.8 米，三维位移约 5.10 米，因此速度约为：\n\n**5.10 米 ÷ 0.2 秒 ≈ 25.5 米/秒**\n\n这是各相邻采样段中速度最快的一段。",
+  "latency_ms": 240735.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 32655,
+    "total_tokens": 38748
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135739_653fd8a39e78.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_ball_speed_max\\2",
+  "ts": "2026-08-19 13:57:39",
+  "context_chars": 8772,
+  "repeat": 2
+}

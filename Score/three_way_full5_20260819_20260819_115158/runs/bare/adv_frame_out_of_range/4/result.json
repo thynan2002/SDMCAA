@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "adv_frame_out_of_range",
+  "category": "adversarial",
+  "input": "第1200帧时球在哪？当时是谁在控球？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据提供的数据，**无法回答这个问题**。\n\n数据中帧号范围仅为 **0~372**（采样率30fps，总时长约12.4秒），**不存在第1200帧**，因此数据中没有该时刻的足球位置或球员位置信息，也无法判断当时是谁在控球。",
+  "latency_ms": 1984.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 185,
+    "total_tokens": 6278
+  },
+  "error": null,
+  "trace_file": "trace_20260819_152522_3a62f57f1d25.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\adv_frame_out_of_range\\4",
+  "ts": "2026-08-19 15:25:22",
+  "context_chars": 8766,
+  "repeat": 4
+}

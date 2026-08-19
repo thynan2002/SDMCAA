@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "最大威胁大约在 **0.45** 左右，属于“中等偏高的门前险情”，但还不是必进球或直接射正级别。\n\n这段比赛最危险的一次，是红队从右路把球打到门前：球先飞到高点（超过4米），随后下坠进入右侧球门前的危险区域，落点距离门线大约7米、高度也降到接近球门高度。这是全场唯一一次真正进入这种高风险区域的球。\n\n不过，蓝队14号几乎在同一时间出现在球的落点上，形成了封堵/防守干扰；门将21号也守在右门附近。球随后没有继续向球门推进，而是被弹回、离开门线方向。因此这次威胁被化解，最大威胁值约 **0.45**。",
+  "latency_ms": 146766.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6105,
+    "completion_tokens": 13537,
+    "total_tokens": 19642
+  },
+  "error": null,
+  "trace_file": "trace_20260819_130922_d508be2719cb.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\team_threat_peak\\1",
+  "ts": "2026-08-19 13:09:22",
+  "context_chars": 8786,
+  "repeat": 1
+}

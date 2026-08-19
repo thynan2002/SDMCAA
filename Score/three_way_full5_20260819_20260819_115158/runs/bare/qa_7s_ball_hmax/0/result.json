@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_7s_ball_hmax",
+  "category": "general_qa",
+  "input": "这段7秒片段中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "在这段约 7.2 秒的片段中，足球的最高高度为 **5.1 米**。",
+  "latency_ms": 1594.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 4787,
+    "completion_tokens": 131,
+    "total_tokens": 4918
+  },
+  "error": null,
+  "trace_file": "trace_20260819_124048_aa1ab08fdf16.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_7s_ball_hmax\\0",
+  "ts": "2026-08-19 12:40:48",
+  "context_chars": 6453,
+  "repeat": 0
+}

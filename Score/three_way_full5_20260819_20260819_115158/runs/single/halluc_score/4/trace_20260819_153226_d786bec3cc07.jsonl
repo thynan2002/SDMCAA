@@ -1,0 +1,10 @@
+{"type": "run_start", "run_id": "d786bec3cc07", "ts": 1787124746.829282}
+{"type": "span_start", "run_id": "d786bec3cc07", "span_id": "d786bec3cc07-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124746.8352773, "attrs": {"input": "这场比赛最后的比分是多少？", "system": "single"}}
+{"type": "span_start", "run_id": "d786bec3cc07", "span_id": "d786bec3cc07-00002", "parent_id": "d786bec3cc07-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124746.8352773, "attrs": {"system_len": 311, "user_len": 13, "tool_round": 0}}
+{"type": "span_end", "run_id": "d786bec3cc07", "span_id": "d786bec3cc07-00002", "parent_id": "d786bec3cc07-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787124748.2859037, "dur_ms": 1450.63, "status": "ok"}
+{"type": "event", "run_id": "d786bec3cc07", "span_id": "d786bec3cc07-00001", "kind": "tool", "name": "tool[0]", "ts": 1787124748.2899122, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "d786bec3cc07", "span_id": "d786bec3cc07-00001", "kind": "tool", "name": "tool[1]", "ts": 1787124748.2899122, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "d786bec3cc07", "span_id": "d786bec3cc07-00003", "parent_id": "d786bec3cc07-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787124748.2899122, "attrs": {"system_len": 311, "user_len": 13, "tool_round": 1}}
+{"type": "span_end", "run_id": "d786bec3cc07", "span_id": "d786bec3cc07-00003", "parent_id": "d786bec3cc07-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787124753.1264935, "dur_ms": 4836.58, "status": "ok"}
+{"type": "span_end", "run_id": "d786bec3cc07", "span_id": "d786bec3cc07-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787124753.1264935, "dur_ms": 6291.22, "status": "ok"}
+{"type": "run_end", "run_id": "d786bec3cc07", "ts": 1787124753.1269968}

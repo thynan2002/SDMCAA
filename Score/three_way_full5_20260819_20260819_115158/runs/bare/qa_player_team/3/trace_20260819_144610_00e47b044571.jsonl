@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "00e47b044571", "ts": 1787121970.7634676}
+{"type": "span_start", "run_id": "00e47b044571", "span_id": "00e47b044571-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787121970.7634676, "attrs": {"input": "7号球员是哪个队的？", "system": "bare"}}
+{"type": "span_start", "run_id": "00e47b044571", "span_id": "00e47b044571-00002", "parent_id": "00e47b044571-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787121970.7634676, "attrs": {"system_len": 293, "user_len": 8757}}
+{"type": "span_end", "run_id": "00e47b044571", "span_id": "00e47b044571-00002", "parent_id": "00e47b044571-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787121971.9754906, "dur_ms": 1212.02, "status": "ok"}
+{"type": "span_end", "run_id": "00e47b044571", "span_id": "00e47b044571-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787121971.9759908, "dur_ms": 1212.52, "status": "ok"}
+{"type": "run_end", "run_id": "00e47b044571", "ts": 1787121971.9759908}

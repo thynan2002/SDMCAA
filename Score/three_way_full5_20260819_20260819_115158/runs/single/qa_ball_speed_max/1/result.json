@@ -1,0 +1,43 @@
+{
+  "system": "single",
+  "case_id": "qa_ball_speed_max",
+  "category": "general_qa",
+  "input": "这段比赛中足球移动的最快速度大约是多少？（米/秒）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据现有工具返回的数据，我需要如实说明：**无法给出球速的具体米/秒数值，数据不足。**\n\n具体依据如下：\n\n- 球路时间线工具只记录了球移动的**速度档位**（低/中/高），并未提供精确的米/秒数值。\n- 我核验了帧级快照（如第6.2秒 18号→19号 的传球），该数据同样只包含球的位置坐标与球路事件，没有球速的量化读数。\n- 从本段比赛的全部球路事件来看，球的移动速度档位最高只出现到「**中**」速（约出现在多次短距离传球及部分控球移动中），全程**没有出现「高」速档位**的球路事件，说明这段进攻中不存在高速转移球或大力长传。\n\n因此，关于\"足球移动最快速度是多少米/秒\"这个具体数值，我无法从当前数据中得出，不能编造。我能确认的仅是：**本段球路中球的移动从未达到高速档，最快也只到中等速度。** 若需要精确球速数值，需要额外的测速数据支持。",
+  "latency_ms": 11797.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 9115,
+    "completion_tokens": 1054,
+    "total_tokens": 10169
+  },
+  "error": null,
+  "trace_file": "trace_20260819_133221_938309df1b73.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 186
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 355
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_ball_speed_max\\1",
+  "ts": "2026-08-19 13:32:21",
+  "repeat": 1
+}

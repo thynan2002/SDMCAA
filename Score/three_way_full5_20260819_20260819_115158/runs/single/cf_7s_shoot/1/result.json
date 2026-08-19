@@ -1,0 +1,57 @@
+{
+  "system": "single",
+  "case_id": "cf_7s_shoot",
+  "category": "counterfactual",
+  "input": "如果7号在第3秒改为直接射门会怎样？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "## 结论先行\n\n**如果7号在第3秒直接射门，反事实推演的结果是：进球。**\n\n这是一个相当意外的结果——7号是在距离球门大约47米的超远距离起脚，模拟推演显示皮球最终入网，比赛在第4.5秒（第135帧）因进球而暂停。\n\n## 数据依据\n\n**反事实模拟推演结果：**\n- 干预点：第3秒（第90帧），7号由原决策改为直接起脚射门\n- 射门距离：距门约47米（中后场级别的远射）\n- 推演走向：第135帧球进 → 进球 → 第138帧比赛暂停\n- 推演区间：第90帧至第138帧\n\n**7号球员背景（帮助理解这个射门选择）：**\n- 战术角色：A队前锋，司职右路，主要活动区域为右路前场\n- 其活动范围高度集中在右路前场（几乎全部时间），是一名单点型边路攻击手\n- 速度与跑动上并非爆发型（全程无冲刺记录，最大速度也不算突出），但参与球路次数较多、接近球时间占比高，说明他持球参与度高、是右路进攻的核心接球点\n\n**一点说明：** 第3秒（第90帧）的帧级原始球数据查询未返回结果（数据不足），因此该时刻场上球的具体位置无法做逐帧核验；上述进球结局来自反事实轨迹模拟（启发式推演），是基于真实轨迹数据推演出的结果，而非实际发生的事实。",
+  "latency_ms": 9704.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 3120,
+    "completion_tokens": 983,
+    "total_tokens": 4103
+  },
+  "error": null,
+  "trace_file": "trace_20260819_133553_e928254d11fe.jsonl",
+  "tool_records": [
+    {
+      "name": "run_counterfactual_simulation",
+      "args": {
+        "subject_player": "7号",
+        "time_second": 3,
+        "altered_action": "shoot",
+        "duration_seconds": 0
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 144
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\cf_7s_shoot\\1",
+  "ts": "2026-08-19 13:35:53",
+  "repeat": 1
+}

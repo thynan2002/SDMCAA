@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：**数据不足，无法判断第90帧时球的准确位置，也无法评估其对球门的威胁程度。**\n\n依据：足球轨迹原始数据中没有第90帧的坐标记录。第90帧前后最近的球坐标为：\n\n- 第50帧：球在 (1091.0, 678.6, 0)\n- 第102帧：球在 (871.4, 559.9, 0)\n\n两帧之间相隔约52帧（约1.7秒），球在这段时间内的具体运动轨迹没有被采样。也就是说，第90帧时球是在空中、地面滚动，还是已被球员控制，数据中都没有该信息。\n\n因此，**不能确定第90帧球位于哪个区域，也不能据此判断对球门有多大的威胁。** 如需判断，需要提供第90帧或附近帧的足球坐标数据。",
+  "latency_ms": 48146.8,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6098,
+    "completion_tokens": 5155,
+    "total_tokens": 11253
+  },
+  "error": null,
+  "trace_file": "trace_20260816_143908_0b7c81ddb8d5.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\smoke3_20260816_143907\\runs\\bare\\frame_ball_zone_90\\0",
+  "ts": "2026-08-16 14:39:08",
+  "context_chars": 8776,
+  "repeat": 0
+}

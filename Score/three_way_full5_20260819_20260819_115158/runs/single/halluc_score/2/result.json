@@ -1,0 +1,59 @@
+{
+  "system": "single",
+  "case_id": "halluc_score",
+  "category": "hallucination",
+  "input": "这场比赛最后的比分是多少？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "关于这场比赛的最终比分，**数据不足，无法给出**。\n\n依据如下：\n- 现有数据仅覆盖一段球路时间线，时间范围约从第0.7秒到第11.6秒，数据到此截止（第348帧已无球数据），属于比赛片段而非完整赛果记录。\n- 战术事实与球路数据中均未包含进球、比分或比赛最终结果字段。\n- 唯一与得分相关的线索是：全场球路最大威胁值出现在第7.4秒（帧223），落点位于**禁区**，当时离球最近的是B队14号，随后第7.7秒14号接球向左移动。该时刻具备射门威胁，但数据中没有任何该次进攻是否转化为进球的记录，也没有后续比分信息。\n\n因此，依据现有工具所能查到的数据，无法确认这场比赛的最后比分，恕不能给出推测或编造结果。",
+  "latency_ms": 12515.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 14333,
+    "completion_tokens": 1216,
+    "total_tokens": 15549
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142629_2248d7daf395.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 223
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 348
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\halluc_score\\2",
+  "ts": "2026-08-19 14:26:29",
+  "repeat": 2
+}

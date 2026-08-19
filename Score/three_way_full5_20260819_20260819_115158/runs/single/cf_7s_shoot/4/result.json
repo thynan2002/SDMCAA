@@ -1,0 +1,54 @@
+{
+  "system": "single",
+  "case_id": "cf_7s_shoot",
+  "category": "counterfactual",
+  "input": "如果7号在第3秒改为直接射门会怎样？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "## 反事实推演结果：7号第3秒直接射门 → **进球**\n\n**直接判断：** 若7号在约第3秒放弃将球回做给10号、改为直接起脚，这是一次约47米开外的超远距离射门，模拟推演显示皮球直接破门得分，在第3秒后的约4.5秒（帧135）转化为进球。也就是说，这一改动会把原本\"回传组织中路推进\"的进攻序列，直接改写为一记世界波终结。\n\n**数据依据：**\n- 真实比赛时间线显示，7号在第3.4秒实际执行的是「7号→10号」的地面中距离回传，随后由10号原地控球、再与6号做短传配合，进攻转入阵地组织——这是7号当时的原始决策。\n- 反事实模拟设定在帧90（约第3秒）将7号的动作替换为「直接射门」，起脚点距球门约47米；推演结果关键事件为：帧90起脚 → 帧135进球 → 帧138比赛暂停。期间没有出现其他拦截或脱靶事件。\n- 需要说明：第90帧的球位置快照在真实数据中查询不到，因此该帧的防守站位细节无法逐一核验；以上结局来自反事实轨迹模拟（启发式推演），可作为\"直接打门大概率破门\"的参考，但不等同于真实比赛的确定性结果。\n\n**结论：** 在第3秒那个位置，直接射门是一条\"高风险高回报\"的路径——数据显示它在该模拟下直接改写比分；而真实的7号选择了更稳妥的回传组织，比赛也由此延续了后续的传控推进。",
+  "latency_ms": 10954.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 6732,
+    "completion_tokens": 1092,
+    "total_tokens": 7824
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153735_7a5a6a8c56ac.jsonl",
+  "tool_records": [
+    {
+      "name": "run_counterfactual_simulation",
+      "args": {
+        "subject_player": "7号",
+        "time_second": 3,
+        "altered_action": "shoot"
+      },
+      "ok": true,
+      "dur_ms": 15.0,
+      "result_len": 144
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\cf_7s_shoot\\4",
+  "ts": "2026-08-19 15:37:35",
+  "repeat": 4
+}

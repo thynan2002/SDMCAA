@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：这段12.4秒的比赛中，球对球门形成的最大威胁值约为0.862，属于\"高危接近进球\"级别的威胁。\n\n数据依据：该峰值来自\"战术威胁与区域\"事实字段中的\"球最大威胁值\"——数值为0.862（量纲为0到1，越接近1越危险），对应时刻为第7.4秒（帧号223），峰值所在区域为禁区。换算到球路线索上，这一时刻恰好对应16号将球短传给禁区内的14号（7.4秒的\"16号→14号\"低平球），也就是球路切入禁区、形成直接射门威胁的瞬间。\n\n推理链：0.862在0-1区间中明显高于一般推进阶段的中等威胁水平，说明这不是普通的边路传中或中场过渡，而是球已进入禁区、接球者处于直接威胁球门的位置，防守方必须立即干预。同时可以看到，该峰值出现在球路连续高空球流转（6.2秒18号→19号、6.7秒19号→7号、7.4秒16号→14号）之后，即B队通过一连串短传把球渗透进禁区，威胁在进入禁区的刹那达到顶点。",
+  "latency_ms": 7563.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9455,
+    "completion_tokens": 614,
+    "total_tokens": 10069
+  },
+  "error": null,
+  "trace_file": "trace_20260819_130655_eeda8e09e739.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\team_threat_peak\\1",
+  "ts": "2026-08-19 13:06:55",
+  "repeat": 1
+}

@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_what_happened",
+  "category": "frame",
+  "input": "第90帧发生了什么？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据现有数据，**第90帧并没有被直接记录**，所以不能百分百还原那一帧的“确切动作”。但从相邻帧的球和球员位置推断，**第90帧最可能是一次由A队主导的球权转移节点：球正从A队7号一侧飞向A队10号，10号正在移动迎球，准备接应/控制**。\n\n判断依据：\n\n- 足球轨迹在第50帧之后到第102帧之间是空白的；第50帧时球在7号脚下附近，第102帧时球已经出现在10号所在位置，而且10号与球的坐标完全重合。  \n- 10号在第73、89、97、102帧的位置逐步向球落点靠近，说明他在第90帧前后属于“主动跑向球”的状态，而不是原地等球。  \n- 第89帧和第92帧中，10号附近没有B队球员紧贴，B队防守球员大多在较远位置，因此这不是一次被压迫下的仓促触球，更像是A队有准备的转移球。\n\n因此，可以理解为：**第90帧附近处于传球飞行或接球跑位阶段，马上就要形成A队10号的接控球**。但具体是球在空中、弹地，还是已经有人触球，数据中没有该帧的直接信息，不能进一步确认。",
+  "latency_ms": 26141.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6084,
+    "completion_tokens": 2946,
+    "total_tokens": 9030
+  },
+  "error": null,
+  "trace_file": "trace_20260819_160031_26a2401708cf.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_what_happened\\4",
+  "ts": "2026-08-19 16:00:31",
+  "context_chars": 8757,
+  "repeat": 4
+}

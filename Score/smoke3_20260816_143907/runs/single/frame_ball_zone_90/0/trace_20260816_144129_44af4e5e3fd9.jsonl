@@ -1,0 +1,10 @@
+{"type": "run_start", "run_id": "44af4e5e3fd9", "ts": 1786862489.3816595}
+{"type": "span_start", "run_id": "44af4e5e3fd9", "span_id": "44af4e5e3fd9-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1786862489.3852103, "attrs": {"input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？", "system": "single"}}
+{"type": "span_start", "run_id": "44af4e5e3fd9", "span_id": "44af4e5e3fd9-00002", "parent_id": "44af4e5e3fd9-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1786862489.3852878, "attrs": {"system_len": 311, "user_len": 29, "tool_round": 0}}
+{"type": "span_end", "run_id": "44af4e5e3fd9", "span_id": "44af4e5e3fd9-00002", "parent_id": "44af4e5e3fd9-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1786862491.0293694, "dur_ms": 1644.08, "status": "ok"}
+{"type": "event", "run_id": "44af4e5e3fd9", "span_id": "44af4e5e3fd9-00001", "kind": "tool", "name": "tool[0]", "ts": 1786862491.0297873, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "44af4e5e3fd9", "span_id": "44af4e5e3fd9-00001", "kind": "tool", "name": "tool[1]", "ts": 1786862491.0300045, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.1}}
+{"type": "span_start", "run_id": "44af4e5e3fd9", "span_id": "44af4e5e3fd9-00003", "parent_id": "44af4e5e3fd9-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1786862491.0300758, "attrs": {"system_len": 311, "user_len": 29, "tool_round": 1}}
+{"type": "span_end", "run_id": "44af4e5e3fd9", "span_id": "44af4e5e3fd9-00003", "parent_id": "44af4e5e3fd9-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1786862497.4295466, "dur_ms": 6399.47, "status": "ok"}
+{"type": "span_end", "run_id": "44af4e5e3fd9", "span_id": "44af4e5e3fd9-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1786862497.4296947, "dur_ms": 8044.48, "status": "ok"}
+{"type": "run_end", "run_id": "44af4e5e3fd9", "ts": 1786862497.4297404}

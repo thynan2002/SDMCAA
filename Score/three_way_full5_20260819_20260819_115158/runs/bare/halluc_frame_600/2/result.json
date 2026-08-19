@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据中没有第20秒的信息。\n\n本段数据的总时长为约12.4秒（帧号0～372，采样率30fps），因此“第20秒”已经超出数据覆盖范围，无法从数据中还原那一刻的攻防态势。若你指的是“第20帧”或某个具体帧号，请明确说明，我可以基于对应帧的轨迹数据作答。",
+  "latency_ms": 4031.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 325,
+    "total_tokens": 6418
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142318_3b249c398c70.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\halluc_frame_600\\2",
+  "ts": "2026-08-19 14:23:18",
+  "context_chars": 8771,
+  "repeat": 2
+}

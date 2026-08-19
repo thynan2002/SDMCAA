@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_ball_height",
+  "category": "timeline",
+  "input": "球在哪些时刻离开过地面（高度大于0）？请按时间列出。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "从球的离地情况看，这段约12.4秒的片段里，球并非一直在地面滚动，而是出现过一次明显的“空中飞行—落地反弹”过程，随后又有几次高度不高的弹跳。结合轨迹坐标，这更像是一次长传或解围后，球在中前场落地并连续弹跳，进攻方在争抢第二落点。\n\n按时间顺序，球高度大于0（离开地面）的帧号如下：\n\n- **第一次腾空阶段**：第177、182、186、189、194、201、207、211、214、217、223帧  \n  （对应时间约第5.9秒至第7.4秒，球从低高度弹起后上升到峰值约4.2米，再逐渐回落）\n\n- **第二次弹跳阶段**：第236、243、249、256、262帧  \n  （约第7.9秒至8.7秒，球再次弹起，高度较低）\n\n- **第三次弹跳阶段**：第272、274、276、283、288、295帧  \n  （约第9.1秒至9.8秒，高度均在1米上下波动）\n\n- **最后的短促弹跳**：第304、312、318、325、338、343帧  \n  （约第10.1秒至11.4秒，球贴地弹跳，高度不足0.7米）\n\n如果按“离开地面”的起始时刻来说，球第一次离地是在**第177帧**，最后一次离地是在**第343帧**。",
+  "latency_ms": 12828.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6097,
+    "completion_tokens": 1276,
+    "total_tokens": 7373
+  },
+  "error": null,
+  "trace_file": "trace_20260818_161235_a5a7b142ca21.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke_20260818_161234\\runs\\bare\\timeline_ball_height\\0",
+  "ts": "2026-08-18 16:12:35",
+  "context_chars": 8773,
+  "repeat": 0
+}

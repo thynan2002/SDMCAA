@@ -1,0 +1,28 @@
+{"type": "run_start", "run_id": "4f2d2c0af744", "ts": 1787117168.1317852}
+{"type": "span_start", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117168.1383061, "attrs": {"input": "这段7秒片段中球最高到过多少高度？", "system": "single"}}
+{"type": "span_start", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00002", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117168.1383061, "attrs": {"system_len": 311, "user_len": 17, "tool_round": 0}}
+{"type": "span_end", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00002", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117169.5041287, "dur_ms": 1365.82, "status": "ok"}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[0]", "ts": 1787117169.5046287, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00003", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117169.5051305, "attrs": {"system_len": 311, "user_len": 17, "tool_round": 1}}
+{"type": "span_end", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00003", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117172.9305897, "dur_ms": 3425.46, "status": "ok"}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[1]", "ts": 1787117172.9310894, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[2]", "ts": 1787117172.9310894, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00004", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787117172.9310894, "attrs": {"system_len": 311, "user_len": 17, "tool_round": 2}}
+{"type": "span_end", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00004", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787117176.508683, "dur_ms": 3577.59, "status": "ok"}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[3]", "ts": 1787117176.5091817, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[4]", "ts": 1787117176.5091817, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[5]", "ts": 1787117176.5091817, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[6]", "ts": 1787117176.5091817, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[7]", "ts": 1787117176.5091817, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[8]", "ts": 1787117176.5091817, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00005", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[3]", "ts": 1787117176.5091817, "attrs": {"system_len": 311, "user_len": 17, "tool_round": 3}}
+{"type": "span_end", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00005", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[3]", "ts": 1787117179.6008043, "dur_ms": 3091.62, "status": "ok"}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[9]", "ts": 1787117179.6008043, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[10]", "ts": 1787117179.6008043, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[11]", "ts": 1787117179.6013045, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[12]", "ts": 1787117179.6013045, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "kind": "tool", "name": "tool[13]", "ts": 1787117179.6013045, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00006", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[4]", "ts": 1787117179.6013045, "attrs": {"system_len": 311, "user_len": 17, "tool_round": 4}}
+{"type": "span_end", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00006", "parent_id": "4f2d2c0af744-00001", "kind": "llm", "name": "llm_call[4]", "ts": 1787117185.605674, "dur_ms": 6004.37, "status": "ok"}
+{"type": "span_end", "run_id": "4f2d2c0af744", "span_id": "4f2d2c0af744-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117185.605674, "dur_ms": 17467.37, "status": "ok"}
+{"type": "run_end", "run_id": "4f2d2c0af744", "ts": 1787117185.605674}

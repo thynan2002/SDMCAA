@@ -1,0 +1,52 @@
+{
+  "system": "single",
+  "case_id": "focus_player7",
+  "category": "focus",
+  "input": "聚焦7号",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**形势与战术判断**\n\n7号是A队的右路前锋，本场扮演的是**前场右路/禁区一带的终结与支点角色**，站位极其靠前且贴边。结合球队整体态势看，A队呈整体压上的进攻姿态、横向明显偏向右路，7号正是这条右路进攻线路最前端的一个点——他绝大多数时间钉在对方半场右路纵深（禁区附近），几乎没有回撤到中场。\n\n从参与度看，7号是A队进攻端的高参与核心之一：接近球的时间占比很高，属于\"球到人近\"的类型，对手持、接应环节的涉入非常深。但他几乎全程以匀速跑动为主，**没有出现冲刺跑**，活动方式更接近在前场右路占据位置、等待接球/策应，而不是反复高速插身后。平均速度偏低也印证了这一点——他不是靠爆发力冲击防线的前锋，而是靠站位和接应撑起右路前场的接驳点。\n\n**数据依据**\n\n- 战术角色定位为\"前锋（右路）\"，主要活动区域100%集中在右路前场，战术口径下落在禁区一带；平均站位也印证其常驻前场右路。\n- 接近球时间占比达67%，参与球路次数在统计口径中排名A队前列（与8号、6号共同构成A队右路前场的参与核心）。\n- 全场冲刺0次，跑动以匀速为主，最大速度属于中等偏上档位而非常态高速。\n- 从轨迹覆盖看，其活动范围紧凑、场地覆盖率低（仅1.4%），说明他基本固定在前场右路一个小片区域活动，不回撤、不换边。\n\n补充说明：原始轨迹样本显示7号被捕捉到的帧数较少（约19帧），可能反映他大部分时间处于远离球或高位待命状态；同时\"参与球路次数\"在不同统计口径下略有出入（画像口径9次、球队级战术口径14次），如需精确定量可进一步核验具体球路时间线。",
+  "latency_ms": 13516.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 5294,
+    "completion_tokens": 1180,
+    "total_tokens": 6474
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142724_9e980b43e0a9.jsonl",
+  "tool_records": [
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\focus_player7\\2",
+  "ts": "2026-08-19 14:27:24",
+  "repeat": 2
+}

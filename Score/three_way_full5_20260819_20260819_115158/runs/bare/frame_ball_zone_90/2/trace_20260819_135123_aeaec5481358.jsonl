@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "aeaec5481358", "ts": 1787118683.0063713}
+{"type": "span_start", "run_id": "aeaec5481358", "span_id": "aeaec5481358-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118683.0063713, "attrs": {"input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？", "system": "bare"}}
+{"type": "span_start", "run_id": "aeaec5481358", "span_id": "aeaec5481358-00002", "parent_id": "aeaec5481358-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118683.0068705, "attrs": {"system_len": 293, "user_len": 8776}}
+{"type": "span_end", "run_id": "aeaec5481358", "span_id": "aeaec5481358-00002", "parent_id": "aeaec5481358-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118713.1731224, "dur_ms": 30166.25, "status": "ok"}
+{"type": "span_end", "run_id": "aeaec5481358", "span_id": "aeaec5481358-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118713.1736226, "dur_ms": 30167.25, "status": "ok"}
+{"type": "run_end", "run_id": "aeaec5481358", "ts": 1787118713.1736226}

@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_player_zone_7",
+  "category": "style",
+  "input": "7号主要活动在球场的哪个区域？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**形势/战术判断：**  \n7号主要活动在**本方半场的边路区域**，位置偏后场。开局时他靠近边线、接近底线，随后随着球权推进，沿边路向中场方向移动，整体活动范围始终没有深入对方半场。他更像是**承担边路防守与出球接应**的球员，进攻参与度有限，主要在后场边路活动。\n\n**数据依据：**  \n从球员轨迹看，7号的横向位置始终停留在较窄的边路通道内，而纵向位置则从靠近底线一侧逐渐向中场收拢，说明他并非大范围横向跑动的中路球员，而是沿边线纵向移动。结合足球轨迹，录像早期球正好在他附近区域运转，进一步印证他参与了后场边路的接应与转移。",
+  "latency_ms": 27985.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6089,
+    "completion_tokens": 2658,
+    "total_tokens": 8747
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150733_96734285d7ef.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_player_zone_7\\3",
+  "ts": "2026-08-19 15:07:33",
+  "context_chars": 8762,
+  "repeat": 3
+}

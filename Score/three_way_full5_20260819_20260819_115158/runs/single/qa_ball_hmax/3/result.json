@@ -1,0 +1,34 @@
+{
+  "system": "single",
+  "case_id": "qa_ball_hmax",
+  "category": "general_qa",
+  "input": "比赛中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据球路时间线数据，我需要说明一点：这套数据对球高度的记录是**定性档位**（地面 / 低平 / 高空），并没有给出具体米数数值。\n\n就已有数据而言，**整场比赛球到达的最高档位是「高空」**，并且集中出现在比赛第 6.2 秒至第 7.2 秒这一段连续传递序列中——从 18号传给19号开始，球一直保持在\"高空\"档，先后经过 19号、7号、15号、16号的脚，直到 7.4 秒 16号传给14号时才降回\"低平\"。\n\n换句话说，全场球被挑到空中的最高程度发生在开局约 6~7 秒那次连续的空中传递串联期间。至于确切的最高高度数值（如多少米），当前数据只提供档位分类，**没有精确数字可供引用**，如需具体米数则数据不足。",
+  "latency_ms": 7156.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 4817,
+    "completion_tokens": 736,
+    "total_tokens": 5553
+  },
+  "error": null,
+  "trace_file": "trace_20260819_151146_bae9314b3466.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_ball_hmax\\3",
+  "ts": "2026-08-19 15:11:46",
+  "repeat": 3
+}

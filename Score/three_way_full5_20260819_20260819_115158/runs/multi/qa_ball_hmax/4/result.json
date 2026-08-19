@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_ball_hmax",
+  "category": "general_qa",
+  "input": "比赛中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：本片段中球达到的最高高度是 4.2 米。\n\n具体依据：这一峰值出现在约第 6.7 秒（第 201 帧，按 30fps 帧率换算），数据来源为「比赛事实」中球特征字段的\"球峰值高度(米)=4.2\"及\"峰值高度出现时刻=约第6.7秒（第201帧，30fps）\"。\n\n推理链：对照球路线索可以看到，第 6.7 秒恰好是 19 号将球传给 7 号的一脚高空球（球路标记为\"高空\"），也就是这段 12.4 秒片段里空中球比例最高的一段——球在传递过程中被挑高，于该传球瞬间达到全程最高点 4.2 米，随后高度开始回落。这也与整体\"高空球比例高、长传较多\"的球特征相吻合。",
+  "latency_ms": 3922.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9437,
+    "completion_tokens": 408,
+    "total_tokens": 9845
+  },
+  "error": null,
+  "trace_file": "trace_20260819_155810_70b9257368b8.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_ball_hmax\\4",
+  "ts": "2026-08-19 15:58:10",
+  "repeat": 4
+}

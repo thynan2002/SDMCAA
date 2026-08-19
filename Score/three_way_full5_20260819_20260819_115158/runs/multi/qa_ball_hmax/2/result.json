@@ -1,0 +1,35 @@
+{
+  "system": "multi",
+  "case_id": "qa_ball_hmax",
+  "category": "general_qa",
+  "input": "比赛中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：这场比赛中球到达的最高高度为4.2米。\n\n数据依据：该数值来自「球特征」字段中的\"球峰值高度(米)\"，峰值出现在约第6.7秒（第201帧，30fps）。帧级核验也印证了这一点——第201帧时球的垂直位置（z值）正对应这一峰值高度，此时离球最近的球员是7号，场上正发生的球路事件为\"19号→7号\"。\n\n推理链：这一峰值出现在球路的高空球阶段。从第6.2秒起，18号→19号、19号控球、19号→7号这一连串球路均为高空球（球高度字段标注为\"高空\"），球在6.7秒左右被19号传出、飞向7号的过程中达到最高点，随后开始回落，进入后续低平球乃至地面球的传递阶段。整体来看，这记高空球的弧顶就是本片段球的最高点。",
+  "latency_ms": 10532.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 19724,
+    "completion_tokens": 1041,
+    "total_tokens": 20765
+  },
+  "error": null,
+  "trace_file": "trace_20260819_134845_21b47097d295.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 201
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_ball_hmax\\2",
+  "ts": "2026-08-19 13:48:45",
+  "repeat": 2
+}

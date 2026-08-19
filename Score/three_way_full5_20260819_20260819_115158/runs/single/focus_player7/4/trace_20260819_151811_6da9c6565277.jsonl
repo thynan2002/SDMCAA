@@ -1,0 +1,17 @@
+{"type": "run_start", "run_id": "6da9c6565277", "ts": 1787123891.2582812}
+{"type": "span_start", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123891.262789, "attrs": {"input": "聚焦7号", "system": "single"}}
+{"type": "span_start", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00002", "parent_id": "6da9c6565277-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123891.262789, "attrs": {"system_len": 311, "user_len": 4, "tool_round": 0}}
+{"type": "span_end", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00002", "parent_id": "6da9c6565277-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123893.1566296, "dur_ms": 1893.84, "status": "ok"}
+{"type": "event", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00001", "kind": "tool", "name": "tool[0]", "ts": 1787123893.1571314, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00001", "kind": "tool", "name": "tool[1]", "ts": 1787123893.1571314, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00001", "kind": "tool", "name": "tool[2]", "ts": 1787123893.1586313, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00003", "parent_id": "6da9c6565277-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787123893.1586313, "attrs": {"system_len": 311, "user_len": 4, "tool_round": 1}}
+{"type": "span_end", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00003", "parent_id": "6da9c6565277-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787123896.8387628, "dur_ms": 3680.13, "status": "ok"}
+{"type": "event", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00001", "kind": "tool", "name": "tool[3]", "ts": 1787123896.8387628, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00004", "parent_id": "6da9c6565277-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787123896.8387628, "attrs": {"system_len": 311, "user_len": 4, "tool_round": 2}}
+{"type": "span_end", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00004", "parent_id": "6da9c6565277-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787123910.0071805, "dur_ms": 13168.42, "status": "ok"}
+{"type": "event", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00001", "kind": "tool", "name": "tool[4]", "ts": 1787123910.0076811, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00005", "parent_id": "6da9c6565277-00001", "kind": "llm", "name": "llm_call[3]", "ts": 1787123910.0076811, "attrs": {"system_len": 311, "user_len": 4, "tool_round": 3}}
+{"type": "span_end", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00005", "parent_id": "6da9c6565277-00001", "kind": "llm", "name": "llm_call[3]", "ts": 1787123926.8581848, "dur_ms": 16850.5, "status": "ok"}
+{"type": "span_end", "run_id": "6da9c6565277", "span_id": "6da9c6565277-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123926.858691, "dur_ms": 35595.9, "status": "ok"}
+{"type": "run_end", "run_id": "6da9c6565277", "ts": 1787123926.858691}

@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "qa_player_count",
+  "category": "general_qa",
+  "input": "这份数据里一共追踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这份数据共追踪了 **21名球员**。\n\n依据战术事实数据，参与度与跑动列表中明确列出的球衣号如下：\n\n- **A队：10名**（1号、2号、3号、4号、5号、6号、7号、8号、9号、10号），按阵型推断为 0-6-4，即 6 名中场、4 名前锋；\n- **B队：10名**（11号、12号、13号、14号、15号、16号、17号、18号、19号、20号），按阵型推断为 0-4-6，即 4 名中场、6 名前锋；\n- **门将：1名**（21号）。\n\n合计 21 名球员均有轨迹追踪记录。其中 A 队 8号、7号、6号是参与球路最活跃的球员，而 B 队多数球员参与度较低，比赛中球权高度集中在 A 队一侧。",
+  "latency_ms": 6578.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7320,
+    "completion_tokens": 659,
+    "total_tokens": 7979
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144628_bf201bd99fc5.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_player_count\\3",
+  "ts": "2026-08-19 14:46:28",
+  "repeat": 3
+}

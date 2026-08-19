@@ -1,0 +1,10 @@
+{"type": "run_start", "run_id": "069eadbe1730", "ts": 1787119610.0499203}
+{"type": "span_start", "run_id": "069eadbe1730", "span_id": "069eadbe1730-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787119610.055441, "attrs": {"input": "7号的跑动风格是什么？", "system": "single"}}
+{"type": "span_start", "run_id": "069eadbe1730", "span_id": "069eadbe1730-00002", "parent_id": "069eadbe1730-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787119610.055441, "attrs": {"system_len": 311, "user_len": 11, "tool_round": 0}}
+{"type": "span_end", "run_id": "069eadbe1730", "span_id": "069eadbe1730-00002", "parent_id": "069eadbe1730-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787119611.8518577, "dur_ms": 1796.42, "status": "ok"}
+{"type": "event", "run_id": "069eadbe1730", "span_id": "069eadbe1730-00001", "kind": "tool", "name": "tool[0]", "ts": 1787119611.8530123, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "069eadbe1730", "span_id": "069eadbe1730-00001", "kind": "tool", "name": "tool[1]", "ts": 1787119611.8530123, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "069eadbe1730", "span_id": "069eadbe1730-00003", "parent_id": "069eadbe1730-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787119611.8530123, "attrs": {"system_len": 311, "user_len": 11, "tool_round": 1}}
+{"type": "span_end", "run_id": "069eadbe1730", "span_id": "069eadbe1730-00003", "parent_id": "069eadbe1730-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787119617.6613026, "dur_ms": 5808.29, "status": "ok"}
+{"type": "span_end", "run_id": "069eadbe1730", "span_id": "069eadbe1730-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787119617.6613026, "dur_ms": 7605.86, "status": "ok"}
+{"type": "run_end", "run_id": "069eadbe1730", "ts": 1787119617.6613026}

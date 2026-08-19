@@ -1,0 +1,36 @@
+{
+  "system": "single",
+  "case_id": "frame_ball_pos_90",
+  "category": "frame",
+  "input": "第90帧球在什么位置？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧的球位置数据查询不到，工具返回「数据不足」。也就是说该帧没有对应的球路/快照记录，无法给出球的位置信息。如需核实，可尝试提供其他帧号。",
+  "latency_ms": 2562.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 2581,
+    "completion_tokens": 119,
+    "total_tokens": 2700
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135232_6929d7404e68.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\frame_ball_pos_90\\2",
+  "ts": "2026-08-19 13:52:32",
+  "repeat": 2
+}

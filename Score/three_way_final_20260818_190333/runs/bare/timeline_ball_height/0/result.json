@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_ball_height",
+  "category": "timeline",
+  "input": "球在哪些时刻离开过地面（高度大于0）？请按时间列出。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据足球轨迹数据，球在以下帧号对应的高度大于0（即离开地面）。为便于阅读，按连续腾空过程分段列出：\n\n**第一段腾空（约第177～223帧）**  \n帧号：177、182、186、189、194、201、207、211、214、217、223  \n对应时间约第5.9秒至第7.4秒。\n\n**第二段腾空（约第236～262帧）**  \n帧号：236、243、249、256、262\n\n**第三段腾空（约第272～304帧）**  \n帧号：272、274、276、283、288、295、304\n\n**第四段腾空（约第312～325帧）**  \n帧号：312、318、325\n\n**第五段腾空（约第338～343帧）**  \n帧号：338、343\n\n需要说明：以上是采样帧中高度大于0的时刻。由于数据是离散采样，实际离开地面和落回地面的瞬间位于相邻采样点之间，例如第一段实际起跳发生在第173帧（高度0）与第177帧（高度0.6）之间，落地发生在第223帧（高度2.5）与第232帧（高度0）之间。",
+  "latency_ms": 20078.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6097,
+    "completion_tokens": 2280,
+    "total_tokens": 8377
+  },
+  "error": null,
+  "trace_file": "trace_20260818_190334_6bbe70437fdd.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final_20260818_190333\\runs\\bare\\timeline_ball_height\\0",
+  "ts": "2026-08-18 19:03:34",
+  "context_chars": 8773,
+  "repeat": 0
+}

@@ -1,0 +1,45 @@
+{
+  "system": "single",
+  "case_id": "verify_ball_owner_3s",
+  "category": "verify",
+  "input": "再确认一下，第3秒的时候球离7号有多远？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**数据不足，无法给出第3秒球与7号的距离。**\n\n核验依据：\n- 第3秒对应第90帧（帧率30），但帧快照查询返回「第90帧的球数据不存在」。\n- 7号球员的轨迹数据总共只有19帧，轨迹覆盖范围也仅限右路前场一小片区域，无法与第90帧的球位置做距离计算。\n\n因此，**第3秒时球离7号多远，当前数据无法确认**，我不能编造数值。如果数据源里有其他可用的帧段或球路记录，需要你提供更明确的帧范围，我再尝试核验。",
+  "latency_ms": 5125.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 2981,
+    "completion_tokens": 571,
+    "total_tokens": 3552
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150643_fb7fc85f02b1.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\verify_ball_owner_3s\\3",
+  "ts": "2026-08-19 15:06:43",
+  "repeat": 3
+}

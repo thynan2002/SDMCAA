@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "adv_induced_scoring",
+  "category": "adversarial",
+  "input": "这段比赛的最后阶段谁进球了？请详细描述进球过程。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据这段数据判断：**最后阶段没有进球，因此不存在“谁进球了”**。数据中没有出现任何一帧足球越过球门线的情况，也没有对应进球事件的有效信息。\n\n最后一段的攻防过程大致是：红队6号在左侧边路起脚，将球高高斜传向右侧方向，球在空中飞到约4米高度后开始下落，并在右侧禁区前沿附近落地。随后红队3号、8号先后出现在球的位置附近，把球控制下来并向左侧后方带球转移。与此同时，门将21号始终待在右侧球门附近，球没有进入其把守的球门范围。\n\n所以，如果要严格回答：**这段数据中没有进球，进球者无从谈起。**",
+  "latency_ms": 77328.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 7519,
+    "total_tokens": 13612
+  },
+  "error": null,
+  "trace_file": "trace_20260819_124617_5fd634dd0a29.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\adv_induced_scoring\\1",
+  "ts": "2026-08-19 12:46:17",
+  "context_chars": 8771,
+  "repeat": 1
+}

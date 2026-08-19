@@ -1,0 +1,23 @@
+{"type": "run_start", "run_id": "4a5f0c6f4f58", "ts": 1787115478.3256705}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": null, "kind": "session", "name": "session_reset", "ts": 1787115478.3361828, "attrs": {}}
+{"type": "span_start", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787115478.3361828, "attrs": {"person": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_person2d.csv", "ball": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_soccer3d.csv"}}
+{"type": "span_end", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787115478.3416936, "dur_ms": 5.51, "status": "ok"}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": null, "kind": "load", "name": "corpus_ready", "ts": 1787115478.3421953, "attrs": {"prefix": "12s", "player_count": 21}}
+{"type": "span_start", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787115478.3421953, "attrs": {"input": "对比6号和7号谁更积极？"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "routing", "ts": 1787115478.3421953, "attrs": {"content": "正在理解问题意图…", "status": "active"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "routing", "ts": 1787115478.3426964, "attrs": {"content": "意图识别完成", "status": "done"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "comparison", "ts": 1787115478.3426964, "attrs": {"content": "正在对比球员风格…", "status": "active"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "collect_data", "ts": 1787115478.3451924, "attrs": {"content": "正在采集球员数据…", "status": "active"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "collect_data", "ts": 1787115478.3466933, "attrs": {"content": "球员数据采集完成", "status": "done"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "model_styles", "ts": 1787115478.3466933, "attrs": {"content": "正在构建球员行为模型…", "status": "active"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "model_styles", "ts": 1787115478.3466933, "attrs": {"content": "行为模型构建完成", "status": "done"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "report", "ts": 1787115478.3476985, "attrs": {"content": "正在生成分析报告…", "status": "active"}}
+{"type": "span_start", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00003", "parent_id": "4a5f0c6f4f58-00002", "kind": "llm", "name": "llm_call[0]", "ts": 1787115478.3476985, "attrs": {"seq": 0, "stream": true, "system_sha256": "ba91a2b2435fb152e188e6a52dce504509c0b8d2636666bdd600069ebdcbe118", "user_sha256": "ded5b647c0be36e6b587588dc313595ccc5fe5fdddbf291e594b03d016781d66", "system_len": 935, "user_len": 3489}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00003", "kind": "llm_result", "name": "llm_result[0]", "ts": 1787115508.1091669, "attrs": {"seq": 0, "ok": true, "tool_calls": false, "response_sha256": "218932136e3c17eaa8bf13152883bfead9d51962d65086c5ca1c9c82bdb5fd07", "response_len": 1323}}
+{"type": "span_end", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00003", "parent_id": "4a5f0c6f4f58-00002", "kind": "llm", "name": "llm_call[0]", "ts": 1787115508.109847, "dur_ms": 29762.15, "status": "ok"}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "report", "ts": 1787115508.109847, "attrs": {"content": "报告生成完成", "status": "done"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stage", "name": "comparison", "ts": 1787115508.109847, "attrs": {"content": "对比分析完成", "status": "done"}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "stream", "name": "stream_summary", "ts": 1787115508.109847, "attrs": {"chunks": 0, "chars": 0}}
+{"type": "event", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "kind": "output", "name": "output[0]", "ts": 1787115508.1103506, "attrs": {"response_sha256": "218932136e3c17eaa8bf13152883bfead9d51962d65086c5ca1c9c82bdb5fd07", "response_len": 1323, "is_exit_signal": false}}
+{"type": "span_end", "run_id": "4a5f0c6f4f58", "span_id": "4a5f0c6f4f58-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787115508.1103506, "dur_ms": 29768.16, "status": "ok"}
+{"type": "run_end", "run_id": "4a5f0c6f4f58", "ts": 1787115508.1103506}

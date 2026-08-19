@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_pos_90",
+  "category": "frame",
+  "input": "第90帧球在什么位置？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧（第3.0秒），球位于前场边路，坐标为（922，587，0）。该位置属于进攻侧边线附近，静态威胁潜力评估为0.45，属于中等偏活跃区域。\n\n场上双方阵型分布：A队10号、6号、7号、8号集中在右路前场与中场，其中10号距球最近（84）；1号、2号、3号、4号、5号、9号散布在右路中场。B队18号、19号在右路前场贴近球，其余（11号至17号、20号）多分布在右路中场。另有C队21号标注在右路中场。可见21名球员中，A队与B队围绕前场边路的球权形成局部对抗，A队前场球员距离略近，其余球员整体处于中场区域。\n\n数据依据：帧号90，时间第3.0秒；球位置(x=922, y=587, z=0)；战术区域“前场边路”；离球最近球员为10号；该帧事件列表为空。\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 13406.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1105,
+    "completion_tokens": 1365,
+    "total_tokens": 2470
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153051_280f0df37d74.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_ball_pos_90\\4",
+  "ts": "2026-08-19 15:30:51",
+  "repeat": 4
+}

@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "ecdb757cea7a", "ts": 1787114728.9352646}
+{"type": "span_start", "run_id": "ecdb757cea7a", "span_id": "ecdb757cea7a-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114728.9352646, "attrs": {"input": "不对吧，7号第3秒的时候明明在中场附近，你确定吗？请核验数据。", "system": "bare"}}
+{"type": "span_start", "run_id": "ecdb757cea7a", "span_id": "ecdb757cea7a-00002", "parent_id": "ecdb757cea7a-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114728.9352646, "attrs": {"system_len": 293, "user_len": 8778}}
+{"type": "span_end", "run_id": "ecdb757cea7a", "span_id": "ecdb757cea7a-00002", "parent_id": "ecdb757cea7a-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114776.4626293, "dur_ms": 47527.36, "status": "ok"}
+{"type": "span_end", "run_id": "ecdb757cea7a", "span_id": "ecdb757cea7a-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114776.4630075, "dur_ms": 47527.74, "status": "ok"}
+{"type": "run_end", "run_id": "ecdb757cea7a", "ts": 1787114776.4630075}

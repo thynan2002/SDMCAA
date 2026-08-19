@@ -1,0 +1,43 @@
+{
+  "system": "single",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据工具返回的数据，我无法完整描述第20秒的攻防态势，如实说明如下：\n\n**数据不足**\n\n- 我尝试调取了第20秒对应的帧级快照（第600帧，帧率30，20秒×30=600帧），但系统返回「第600帧的球数据不存在」。\n- 同时，球路时间线数据目前只覆盖到约第11.6秒（8号球员控球移动），之后没有更晚的球路记录。\n\n也就是说，第20秒这个时间点超出了当前可查询数据的覆盖范围，因此无法判断那一刻的球权归属、双方站位、攻防转换方向或威胁程度。\n\n如果数据范围实际只到约第11~12秒为止，我可以为您描述该时间范围内（例如第10~11秒）的攻防态势，请您确认是否需要。",
+  "latency_ms": 6140.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 4946,
+    "completion_tokens": 619,
+    "total_tokens": 5565
+  },
+  "error": null,
+  "trace_file": "trace_20260818_223013_d74ebec2ff11.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 600
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final2_20260818_222756\\runs\\single\\halluc_frame_600\\0",
+  "ts": "2026-08-18 22:30:13",
+  "repeat": 0
+}

@@ -1,0 +1,50 @@
+{
+  "system": "single",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "## 开球瞬间（第0帧）场上形势\n\n**直接判断**：开球权在A队，由6号球员站在球旁执行开球（距球为0），球静止在地面上。开球一刻并不是\"前场冲锋\"的架势，而更像一次紧凑的中圈附近布置——A队7号在极近处（约94单位）随时接应，而B队多名前锋（19、15、18、14、16号）在球附近147~327单位范围内密集布防，从第一秒就准备贴近施压。整体看这是一次**阵地式短传启动**，不是长传吊冲开局。\n\n**数据依据**：\n- 第0帧球位于（x=1194，y=696），高度为0（地面球）；该帧无球路事件，符合开球未触球状态。\n- 距球最近的球员为6号（距球0），即开球执行者；紧邻的还有7号（94）、19号（147）、15号（293）、18号（300）、14号（314）、16号（325）、4号（327）。\n- 开球后首个球路事件出现在第0.7秒：**6号→7号**，方向为向左后、短距离地面球——印证了\"先回敲给近侧队友、从后场启动\"的稳健打法。\n- 结合全队战术画像：A队整体站位偏前场、重心靠右路；B队主要集中在中场区域，阵型紧凑。也就是说，B队在开球瞬间就把人员堆在中圈附近，意图是开局就地逼抢。",
+  "latency_ms": 13219.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7539,
+    "completion_tokens": 1345,
+    "total_tokens": 8884
+  },
+  "error": null,
+  "trace_file": "trace_20260819_121205_e28277534499.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 0
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 322
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\frame_ball_first\\0",
+  "ts": "2026-08-19 12:12:05",
+  "repeat": 0
+}

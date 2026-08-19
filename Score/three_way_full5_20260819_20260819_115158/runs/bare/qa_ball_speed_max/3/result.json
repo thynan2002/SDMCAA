@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_ball_speed_max",
+  "category": "general_qa",
+  "input": "这段比赛中足球移动的最快速度大约是多少？（米/秒）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据这段数据判断，进攻曾在片段中段出现一次明显的快速向前输送，球速骤然提升，是整个片段中威胁最大、节奏最快的一拍；之前有一次较长的横向转移，之后球速逐步回落。\n\n数据依据：在帧217到帧223之间，足球从坐标(1094.1, 424.8)运行到(1118.9, 381.0)，间隔6帧即0.2秒，同时高度从3.3米下降到2.5米。按场地标定比例折算，这一小段的平均速度约为**22.4米/秒**（约80公里/小时）。这是现有足球轨迹采样点中计算出的最快移动速度。\n\n需要说明：这是基于相邻采样点的平均速度，实际瞬时峰值可能更高，但根据数据可报告为“大约22～23米/秒”。",
+  "latency_ms": 91032.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 13229,
+    "total_tokens": 19322
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144302_651c7daf5ab8.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_ball_speed_max\\3",
+  "ts": "2026-08-19 14:43:02",
+  "context_chars": 8772,
+  "repeat": 3
+}

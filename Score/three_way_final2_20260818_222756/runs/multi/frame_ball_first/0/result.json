@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "需要先指出：第0帧的球并不在中圈，而是位于禁区（x=1194, y=696），所以这不是一次标准开球的画面。该帧实际形势是：球停在禁区内，6号与球位置重合（距球0），处在右路前场；A队其余8名队员全部集中在右路中场，整体阵型偏向球侧；B队19号在右路前场距球较近（约147），其余9人也都在右路中场；另有C队21号在右路中场。三队球员几乎全部聚拢在右半场，中场与禁区距离较近。本帧无事件，球所在禁区的静态威胁潜力较高，但尚不能视为已形成实际进攻机会。帧号0，时间第0.0秒；该帧可见20名球员，10号未出现在本帧。\n\n[核验过程：回溯原始数据 → 定位第0帧（0.0秒）→ 提取20名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 15281.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1108,
+    "completion_tokens": 1574,
+    "total_tokens": 2682
+  },
+  "error": null,
+  "trace_file": "trace_20260818_223213_8f05b47e2bf4.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final2_20260818_222756\\runs\\multi\\frame_ball_first\\0",
+  "ts": "2026-08-18 22:32:13",
+  "repeat": 0
+}

@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "5ea0946c1dce", "ts": 1787118634.7295585}
+{"type": "span_start", "run_id": "5ea0946c1dce", "span_id": "5ea0946c1dce-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118634.7295585, "attrs": {"input": "开球那一刻（第0帧）的场上情况是什么样的？", "system": "bare"}}
+{"type": "span_start", "run_id": "5ea0946c1dce", "span_id": "5ea0946c1dce-00002", "parent_id": "5ea0946c1dce-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118634.7295585, "attrs": {"system_len": 293, "user_len": 8768}}
+{"type": "span_end", "run_id": "5ea0946c1dce", "span_id": "5ea0946c1dce-00002", "parent_id": "5ea0946c1dce-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118659.9162827, "dur_ms": 25186.72, "status": "ok"}
+{"type": "span_end", "run_id": "5ea0946c1dce", "span_id": "5ea0946c1dce-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118659.916781, "dur_ms": 25187.22, "status": "ok"}
+{"type": "run_end", "run_id": "5ea0946c1dce", "ts": 1787118659.916781}

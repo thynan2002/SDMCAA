@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_ball_hmax",
+  "category": "general_qa",
+  "input": "比赛中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：这场12.4秒片段中，球的峰值高度为4.2米。\n\n具体信息如下：\n数值：4.2米（峰值高度）\n出现时刻：约第6.7秒，对应第201帧（30fps）\n数据来源：「比赛事实」中球特征的\"球峰值高度(米)\"字段及\"峰值高度出现时刻\"字段。\n\n推理链：这个峰值出现在球路处于高空段的阶段——第6.2秒起18号将球交给19号、19号控球后于第6.7秒传给7号，这一串球路的高度均为\"高空\"，峰值正好落在19号向7号输送这记高球时，随后球路开始转入7号→15号的高空传递并逐步回落，因此该时刻的高度即是本片段的天花板。",
+  "latency_ms": 5000.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9437,
+    "completion_tokens": 552,
+    "total_tokens": 9989
+  },
+  "error": null,
+  "trace_file": "trace_20260819_133904_f12a008d0360.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_ball_hmax\\1",
+  "ts": "2026-08-19 13:39:04",
+  "repeat": 1
+}

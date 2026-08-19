@@ -1,0 +1,233 @@
+[
+  {
+    "system": "bare",
+    "case_id": "timeline_ball_height",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 0
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_pass10",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 1
+  },
+  {
+    "system": "multi",
+    "case_id": "focus_player7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 2
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_frame_600",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 3
+  },
+  {
+    "system": "multi",
+    "case_id": "team_7s_threat",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 4
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_first",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 5
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 6
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_frame_600",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 7
+  },
+  {
+    "system": "single",
+    "case_id": "focus_player7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 8
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_first",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 9
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 10
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_zone_7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 11
+  },
+  {
+    "system": "bare",
+    "case_id": "focus_player7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 12
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_ball_height",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 13
+  },
+  {
+    "system": "bare",
+    "case_id": "team_7s_threat",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 14
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_6_7_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 15
+  },
+  {
+    "system": "single",
+    "case_id": "team_7s_threat",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 16
+  },
+  {
+    "system": "bare",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 17
+  },
+  {
+    "system": "single",
+    "case_id": "verify_7s_pos",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 18
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_first",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 19
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_ball_hmax",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 20
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 21
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_frame_600",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 22
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_zone_7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 23
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_pass10",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 24
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_7s_pos",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 25
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_pass10",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 26
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_ball_height",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 27
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_7s_pos",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 28
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_6_7_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 29
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_zone_7",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 30
+  },
+  {
+    "system": "single",
+    "case_id": "adv_ambiguous_multi_target",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 31
+  },
+  {
+    "system": "single",
+    "case_id": "compare_6_7_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 32
+  }
+]

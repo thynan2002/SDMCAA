@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "1a9a63459571", "ts": 1787046579.3081372}
+{"type": "span_start", "run_id": "1a9a63459571", "span_id": "1a9a63459571-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787046579.3081372, "attrs": {"input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）", "system": "bare"}}
+{"type": "span_start", "run_id": "1a9a63459571", "span_id": "1a9a63459571-00002", "parent_id": "1a9a63459571-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787046579.3081372, "attrs": {"system_len": 293, "user_len": 6472}}
+{"type": "span_end", "run_id": "1a9a63459571", "span_id": "1a9a63459571-00002", "parent_id": "1a9a63459571-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787046724.6693664, "dur_ms": 145361.23, "status": "ok"}
+{"type": "span_end", "run_id": "1a9a63459571", "span_id": "1a9a63459571-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787046724.6693664, "dur_ms": 145361.23, "status": "ok"}
+{"type": "run_end", "run_id": "1a9a63459571", "ts": 1787046724.6693664}

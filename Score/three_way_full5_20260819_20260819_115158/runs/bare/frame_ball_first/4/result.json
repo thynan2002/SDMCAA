@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**开球时刻（第 0 帧）的场上情况：**\n\n这是一个由红队控制球权的“死球/半静止”开局：球在场地边角附近，红队 6 号正好站在球的位置，相当于把球护在脚下；红队 7 号在斜后方不远接应，形成一个小范围的出球配合点。蓝队并没有立刻贴身逼抢，而是整体在中路横向展开，保持防守站位。红队其他球员则在中场及另一侧散开接应，意图通过边路把球向前推进。整体看，红队掌握主动，节奏不快，蓝队先落位防守，属于典型的阵地组织进攻起点。\n\n**数据依据：**  \n- 第 0 帧足球位置与红队 6 号的位置几乎完全重合，且球的高度为 0，说明球权在红队 6 号脚下。  \n- 红队 7 号是除 6 号外离球最近的同队球员，可以立刻形成短传接应。  \n- 蓝队大部分球员集中在中路区域，没有形成对持球人的包夹，只有蓝队 19 号相对靠近球的侧前方，起到骚扰/限制出球线路的作用。  \n- 红队 1、2、3、4、5、8、9 号分散在中路和左侧，拉开了接应宽度；门将 21 号远离球权区域，未参与这一回合。",
+  "latency_ms": 30953.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6092,
+    "completion_tokens": 3113,
+    "total_tokens": 9205
+  },
+  "error": null,
+  "trace_file": "trace_20260819_155315_2f7a18c11fa5.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_ball_first\\4",
+  "ts": "2026-08-19 15:53:15",
+  "context_chars": 8768,
+  "repeat": 4
+}

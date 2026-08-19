@@ -1,0 +1,34 @@
+{
+  "system": "single",
+  "case_id": "qa_ball_hmax",
+  "category": "general_qa",
+  "input": "比赛中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "我查询了球路时间线数据，这里需要说明一个重要情况：\n\n**关于球高度的精确数值，当前数据不足。** 球路数据里球高度只以「地面 / 低平 / 高空」三个档位记录，没有具体到米的高度测量值，因此无法给出「球最高到达了多少米」这类精确数字。\n\n不过从档位记录可以判断：\n\n**本场比赛球出现过最高档位「高空」**，出现在约 **6.2~7.2秒** 这一段连续的高空传递中——即 18号→19号→7号→15号→16号 这条沿向右后方向推进的传球序列，期间多脚传递（包括控球移动）都维持在「高空」档。这是整条时间线上唯一出现「高空」档位的阶段，其余时间绝大多数为「地面」或「低平」，说明这场比赛整体以地面传导为主，唯有这段中后场过渡出现了明显的起高球处理。\n\n如果你需要精确到米的高度峰值，我需要能提供逐帧高度数值的数据来源，目前工具返回的结果无法支撑该数字。",
+  "latency_ms": 6438.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 4855,
+    "completion_tokens": 674,
+    "total_tokens": 5529
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153237_f5fa6fddca86.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_ball_hmax\\4",
+  "ts": "2026-08-19 15:32:37",
+  "repeat": 4
+}

@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "无法回答该问题：所问时刻超出数据实际覆盖范围，该时刻不存在任何记录。\n\n数据实际覆盖范围：本片段总时长约12.4秒（30fps，帧号范围第0帧~第372帧，共373帧；球数据采样49帧（第0~349帧），球员轨迹覆盖21名球员）。\n\n推理过程：所问的\"第20.0秒\"按 30帧/秒 换算对应第600帧，而数据的末帧仅为第372帧（约第12.4秒），第600帧已超出覆盖范围，语料中不存在该时刻的球或球员数据；若强行描述该时刻的攻防态势只能是编造，故如实拒答。\n\n可查证的最近合法时刻：数据的最后时刻为约第12.4秒（第372帧），如需了解片段末段的攻防态势，可改问\"第12秒发生了什么\"，我会基于真实数据回溯核验后回答。",
+  "latency_ms": 16.0,
+  "llm_calls": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "error": null,
+  "trace_file": "trace_20260818_191621_e6996ade56af.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final_20260818_190333\\runs\\multi\\halluc_frame_600\\0",
+  "ts": "2026-08-18 19:16:21",
+  "repeat": 0
+}

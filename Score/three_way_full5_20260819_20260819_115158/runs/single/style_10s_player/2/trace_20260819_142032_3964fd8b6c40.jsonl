@@ -1,0 +1,13 @@
+{"type": "run_start", "run_id": "3964fd8b6c40", "ts": 1787120432.1110826}
+{"type": "span_start", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787120432.1145782, "attrs": {"input": "哪个球员的跑动距离最长？他的风格特点是什么？", "system": "single"}}
+{"type": "span_start", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00002", "parent_id": "3964fd8b6c40-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787120432.1145782, "attrs": {"system_len": 311, "user_len": 22, "tool_round": 0}}
+{"type": "span_end", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00002", "parent_id": "3964fd8b6c40-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787120434.604356, "dur_ms": 2489.78, "status": "ok"}
+{"type": "event", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00001", "kind": "tool", "name": "tool[0]", "ts": 1787120434.6063538, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00003", "parent_id": "3964fd8b6c40-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787120434.6063538, "attrs": {"system_len": 311, "user_len": 22, "tool_round": 1}}
+{"type": "span_end", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00003", "parent_id": "3964fd8b6c40-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787120437.6070943, "dur_ms": 3000.74, "status": "ok"}
+{"type": "event", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00001", "kind": "tool", "name": "tool[1]", "ts": 1787120437.6070943, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00001", "kind": "tool", "name": "tool[2]", "ts": 1787120437.6070943, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00004", "parent_id": "3964fd8b6c40-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787120437.6070943, "attrs": {"system_len": 311, "user_len": 22, "tool_round": 2}}
+{"type": "span_end", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00004", "parent_id": "3964fd8b6c40-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787120444.9234376, "dur_ms": 7316.34, "status": "ok"}
+{"type": "span_end", "run_id": "3964fd8b6c40", "span_id": "3964fd8b6c40-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787120444.9234376, "dur_ms": 12808.86, "status": "ok"}
+{"type": "run_end", "run_id": "3964fd8b6c40", "ts": 1787120444.9234376}

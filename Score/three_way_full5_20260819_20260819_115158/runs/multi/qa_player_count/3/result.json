@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_player_count",
+  "category": "general_qa",
+  "input": "这份数据里一共追踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这份数据一共追踪了21名球员，其中场上球员20名，另有1名门将（21号）。\n\n数据依据：比赛事实的「比赛信息」字段明确记载球员总数为21、场上球员数为20、门将数为1，且球员清单恰好列有21个球衣号（A队10人、B队10人、门将1人），三者互相印证，所以21名是完整追踪口径。需要说明的是，这21名球员在片段中都参与了位置追踪，但并非人人触球——从参与度来看，绝大多数球员在本片段中并未直接参与球路，真正经手过球的只有A队6、7、8、3、10号与B队14、15、16、18、19号等少数人，属于典型的局部密集对抗场景。",
+  "latency_ms": 4187.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9438,
+    "completion_tokens": 390,
+    "total_tokens": 9828
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150118_1b5dc3aadb2e.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_player_count\\3",
+  "ts": "2026-08-19 15:01:18",
+  "repeat": 3
+}

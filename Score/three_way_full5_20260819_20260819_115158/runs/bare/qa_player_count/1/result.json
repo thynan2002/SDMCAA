@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_player_count",
+  "category": "general_qa",
+  "input": "这份数据里一共追踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据数据总览，这份数据一共追踪了 **21 名球员**（1号至21号，其中21号为门将）。",
+  "latency_ms": 1641.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6088,
+    "completion_tokens": 69,
+    "total_tokens": 6157
+  },
+  "error": null,
+  "trace_file": "trace_20260819_130652_68254da03d23.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_player_count\\1",
+  "ts": "2026-08-19 13:06:52",
+  "context_chars": 8763,
+  "repeat": 1
+}

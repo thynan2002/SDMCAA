@@ -1,0 +1,257 @@
+{
+  "system": "single",
+  "case_id": "qa_duration",
+  "category": "general_qa",
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据对数据边界的核验，这份数据覆盖了比赛约 **11 秒**的时间段（从约第 0.7 秒到约第 11.6 秒），实际时间跨度约 10.9 秒。\n\n数据依据：\n- 最早可用的数据帧为第 20 帧（约第 0.7 秒），第 19 帧及之前均无球数据；\n- 最晚可用的数据帧为第 349 帧（约第 11.6 秒），第 350 帧及之后均无球数据；\n- 球路时间线的首条事件（6号→7号）与最后一条事件（8号控球移动）也正好落在 0.7 秒与 11.6 秒。\n\n需要说明的是，这 11 秒并非逐帧连续采样，而是以关键帧形式抽取（例如第 20、338、343、349 帧有数据，而中间的 339、344、350 等帧无数据），因此这是**采样关键帧的时间跨度**，并非完整的连续比赛录像。",
+  "latency_ms": 31844.0,
+  "llm_calls": 8,
+  "tokens": {
+    "prompt_tokens": 58492,
+    "completion_tokens": 3635,
+    "total_tokens": 62127
+  },
+  "error": null,
+  "trace_file": "trace_20260819_141325_7f93fda5ee35.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "8号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 220
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 348
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 360
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 1
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 43
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 20
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 350
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 21
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 340
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 345
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 347
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 338
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 339
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 336
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 330
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 19
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 341
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 342
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 343
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 344
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 346
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 349
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 348
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 350
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 355
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 18
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_duration\\2",
+  "ts": "2026-08-19 14:13:25",
+  "repeat": 2
+}

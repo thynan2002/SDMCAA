@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "compare_7s_active",
+  "category": "comparison",
+  "input": "对比6号和11号谁跑动更积极？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：在这段约 7.2 秒的片段里，**11号比6号跑动更积极**。\n\n数据依据上，11号的累计跑动距离、平均移动速度和峰值速度都高于6号，说明他不仅总跑动量更大，移动节奏也更快。从轨迹走势看，11号从中场区域一路向前场纵深移动，活动范围明显更大，带有向前推进或前插的意图；6号则基本在相近的中场区域内小范围移动，位置相对固定，更多是接应型跑动。\n\n因此，仅就这一段数据而言，**11号的跑动积极性明显强于6号**。",
+  "latency_ms": 11516.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 4786,
+    "completion_tokens": 1165,
+    "total_tokens": 5951
+  },
+  "error": null,
+  "trace_file": "trace_20260819_160101_7b87358d9add.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\compare_7s_active\\4",
+  "ts": "2026-08-19 16:01:01",
+  "context_chars": 6451,
+  "repeat": 4
+}

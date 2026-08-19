@@ -1,0 +1,70 @@
+{
+  "system": "single",
+  "case_id": "compare_6_7_active",
+  "category": "comparison",
+  "input": "对比6号和7号谁更积极？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "## 结论：6号更积极\n\n综合来看，**6号明显比7号更积极**——虽然两人都是A队右路前锋，但6号在跑动持续性和活动覆盖上全面占优。\n\n### 关键数据依据\n\n**6号的优势——\"持续跑动型\"：**\n- 活动覆盖范围远大于7号：6号的场地覆盖率是7号的5倍左右，且横向活动轨迹跨度极大（6号轨迹横跨范围约是7号的5~6倍），说明6号在不断横向扯动、主动接应，而不是\"钉\"在一个小区域里\n- 接近球时间占比达到100%，也就是说**几乎全程都在球的附近**，始终参与、始终跟防/接应\n- 平均速度更高（约为7号的1.4倍），跑动节奏更连贯\n\n**7号的特点——\"偶发爆发型\"：**\n- 峰值速度更快（比6号高出约14%），说明7号有一瞬间的爆发力更强\n- 参与球路次数略多于6号，属于机会型参与\n- 但活动范围非常窄（几乎集中在同一小块区域），接近球时间占比只有约67%，也就是说**有约三分之一的时间远离球权区域**\n\n### 战术层面的解读\n\n从全队态势看，A队整体压上、进攻偏向右路，右路前场正是两人的主战场。在这个区域里：\n- 6号是**持续移动的接应点**，覆盖面广、全程贴近球权，是右路进攻的\"活棋\"\n- 7号更多是**定点等待的终结者**，靠瞬间爆发力参与，覆盖和续航相对有限\n\n所以如果按\"积极程度\"（跑动持续性、活动覆盖、贴近球权时间）来衡量，6号显著更积极；7号的积极性主要体现在单次参与时的爆发速度上。",
+  "latency_ms": 9953.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 5694,
+    "completion_tokens": 1247,
+    "total_tokens": 6941
+  },
+  "error": null,
+  "trace_file": "trace_20260819_155304_0e7b3b0070ec.jsonl",
+  "tool_records": [
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\compare_6_7_active\\4",
+  "ts": "2026-08-19 15:53:04",
+  "repeat": 4
+}

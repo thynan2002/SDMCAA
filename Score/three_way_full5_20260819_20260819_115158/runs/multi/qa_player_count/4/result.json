@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_player_count",
+  "category": "general_qa",
+  "input": "这份数据里一共追踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "共追踪了21名球员，其中场上球员20名、门将1名。依据是比赛信息中的球员总数字段：21人（20名场上球员加1名门将），具体构成为A队10人（1号至10号）、B队10人（11号至20号）、门将21号。这份追踪覆盖了双方全部出场球员，没有遗漏。",
+  "latency_ms": 2313.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9438,
+    "completion_tokens": 251,
+    "total_tokens": 9689
+  },
+  "error": null,
+  "trace_file": "trace_20260819_155301_418468a5e115.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_player_count\\4",
+  "ts": "2026-08-19 15:53:01",
+  "repeat": 4
+}

@@ -1,0 +1,13 @@
+{"type": "run_start", "run_id": "101568e58b50", "ts": 1787057080.5046213}
+{"type": "span_start", "run_id": "101568e58b50", "span_id": "101568e58b50-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787057080.5126362, "attrs": {"input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）", "system": "single"}}
+{"type": "span_start", "run_id": "101568e58b50", "span_id": "101568e58b50-00002", "parent_id": "101568e58b50-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787057080.5126362, "attrs": {"system_len": 311, "user_len": 36, "tool_round": 0}}
+{"type": "span_end", "run_id": "101568e58b50", "span_id": "101568e58b50-00002", "parent_id": "101568e58b50-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787057083.0392156, "dur_ms": 2526.58, "status": "ok"}
+{"type": "event", "run_id": "101568e58b50", "span_id": "101568e58b50-00001", "kind": "tool", "name": "tool[0]", "ts": 1787057083.0417225, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "101568e58b50", "span_id": "101568e58b50-00001", "kind": "tool", "name": "tool[1]", "ts": 1787057083.0422258, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "101568e58b50", "span_id": "101568e58b50-00003", "parent_id": "101568e58b50-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787057083.0422258, "attrs": {"system_len": 311, "user_len": 36, "tool_round": 1}}
+{"type": "span_end", "run_id": "101568e58b50", "span_id": "101568e58b50-00003", "parent_id": "101568e58b50-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787057085.5903165, "dur_ms": 2548.09, "status": "ok"}
+{"type": "event", "run_id": "101568e58b50", "span_id": "101568e58b50-00001", "kind": "tool", "name": "tool[2]", "ts": 1787057085.5908158, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "101568e58b50", "span_id": "101568e58b50-00004", "parent_id": "101568e58b50-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787057085.5908158, "attrs": {"system_len": 311, "user_len": 36, "tool_round": 2}}
+{"type": "span_end", "run_id": "101568e58b50", "span_id": "101568e58b50-00004", "parent_id": "101568e58b50-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787057092.6152284, "dur_ms": 7024.41, "status": "ok"}
+{"type": "span_end", "run_id": "101568e58b50", "span_id": "101568e58b50-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787057092.6152284, "dur_ms": 12102.59, "status": "ok"}
+{"type": "run_end", "run_id": "101568e58b50", "ts": 1787057092.6152284}

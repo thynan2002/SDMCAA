@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "style_player7",
+  "category": "style",
+  "input": "7号的跑动风格是什么？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "基于这约12.4秒的比赛片段，7号的跑动风格更接近“由边路向中路的内收型跑动”，且带一次短促的加速冲刺，并不是持续高速或大范围往返的类型。战术上，他更像一名后场边路球员在球队推进时向中路收拢，承担接应和保护的作用；对球门的直接威胁不大，更多是串联和保持阵型站位。\n\n数据依据：7号全场累计跑动约25米，平均速度约2米/秒，在队内处于中等水平，说明他大部分时间没有高频奔跑；但他的峰值速度达到5.6米/秒，明显高于自身平均速度，也排在全部球员前列，说明他有过一次突然加速。从轨迹看，他开场时贴近边线，随后快速横向向中路移动，进入中前场区域后有一段较长时间位置几乎不动，最后又小幅调整。这种“启动—冲刺—停顿—调整”的节奏，说明他属于间歇性、有明确目的的跑动，而非持续反复的折返跑。",
+  "latency_ms": 57140.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 5237,
+    "total_tokens": 11323
+  },
+  "error": null,
+  "trace_file": "trace_20260819_133322_4fc4b0e0dfd6.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\style_player7\\1",
+  "ts": "2026-08-19 13:33:22",
+  "context_chars": 8758,
+  "repeat": 1
+}

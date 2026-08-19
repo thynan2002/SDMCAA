@@ -1,0 +1,70 @@
+{
+  "system": "single",
+  "case_id": "compare_6_7_active",
+  "category": "comparison",
+  "input": "对比6号和7号谁更积极？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**直接结论：6号更积极。**\n\n两人同为A队右路前锋，但积极性呈现出明显差异，主要从三个维度体现：\n\n**1. 移动量与覆盖范围——6号明显占优**\n- 6号的跑动覆盖范围远比7号广阔，横向活动横跨了右路前场的一大片区域，而7号的活动范围非常局促，基本被限制在一个狭小的通道内，几乎没有什么横向拉扯。\n- 从平均移动速度看，6号明显比7号更快、移动更持续，场上跑动节奏更高。\n\n**2. 与球的贴近程度——6号几乎全程贴球**\n- 6号接近球的时间占比接近100%，也就是说整段数据里他几乎时刻都在球的附近，始终参与比赛节奏；而7号有约三分之一的时间远离球权区域，存在一定\"游离于比赛外\"的时段。\n\n**3. 参与球路——两人接近，7号略多但不构成优势**\n- 两人参与球路的次数非常接近，7号略多一点。但考虑到7号活动范围远小于6号、接近球时间又明显偏少，这点微弱的参与次数优势更多来自站位而非主动跑动。\n\n**补充说明：**\n- 两人都未出现冲刺（都以匀速跑动为主），但7号曾有一次更高的瞬时峰值速度，属于偶发提速，不代表整体跑动更积极。\n- 综合看，6号在移动量、覆盖面积、贴球度三个维度全面领先，是更积极、更投入比赛的一方。7号则更偏向\"站桩型\"前场角色，靠位置接应而非跑动制造威胁。",
+  "latency_ms": 10427.2,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 5648,
+    "completion_tokens": 1141,
+    "total_tokens": 6789
+  },
+  "error": null,
+  "trace_file": "trace_20260816_144244_f17dbd722d2f.jsonl",
+  "tool_records": [
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.1,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 1.6,
+      "result_len": 4042
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\smoke3_20260816_143907\\runs\\single\\compare_6_7_active\\0",
+  "ts": "2026-08-16 14:42:44",
+  "repeat": 0
+}

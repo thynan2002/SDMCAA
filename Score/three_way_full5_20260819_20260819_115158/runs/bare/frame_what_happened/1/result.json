@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_what_happened",
+  "category": "frame",
+  "input": "第90帧发生了什么？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧没有直接可用的记录，因此无法确认这一帧具体发生了什么。\n\n数据显示：足球轨迹从第50帧之后，下一次记录直接跳到第102帧，中间没有第90帧的球位置；球员轨迹也没有第90帧，只有第89帧、第92帧等相邻帧数据。所以“第90帧谁触球、球在空中还是地面、是否有传球或射门”这些信息，数据中都不存在。\n\n从相邻帧只能看出一个趋势：红队10号当时在向足球方向移动。第89帧他在(854.4,533.4)，第102帧足球出现在(871.4,559.9)，且10号正好也在同一位置。因此可以推测第90帧前后，10号正在靠近球的落点，但这不是第90帧的直接记录，不能确认他当时已经控球或触球。",
+  "latency_ms": 24516.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6084,
+    "completion_tokens": 2514,
+    "total_tokens": 8598
+  },
+  "error": null,
+  "trace_file": "trace_20260819_130627_d43531f64a88.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_what_happened\\1",
+  "ts": "2026-08-19 13:06:27",
+  "context_chars": 8757,
+  "repeat": 1
+}

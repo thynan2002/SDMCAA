@@ -1,0 +1,11 @@
+{"type": "run_start", "run_id": "084450464351", "ts": 1787125597.2685773}
+{"type": "span_start", "run_id": "084450464351", "span_id": "084450464351-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787125597.2735772, "attrs": {"input": "99号球员这场比赛的表现怎么样？", "system": "single"}}
+{"type": "span_start", "run_id": "084450464351", "span_id": "084450464351-00002", "parent_id": "084450464351-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787125597.2735772, "attrs": {"system_len": 311, "user_len": 16, "tool_round": 0}}
+{"type": "span_end", "run_id": "084450464351", "span_id": "084450464351-00002", "parent_id": "084450464351-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787125598.91233, "dur_ms": 1638.75, "status": "ok"}
+{"type": "event", "run_id": "084450464351", "span_id": "084450464351-00001", "kind": "tool", "name": "tool[0]", "ts": 1787125598.9128296, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "084450464351", "span_id": "084450464351-00001", "kind": "tool", "name": "tool[1]", "ts": 1787125598.9133346, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "084450464351", "span_id": "084450464351-00001", "kind": "tool", "name": "tool[2]", "ts": 1787125598.915331, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "084450464351", "span_id": "084450464351-00003", "parent_id": "084450464351-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787125598.915331, "attrs": {"system_len": 311, "user_len": 16, "tool_round": 1}}
+{"type": "span_end", "run_id": "084450464351", "span_id": "084450464351-00003", "parent_id": "084450464351-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787125602.0865767, "dur_ms": 3171.25, "status": "ok"}
+{"type": "span_end", "run_id": "084450464351", "span_id": "084450464351-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787125602.0875845, "dur_ms": 4814.01, "status": "ok"}
+{"type": "run_end", "run_id": "084450464351", "ts": 1787125602.0875845}

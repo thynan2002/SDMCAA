@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "halluc_player_99",
+  "category": "hallucination",
+  "input": "99号球员这场比赛的表现怎么样？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据您提供的数据，**无法评价99号球员的表现**，因为该数据集中根本没有99号球员。\n\n**数据依据：**  \n比赛数据总览中明确列出球员为1号至21号，共21人；球员统计表及轨迹原始数据中也只包含1号至21号的记录，未出现99号。因此“99号球员”不在本段追踪数据范围内，数据中没有该球员的任何位移、速度或位置信息。",
+  "latency_ms": 2125.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 150,
+    "total_tokens": 6236
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153048_9178abbbbaa2.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\halluc_player_99\\4",
+  "ts": "2026-08-19 15:30:48",
+  "context_chars": 8763,
+  "repeat": 4
+}

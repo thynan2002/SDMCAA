@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "严格说，**第90帧没有足球轨迹的采样点**，所以不能给出该帧的精确球坐标；但可以根据相邻帧的控球关系做大致推断。\n\n**直接判断：**\n\n第90帧时，球大致在**球场右侧肋部、大禁区角外侧偏边线一带**，距右侧球门大约二三十米。  \n对球门的威胁属于**中等偏低**：球已经进入靠近对方球门的右侧进攻区域，有一定发展威胁，但角度偏、离门较远，且持球人正在朝边线/底线方向移动，尚未形成直接射门或高质量传中的机会。\n\n**数据依据：**\n\n- 第102帧的足球坐标是 `(871.4, 559.9)`，同时10号球员也在 `(871.4, 559.9)`，说明当时球在10号脚下。\n- 第89帧10号在 `(854.4, 533.4)`，第97帧在 `(864, 547.2)`，移动连续，因此可推断第90帧球基本就在10号附近。\n- 门将21号一直驻守右侧球门附近，所以该位置是接近对方球门的右侧区域，而非后场或中路。\n- 10号的移动方向是 x、y 同时增大，也就是朝边线/底线方向带球，并没有朝球门中路推进，因此威胁没有进一步升级。",
+  "latency_ms": 97890.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6098,
+    "completion_tokens": 10539,
+    "total_tokens": 16637
+  },
+  "error": null,
+  "trace_file": "trace_20260819_160518_e25952b3f00f.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_ball_zone_90\\4",
+  "ts": "2026-08-19 16:05:18",
+  "context_chars": 8776,
+  "repeat": 4
+}

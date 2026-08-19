@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**直接判断：** 整场比赛球对球门形成的最大威胁接近 0.9，属于一次高威胁攻门情景，出现在比赛第 7.4 秒前后，且这次威胁发生在禁区内。\n\n**数据依据：**\n- 全场球的最大威胁值为 **0.862**（威胁值区间 0–1，越接近 1 越危险），已处于高位，表明这次进攻直接逼近球门得分区。\n- 威胁峰值时刻为 **第 7.4 秒（对应帧号 223）**，威胁峰值区域为 **禁区**。\n- 对照球路时间线，第 7.4 秒附近正是球路最密集的一波连续传递：约 6.1 秒起由 6 号发动，经 18 号、19 号、7 号、15 号、16 号快速串联，在第 7.4 秒由 16 号传给 14 号，球已进入低平状态、落点逼近禁区——这正是全场唯一一次把推进深度打到禁区并形成最高威胁的时段。\n\n需要说明的是：除这波外，整体比赛绝大多数球路为短距离回传/横向传递，向前推进占比不高，因此其余时间的威胁程度显著低于这一峰值。",
+  "latency_ms": 7609.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7414,
+    "completion_tokens": 643,
+    "total_tokens": 8057
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142642_2462dcbf2874.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\team_threat_peak\\2",
+  "ts": "2026-08-19 14:26:42",
+  "repeat": 2
+}

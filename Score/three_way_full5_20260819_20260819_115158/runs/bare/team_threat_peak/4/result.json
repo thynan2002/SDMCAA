@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据这12.4秒的轨迹数据，整段比赛里真正对球门形成的最大威胁，来自6号在约第173帧发起、随后飞行到禁区附近的一脚高球/传中。\n\n- 这脚球从第177帧开始离地，最高点达到约4.2米，属于明显的高空球；\n- 在第223帧，球飞到球门附近坐标约“1118.9, 381”的位置，高度仍有约2.5米；\n- 但同一帧，防守方14号正好出现在这个落点，进行了封堵/解围；\n- 随后球在第232帧已经落回地面，并逐渐远离球门方向；\n- 21号门将基本一直待在球门线附近，没有出现被迫扑救或出击接球的时刻。\n\n所以这更像“一次有威胁的传中被防守球员化解”，而不是一次直接射正或必进球机会。\n\n如果按0到1给威胁值，我估计最大威胁大约在 **0.5 左右**，可以理解为中等威胁；保守一点可以看作 **0.4～0.6**。\n\n需要说明：数据中没有直接给出“威胁值”这一项，这是根据球轨迹、落点和防守站位估算出来的判断。",
+  "latency_ms": 110922.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6105,
+    "completion_tokens": 12386,
+    "total_tokens": 18491
+  },
+  "error": null,
+  "trace_file": "trace_20260819_154014_693113c3fd9e.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\team_threat_peak\\4",
+  "ts": "2026-08-19 15:40:14",
+  "context_chars": 8786,
+  "repeat": 4
+}

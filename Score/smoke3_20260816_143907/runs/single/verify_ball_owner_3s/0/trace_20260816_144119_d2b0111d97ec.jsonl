@@ -1,0 +1,14 @@
+{"type": "run_start", "run_id": "d2b0111d97ec", "ts": 1786862479.9406614}
+{"type": "span_start", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1786862479.9441607, "attrs": {"input": "再确认一下，第3秒的时候球离7号有多远？", "system": "single"}}
+{"type": "span_start", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00002", "parent_id": "d2b0111d97ec-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1786862479.9442396, "attrs": {"system_len": 311, "user_len": 20, "tool_round": 0}}
+{"type": "span_end", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00002", "parent_id": "d2b0111d97ec-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1786862481.526879, "dur_ms": 1582.64, "status": "ok"}
+{"type": "event", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00001", "kind": "tool", "name": "tool[0]", "ts": 1786862481.5271566, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00001", "kind": "tool", "name": "tool[1]", "ts": 1786862481.5272992, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.1}}
+{"type": "span_start", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00003", "parent_id": "d2b0111d97ec-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1786862481.527336, "attrs": {"system_len": 311, "user_len": 20, "tool_round": 1}}
+{"type": "span_end", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00003", "parent_id": "d2b0111d97ec-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1786862484.5283508, "dur_ms": 3001.02, "status": "ok"}
+{"type": "event", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00001", "kind": "tool", "name": "tool[2]", "ts": 1786862484.5284646, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00001", "kind": "tool", "name": "tool[3]", "ts": 1786862484.528487, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00004", "parent_id": "d2b0111d97ec-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1786862484.5285125, "attrs": {"system_len": 311, "user_len": 20, "tool_round": 2}}
+{"type": "span_end", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00004", "parent_id": "d2b0111d97ec-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1786862488.1398773, "dur_ms": 3611.37, "status": "ok"}
+{"type": "span_end", "run_id": "d2b0111d97ec", "span_id": "d2b0111d97ec-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1786862488.1399703, "dur_ms": 8195.81, "status": "ok"}
+{"type": "run_end", "run_id": "d2b0111d97ec", "ts": 1786862488.1400113}

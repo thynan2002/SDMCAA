@@ -1,0 +1,50 @@
+{
+  "system": "single",
+  "case_id": "team_7s_threat",
+  "category": "team",
+  "input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**直接判断：这段比赛里球形成的最大威胁值为 0.957，非常接近 1，属于极度危险的高威胁状态。**\n\n具体数据依据如下：\n\n- **最大威胁值：0.957**（0-1 尺度，越接近 1 越危险）\n- **峰值时刻：第 3.2 秒（帧 97）**\n- **峰值区域：禁区**\n\n对该峰值时刻做帧级核验：第 3.2 秒球位于禁区内（坐标 x=1174, y=364, 高度极低），此时球正由 A 队 8 号向 6 号转移，防守方 13 号是离球最近的球员（距球仅 6 个距离单位），6 号也在 12 个距离单位以内——进攻方两人在禁区腹地贴身围绕球权，防守球员已被压缩到极近距离，这是典型的禁区近距离缠斗场景，威胁值因此被推至接近满值。\n\n需要补充说明的是，从整段球路看，这 7 秒绝大多数时间球都在中后场向后回传（向后回传占比接近三分之二），推进很缓慢；但最大威胁值恰恰出现在这段慢节奏回传中的禁区环节，说明该瞬间球权贴近禁区且攻方包夹人数占优，形成了全段唯一的危险爆发点。",
+  "latency_ms": 12750.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 14856,
+    "completion_tokens": 1473,
+    "total_tokens": 16329
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150623_4a43566426f4.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3667
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 97
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\team_7s_threat\\3",
+  "ts": "2026-08-19 15:06:23",
+  "repeat": 3
+}

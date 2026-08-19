@@ -1,0 +1,196 @@
+{
+  "system": "single",
+  "case_id": "qa_7s_ball_hmax",
+  "category": "general_qa",
+  "input": "这段7秒片段中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**结论**：这段7秒片段中，球的最高高度为 **z=5**（轨迹数据中的高度坐标值），出现在第2.3秒至第2.8秒之间。\n\n**数据依据**：我对球路高空阶段逐帧采样了帧级快照，球的高度坐标（z值）峰值如下：\n- 第2.3秒（帧70）：z=5\n- 第2.5秒（帧75）：z=5\n- 第2.7秒（帧80）：z=5\n- 第2.8秒（帧85）：z=5\n\n这是整段片段中球的最高点，对应的时间段正是**17号向后开出高空球、球在向后飞行途中**的阶段（球路标记为「17号→未知」，方向向后、高度为高空）。在此之前（1.6~2.0秒）球从低平逐渐升空（z=1→4），此后（2.9秒起）球逐步回落（z=4→3），后半段进入低平/地面状态，没有再回到这一高度。\n\n需要说明的是，工具返回的是轨迹数据中的高度坐标值（z），并非以米为单位的实测离地高度；该片段内可确认的最高纪录就是 z=5。",
+  "latency_ms": 19657.0,
+  "llm_calls": 6,
+  "tokens": {
+    "prompt_tokens": 34244,
+    "completion_tokens": 2537,
+    "total_tokens": 36781
+  },
+  "error": null,
+  "trace_file": "trace_20260819_155012_6fbd0da1909d.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 75
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 353
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 135
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 50
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 100
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 108
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 346
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 138
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 55
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 60
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 65
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 355
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 70
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 80
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 85
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 48
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 95
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 105
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 347
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 110
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 140
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_7s_ball_hmax\\4",
+  "ts": "2026-08-19 15:50:12",
+  "repeat": 4
+}

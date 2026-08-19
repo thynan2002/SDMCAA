@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_duration",
+  "category": "general_qa",
+  "input": "这份数据覆盖了多长时间的比赛？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这份数据覆盖的比赛时长约为 **12.4秒**。\n\n数据依据：帧号范围为 0～372，采样率 30fps，因此总帧数约 373 帧，对应时间 373 ÷ 30 ≈ 12.4 秒。",
+  "latency_ms": 1844.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 117,
+    "total_tokens": 6203
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150928_19c3b10eb3f5.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_duration\\3",
+  "ts": "2026-08-19 15:09:28",
+  "context_chars": 8762,
+  "repeat": 3
+}

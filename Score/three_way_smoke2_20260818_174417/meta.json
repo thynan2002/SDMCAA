@@ -1,0 +1,109 @@
+{
+  "event": "three_way_smoke2",
+  "ts": "20260818_174417",
+  "config": {
+    "weights": {
+      "accuracy": 0.15,
+      "grounding": 0.1,
+      "completeness": 0.1,
+      "reasoning": 0.2,
+      "efficiency": 0.1,
+      "robustness": 0.1,
+      "tactical_accuracy": 0.25
+    },
+    "repeats": 1,
+    "systems": [
+      "bare",
+      "single",
+      "multi"
+    ],
+    "temperature": 0.85,
+    "seed": 42,
+    "job_timeout_s": 900,
+    "refs": {
+      "latency_ms": 120000.0,
+      "llm_calls": 10.0,
+      "total_tokens": 12000.0
+    },
+    "judge": {
+      "model": "deepseek-v4-pro",
+      "sample_repeats": 2,
+      "order_swap": true,
+      "temperature": 0.0
+    },
+    "judge_enabled": true
+  },
+  "cases": [
+    {
+      "id": "adv_ambiguous_multi_target",
+      "category": "adversarial",
+      "level": 7
+    },
+    {
+      "id": "cf_7s_pass10",
+      "category": "counterfactual",
+      "level": 5
+    },
+    {
+      "id": "compare_6_7_active",
+      "category": "comparison",
+      "level": 2
+    },
+    {
+      "id": "focus_player7",
+      "category": "focus",
+      "level": 4
+    },
+    {
+      "id": "frame_ball_first",
+      "category": "frame",
+      "level": 1
+    },
+    {
+      "id": "halluc_frame_600",
+      "category": "hallucination",
+      "level": 7
+    },
+    {
+      "id": "qa_7s_ball_hmax",
+      "category": "general_qa",
+      "level": 1
+    },
+    {
+      "id": "qa_player_zone_7",
+      "category": "style",
+      "level": 4
+    },
+    {
+      "id": "team_7s_threat",
+      "category": "team",
+      "level": 3
+    },
+    {
+      "id": "timeline_ball_height",
+      "category": "timeline",
+      "level": 2
+    },
+    {
+      "id": "verify_7s_pos",
+      "category": "verify",
+      "level": 2
+    }
+  ],
+  "case_selection": [
+    "adv_ambiguous_multi_target",
+    "cf_7s_pass10",
+    "compare_6_7_active",
+    "focus_player7",
+    "frame_ball_first",
+    "halluc_frame_600",
+    "qa_7s_ball_hmax",
+    "qa_player_zone_7",
+    "team_7s_threat",
+    "timeline_ball_height",
+    "verify_7s_pos"
+  ],
+  "python": "3.10.20",
+  "git_commit": "b27434b665b845e3b7004be4d0d0cce410f63fae",
+  "usage_fix_version": 1
+}

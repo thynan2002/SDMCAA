@@ -1,0 +1,11 @@
+{"type": "run_start", "run_id": "a93152a98b5d", "ts": 1787121531.1192386}
+{"type": "span_start", "run_id": "a93152a98b5d", "span_id": "a93152a98b5d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787121531.1237514, "attrs": {"input": "第20秒发生了什么？请详细描述那一刻的攻防态势。", "system": "single"}}
+{"type": "span_start", "run_id": "a93152a98b5d", "span_id": "a93152a98b5d-00002", "parent_id": "a93152a98b5d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787121531.1237514, "attrs": {"system_len": 311, "user_len": 24, "tool_round": 0}}
+{"type": "span_end", "run_id": "a93152a98b5d", "span_id": "a93152a98b5d-00002", "parent_id": "a93152a98b5d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787121532.3647897, "dur_ms": 1241.04, "status": "ok"}
+{"type": "event", "run_id": "a93152a98b5d", "span_id": "a93152a98b5d-00001", "kind": "tool", "name": "tool[0]", "ts": 1787121532.3652918, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "a93152a98b5d", "span_id": "a93152a98b5d-00001", "kind": "tool", "name": "tool[1]", "ts": 1787121532.3652918, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "a93152a98b5d", "span_id": "a93152a98b5d-00001", "kind": "tool", "name": "tool[2]", "ts": 1787121532.3677878, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "a93152a98b5d", "span_id": "a93152a98b5d-00003", "parent_id": "a93152a98b5d-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787121532.3677878, "attrs": {"system_len": 311, "user_len": 24, "tool_round": 1}}
+{"type": "span_end", "run_id": "a93152a98b5d", "span_id": "a93152a98b5d-00003", "parent_id": "a93152a98b5d-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787121539.18149, "dur_ms": 6813.7, "status": "ok"}
+{"type": "span_end", "run_id": "a93152a98b5d", "span_id": "a93152a98b5d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787121539.18149, "dur_ms": 8057.74, "status": "ok"}
+{"type": "run_end", "run_id": "a93152a98b5d", "ts": 1787121539.18149}

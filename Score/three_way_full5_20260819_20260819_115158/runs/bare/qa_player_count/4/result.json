@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_player_count",
+  "category": "general_qa",
+  "input": "这份数据里一共追踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据数据总览，这份数据共追踪了 **21名球员**。",
+  "latency_ms": 1312.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6088,
+    "completion_tokens": 48,
+    "total_tokens": 6136
+  },
+  "error": null,
+  "trace_file": "trace_20260819_152252_f1f836c4e545.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_player_count\\4",
+  "ts": "2026-08-19 15:22:52",
+  "context_chars": 8763,
+  "repeat": 4
+}

@@ -1,0 +1,149 @@
+{
+  "system": "single",
+  "case_id": "adv_ambiguous_multi_target",
+  "category": "adversarial",
+  "input": "对比一下队里几个球员谁更积极？别只盯着一个人，把所有人都比一遍。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "# 全队积极性对比分析\n\n## 总体判断\n\n**A队整体明显比B队更积极。** 比赛绝大多数有效回合都发生在A队右路，A队多名球员持续参与球路、贴球跑动；而B队整体处于跟随状态，多数球员几乎碰不到球，积极性主要体现在\"空跑\"而非实质参与。全队跑动普遍以匀速为主，没有出现冲刺型球员。\n\n## A队内部排序（积极程度从高到低）\n\n**8号是全队最活跃的核心**：参与球路次数全场最高，绝大多数有效推进都经过他，跑动量也大，始终活跃在右路中场这一战术咽喉位置，是A队进攻的实际发起与承转节点。\n\n**6号是\"贴球率之王\"**：几乎全程都在球附近（接近球时间占比最高），活动范围也是全队最广的，跑动量大、平均移动速度快，属于不断接应、扯动的那类积极跑动者。虽然参与次数略低于7号，但\"在球附近\"的时间占比说明他无球时的接应意识最强。\n\n**7号次之**：参与球路次数多、接近球时间占比也高（明显高于3号、8号），跑动量同样大，主要活动在右路前场，是A队最靠前的接球点之一，参与度和存在感都在第一梯队。\n\n**3号排第四**：参与球路次数不少、跑动量大，但接近球时间占比偏低，说明他更多是\"路过球路\"而非贴身参与，是右路中场的辅助接应点。\n\n**10号是\"跑得快但参与少\"**：平均移动速度全队最快，但参与球路次数少、覆盖面积最小，跑动量为中档——速度快但不常持球，活跃度排A队靠后。\n\n**1、2、4、5、9号参与度最低**：尽管部分人跑动量大（如2号、4号），但整场比赛零参与球路、接近球时间几乎为零，属于有跑位但没接球的球员，实际存在感很低。\n\n## B队内部排序\n\n**14号是B队相对最积极的一个**：参与球路次数在B队中并列最多，跑动量大，且拥有全场最高峰速（最快速度明显超过其他所有人），有较明显的提速冲击动作，接近球时间也有一定占比。\n\n**15号、16号、18号属于\"跑得多但碰不到球\"**：跑动量都为大，但接近球时间占比几乎为零，说明他们在无球状态下不断跑动，却没有实质接到球。其中18号活动范围较广，平均速度也偏快，是B队里无球跑动相对积极的。\n\n**19号在B队参与次数并列最多，但接近球时间为零**：说明他参与的是\"球路过境\"而非真正持球，实际影响力有限。\n\n**17号及11、12、13、20号基本隐形**：17号虽然跑动量大、有一点接近球时间，但零参与球路；11、12、13、20号均为跑动量大但完全不参与，属于空跑状态。\n\n## 全队综合结论\n\n- **最积极球员：8号**（参与度与跑动双高）；**6号**（贴球率与活动范围）与**7号**（参与+贴球双优）紧随其后，三人构成A队积极性第一梯队。\n- **B队相对最积极：14号**，但整体积极性与A队有明显差距。\n- 两队绝大多数球员无冲刺，整体比赛节奏偏慢，更多是匀速的阵地传导（球路以短距离、低球速为主），积极性的差异主要体现在\"是否持续参与球路\"而非\"冲刺对抗\"。",
+  "latency_ms": 25469.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 15760,
+    "completion_tokens": 2713,
+    "total_tokens": 18473
+  },
+  "error": null,
+  "trace_file": "trace_20260819_133119_8c72888259cd.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "8号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "3号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "10号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "19号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "14号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "15号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "16号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "18号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "17号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "2号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 207
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\adv_ambiguous_multi_target\\1",
+  "ts": "2026-08-19 13:31:19",
+  "repeat": 1
+}

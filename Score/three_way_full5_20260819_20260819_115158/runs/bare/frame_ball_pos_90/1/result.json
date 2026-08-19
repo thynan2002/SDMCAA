@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_pos_90",
+  "category": "frame",
+  "input": "第90帧球在什么位置？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据不足：提供的足球轨迹数据中没有第90帧的记录（采样帧为0、20、23……50、102等），因此无法回答第90帧球的具体位置。",
+  "latency_ms": 2281.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6087,
+    "completion_tokens": 115,
+    "total_tokens": 6202
+  },
+  "error": null,
+  "trace_file": "trace_20260819_131333_5908278577ae.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_ball_pos_90\\1",
+  "ts": "2026-08-19 13:13:33",
+  "context_chars": 8758,
+  "repeat": 1
+}

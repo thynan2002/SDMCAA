@@ -1,0 +1,34 @@
+{
+  "system": "single",
+  "case_id": "timeline_ball_height",
+  "category": "timeline",
+  "input": "球在哪些时刻离开过地面（高度大于0）？请按时间列出。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据球路时间线数据，球在大部分时间为「地面」状态，但有多段离开地面（高度大于0）的时刻。这些离开地面的时段按时间顺序如下：\n\n**首次腾空（连续一段低平转高空）：**\n- **5.9秒～7.4秒**：这是全场最明显的一段空中球。其中 **5.9~6.1秒** 为低平球（6号控球起脚），**6.2~7.2秒** 转为高空球，球经18号→19号→7号→15号→16号连续传递，皮球始终处于空中；**7.4秒** 16号传14号时回到低平高度。\n\n**随后多次短促的低平球：**\n- **7.9秒**：14号传3号，低平\n- **8.1～8.5秒**：3号连续控球推进，低平\n- **9.1～9.2秒**：3号传8号，低平\n- **9.4～9.8秒**：8号控球，低平\n- **10.4～10.8秒**：8号控球向左后移动，低平\n- **11.3～11.4秒**：8号控球，低平\n\n**补充说明：**\n- 开局阶段（0.7~5.8秒）以及 7.7、8.7~8.8、10.1、11.2、11.6 秒等时刻，球均贴着地面运行，高度为0。\n- 数据中的高度为「地面 / 低平 / 高空」三档分类，未提供精确数值，因此「高度大于0」按低平与高空两档统计如上。",
+  "latency_ms": 9046.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 4876,
+    "completion_tokens": 1190,
+    "total_tokens": 6066
+  },
+  "error": null,
+  "trace_file": "trace_20260818_175909_dafc03242284.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke2_20260818_174417\\runs\\single\\timeline_ball_height\\0",
+  "ts": "2026-08-18 17:59:09",
+  "repeat": 0
+}

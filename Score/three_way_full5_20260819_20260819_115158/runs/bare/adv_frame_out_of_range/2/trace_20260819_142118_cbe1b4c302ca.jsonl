@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "cbe1b4c302ca", "ts": 1787120478.5784197}
+{"type": "span_start", "run_id": "cbe1b4c302ca", "span_id": "cbe1b4c302ca-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787120478.5784197, "attrs": {"input": "第1200帧时球在哪？当时是谁在控球？", "system": "bare"}}
+{"type": "span_start", "run_id": "cbe1b4c302ca", "span_id": "cbe1b4c302ca-00002", "parent_id": "cbe1b4c302ca-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787120478.5784197, "attrs": {"system_len": 293, "user_len": 8766}}
+{"type": "span_end", "run_id": "cbe1b4c302ca", "span_id": "cbe1b4c302ca-00002", "parent_id": "cbe1b4c302ca-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787120481.5285673, "dur_ms": 2950.15, "status": "ok"}
+{"type": "span_end", "run_id": "cbe1b4c302ca", "span_id": "cbe1b4c302ca-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787120481.529415, "dur_ms": 2951.0, "status": "ok"}
+{"type": "run_end", "run_id": "cbe1b4c302ca", "ts": 1787120481.529415}

@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "f6ce0bbf8634", "ts": 1787123209.6500704}
+{"type": "span_start", "run_id": "f6ce0bbf8634", "span_id": "f6ce0bbf8634-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123209.6505697, "attrs": {"input": "描述一下比赛前5秒的球路变化。", "system": "bare"}}
+{"type": "span_start", "run_id": "f6ce0bbf8634", "span_id": "f6ce0bbf8634-00002", "parent_id": "f6ce0bbf8634-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123209.6505697, "attrs": {"system_len": 293, "user_len": 8762}}
+{"type": "span_end", "run_id": "f6ce0bbf8634", "span_id": "f6ce0bbf8634-00002", "parent_id": "f6ce0bbf8634-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123229.459328, "dur_ms": 19808.76, "status": "ok"}
+{"type": "span_end", "run_id": "f6ce0bbf8634", "span_id": "f6ce0bbf8634-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123229.4605289, "dur_ms": 19809.96, "status": "ok"}
+{"type": "run_end", "run_id": "f6ce0bbf8634", "ts": 1787123229.4605289}

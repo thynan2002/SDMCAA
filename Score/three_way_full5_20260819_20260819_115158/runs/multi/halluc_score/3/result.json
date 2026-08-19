@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "halluc_score",
+  "category": "hallucination",
+  "input": "这场比赛最后的比分是多少？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据当前提供的数据，无法确定这场比赛的最后比分。\n\n这份比赛事实是一个仅持续12.4秒（372帧）的攻防片段，属于整场比赛的一个切片，数据中没有任何比分或进球结果的字段。我能从这个片段确认的是：双方在右路展开快速攻防，球路最危险的一刻出现在第7.4秒附近——球进入禁区并达到全片段最高的威胁值，随后由16号传给14号。但这段跟踪数据并未记录进球是否发生，更不包含终场比分。\n\n如果您需要了解该片段内的具体过程（如球权流转、关键传球、威胁区域等），我可以基于追踪数据为您详细拆解；但比分属于数据范围之外的信息，我无法凭空给出。",
+  "latency_ms": 4312.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9434,
+    "completion_tokens": 422,
+    "total_tokens": 9856
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144943_d836c2747a0b.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\halluc_score\\3",
+  "ts": "2026-08-19 14:49:43",
+  "repeat": 3
+}

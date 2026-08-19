@@ -1,0 +1,59 @@
+{
+  "system": "single",
+  "case_id": "qa_ball_speed_max",
+  "category": "general_qa",
+  "input": "这段比赛中足球移动的最快速度大约是多少？（米/秒）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据我查询到的数据，**无法给出这段比赛中足球移动的最快速度的精确数值（米/秒）**——工具返回的球路时间线只按「速度档位」（低/中/高）记录，且本段 44 个球路事件中**最高只出现了「中」速档，没有任何「高」速球路**（快速球占比为 0%）。\n\n可作为参考的数据依据是：战术事实中给出的**主导球速为 8.48 米/秒**（档位描述为「低」），这是全场球路的代表性速度而非峰值。由于数据中不存在最高速度档位的具体数值换算，我如实声明：**「最快速度的精确米/秒数值」数据不足**，无法给出确切峰值；只能说这段比赛的球速整体偏慢、以短距离低速传控为主，最快的球也只落在「中」速档，远未达到快速反击或长传冲击的速度级别。",
+  "latency_ms": 15062.0,
+  "llm_calls": 4,
+  "tokens": {
+    "prompt_tokens": 15903,
+    "completion_tokens": 1633,
+    "total_tokens": 17536
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153626_ac2819dbba26.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 6
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 43
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 180
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_ball_speed_max\\4",
+  "ts": "2026-08-19 15:36:26",
+  "repeat": 4
+}

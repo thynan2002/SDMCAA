@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "开球那一刻（第0帧），球场上的球处于战术区域“禁区”的位置，这意味着根据数据标注，球并不在中圈，而是位于一方禁区内。球所在位置带有0.653的威胁值，表示该位置已经形成一定的进攻敏感性。此时离球最近的是6号球员，他与球的距离为0，完全处在球的位置上；其他几名可见球员则分布在距球由近及远的区域内，7号、19号依次靠前，15号和18号则拉得更开，整体呈现出球权方周围有一定接应层次但尚未展开的态势。该帧没有任何事件记录，说明在这一瞬间没有发生传球、射门、解围等动作，局面处于初始或待发状态。\n\n[核验过程：回溯第0帧数据，包括球位置(x=1194, y=696, z=0)、战术区域标注“禁区”、威胁值0.653、离球最近球员为6号（距球0），球员位置概要中7号距球94、19号距球147、15号距球293、18号距球300；该帧事件列表为空。数据未提供全部球员的位置，因此仅能描述所列出的球员分布。]\n\n[核验过程：回溯原始数据 → 定位第0帧（0.0秒）→ 提取20名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 15937.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 584,
+    "completion_tokens": 1517,
+    "total_tokens": 2101
+  },
+  "error": null,
+  "trace_file": "trace_20260818_203820_4b5620dc800b.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_confirm_20260818_203335\\runs\\multi\\frame_ball_first\\0",
+  "ts": "2026-08-18 20:38:20",
+  "repeat": 0
+}

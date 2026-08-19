@@ -1,0 +1,77 @@
+{
+  "system": "single",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "关于第90帧，我需要如实说明：**系统中不存在第90帧的帧级球数据**（第89、90、91帧均查询不到），因此无法直接给出该帧的精确球位置与威胁判定。\n\n不过，借助相邻时间点的数据可以给出一个可靠的周边判断：\n\n**形势判断（基于相邻数据推断）**\n- 第90帧对应约第3.0秒。球路时间线显示，从第1.7秒到第3.4秒之间，**球权一直由7号球员掌控**，其移动方向为「向右后/原地」的低速控球，属于**回撤/横向的控球保留阶段**，并非向前冲击球门的进攻。\n- 最近的可用帧（第102帧，约第3.4秒）显示：球位于坐标 (871, 560)，最近接球球员为10号，该帧发生了「7号→10号」的向左后传球。综合整个时间线，这一时段球权在中前场区域流转，方向偏后/偏横。\n- 因此，**第3秒附近（含第90帧所在时段）对球门的威胁程度很低**——此时是控球组织、向后倒脚的过渡节奏，不是进入禁区或射门前的威胁场景。全场的威胁峰值出现在第7.4秒（第223帧，威胁值约0.862，落点在禁区），远晚于本时段。\n\n**数据依据**\n- 球路时间线：第1.7秒起7号连续低速控球，方向为「向左后/向右后/原地」，直至第3.4秒传给10号。\n- 帧快照（第102帧）：球位置 (871, 560)，7号→10号，方向向左后。\n- 战术事实：全队推进方向以向后回传为主（占大多数），进攻节奏偏慢、以短传地面球为主。\n\n**结论**：第90帧本身数据缺失，无法给出精确位置；但根据相邻帧与时间线推断，该时刻球大致处于**中前场偏后回撤的控球区域，由7号持有，对球门威胁低**。如需核实，可提供该时段其他帧号以便进一步查证。",
+  "latency_ms": 17375.0,
+  "llm_calls": 4,
+  "tokens": {
+    "prompt_tokens": 13272,
+    "completion_tokens": 1905,
+    "total_tokens": 15177
+  },
+  "error": null,
+  "trace_file": "trace_20260819_151639_397d23d89f70.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 89
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 91
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 102
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\frame_ball_zone_90\\3",
+  "ts": "2026-08-19 15:16:39",
+  "repeat": 3
+}

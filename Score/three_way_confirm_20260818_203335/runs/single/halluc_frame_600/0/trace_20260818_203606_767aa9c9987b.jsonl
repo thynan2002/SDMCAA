@@ -1,0 +1,24 @@
+{"type": "run_start", "run_id": "767aa9c9987b", "ts": 1787056566.4872725}
+{"type": "span_start", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787056566.4922752, "attrs": {"input": "第20秒发生了什么？请详细描述那一刻的攻防态势。", "system": "single"}}
+{"type": "span_start", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00002", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787056566.4927726, "attrs": {"system_len": 311, "user_len": 24, "tool_round": 0}}
+{"type": "span_end", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00002", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787056568.1090696, "dur_ms": 1616.3, "status": "ok"}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[0]", "ts": 1787056568.1095698, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[1]", "ts": 1787056568.1105742, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00003", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787056568.1105742, "attrs": {"system_len": 311, "user_len": 24, "tool_round": 1}}
+{"type": "span_end", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00003", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787056571.0975184, "dur_ms": 2986.94, "status": "ok"}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[2]", "ts": 1787056571.0975184, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[3]", "ts": 1787056571.0975184, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[4]", "ts": 1787056571.0975184, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00004", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787056571.0975184, "attrs": {"system_len": 311, "user_len": 24, "tool_round": 2}}
+{"type": "span_end", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00004", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787056573.36768, "dur_ms": 2270.16, "status": "ok"}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[5]", "ts": 1787056573.368178, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[6]", "ts": 1787056573.368178, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[7]", "ts": 1787056573.368178, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00005", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[3]", "ts": 1787056573.368178, "attrs": {"system_len": 311, "user_len": 24, "tool_round": 3}}
+{"type": "span_end", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00005", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[3]", "ts": 1787056576.282695, "dur_ms": 2914.52, "status": "ok"}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[8]", "ts": 1787056576.285198, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 16.0}}
+{"type": "event", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "kind": "tool", "name": "tool[9]", "ts": 1787056576.285198, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00006", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[4]", "ts": 1787056576.285198, "attrs": {"system_len": 311, "user_len": 24, "tool_round": 4}}
+{"type": "span_end", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00006", "parent_id": "767aa9c9987b-00001", "kind": "llm", "name": "llm_call[4]", "ts": 1787056582.0725427, "dur_ms": 5787.34, "status": "ok"}
+{"type": "span_end", "run_id": "767aa9c9987b", "span_id": "767aa9c9987b-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787056582.0730433, "dur_ms": 15580.77, "status": "ok"}
+{"type": "run_end", "run_id": "767aa9c9987b", "ts": 1787056582.0730433}

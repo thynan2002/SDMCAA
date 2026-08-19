@@ -1,0 +1,13 @@
+{"type": "run_start", "run_id": "c08235eb4d4e", "ts": 1787052099.3887115}
+{"type": "span_start", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787052099.3932073, "attrs": {"input": "对比6号和7号谁更积极？", "system": "single"}}
+{"type": "span_start", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00002", "parent_id": "c08235eb4d4e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787052099.3932073, "attrs": {"system_len": 311, "user_len": 12, "tool_round": 0}}
+{"type": "span_end", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00002", "parent_id": "c08235eb4d4e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787052101.1851006, "dur_ms": 1791.89, "status": "ok"}
+{"type": "event", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00001", "kind": "tool", "name": "tool[0]", "ts": 1787052101.18661, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00001", "kind": "tool", "name": "tool[1]", "ts": 1787052101.18661, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00001", "kind": "tool", "name": "tool[2]", "ts": 1787052101.18661, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00001", "kind": "tool", "name": "tool[3]", "ts": 1787052101.18661, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00001", "kind": "tool", "name": "tool[4]", "ts": 1787052101.189109, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00003", "parent_id": "c08235eb4d4e-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787052101.189109, "attrs": {"system_len": 311, "user_len": 12, "tool_round": 1}}
+{"type": "span_end", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00003", "parent_id": "c08235eb4d4e-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787052112.3582132, "dur_ms": 11169.1, "status": "ok"}
+{"type": "span_end", "run_id": "c08235eb4d4e", "span_id": "c08235eb4d4e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787052112.3582132, "dur_ms": 12965.01, "status": "ok"}
+{"type": "run_end", "run_id": "c08235eb4d4e", "ts": 1787052112.3582132}

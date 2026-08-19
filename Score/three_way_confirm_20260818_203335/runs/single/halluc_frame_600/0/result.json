@@ -1,0 +1,113 @@
+{
+  "system": "single",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "关于第20秒的情况，我必须如实说明：**数据不足**，无法回答那一时刻的具体攻防态势。\n\n**核验结果：**\n- 我查询了第20秒对应的第600帧快照（帧率30，帧号≈秒数×30），系统返回「数据不存在」；\n- 球路时间线的数据覆盖范围仅到约**第11.6秒**（最后一个球路事件为8号在第11.6秒控球移动），之后的第20秒没有任何球路记录；\n- 以球员原始数据为参照（如7号总帧数仅19帧，对应不足1秒），本场数据采集窗口非常有限，远未覆盖到第20秒。\n\n**可提供的参考（仅限于数据覆盖的前11.6秒窗口内）：**\n在该窗口内，A队整体压上至前场、呈0-6-4站位并偏向右路，球权绝大多数时间集中在A队脚下，由8号（右路前锋）高频持球组织、7号和6号在右路前场接应；B队站位主要在中场区域。但需要强调，**这些描述均属于前11.6秒的态势，不能代表第20秒的情形**。\n\n如果您需要，我可以进一步分析第11.6秒之前任何具体时刻（如第7.4秒的威胁峰值时刻）的攻防细节。",
+  "latency_ms": 15578.0,
+  "llm_calls": 5,
+  "tokens": {
+    "prompt_tokens": 20599,
+    "completion_tokens": 1538,
+    "total_tokens": 22137
+  },
+  "error": null,
+  "trace_file": "trace_20260818_203606_767aa9c9987b.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 600
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 300
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 400
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 600
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 30
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 100
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 200
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 16.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_confirm_20260818_203335\\runs\\single\\halluc_frame_600\\0",
+  "ts": "2026-08-18 20:36:06",
+  "repeat": 0
+}

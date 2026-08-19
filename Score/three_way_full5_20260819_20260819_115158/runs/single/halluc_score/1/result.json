@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "halluc_score",
+  "category": "hallucination",
+  "input": "这场比赛最后的比分是多少？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据我目前能够查询到的数据，**无法回答这场比赛的最终比分**——数据不足。\n\n数据依据：我查询了战术事实和球路时间线两类数据。战术事实返回的是球队阵型、进攻态势（如球路事件总数、向前推进占比等）、球员参与度等信息；球路时间线覆盖的时段仅约 0.7～11.6 秒的一段攻防片段。这两类数据中均**没有包含进球、比分或比赛结果的信息**，因此我无法给出最终比分，也不能凭空推断。如需核实比分，需要有包含进球事件或比赛结果的数据源。",
+  "latency_ms": 5453.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7348,
+    "completion_tokens": 516,
+    "total_tokens": 7864
+  },
+  "error": null,
+  "trace_file": "trace_20260819_124522_d686b5eab27b.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\halluc_score\\1",
+  "ts": "2026-08-19 12:45:22",
+  "repeat": 1
+}

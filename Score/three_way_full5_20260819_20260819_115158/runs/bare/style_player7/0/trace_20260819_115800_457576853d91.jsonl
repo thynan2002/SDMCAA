@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "457576853d91", "ts": 1787111880.594051}
+{"type": "span_start", "run_id": "457576853d91", "span_id": "457576853d91-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787111880.5945513, "attrs": {"input": "7号的跑动风格是什么？", "system": "bare"}}
+{"type": "span_start", "run_id": "457576853d91", "span_id": "457576853d91-00002", "parent_id": "457576853d91-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787111880.5945513, "attrs": {"system_len": 293, "user_len": 8758}}
+{"type": "span_end", "run_id": "457576853d91", "span_id": "457576853d91-00002", "parent_id": "457576853d91-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787111906.900675, "dur_ms": 26306.12, "status": "ok"}
+{"type": "span_end", "run_id": "457576853d91", "span_id": "457576853d91-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787111906.9008558, "dur_ms": 26306.3, "status": "ok"}
+{"type": "run_end", "run_id": "457576853d91", "ts": 1787111906.9008558}

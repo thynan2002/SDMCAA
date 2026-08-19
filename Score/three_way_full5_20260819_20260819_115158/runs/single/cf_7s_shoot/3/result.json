@@ -1,0 +1,48 @@
+{
+  "system": "single",
+  "case_id": "cf_7s_shoot",
+  "category": "counterfactual",
+  "input": "如果7号在第3秒改为直接射门会怎样？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**形势判断：** 如果7号在第3秒放弃原本的决策、直接起脚射门，推演结果显示这将是一个进球——一次相当远的远射破门。\n\n**数据依据（反事实模拟）：**\n- 干预时刻为第3秒（帧90），7号在此刻改选射门，起脚位置距球门约47米；\n- 模拟推演约1.5秒后（帧135）球入网，随后比赛因进球暂停；\n- 即：真实比赛里7号在该时刻没有射门，而反事实推演表明这一选择具备转化为进球的潜力。\n\n需要说明的是，该结果来自反事实轨迹模拟（启发式推演），并非真实比赛数据；且第90帧的帧级球数据查询不到，无法进一步核验起脚瞬间的精确场上站位。若需要继续推演其他替代动作（如传球给特定队友、带球突破等），我可以继续模拟。",
+  "latency_ms": 6875.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 4549,
+    "completion_tokens": 645,
+    "total_tokens": 5194
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150238_c9a894c2e178.jsonl",
+  "tool_records": [
+    {
+      "name": "run_counterfactual_simulation",
+      "args": {
+        "subject_player": "7号",
+        "time_second": 3,
+        "altered_action": "shoot",
+        "duration_seconds": 0
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 144
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\cf_7s_shoot\\3",
+  "ts": "2026-08-19 15:02:38",
+  "repeat": 3
+}

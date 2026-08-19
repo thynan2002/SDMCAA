@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "compare_6_7_active",
+  "category": "comparison",
+  "input": "对比6号和7号谁更积极？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**直接判断：6号更积极。**\n\n从这段约12秒的样本来看，6号的跑动强度明显高于7号。6号几乎一直在持续移动，跑动总量和平均速度都显著领先；而7号虽然有过一次更快的冲刺峰值，但整体跑动距离偏少，中后段的位置变化也比较有限，更多像是停留在某一区域进行盯防或接应，而不是持续大范围参与攻防。\n\n数据依据主要有三点：\n\n- 6号的累计跑动距离大约是7号的1.7倍，平均速度也高出近八成，说明6号在绝大多数时间里都处于更高强度的移动状态。\n- 7号的峰值速度比6号更快，说明他具备突然加速冲刺的能力，但这种爆发只是短暂出现，并没有转化为持续的跑动覆盖。\n- 从活动轨迹看，6号从本方底线附近沿边路一路推进到对方半场，覆盖范围更大、纵深更明显；7号虽然也从后场向前移动，但到中段以后基本在一个相对固定的区域内活动，跑动范围明显小于6号。\n\n所以，在这一小段比赛中，**6号在整体积极性上明显优于7号**；7号的优势更多体现在瞬间速度上，而不是持续投入度。",
+  "latency_ms": 18921.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6088,
+    "completion_tokens": 1980,
+    "total_tokens": 8068
+  },
+  "error": null,
+  "trace_file": "trace_20260819_140802_0257815dd785.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\compare_6_7_active\\2",
+  "ts": "2026-08-19 14:08:02",
+  "context_chars": 8759,
+  "repeat": 2
+}

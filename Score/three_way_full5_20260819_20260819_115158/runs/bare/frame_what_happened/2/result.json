@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_what_happened",
+  "category": "frame",
+  "input": "第90帧发生了什么？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据不足，无法回答“第90帧发生了什么”。\n\n原因是：提供的足球轨迹原始数据中没有 frame_num=90 的记录，球员轨迹原始数据中也没有第90帧对应的球员位置数据。虽然数据总览覆盖了 0~372 帧，但原始轨迹是稀疏采样的，并未包含第90帧，因此无法基于这些数据判断该瞬间的攻防情况、球员位置或球的状态。\n\n我不能用相邻帧的信息去推断第90帧，因为那不是数据中实际记录的内容。",
+  "latency_ms": 7515.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6084,
+    "completion_tokens": 689,
+    "total_tokens": 6773
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135357_08405286efb8.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_what_happened\\2",
+  "ts": "2026-08-19 13:53:57",
+  "context_chars": 8757,
+  "repeat": 2
+}

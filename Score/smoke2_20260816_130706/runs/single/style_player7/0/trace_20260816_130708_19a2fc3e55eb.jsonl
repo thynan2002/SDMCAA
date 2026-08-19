@@ -1,0 +1,11 @@
+{"type": "run_start", "run_id": "19a2fc3e55eb", "ts": 1786856828.3952396}
+{"type": "span_start", "run_id": "19a2fc3e55eb", "span_id": "19a2fc3e55eb-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1786856828.3991818, "attrs": {"input": "7号的跑动风格是什么？", "system": "single"}}
+{"type": "span_start", "run_id": "19a2fc3e55eb", "span_id": "19a2fc3e55eb-00002", "parent_id": "19a2fc3e55eb-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1786856828.399317, "attrs": {"system_len": 311, "user_len": 11, "tool_round": 0}}
+{"type": "span_end", "run_id": "19a2fc3e55eb", "span_id": "19a2fc3e55eb-00002", "parent_id": "19a2fc3e55eb-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1786856829.6379771, "dur_ms": 1238.66, "status": "ok"}
+{"type": "event", "run_id": "19a2fc3e55eb", "span_id": "19a2fc3e55eb-00001", "kind": "tool", "name": "tool[0]", "ts": 1786856829.6386607, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.1}}
+{"type": "event", "run_id": "19a2fc3e55eb", "span_id": "19a2fc3e55eb-00001", "kind": "tool", "name": "tool[1]", "ts": 1786856829.6387591, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "19a2fc3e55eb", "span_id": "19a2fc3e55eb-00001", "kind": "tool", "name": "tool[2]", "ts": 1786856829.640504, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 1.7}}
+{"type": "span_start", "run_id": "19a2fc3e55eb", "span_id": "19a2fc3e55eb-00003", "parent_id": "19a2fc3e55eb-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1786856829.640573, "attrs": {"system_len": 311, "user_len": 11, "tool_round": 1}}
+{"type": "span_end", "run_id": "19a2fc3e55eb", "span_id": "19a2fc3e55eb-00003", "parent_id": "19a2fc3e55eb-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1786856841.401342, "dur_ms": 11760.77, "status": "ok"}
+{"type": "span_end", "run_id": "19a2fc3e55eb", "span_id": "19a2fc3e55eb-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1786856841.4014742, "dur_ms": 13002.29, "status": "ok"}
+{"type": "run_end", "run_id": "19a2fc3e55eb", "ts": 1786856841.4015393}

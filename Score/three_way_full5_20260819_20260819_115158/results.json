@@ -1,0 +1,3065 @@
+{
+  "event_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158",
+  "n_cases": 40,
+  "aggregate": {
+    "systems": {
+      "bare": {
+        "n_cases": 40,
+        "total_mean": 0.763,
+        "total_ci95": [
+          0.7286,
+          0.7959
+        ],
+        "metrics": {
+          "accuracy": {
+            "n": 40,
+            "mean": 0.7162,
+            "std": 0.2578,
+            "ci95": [
+              0.6363,
+              0.7925
+            ]
+          },
+          "grounding": {
+            "n": 40,
+            "mean": 0.8854,
+            "std": 0.1354,
+            "ci95": [
+              0.8449,
+              0.9242
+            ]
+          },
+          "completeness": {
+            "n": 40,
+            "mean": 0.8546,
+            "std": 0.1783,
+            "ci95": [
+              0.797,
+              0.9047
+            ]
+          },
+          "reasoning": {
+            "n": 40,
+            "mean": 0.5825,
+            "std": 0.1579,
+            "ci95": [
+              0.535,
+              0.6312
+            ]
+          },
+          "efficiency": {
+            "n": 40,
+            "mean": 0.9638,
+            "std": 0.059,
+            "ci95": [
+              0.9444,
+              0.9811
+            ]
+          },
+          "robustness": {
+            "n": 40,
+            "mean": 0.998,
+            "std": 0.0126,
+            "ci95": [
+              0.994,
+              1.0
+            ]
+          },
+          "tactical_accuracy": {
+            "n": 40,
+            "mean": 0.6756,
+            "std": 0.1591,
+            "ci95": [
+              0.6255,
+              0.7225
+            ]
+          }
+        },
+        "stability": {
+          "n": 40,
+          "mean": 0.2785,
+          "std": 0.206
+        },
+        "tool_use": {
+          "n": 0,
+          "mean": null,
+          "std": null
+        },
+        "extended_total_mean": null,
+        "extended_total_ci95": null
+      },
+      "multi": {
+        "n_cases": 40,
+        "total_mean": 0.8348,
+        "total_ci95": [
+          0.7906,
+          0.8721
+        ],
+        "metrics": {
+          "accuracy": {
+            "n": 40,
+            "mean": 0.7941,
+            "std": 0.2585,
+            "ci95": [
+              0.7116,
+              0.8685
+            ]
+          },
+          "grounding": {
+            "n": 40,
+            "mean": 0.8759,
+            "std": 0.1375,
+            "ci95": [
+              0.8322,
+              0.917
+            ]
+          },
+          "completeness": {
+            "n": 40,
+            "mean": 0.9278,
+            "std": 0.1305,
+            "ci95": [
+              0.883,
+              0.9632
+            ]
+          },
+          "reasoning": {
+            "n": 40,
+            "mean": 0.7288,
+            "std": 0.1739,
+            "ci95": [
+              0.675,
+              0.7825
+            ]
+          },
+          "efficiency": {
+            "n": 40,
+            "mean": 0.9716,
+            "std": 0.0571,
+            "ci95": [
+              0.9528,
+              0.9875
+            ]
+          },
+          "robustness": {
+            "n": 40,
+            "mean": 0.98,
+            "std": 0.0883,
+            "ci95": [
+              0.95,
+              1.0
+            ]
+          },
+          "tactical_accuracy": {
+            "n": 40,
+            "mean": 0.7777,
+            "std": 0.1887,
+            "ci95": [
+              0.7168,
+              0.8299
+            ]
+          }
+        },
+        "stability": {
+          "n": 40,
+          "mean": 0.3381,
+          "std": 0.251
+        },
+        "tool_use": {
+          "n": 14,
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "extended_total_mean": 0.8078,
+        "extended_total_ci95": [
+          0.7203,
+          0.8842
+        ]
+      },
+      "single": {
+        "n_cases": 40,
+        "total_mean": 0.7866,
+        "total_ci95": [
+          0.7384,
+          0.8311
+        ],
+        "metrics": {
+          "accuracy": {
+            "n": 40,
+            "mean": 0.6928,
+            "std": 0.3094,
+            "ci95": [
+              0.5953,
+              0.7784
+            ]
+          },
+          "grounding": {
+            "n": 40,
+            "mean": 0.8793,
+            "std": 0.1121,
+            "ci95": [
+              0.8439,
+              0.9118
+            ]
+          },
+          "completeness": {
+            "n": 40,
+            "mean": 0.8377,
+            "std": 0.1883,
+            "ci95": [
+              0.7797,
+              0.8938
+            ]
+          },
+          "reasoning": {
+            "n": 40,
+            "mean": 0.6875,
+            "std": 0.2072,
+            "ci95": [
+              0.625,
+              0.7463
+            ]
+          },
+          "efficiency": {
+            "n": 40,
+            "mean": 0.9567,
+            "std": 0.0704,
+            "ci95": [
+              0.9351,
+              0.9768
+            ]
+          },
+          "robustness": {
+            "n": 40,
+            "mean": 0.998,
+            "std": 0.0126,
+            "ci95": [
+              0.994,
+              1.0
+            ]
+          },
+          "tactical_accuracy": {
+            "n": 40,
+            "mean": 0.712,
+            "std": 0.2299,
+            "ci95": [
+              0.6401,
+              0.776
+            ]
+          }
+        },
+        "stability": {
+          "n": 40,
+          "mean": 0.2017,
+          "std": 0.074
+        },
+        "tool_use": {
+          "n": 40,
+          "mean": 0.9995,
+          "std": 0.0026
+        },
+        "extended_total_mean": 0.8079,
+        "extended_total_ci95": [
+          0.7645,
+          0.8479
+        ]
+      }
+    },
+    "comparisons": {
+      "bare_vs_multi": {
+        "total": {
+          "n": 40,
+          "mean_diff": -0.0718,
+          "wilcoxon_p": 0.00778,
+          "ttest_p": 0.01075,
+          "cohens_d_paired": -0.424,
+          "cliffs_delta": -0.439,
+          "wilcoxon_p_holm": 0.1556
+        },
+        "accuracy": {
+          "n": 40,
+          "mean_diff": -0.0778,
+          "wilcoxon_p": 0.08787,
+          "ttest_p": 0.10939,
+          "cohens_d_paired": -0.259,
+          "cliffs_delta": -0.185,
+          "wilcoxon_p_holm": 1.0
+        },
+        "grounding": {
+          "n": 40,
+          "mean_diff": 0.0095,
+          "wilcoxon_p": 0.59188,
+          "ttest_p": 0.71006,
+          "cohens_d_paired": 0.059,
+          "cliffs_delta": 0.037,
+          "wilcoxon_p_holm": 1.0
+        },
+        "completeness": {
+          "n": 40,
+          "mean_diff": -0.0731,
+          "wilcoxon_p": 0.01631,
+          "ttest_p": 0.01858,
+          "cohens_d_paired": -0.388,
+          "cliffs_delta": -0.292,
+          "wilcoxon_p_holm": 0.26996
+        },
+        "reasoning": {
+          "n": 40,
+          "mean_diff": -0.1462,
+          "wilcoxon_p": 0.00026,
+          "ttest_p": 5e-05,
+          "cohens_d_paired": -0.724,
+          "cliffs_delta": -0.475,
+          "wilcoxon_p_holm": 0.00546
+        },
+        "efficiency": {
+          "n": 40,
+          "mean_diff": -0.0078,
+          "wilcoxon_p": 0.51109,
+          "ttest_p": 0.55183,
+          "cohens_d_paired": -0.095,
+          "cliffs_delta": -0.134,
+          "wilcoxon_p_holm": 1.0
+        },
+        "robustness": {
+          "n": 40,
+          "mean_diff": 0.018,
+          "wilcoxon_p": null,
+          "ttest_p": 0.16255,
+          "cohens_d_paired": 0.225,
+          "cliffs_delta": 0.026,
+          "wilcoxon_p_holm": null
+        },
+        "tactical_accuracy": {
+          "n": 40,
+          "mean_diff": -0.1021,
+          "wilcoxon_p": 0.00863,
+          "ttest_p": 0.01955,
+          "cohens_d_paired": -0.385,
+          "cliffs_delta": -0.43,
+          "wilcoxon_p_holm": 0.16397
+        }
+      },
+      "bare_vs_single": {
+        "total": {
+          "n": 40,
+          "mean_diff": -0.0236,
+          "wilcoxon_p": 0.45974,
+          "ttest_p": 0.44476,
+          "cohens_d_paired": -0.122,
+          "cliffs_delta": -0.231,
+          "wilcoxon_p_holm": 1.0
+        },
+        "accuracy": {
+          "n": 40,
+          "mean_diff": 0.0235,
+          "wilcoxon_p": 0.71536,
+          "ttest_p": 0.69062,
+          "cohens_d_paired": 0.063,
+          "cliffs_delta": 0.018,
+          "wilcoxon_p_holm": 1.0
+        },
+        "grounding": {
+          "n": 40,
+          "mean_diff": 0.0061,
+          "wilcoxon_p": 0.59018,
+          "ttest_p": 0.81604,
+          "cohens_d_paired": 0.037,
+          "cliffs_delta": 0.088,
+          "wilcoxon_p_holm": 1.0
+        },
+        "completeness": {
+          "n": 40,
+          "mean_diff": 0.017,
+          "wilcoxon_p": 0.77493,
+          "ttest_p": 0.60051,
+          "cohens_d_paired": 0.083,
+          "cliffs_delta": 0.039,
+          "wilcoxon_p_holm": 1.0
+        },
+        "reasoning": {
+          "n": 40,
+          "mean_diff": -0.105,
+          "wilcoxon_p": 0.01161,
+          "ttest_p": 0.00926,
+          "cohens_d_paired": -0.433,
+          "cliffs_delta": -0.325,
+          "wilcoxon_p_holm": 0.20898
+        },
+        "efficiency": {
+          "n": 40,
+          "mean_diff": 0.0071,
+          "wilcoxon_p": 0.65671,
+          "ttest_p": 0.60243,
+          "cohens_d_paired": 0.083,
+          "cliffs_delta": 0.051,
+          "wilcoxon_p_holm": 1.0
+        },
+        "robustness": {
+          "n": 40,
+          "mean_diff": 0.0,
+          "wilcoxon_p": null,
+          "ttest_p": NaN,
+          "cohens_d_paired": null,
+          "cliffs_delta": 0.0,
+          "wilcoxon_p_holm": null
+        },
+        "tactical_accuracy": {
+          "n": 40,
+          "mean_diff": -0.0364,
+          "wilcoxon_p": 0.46874,
+          "ttest_p": 0.44954,
+          "cohens_d_paired": -0.121,
+          "cliffs_delta": -0.233,
+          "wilcoxon_p_holm": 1.0
+        }
+      },
+      "multi_vs_single": {
+        "total": {
+          "n": 40,
+          "mean_diff": 0.0482,
+          "wilcoxon_p": 0.05896,
+          "ttest_p": 0.04827,
+          "cohens_d_paired": 0.322,
+          "cliffs_delta": 0.18,
+          "wilcoxon_p_holm": 0.82544
+        },
+        "accuracy": {
+          "n": 40,
+          "mean_diff": 0.1013,
+          "wilcoxon_p": 0.08761,
+          "ttest_p": 0.03551,
+          "cohens_d_paired": 0.344,
+          "cliffs_delta": 0.192,
+          "wilcoxon_p_holm": 1.0
+        },
+        "grounding": {
+          "n": 40,
+          "mean_diff": -0.0034,
+          "wilcoxon_p": 0.85167,
+          "ttest_p": 0.8806,
+          "cohens_d_paired": -0.024,
+          "cliffs_delta": 0.034,
+          "wilcoxon_p_holm": 1.0
+        },
+        "completeness": {
+          "n": 40,
+          "mean_diff": 0.0901,
+          "wilcoxon_p": 0.01588,
+          "ttest_p": 0.00828,
+          "cohens_d_paired": 0.44,
+          "cliffs_delta": 0.306,
+          "wilcoxon_p_holm": 0.26996
+        },
+        "reasoning": {
+          "n": 40,
+          "mean_diff": 0.0413,
+          "wilcoxon_p": 0.22978,
+          "ttest_p": 0.1889,
+          "cohens_d_paired": 0.211,
+          "cliffs_delta": 0.093,
+          "wilcoxon_p_holm": 1.0
+        },
+        "efficiency": {
+          "n": 40,
+          "mean_diff": 0.0149,
+          "wilcoxon_p": 0.24182,
+          "ttest_p": 0.25563,
+          "cohens_d_paired": 0.182,
+          "cliffs_delta": 0.194,
+          "wilcoxon_p_holm": 1.0
+        },
+        "robustness": {
+          "n": 40,
+          "mean_diff": -0.018,
+          "wilcoxon_p": null,
+          "ttest_p": 0.16255,
+          "cohens_d_paired": -0.225,
+          "cliffs_delta": -0.026,
+          "wilcoxon_p_holm": null
+        },
+        "tactical_accuracy": {
+          "n": 40,
+          "mean_diff": 0.0657,
+          "wilcoxon_p": 0.02647,
+          "ttest_p": 0.04076,
+          "cohens_d_paired": 0.335,
+          "cliffs_delta": 0.169,
+          "wilcoxon_p_holm": 0.39705
+        }
+      }
+    },
+    "power_note_total": "n=40（配对用例数），α=0.05，配对 t 检验在 80% power 下约可检出 |d|≥0.44 的效应；更小差异仅作描述性参考。",
+    "n_cases": 40
+  },
+  "category_breakdown": {
+    "adversarial": {
+      "bare": 0.816,
+      "single": 0.802,
+      "multi": 0.731
+    },
+    "counterfactual": {
+      "bare": 0.72,
+      "single": 0.739,
+      "multi": 0.855
+    },
+    "comparison": {
+      "bare": 0.873,
+      "single": 0.821,
+      "multi": 0.857
+    },
+    "focus": {
+      "bare": 0.719,
+      "single": 0.939,
+      "multi": 0.893
+    },
+    "frame": {
+      "bare": 0.703,
+      "single": 0.533,
+      "multi": 0.777
+    },
+    "hallucination": {
+      "bare": 0.776,
+      "single": 0.889,
+      "multi": 0.885
+    },
+    "general_qa": {
+      "bare": 0.823,
+      "single": 0.744,
+      "multi": 0.842
+    },
+    "style": {
+      "bare": 0.704,
+      "single": 0.905,
+      "multi": 0.817
+    },
+    "team": {
+      "bare": 0.661,
+      "single": 0.937,
+      "multi": 0.935
+    },
+    "timeline": {
+      "bare": 0.755,
+      "single": 0.764,
+      "multi": 0.765
+    },
+    "verify": {
+      "bare": 0.775,
+      "single": 0.612,
+      "multi": 0.914
+    }
+  },
+  "failure_modes": {
+    "编造数据": {
+      "count": 80,
+      "samples": [
+        "single/adv_format_messy#r0",
+        "single/adv_format_messy#r1",
+        "single/adv_format_messy#r2"
+      ]
+    },
+    "无依据夸大": {
+      "count": 40,
+      "samples": [
+        "single/cf_7s_shoot#r0",
+        "single/cf_7s_shoot#r1",
+        "single/cf_7s_shoot#r2"
+      ]
+    },
+    "答非所问": {
+      "count": 15,
+      "samples": [
+        "bare/cf_7s_pass10#r0",
+        "bare/cf_7s_pass10#r1",
+        "bare/cf_7s_pass10#r2"
+      ]
+    }
+  },
+  "judge_meta": {
+    "adv_ambiguous_multi_target": {
+      "orders": [
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.15,
+        "multi": 0.125,
+        "single": 0.125
+      }
+    },
+    "adv_format_messy": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.55,
+        "multi": 0.0,
+        "single": 0.75
+      }
+    },
+    "adv_frame_out_of_range": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.0,
+        "single": 0.0
+      }
+    },
+    "adv_induced_scoring": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.325,
+        "multi": 0.4,
+        "single": 0.425
+      }
+    },
+    "adv_prompt_injection": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.137,
+        "single": 0.0
+      }
+    },
+    "cf_7s_pass10": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.15,
+        "multi": 0.125,
+        "single": 0.2
+      }
+    },
+    "cf_7s_shoot": {
+      "orders": [
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.15,
+        "multi": 0.075,
+        "single": 0.125
+      }
+    },
+    "compare_6_7_active": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.05,
+        "multi": 0.025,
+        "single": 0.075
+      }
+    },
+    "compare_7s_active": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.025,
+        "multi": 0.062,
+        "single": 0.0
+      }
+    },
+    "compare_fastest": {
+      "orders": [
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.1,
+        "single": 0.1
+      }
+    },
+    "focus_player7": {
+      "orders": [
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.2,
+        "multi": 0.2,
+        "single": 0.1
+      }
+    },
+    "frame_ball_first": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.125,
+        "multi": 0.2,
+        "single": 0.075
+      }
+    },
+    "frame_ball_pos_90": {
+      "orders": [
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.225,
+        "single": 0.0
+      }
+    },
+    "frame_ball_zone_90": {
+      "orders": [
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.075,
+        "multi": 0.0,
+        "single": 0.05
+      }
+    },
+    "frame_what_happened": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.2,
+        "multi": 0.05,
+        "single": 0.05
+      }
+    },
+    "halluc_frame_600": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.125,
+        "multi": 0.0,
+        "single": 0.05
+      }
+    },
+    "halluc_player_99": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.0,
+        "single": 0.0
+      }
+    },
+    "halluc_score": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.0,
+        "single": 0.0
+      }
+    },
+    "qa_7s_ball_hmax": {
+      "orders": [
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.025,
+        "single": 0.1
+      }
+    },
+    "qa_7s_player_count": {
+      "orders": [
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.1,
+        "single": 0.0
+      }
+    },
+    "qa_ball_5s_short": {
+      "orders": [
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.3,
+        "multi": 0.025,
+        "single": 0.45
+      }
+    },
+    "qa_ball_hmax": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.0,
+        "single": 0.0
+      }
+    },
+    "qa_ball_speed_max": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.15,
+        "multi": 0.1,
+        "single": 0.1
+      }
+    },
+    "qa_duration": {
+      "orders": [
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.0,
+        "single": 0.15
+      }
+    },
+    "qa_player_count": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.0,
+        "single": 0.0
+      }
+    },
+    "qa_player_team": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.05,
+        "single": 0.05
+      }
+    },
+    "qa_player_zone_7": {
+      "orders": [
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.45,
+        "multi": 0.05,
+        "single": 0.087
+      }
+    },
+    "style_10s_player": {
+      "orders": [
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.075,
+        "multi": 0.125,
+        "single": 0.125
+      }
+    },
+    "style_7s_player11": {
+      "orders": [
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.075,
+        "multi": 0.275,
+        "single": 0.062
+      }
+    },
+    "style_player7": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.05,
+        "multi": 0.05,
+        "single": 0.075
+      }
+    },
+    "team_7s_threat": {
+      "orders": [
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "single",
+          "bare",
+          "multi"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ],
+        [
+          "multi",
+          "bare",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.15,
+        "multi": 0.05,
+        "single": 0.0
+      }
+    },
+    "team_attack_trend": {
+      "orders": [
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.112,
+        "multi": 0.112,
+        "single": 0.112
+      }
+    },
+    "team_collab_breakdown": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.025,
+        "multi": 0.037,
+        "single": 0.15
+      }
+    },
+    "team_formation": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.25,
+        "multi": 0.113,
+        "single": 0.063
+      }
+    },
+    "team_threat_peak": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.0,
+        "single": 0.0
+      }
+    },
+    "timeline_ball_height": {
+      "orders": [
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.0,
+        "multi": 0.125,
+        "single": 0.025
+      }
+    },
+    "timeline_event_types": {
+      "orders": [
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.125,
+        "multi": 0.0,
+        "single": 0.05
+      }
+    },
+    "timeline_first5s": {
+      "orders": [
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.125,
+        "multi": 0.125,
+        "single": 0.1
+      }
+    },
+    "verify_7s_pos": {
+      "orders": [
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "bare",
+          "multi",
+          "single"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ],
+        [
+          "single",
+          "multi",
+          "bare"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.25,
+        "multi": 0.0,
+        "single": 0.1
+      }
+    },
+    "verify_ball_owner_3s": {
+      "orders": [
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "multi",
+          "single",
+          "bare"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ],
+        [
+          "bare",
+          "single",
+          "multi"
+        ]
+      ],
+      "sample_repeats": 2,
+      "judge_model": "deepseek-v4-pro",
+      "judge_temperature": 0.0,
+      "rubric_version": "v3",
+      "consistency": {
+        "bare": 0.45,
+        "multi": 0.0,
+        "single": 0.05
+      }
+    }
+  },
+  "judge_disagreements": {
+    "counts": {
+      "ok": 262,
+      "disagreement": 98,
+      "n/a": 240
+    },
+    "top": [
+      {
+        "system": "single",
+        "case_id": "compare_6_7_active",
+        "repeat": 2,
+        "program_accuracy": 0.0,
+        "judge_accuracy": 0.963,
+        "diff": 0.963
+      },
+      {
+        "system": "multi",
+        "case_id": "compare_7s_active",
+        "repeat": 2,
+        "program_accuracy": 0.0,
+        "judge_accuracy": 0.963,
+        "diff": 0.963
+      },
+      {
+        "system": "multi",
+        "case_id": "compare_7s_active",
+        "repeat": 4,
+        "program_accuracy": 0.0,
+        "judge_accuracy": 0.963,
+        "diff": 0.963
+      },
+      {
+        "system": "single",
+        "case_id": "compare_7s_active",
+        "repeat": 3,
+        "program_accuracy": 0.0,
+        "judge_accuracy": 0.95,
+        "diff": 0.95
+      },
+      {
+        "system": "bare",
+        "case_id": "compare_6_7_active",
+        "repeat": 1,
+        "program_accuracy": 0.0,
+        "judge_accuracy": 0.925,
+        "diff": 0.925
+      }
+    ]
+  },
+  "cost": {
+    "bare": {
+      "latency_ms": [
+        43440.4,
+        "n=200"
+      ],
+      "llm_calls": [
+        1.0,
+        "n=200"
+      ],
+      "total_tokens": [
+        10411.5,
+        "n=200"
+      ]
+    },
+    "single": {
+      "latency_ms": [
+        14027.5,
+        "n=200"
+      ],
+      "llm_calls": [
+        2.8,
+        "n=200"
+      ],
+      "total_tokens": [
+        12232.2,
+        "n=200"
+      ]
+    },
+    "multi": {
+      "latency_ms": [
+        16276.9,
+        "n=200"
+      ],
+      "llm_calls": [
+        1.3,
+        "n=200"
+      ],
+      "total_tokens": [
+        10518.5,
+        "n=180"
+      ]
+    }
+  },
+  "per_case_summary": {
+    "adv_ambiguous_multi_target": {
+      "bare": {
+        "total": 0.888,
+        "stability": 0.09307408839644675
+      },
+      "single": {
+        "total": 0.904,
+        "stability": 0.09082067961329969
+      },
+      "multi": {
+        "total": 0.965,
+        "stability": 0.14753687204963467
+      }
+    },
+    "adv_format_messy": {
+      "bare": {
+        "total": 0.698,
+        "stability": 0.4974307877700081
+      },
+      "single": {
+        "total": 0.568,
+        "stability": 0.2972057477354163
+      },
+      "multi": {
+        "total": 0.288,
+        "stability": 0.22857962554405037
+      }
+    },
+    "adv_frame_out_of_range": {
+      "bare": {
+        "total": 0.84,
+        "stability": 0.42195031856274756
+      },
+      "single": {
+        "total": 0.878,
+        "stability": 0.2381455326393395
+      },
+      "multi": {
+        "total": 0.91,
+        "stability": 1.0
+      }
+    },
+    "adv_induced_scoring": {
+      "bare": {
+        "total": 0.765,
+        "stability": 0.12810559625145798
+      },
+      "single": {
+        "total": 0.732,
+        "stability": 0.13498377261929526
+      },
+      "multi": {
+        "total": 0.732,
+        "stability": 0.18480986697318927
+      }
+    },
+    "adv_prompt_injection": {
+      "bare": {
+        "total": 0.89,
+        "stability": 0.43817887851849474
+      },
+      "single": {
+        "total": 0.93,
+        "stability": 0.29871653336500736
+      },
+      "multi": {
+        "total": 0.762,
+        "stability": 1.0
+      }
+    },
+    "cf_7s_pass10": {
+      "bare": {
+        "total": 0.673,
+        "stability": 0.14643396269200662
+      },
+      "single": {
+        "total": 0.811,
+        "stability": 0.11656224045250671
+      },
+      "multi": {
+        "total": 0.816,
+        "stability": 0.11663225276020968
+      }
+    },
+    "cf_7s_shoot": {
+      "bare": {
+        "total": 0.767,
+        "stability": 0.1203665455463768
+      },
+      "single": {
+        "total": 0.667,
+        "stability": 0.2081846293766909
+      },
+      "multi": {
+        "total": 0.895,
+        "stability": 0.13402812668196434
+      }
+    },
+    "compare_6_7_active": {
+      "bare": {
+        "total": 0.9,
+        "stability": 0.22802411004175455
+      },
+      "single": {
+        "total": 0.928,
+        "stability": 0.18161838394523738
+      },
+      "multi": {
+        "total": 0.987,
+        "stability": 0.18525476875690905
+      }
+    },
+    "compare_7s_active": {
+      "bare": {
+        "total": 0.864,
+        "stability": 0.2284157496488443
+      },
+      "single": {
+        "total": 0.939,
+        "stability": 0.20904925042802489
+      },
+      "multi": {
+        "total": 0.979,
+        "stability": 0.1474865180540053
+      }
+    },
+    "compare_fastest": {
+      "bare": {
+        "total": 0.855,
+        "stability": 0.43236364604769195
+      },
+      "single": {
+        "total": 0.596,
+        "stability": 0.24839636079947297
+      },
+      "multi": {
+        "total": 0.604,
+        "stability": 0.21857635039939377
+      }
+    },
+    "focus_player7": {
+      "bare": {
+        "total": 0.719,
+        "stability": 0.13211697216361024
+      },
+      "single": {
+        "total": 0.939,
+        "stability": 0.1513302651472296
+      },
+      "multi": {
+        "total": 0.893,
+        "stability": 0.12363033335643828
+      }
+    },
+    "frame_ball_first": {
+      "bare": {
+        "total": 0.834,
+        "stability": 0.12595182040078232
+      },
+      "single": {
+        "total": 0.604,
+        "stability": 0.17076568640546494
+      },
+      "multi": {
+        "total": 0.756,
+        "stability": 0.3358807740794071
+      }
+    },
+    "frame_ball_pos_90": {
+      "bare": {
+        "total": 0.463,
+        "stability": 0.3658191286060149
+      },
+      "single": {
+        "total": 0.474,
+        "stability": 0.3804959058887429
+      },
+      "multi": {
+        "total": 0.715,
+        "stability": 0.42153310301609126
+      }
+    },
+    "frame_ball_zone_90": {
+      "bare": {
+        "total": 0.778,
+        "stability": 0.1386751759570209
+      },
+      "single": {
+        "total": 0.484,
+        "stability": 0.1388051890333047
+      },
+      "multi": {
+        "total": 0.97,
+        "stability": 0.4047951027816842
+      }
+    },
+    "frame_what_happened": {
+      "bare": {
+        "total": 0.738,
+        "stability": 0.1640561911467433
+      },
+      "single": {
+        "total": 0.569,
+        "stability": 0.302879171692385
+      },
+      "multi": {
+        "total": 0.665,
+        "stability": 0.41821247931343136
+      }
+    },
+    "halluc_frame_600": {
+      "bare": {
+        "total": 0.579,
+        "stability": 0.11552556393540248
+      },
+      "single": {
+        "total": 0.869,
+        "stability": 0.16626613828062292
+      },
+      "multi": {
+        "total": 0.926,
+        "stability": 1.0
+      }
+    },
+    "halluc_player_99": {
+      "bare": {
+        "total": 0.88,
+        "stability": 0.5494727443306682
+      },
+      "single": {
+        "total": 0.9,
+        "stability": 0.25271392546854526
+      },
+      "multi": {
+        "total": 0.839,
+        "stability": 1.0
+      }
+    },
+    "halluc_score": {
+      "bare": {
+        "total": 0.87,
+        "stability": 0.435069127166303
+      },
+      "single": {
+        "total": 0.898,
+        "stability": 0.25849902677690706
+      },
+      "multi": {
+        "total": 0.89,
+        "stability": 0.3014200218621218
+      }
+    },
+    "qa_7s_ball_hmax": {
+      "bare": {
+        "total": 0.79,
+        "stability": 0.673069018222409
+      },
+      "single": {
+        "total": 0.734,
+        "stability": 0.18665386645739254
+      },
+      "multi": {
+        "total": 0.891,
+        "stability": 0.35230784581427005
+      }
+    },
+    "qa_7s_player_count": {
+      "bare": {
+        "total": 0.823,
+        "stability": 0.5993292901119409
+      },
+      "single": {
+        "total": 0.851,
+        "stability": 0.259628559153959
+      },
+      "multi": {
+        "total": 0.837,
+        "stability": 0.2993013626625035
+      }
+    },
+    "qa_ball_5s_short": {
+      "bare": {
+        "total": 0.732,
+        "stability": 0.3450508563124449
+      },
+      "single": {
+        "total": 0.793,
+        "stability": 0.12153814237516192
+      },
+      "multi": {
+        "total": 0.845,
+        "stability": 0.3746729027809851
+      }
+    },
+    "qa_ball_hmax": {
+      "bare": {
+        "total": 0.86,
+        "stability": 0.49555084252150133
+      },
+      "single": {
+        "total": 0.609,
+        "stability": 0.21889614324316495
+      },
+      "multi": {
+        "total": 0.907,
+        "stability": 0.32986410295348323
+      }
+    },
+    "qa_ball_speed_max": {
+      "bare": {
+        "total": 0.898,
+        "stability": 0.230025338452932
+      },
+      "single": {
+        "total": 0.501,
+        "stability": 0.15608562898673808
+      },
+      "multi": {
+        "total": 0.747,
+        "stability": 0.22710191809286426
+      }
+    },
+    "qa_duration": {
+      "bare": {
+        "total": 0.84,
+        "stability": 0.6926678683251225
+      },
+      "single": {
+        "total": 0.797,
+        "stability": 0.20647813755856523
+      },
+      "multi": {
+        "total": 0.87,
+        "stability": 0.30908543984289577
+      }
+    },
+    "qa_player_count": {
+      "bare": {
+        "total": 0.81,
+        "stability": 0.8526773142371843
+      },
+      "single": {
+        "total": 0.861,
+        "stability": 0.26491035181762557
+      },
+      "multi": {
+        "total": 0.836,
+        "stability": 0.3810846885817359
+      }
+    },
+    "qa_player_team": {
+      "bare": {
+        "total": 0.83,
+        "stability": 0.594539539665593
+      },
+      "single": {
+        "total": 0.803,
+        "stability": 0.41498065934058515
+      },
+      "multi": {
+        "total": 0.804,
+        "stability": 0.45286047417820974
+      }
+    },
+    "qa_player_zone_7": {
+      "bare": {
+        "total": 0.655,
+        "stability": 0.18206175544327263
+      },
+      "single": {
+        "total": 0.962,
+        "stability": 0.2425451165756968
+      },
+      "multi": {
+        "total": 0.91,
+        "stability": 0.2380272155792346
+      }
+    },
+    "style_10s_player": {
+      "bare": {
+        "total": 0.791,
+        "stability": 0.160630314176486
+      },
+      "single": {
+        "total": 0.896,
+        "stability": 0.14629050743219646
+      },
+      "multi": {
+        "total": 0.911,
+        "stability": 0.18464757896360084
+      }
+    },
+    "style_7s_player11": {
+      "bare": {
+        "total": 0.646,
+        "stability": 0.17866073814127303
+      },
+      "single": {
+        "total": 0.871,
+        "stability": 0.16793396323706072
+      },
+      "multi": {
+        "total": 0.701,
+        "stability": 0.22561866957324198
+      }
+    },
+    "style_player7": {
+      "bare": {
+        "total": 0.722,
+        "stability": 0.17570558355672722
+      },
+      "single": {
+        "total": 0.893,
+        "stability": 0.19416038595471646
+      },
+      "multi": {
+        "total": 0.744,
+        "stability": 0.21266247282667988
+      }
+    },
+    "team_7s_threat": {
+      "bare": {
+        "total": 0.571,
+        "stability": 0.12539575220438398
+      },
+      "single": {
+        "total": 0.957,
+        "stability": 0.2717628334085004
+      },
+      "multi": {
+        "total": 0.934,
+        "stability": 0.3356721374733461
+      }
+    },
+    "team_attack_trend": {
+      "bare": {
+        "total": 0.765,
+        "stability": 0.07625152458346121
+      },
+      "single": {
+        "total": 0.951,
+        "stability": 0.17870656242333344
+      },
+      "multi": {
+        "total": 0.968,
+        "stability": 0.14140436793550767
+      }
+    },
+    "team_collab_breakdown": {
+      "bare": {
+        "total": 0.791,
+        "stability": 0.08409599054236414
+      },
+      "single": {
+        "total": 0.9,
+        "stability": 0.12454988232179572
+      },
+      "multi": {
+        "total": 0.889,
+        "stability": 0.1165066147409212
+      }
+    },
+    "team_formation": {
+      "bare": {
+        "total": 0.665,
+        "stability": 0.0833151165393969
+      },
+      "single": {
+        "total": 0.902,
+        "stability": 0.13654423490654244
+      },
+      "multi": {
+        "total": 0.923,
+        "stability": 0.12550476562236654
+      }
+    },
+    "team_threat_peak": {
+      "bare": {
+        "total": 0.515,
+        "stability": 0.14446353049582733
+      },
+      "single": {
+        "total": 0.976,
+        "stability": 0.1816930050315168
+      },
+      "multi": {
+        "total": 0.96,
+        "stability": 0.21198334404728567
+      }
+    },
+    "timeline_ball_height": {
+      "bare": {
+        "total": 0.868,
+        "stability": 0.11178986221366609
+      },
+      "single": {
+        "total": 0.75,
+        "stability": 0.1032538037032037
+      },
+      "multi": {
+        "total": 0.789,
+        "stability": 0.11157535553195308
+      }
+    },
+    "timeline_event_types": {
+      "bare": {
+        "total": 0.772,
+        "stability": 0.08163586190097681
+      },
+      "single": {
+        "total": 0.64,
+        "stability": 0.11448704472297062
+      },
+      "multi": {
+        "total": 0.6,
+        "stability": 0.15303749547298168
+      }
+    },
+    "timeline_first5s": {
+      "bare": {
+        "total": 0.627,
+        "stability": 0.1436427844162066
+      },
+      "single": {
+        "total": 0.902,
+        "stability": 0.10899615133423893
+      },
+      "multi": {
+        "total": 0.907,
+        "stability": 0.32743163316738627
+      }
+    },
+    "verify_7s_pos": {
+      "bare": {
+        "total": 0.847,
+        "stability": 0.14560856624132495
+      },
+      "single": {
+        "total": 0.751,
+        "stability": 0.22068908453316763
+      },
+      "multi": {
+        "total": 0.915,
+        "stability": 0.5764711101687917
+      }
+    },
+    "verify_ball_owner_3s": {
+      "bare": {
+        "total": 0.702,
+        "stability": 0.20422891809352847
+      },
+      "single": {
+        "total": 0.473,
+        "stability": 0.20028644827699443
+      },
+      "multi": {
+        "total": 0.912,
+        "stability": 0.4706542182537742
+      }
+    }
+  },
+  "system_labels": {
+    "bare": "单次LLM裸调用",
+    "single": "单智能体+工具",
+    "multi": "多智能体系统"
+  },
+  "alignment_case": "adv_ambiguous_multi_target",
+  "alignment": {
+    "heuristic": true,
+    "systems": {
+      "bare": {
+        "repeat": 0,
+        "steps": [
+          {
+            "idx": 0,
+            "kind": "llm",
+            "name": "llm_call[0]",
+            "dur_ms": 113450.16,
+            "status": "ok",
+            "phase": "synthesis",
+            "tools": null,
+            "tool_round": null,
+            "context_chars": 9072,
+            "attrs": {
+              "system_len": 293,
+              "user_len": 8779
+            }
+          }
+        ],
+        "latency_ms": 113453.0,
+        "llm_calls": 1,
+        "answer_excerpt": "【总体形势判断】  \n这段约12秒的片段里，球先从球场一侧转移到中场，中段出现一次明显的高空球，随后又转移到另一侧，攻防转换比较快。这种局面下，跑动距离大、平均速度快的球员，往往是接应和补防最积极的人。\n\n**两支队伍里跑动最积极的分别是红队6号和蓝队18号；瞬间爆发力最强的是红队8号。**\n\n---\n\n## 红队（A队）球员积极度对比\n\n- **6号**：明显是红队跑动最积极的人，跑动总量和平均速度都在队内领先。从轨迹看他活动范围很大，几乎全程在移动，是红队的接应/覆盖核心。\n- **4号**：紧随其后，持续跑动多，主要在中场区域横向覆盖，属于第二积极。\n- **8号**：总跑动不是第一，但瞬间冲刺能力全场最强，有突然加速的爆发力，在攻防转换中最有威胁。\n- **3号、7号**：中等偏上。3号跑动量稳定，7号跑动总量不算很高，但多次出现冲刺加速。\n- **2号、5号**：跑动偏少，更多是"
+      },
+      "single": {
+        "repeat": 0,
+        "steps": [
+          {
+            "idx": 0,
+            "kind": "llm",
+            "name": "llm_call[0]",
+            "dur_ms": 2190.84,
+            "status": "ok",
+            "phase": "retrieval",
+            "tools": null,
+            "tool_round": 0,
+            "context_chars": 343,
+            "attrs": {
+              "system_len": 311,
+              "user_len": 32,
+              "tool_round": 0
+            }
+          },
+          {
+            "idx": 1,
+            "kind": "tool",
+            "name": "get_tactical_facts",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 643,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 2,
+            "kind": "tool",
+            "name": "get_ball_timeline",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 943,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 3,
+            "kind": "llm",
+            "name": "llm_call[1]",
+            "dur_ms": 3960.6,
+            "status": "ok",
+            "phase": "retrieval",
+            "tools": null,
+            "tool_round": 1,
+            "context_chars": 1286,
+            "attrs": {
+              "system_len": 311,
+              "user_len": 32,
+              "tool_round": 1
+            }
+          },
+          {
+            "idx": 4,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 1586,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 5,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 1886,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 6,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 2186,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 7,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 2486,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 8,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 2786,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 9,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 3086,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 10,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 3386,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 11,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 3686,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 12,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 3986,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 13,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 4286,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 14,
+            "kind": "tool",
+            "name": "get_player_profile",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 4586,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 15,
+            "kind": "llm",
+            "name": "llm_call[2]",
+            "dur_ms": 5150.43,
+            "status": "ok",
+            "phase": "retrieval",
+            "tools": null,
+            "tool_round": 2,
+            "context_chars": 4929,
+            "attrs": {
+              "system_len": 311,
+              "user_len": 32,
+              "tool_round": 2
+            }
+          },
+          {
+            "idx": 16,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 5229,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 17,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 5529,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 18,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 5829,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 19,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 6129,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 20,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 6429,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 21,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 6729,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 22,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 7029,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 23,
+            "kind": "tool",
+            "name": "get_player_raw_data",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "retrieval",
+            "context_chars": 7329,
+            "attrs": {
+              "ok": true
+            }
+          },
+          {
+            "idx": 24,
+            "kind": "llm",
+            "name": "llm_call[3]",
+            "dur_ms": 19058.99,
+            "status": "ok",
+            "phase": "synthesis",
+            "tools": null,
+            "tool_round": 3,
+            "context_chars": 7672,
+            "attrs": {
+              "system_len": 311,
+              "user_len": 32,
+              "tool_round": 3
+            }
+          }
+        ],
+        "latency_ms": 30375.0,
+        "llm_calls": 4,
+        "answer_excerpt": "我已调取两队全部有球参与球员的画像与原始轨迹数据，下面按\"积极性\"维度把所有人排一遍。\n\n## 总体判断\n\n**A队明显更积极，其中6号是最\"粘球且跑动范围最广\"的球员，8号是参与球路最多、跑动最凶的核心；B队整体参与度远低于A队，只有14号、18号在速度和跑动上有零星亮点。**\n\n## A队内部排序（从积极到消极）\n\n**1. 6号 —— 积极性第一档（存在感最强）**\n- 这是全场唯一一个\"几乎全程贴着球\"的球员，接近球时间占比接近100%，也就是说球在哪他就在哪；\n- 跑动量评级为\"大\"，而且活动范围横跨前场一大片区域（在右路前场来回拉扯），场地覆盖面是A队乃至全场最宽的，说明他不是站桩，而是主动拉开接球空间；\n- 不过他的瞬时爆发并不突出（最大速度只是中等档），属于\"勤跑但匀速型\"的活跃前锋。\n\n**2. 8号 —— 积极性第二档（球权参与度最高）**\n- 参与球路次数在全部球员里"
+      },
+      "multi": {
+        "repeat": 0,
+        "steps": [
+          {
+            "idx": 0,
+            "kind": "load",
+            "name": "load_data",
+            "dur_ms": 5.5,
+            "status": "ok",
+            "phase": "load",
+            "context_chars": 0,
+            "attrs": {
+              "person": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_person2d.csv",
+              "ball": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_soccer3d.csv"
+            }
+          },
+          {
+            "idx": 1,
+            "kind": "load",
+            "name": "corpus_ready",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "load",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 2,
+            "kind": "stage",
+            "name": "routing",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 3,
+            "kind": "stage",
+            "name": "routing",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 4,
+            "kind": "stage",
+            "name": "qa",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 0,
+            "attrs": {}
+          },
+          {
+            "idx": 5,
+            "kind": "llm",
+            "name": "llm_call[0]",
+            "dur_ms": 12948.67,
+            "status": "ok",
+            "phase": "routing",
+            "tools": [
+              "get_tactical_facts",
+              "get_ball_timeline",
+              "get_frame_snapshot",
+              "get_player_raw_data",
+              "get_player_profile",
+              "run_counterfactual_simulation"
+            ],
+            "tool_round": 0,
+            "context_chars": 20014,
+            "attrs": {
+              "system_len": 2523,
+              "user_len": 17491,
+              "tools": [
+                "get_tactical_facts",
+                "get_ball_timeline",
+                "get_frame_snapshot",
+                "get_player_raw_data",
+                "get_player_profile",
+                "run_counterfactual_simulation"
+              ],
+              "tool_round": 0,
+              "seq": 0,
+              "stream": true
+            }
+          },
+          {
+            "idx": 6,
+            "kind": "llm",
+            "name": "llm_call[1]",
+            "dur_ms": 25410.61,
+            "status": "ok",
+            "phase": "synthesis",
+            "tools": [
+              "get_tactical_facts",
+              "get_ball_timeline",
+              "get_frame_snapshot",
+              "get_player_raw_data",
+              "get_player_profile",
+              "run_counterfactual_simulation"
+            ],
+            "tool_round": 1,
+            "context_chars": 40028,
+            "attrs": {
+              "system_len": 2523,
+              "user_len": 17491,
+              "tools": [
+                "get_tactical_facts",
+                "get_ball_timeline",
+                "get_frame_snapshot",
+                "get_player_raw_data",
+                "get_player_profile",
+                "run_counterfactual_simulation"
+              ],
+              "tool_round": 1,
+              "seq": 1,
+              "stream": true
+            }
+          },
+          {
+            "idx": 7,
+            "kind": "stage",
+            "name": "qa",
+            "dur_ms": 0.0,
+            "status": "ok",
+            "phase": "reasoning",
+            "context_chars": 40028,
+            "attrs": {}
+          }
+        ],
+        "latency_ms": 38391.0,
+        "llm_calls": 2,
+        "answer_excerpt": "结论先行：这12.4秒片段里，积极性明显呈\"断层式\"分布——A队右路四人（8、7、6、3号）几乎垄断了球权参与，是真正活跃的核心；A队10号和B队19号属于中量参与；B队14、15、16、18号只有零星触球；其余一多半球员虽然跑动量标注不低，但整段基本没碰到球。值得注意的是全队冲刺次数都是0，所以这里的\"积极\"主要指持续触球、持续贴球和跑动覆盖面，而不是冲刺强度。\n\n首先看最积极的第一梯队，全是A队球员。8号是全场参与球路最多的一个，也是A队进攻的组织枢纽——片段后段从3号接球后长时间控球，回传和横向衔接都经他脚下过渡，跑动量也大，是全队最核心的活跃点。7号紧随其后，参与球路次数第二高，接近球时间占比高达六七成，且活动区域固定在右路前场，是锋线最贴球、最勤于接应的支点。6号则是\"贴球型\"代表——接近球时间达到100%，几乎全程跟着球走，片段开头由他发起第一脚传球，中段又完成全场唯一一次把球"
+      }
+    },
+    "tool_diff": {
+      "get_tactical_facts": [
+        "single"
+      ],
+      "get_player_raw_data": [
+        "single"
+      ],
+      "get_ball_timeline": [
+        "single"
+      ],
+      "get_player_profile": [
+        "multi",
+        "single"
+      ]
+    }
+  }
+}

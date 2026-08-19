@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "前5秒的球路呈现出“先短距离滚动、随后出现一次大幅位置跳变”的特征，整体并不是一条连续流畅的推进线路；而且在这5秒内足球全程贴地，没有腾空阶段。\n\n具体来看，开局后足球从球场右路靠近底角的位置出发，先是向左侧前方缓慢滚动，大约持续到第50帧（约1.7秒），落点在中右路偏中区域。随后数据中出现了约1.7秒的“真空期”——第50帧到第102帧之间没有球的位置记录。第102帧（约3.4秒）球突然出现在中场左侧更靠前的位置，并且在这里停留了约0.7秒，几乎原地不动。到第149帧（约4.97秒）时，球又出现在中右路偏后一些的位置，继续贴地。\n\n需要说明的是，第50帧到第102帧之间的球路是缺失的，因此无法判断球究竟是通过长传、解围还是其他方式从中右路“跳”到中场左侧的，这是数据中没有记录到的部分。",
+  "latency_ms": 12797.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6090,
+    "completion_tokens": 1202,
+    "total_tokens": 7292
+  },
+  "error": null,
+  "trace_file": "trace_20260819_141725_6b8364fec5b4.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\timeline_first5s\\2",
+  "ts": "2026-08-19 14:17:25",
+  "context_chars": 8762,
+  "repeat": 2
+}

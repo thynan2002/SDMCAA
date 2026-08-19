@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_ball_hmax",
+  "category": "general_qa",
+  "input": "比赛中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "比赛中球最高到过4.2米，出现在约第6.7秒（第201帧，30fps标准下）。该数值直接取自「比赛事实」中的\"球峰值高度(米)\"字段，峰值高度出现时刻为\"约第6.7秒（第201帧，30fps）\"。\n\n需要说明的是，这一峰值恰好落在6.2至6.9秒的那段高空球连续传递序列中——18号→19号、19号控球、19号→7号、7号→15号等事件在这一时段内均被标记为\"高空\"球高度，球在6.7秒左右达到最高点，随后在该序列后半段高度回落、转为低平球，与峰值时刻在时间上完全吻合。",
+  "latency_ms": 4000.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9437,
+    "completion_tokens": 435,
+    "total_tokens": 9872
+  },
+  "error": null,
+  "trace_file": "trace_20260819_143147_254655d70224.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_ball_hmax\\3",
+  "ts": "2026-08-19 14:31:47",
+  "repeat": 3
+}

@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "d32cb7927aa0", "ts": 1787123619.6694753}
+{"type": "span_start", "run_id": "d32cb7927aa0", "span_id": "d32cb7927aa0-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123619.6699786, "attrs": {"input": "从攻防两端全面分析这段比赛：进攻端谁在组织、防守端站位如何、攻防转换的弱点在哪？请给出多视角的综合结论。", "system": "bare"}}
+{"type": "span_start", "run_id": "d32cb7927aa0", "span_id": "d32cb7927aa0-00002", "parent_id": "d32cb7927aa0-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123619.6699786, "attrs": {"system_len": 293, "user_len": 8799}}
+{"type": "span_end", "run_id": "d32cb7927aa0", "span_id": "d32cb7927aa0-00002", "parent_id": "d32cb7927aa0-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123798.575371, "dur_ms": 178905.39, "status": "ok"}
+{"type": "span_end", "run_id": "d32cb7927aa0", "span_id": "d32cb7927aa0-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123798.575371, "dur_ms": 178905.39, "status": "ok"}
+{"type": "run_end", "run_id": "d32cb7927aa0", "ts": 1787123798.575371}

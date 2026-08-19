@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "verify_ball_owner_3s",
+  "category": "verify",
+  "input": "再确认一下，第3秒的时候球离7号有多远？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "确认：第3秒时，球离7号大约 **13米**（约 **13.2米**）。\n\n依据：按30fps计算，第3秒对应第90帧。该帧没有直接原始坐标，我用前后帧线性插值估算——球在帧50到帧102之间，7号在帧71到帧97之间。插值后第90帧球约在（922, 587），7号约在（1070, 616），按场地标定折算后距离约为13.2米；当时球高度为0，所以三维距离同样是约13.2米。",
+  "latency_ms": 66578.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6094,
+    "completion_tokens": 8078,
+    "total_tokens": 14172
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144143_7611740c2700.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\verify_ball_owner_3s\\3",
+  "ts": "2026-08-19 14:41:42",
+  "context_chars": 8767,
+  "repeat": 3
+}

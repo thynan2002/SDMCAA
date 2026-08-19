@@ -1,0 +1,63 @@
+{
+  "system": "single",
+  "case_id": "compare_7s_active",
+  "category": "comparison",
+  "input": "对比6号和11号谁跑动更积极？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据两位球员的轨迹数据，结论很明确：**11号跑动明显更积极**。\n\n**直接判断：**\n- 11号在移动速度上全面占优，平均跑动速度明显快于6号，峰值速度也更高，而且他的活动范围横跨幅度明显更大——从轨迹上看，11号在右路中场区域的覆盖面积远大于6号。\n- 6号虽然整体更\"静态\"，但更靠近球的争夺：他参与球路的次数更多，接近球的时间占比明显高于11号。也就是说，11号是\"跑得多、跑得快\"，而6号是\"位置相对固定、但更贴近球权\"。\n- 需要说明的是，双方的数据样本都偏小（有效轨迹帧数很少），所以这是基于有限片段的判断。\n\n**数据依据：**\n- 平均速度：11号明显高于6号；峰值速度11号也更高。\n- 冲刺次数：两人均为0次，本段都没有全力冲刺。\n- 场地覆盖率：11号约是6号的十倍以上，活动范围显著更大。\n- 参与球路：6号参与3次，多于11号的2次；接近球时间占比6号约20%，11号接近0%。\n\n综合来看，单论跑动积极性（移动速度与覆盖范围），11号占优；但6号在无球跑动之外更积极地参与到了球权争夺中。",
+  "latency_ms": 8609.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 3240,
+    "completion_tokens": 850,
+    "total_tokens": 4090
+  },
+  "error": null,
+  "trace_file": "trace_20260819_134628_dcc3a00f9f4e.jsonl",
+  "tool_records": [
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "11号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "11号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\compare_7s_active\\2",
+  "ts": "2026-08-19 13:46:28",
+  "repeat": 2
+}

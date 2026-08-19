@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "style_7s_player11",
+  "category": "style",
+  "input": "11号的跑动风格是什么？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "11号的跑动风格可以概括为：**匀速持续、直线纵向前插，没有明显的爆发式冲刺或变速变向**。\n\n数据依据：  \n- 11号的累计位移在B队中属于中等偏上，但其平均速度与峰值速度几乎一致，说明他在整个观察时段内基本保持同一节奏移动，没有出现突然加速或高速冲刺的片段。  \n- 从轨迹位置看，他由中后场区域逐步向对方半场纵深方向移动，最终到达前场较深位置，整体移动方向明确、线路较直，体现出一种“持续前压”的跑动习惯。  \n- 他的活动主要集中在中路偏一侧的纵向通道，而不是频繁横向扯动或回撤接应，因此更像一名利用匀速跑动寻找前插机会的球员。",
+  "latency_ms": 6813.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 4782,
+    "completion_tokens": 501,
+    "total_tokens": 5283
+  },
+  "error": null,
+  "trace_file": "trace_20260819_132112_876d68c167bd.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\style_7s_player11\\1",
+  "ts": "2026-08-19 13:21:12",
+  "context_chars": 6448,
+  "repeat": 1
+}

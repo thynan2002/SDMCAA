@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "team_attack_trend",
+  "category": "team",
+  "input": "分析一下A队的进攻态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "从这段数据看，A队正在发起一次由后场向前场推进的进攻，整体方向是朝数据坐标的左侧发展。进攻从A队后场右路开始，球先在6号、7号附近传递，随后通过一次长传转移到前场左侧10号脚下；10号控球后没有强行突破，而是把球交还给跟进的6号，由6号继续向前输送。球在后段有一次明显的高球，飞起高度约4米，说明A队尝试用长传/传中直接威胁对方半场。最终球进入对方半场左侧区域，A队多名球员向该区域靠拢，形成接应和进攻层次。\n\n从球员表现看，6号是这次进攻的主要推进者，跑动距离明显多于其他队友，活动范围从本方后场一直延伸到中场；7号承担了后场出球和转移的任务；10号是左路接应点，负责拿球并回做；8号则展现出高速前插能力，是A队向前冲击的点。B队也有球员在快速回防，说明A队这次推进对对方防线形成了压力。\n\n总体来看，A队在这次片段中完成了由守转攻，通过左右转移和高球向前推进，进攻态势积极并具备一定威胁。但数据中没有显示最后形成射门，因此威胁尚未转化为实质得分机会。",
+  "latency_ms": 132469.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 11392,
+    "total_tokens": 17478
+  },
+  "error": null,
+  "trace_file": "trace_20260819_132630_ec09797e220b.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\team_attack_trend\\1",
+  "ts": "2026-08-19 13:26:30",
+  "context_chars": 8759,
+  "repeat": 1
+}

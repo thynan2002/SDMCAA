@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "96734285d7ef", "ts": 1787123253.3489718}
+{"type": "span_start", "run_id": "96734285d7ef", "span_id": "96734285d7ef-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123253.3489718, "attrs": {"input": "7号主要活动在球场的哪个区域？", "system": "bare"}}
+{"type": "span_start", "run_id": "96734285d7ef", "span_id": "96734285d7ef-00002", "parent_id": "96734285d7ef-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123253.3489718, "attrs": {"system_len": 293, "user_len": 8762}}
+{"type": "span_end", "run_id": "96734285d7ef", "span_id": "96734285d7ef-00002", "parent_id": "96734285d7ef-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123281.3387985, "dur_ms": 27989.83, "status": "ok"}
+{"type": "span_end", "run_id": "96734285d7ef", "span_id": "96734285d7ef-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123281.339299, "dur_ms": 27990.33, "status": "ok"}
+{"type": "run_end", "run_id": "96734285d7ef", "ts": 1787123281.339299}

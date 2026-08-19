@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_pos_90",
+  "category": "frame",
+  "input": "第90帧球在什么位置？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧（第3.0秒），球位于前场边路（右路），坐标为（922, 587, 0），该位置威胁潜力中等（0.45）。场上无事件记录。此时A队与B队的站位明显右倾：A队10号、6号、7号在右路前场，其中10号距球最近（约84），其余A队球员（1-5、8、9）集中在右路中场；B队18号、19号在右路前场，其余球员（11-17、20）在右路中场；另有C队21号在右路中场。可见全部21名球员均未出现在左路，整体阵型压缩在右路区域。\n\n数据依据：帧号90、时间第3.0秒，球位置(x=922, y=587, z=0)，战术区域“前场边路”，威胁值0.45。\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 18781.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1105,
+    "completion_tokens": 1958,
+    "total_tokens": 3063
+  },
+  "error": null,
+  "trace_file": "trace_20260819_132305_c05c4cc7d7a8.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_ball_pos_90\\1",
+  "ts": "2026-08-19 13:23:05",
+  "repeat": 1
+}

@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**形势/战术判断：**\n\n比赛前5秒，球权基本由红方（A队）控制，球路呈现“右路发起 → 中路推进 → 斜长传转移到左路 → 短暂控制 → 回传”的走向。整体节奏并不急促，球几乎没有离开地面，是一个以地面传控为主的过渡段落。\n\n**数据依据：**\n\n- 开场时球的位置与红方6号球员完全重合，说明6号是发球/触球起点。\n- 之后球连续出现在红方7号球员的脚下，且球的位置随7号移动逐步向场内方向推进，说明这约1秒多的时间里是由7号带球移动。\n- 随后球出现一次长距离位置跳跃，直接落到红方10号球员身边，并在那里停留了约0.7秒，说明是一次由7号向10号的空中/地面长传转移，且10号接球后有一个持球停顿。\n- 接近5秒结束时，球又移动到红方6号球员的位置，说明10号将球回传给了6号。\n- 整个前5秒内足球高度始终为0，即球一直贴着地面滚动/传递，没有出现高球。",
+  "latency_ms": 19813.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6090,
+    "completion_tokens": 1926,
+    "total_tokens": 8016
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150649_f6ce0bbf8634.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\timeline_first5s\\3",
+  "ts": "2026-08-19 15:06:49",
+  "context_chars": 8762,
+  "repeat": 3
+}

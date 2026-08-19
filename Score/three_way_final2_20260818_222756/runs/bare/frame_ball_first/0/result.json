@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "从第0帧的静态位置看，这更像是一次**前场右路的定位球/边线球场景**，而不是传统意义上的中圈开球。红队6号与足球几乎完全重合，位于球场右路靠近底线的角旗区附近；红队7号就在其身侧，形成近距离接应。球此时高度为0，是地面球。\n\n整体形势是：红队多数球员压向右侧半场，呈进攻姿态；蓝队球员则集中在这一侧，形成密集防守站位，尤其是球门前方和禁区弧顶一带人员密集。红队8号、9号位置相对靠后，保留了中路和左路的保护，避免被对方反击打身后。21号门将站在右侧球门线中路，说明攻防焦点就在这个球门附近。\n\n另外，第0帧数据中红队10号没有位置记录，因此这一帧实际上只有20名球员的定位数据。",
+  "latency_ms": 37422.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6092,
+    "completion_tokens": 3671,
+    "total_tokens": 9763
+  },
+  "error": null,
+  "trace_file": "trace_20260818_223032_3f93c5a77d2b.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final2_20260818_222756\\runs\\bare\\frame_ball_first\\0",
+  "ts": "2026-08-18 22:30:32",
+  "context_chars": 8768,
+  "repeat": 0
+}

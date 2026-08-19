@@ -1,0 +1,12 @@
+{"type": "run_start", "run_id": "10c03ffa9f21", "ts": 1787114205.507617}
+{"type": "span_start", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114205.513627, "attrs": {"input": "对比6号和11号谁跑动更积极？", "system": "single"}}
+{"type": "span_start", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00002", "parent_id": "10c03ffa9f21-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114205.5141337, "attrs": {"system_len": 311, "user_len": 15, "tool_round": 0}}
+{"type": "span_end", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00002", "parent_id": "10c03ffa9f21-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114207.092832, "dur_ms": 1578.7, "status": "ok"}
+{"type": "event", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00001", "kind": "tool", "name": "tool[0]", "ts": 1787114207.0933344, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00001", "kind": "tool", "name": "tool[1]", "ts": 1787114207.0933344, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00001", "kind": "tool", "name": "tool[2]", "ts": 1787114207.0933344, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00001", "kind": "tool", "name": "tool[3]", "ts": 1787114207.0933344, "attrs": {"tool": "get_player_raw_data", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00003", "parent_id": "10c03ffa9f21-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787114207.0933344, "attrs": {"system_len": 311, "user_len": 15, "tool_round": 1}}
+{"type": "span_end", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00003", "parent_id": "10c03ffa9f21-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787114212.466575, "dur_ms": 5373.24, "status": "ok"}
+{"type": "span_end", "run_id": "10c03ffa9f21", "span_id": "10c03ffa9f21-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114212.4670753, "dur_ms": 6953.45, "status": "ok"}
+{"type": "run_end", "run_id": "10c03ffa9f21", "ts": 1787114212.4670753}

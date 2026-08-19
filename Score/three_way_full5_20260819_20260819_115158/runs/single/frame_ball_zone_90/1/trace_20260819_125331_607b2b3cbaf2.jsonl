@@ -1,0 +1,20 @@
+{"type": "run_start", "run_id": "607b2b3cbaf2", "ts": 1787115211.796552}
+{"type": "span_start", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787115211.8030672, "attrs": {"input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？", "system": "single"}}
+{"type": "span_start", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00002", "parent_id": "607b2b3cbaf2-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787115211.8030672, "attrs": {"system_len": 311, "user_len": 29, "tool_round": 0}}
+{"type": "span_end", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00002", "parent_id": "607b2b3cbaf2-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787115213.596046, "dur_ms": 1792.98, "status": "ok"}
+{"type": "event", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "kind": "tool", "name": "tool[0]", "ts": 1787115213.596549, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "kind": "tool", "name": "tool[1]", "ts": 1787115213.596549, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00003", "parent_id": "607b2b3cbaf2-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787115213.596549, "attrs": {"system_len": 311, "user_len": 29, "tool_round": 1}}
+{"type": "span_end", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00003", "parent_id": "607b2b3cbaf2-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787115219.1476834, "dur_ms": 5551.13, "status": "ok"}
+{"type": "event", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "kind": "tool", "name": "tool[2]", "ts": 1787115219.1481843, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "kind": "tool", "name": "tool[3]", "ts": 1787115219.1481843, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "kind": "tool", "name": "tool[4]", "ts": 1787115219.1481843, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00004", "parent_id": "607b2b3cbaf2-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787115219.1481843, "attrs": {"system_len": 311, "user_len": 29, "tool_round": 2}}
+{"type": "span_end", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00004", "parent_id": "607b2b3cbaf2-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787115221.6017075, "dur_ms": 2453.52, "status": "ok"}
+{"type": "event", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "kind": "tool", "name": "tool[5]", "ts": 1787115221.6017075, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "kind": "tool", "name": "tool[6]", "ts": 1787115221.6017075, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "kind": "tool", "name": "tool[7]", "ts": 1787115221.6017075, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00005", "parent_id": "607b2b3cbaf2-00001", "kind": "llm", "name": "llm_call[3]", "ts": 1787115221.6017075, "attrs": {"system_len": 311, "user_len": 29, "tool_round": 3}}
+{"type": "span_end", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00005", "parent_id": "607b2b3cbaf2-00001", "kind": "llm", "name": "llm_call[3]", "ts": 1787115228.0667078, "dur_ms": 6465.0, "status": "ok"}
+{"type": "span_end", "run_id": "607b2b3cbaf2", "span_id": "607b2b3cbaf2-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787115228.0667078, "dur_ms": 16263.64, "status": "ok"}
+{"type": "run_end", "run_id": "607b2b3cbaf2", "ts": 1787115228.0667078}

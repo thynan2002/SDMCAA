@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_event_types",
+  "category": "timeline",
+  "input": "这段比赛主要发生了哪些球路事件类型？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段数据呈现的是一次由红队（A队）主导的进攻推进过程，球路事件类型主要包括：**地面传递组织、高球传中/长传、以及二点争抢中的连续反弹球**。整段没有出现射门或进球。\n\n**判断依据：**\n\n- 前段，足球一直贴地运行，先从右路靠近边线的位置经长距离地面滚动转移到中路，随后又回到右路，由红队球员沿边路带球向前推进。这段时间足球高度始终为 0，属于地面传控与带球推进。\n\n- 中段，足球在右路被高高打起，最高飞到了约 4 米的高度，在空中飞行了大约 1.8 秒后才落地，方向是从右路斜向中路偏左。这是一次明显的高空出球，球路形态上符合“传中/长传转移”的特征。\n\n- 后段，足球落地后没有被任何一方干净地控制住，而是连续出现多次低高度弹跳，弹起高度逐渐降低，并一路向场地左侧滚动。这说明双方在争抢落点或进行解围，球权处于二点混战状态。\n\n最后，球的落点逐渐向远离中央区域和门将位置的方向移动，因此可以判断这次进攻最终以传中被破坏或球出界收尾，没有形成射门。",
+  "latency_ms": 52062.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6089,
+    "completion_tokens": 5168,
+    "total_tokens": 11257
+  },
+  "error": null,
+  "trace_file": "trace_20260819_120552_5e95cfcc8f66.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\timeline_event_types\\0",
+  "ts": "2026-08-19 12:05:52",
+  "context_chars": 8765,
+  "repeat": 0
+}

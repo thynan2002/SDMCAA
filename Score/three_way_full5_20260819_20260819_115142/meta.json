@@ -1,0 +1,283 @@
+{
+  "event": "three_way_full5_20260819",
+  "ts": "20260819_115142",
+  "config": {
+    "weights": {
+      "accuracy": 0.15,
+      "grounding": 0.1,
+      "completeness": 0.1,
+      "reasoning": 0.2,
+      "efficiency": 0.1,
+      "robustness": 0.1,
+      "tactical_accuracy": 0.25
+    },
+    "repeats": 5,
+    "systems": [
+      "bare",
+      "single",
+      "multi"
+    ],
+    "temperature": 0.85,
+    "seed": 42,
+    "job_timeout_s": 900,
+    "refs": {
+      "latency_ms": 120000.0,
+      "llm_calls": 10.0,
+      "total_tokens": 12000.0
+    },
+    "judge": {
+      "model": "deepseek-v4-pro",
+      "sample_repeats": 2,
+      "order_swap": true,
+      "temperature": 0.0
+    },
+    "judge_enabled": true
+  },
+  "cases": [
+    {
+      "id": "adv_ambiguous_multi_target",
+      "category": "adversarial",
+      "level": 7
+    },
+    {
+      "id": "adv_format_messy",
+      "category": "adversarial",
+      "level": 7
+    },
+    {
+      "id": "adv_frame_out_of_range",
+      "category": "adversarial",
+      "level": 7
+    },
+    {
+      "id": "adv_induced_scoring",
+      "category": "adversarial",
+      "level": 7
+    },
+    {
+      "id": "adv_prompt_injection",
+      "category": "adversarial",
+      "level": 7
+    },
+    {
+      "id": "cf_7s_pass10",
+      "category": "counterfactual",
+      "level": 5
+    },
+    {
+      "id": "cf_7s_shoot",
+      "category": "counterfactual",
+      "level": 5
+    },
+    {
+      "id": "compare_6_7_active",
+      "category": "comparison",
+      "level": 2
+    },
+    {
+      "id": "compare_7s_active",
+      "category": "comparison",
+      "level": 2
+    },
+    {
+      "id": "compare_fastest",
+      "category": "comparison",
+      "level": 2
+    },
+    {
+      "id": "focus_player7",
+      "category": "focus",
+      "level": 4
+    },
+    {
+      "id": "frame_ball_first",
+      "category": "frame",
+      "level": 1
+    },
+    {
+      "id": "frame_ball_pos_90",
+      "category": "frame",
+      "level": 1
+    },
+    {
+      "id": "frame_ball_zone_90",
+      "category": "frame",
+      "level": 3
+    },
+    {
+      "id": "frame_what_happened",
+      "category": "frame",
+      "level": 1
+    },
+    {
+      "id": "halluc_frame_600",
+      "category": "hallucination",
+      "level": 7
+    },
+    {
+      "id": "halluc_player_99",
+      "category": "hallucination",
+      "level": 7
+    },
+    {
+      "id": "halluc_score",
+      "category": "hallucination",
+      "level": 7
+    },
+    {
+      "id": "qa_7s_ball_hmax",
+      "category": "general_qa",
+      "level": 1
+    },
+    {
+      "id": "qa_7s_player_count",
+      "category": "general_qa",
+      "level": 1
+    },
+    {
+      "id": "qa_ball_5s_short",
+      "category": "general_qa",
+      "level": 1
+    },
+    {
+      "id": "qa_ball_hmax",
+      "category": "general_qa",
+      "level": 1
+    },
+    {
+      "id": "qa_ball_speed_max",
+      "category": "general_qa",
+      "level": 2
+    },
+    {
+      "id": "qa_duration",
+      "category": "general_qa",
+      "level": 1
+    },
+    {
+      "id": "qa_player_count",
+      "category": "general_qa",
+      "level": 1
+    },
+    {
+      "id": "qa_player_team",
+      "category": "general_qa",
+      "level": 1
+    },
+    {
+      "id": "qa_player_zone_7",
+      "category": "style",
+      "level": 4
+    },
+    {
+      "id": "style_10s_player",
+      "category": "style",
+      "level": 4
+    },
+    {
+      "id": "style_7s_player11",
+      "category": "style",
+      "level": 4
+    },
+    {
+      "id": "style_player7",
+      "category": "style",
+      "level": 4
+    },
+    {
+      "id": "team_7s_threat",
+      "category": "team",
+      "level": 3
+    },
+    {
+      "id": "team_attack_trend",
+      "category": "team",
+      "level": 6
+    },
+    {
+      "id": "team_collab_breakdown",
+      "category": "team",
+      "level": 6
+    },
+    {
+      "id": "team_formation",
+      "category": "team",
+      "level": 6
+    },
+    {
+      "id": "team_threat_peak",
+      "category": "team",
+      "level": 3
+    },
+    {
+      "id": "timeline_ball_height",
+      "category": "timeline",
+      "level": 2
+    },
+    {
+      "id": "timeline_event_types",
+      "category": "timeline",
+      "level": 2
+    },
+    {
+      "id": "timeline_first5s",
+      "category": "timeline",
+      "level": 2
+    },
+    {
+      "id": "verify_7s_pos",
+      "category": "verify",
+      "level": 2
+    },
+    {
+      "id": "verify_ball_owner_3s",
+      "category": "verify",
+      "level": 2
+    }
+  ],
+  "case_selection": [
+    "adv_ambiguous_multi_target",
+    "adv_format_messy",
+    "adv_frame_out_of_range",
+    "adv_induced_scoring",
+    "adv_prompt_injection",
+    "cf_7s_pass10",
+    "cf_7s_shoot",
+    "compare_6_7_active",
+    "compare_7s_active",
+    "compare_fastest",
+    "focus_player7",
+    "frame_ball_first",
+    "frame_ball_pos_90",
+    "frame_ball_zone_90",
+    "frame_what_happened",
+    "halluc_frame_600",
+    "halluc_player_99",
+    "halluc_score",
+    "qa_7s_ball_hmax",
+    "qa_7s_player_count",
+    "qa_ball_5s_short",
+    "qa_ball_hmax",
+    "qa_ball_speed_max",
+    "qa_duration",
+    "qa_player_count",
+    "qa_player_team",
+    "qa_player_zone_7",
+    "style_10s_player",
+    "style_7s_player11",
+    "style_player7",
+    "team_7s_threat",
+    "team_attack_trend",
+    "team_collab_breakdown",
+    "team_formation",
+    "team_threat_peak",
+    "timeline_ball_height",
+    "timeline_event_types",
+    "timeline_first5s",
+    "verify_7s_pos",
+    "verify_ball_owner_3s"
+  ],
+  "python": "3.10.20",
+  "git_commit": "fc17934b783b10187ebd5692da66519cda198802",
+  "usage_fix_version": 1
+}

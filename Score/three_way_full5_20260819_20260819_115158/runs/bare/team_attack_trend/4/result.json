@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "team_attack_trend",
+  "category": "team",
+  "input": "分析一下A队的进攻态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "A队在这一段约12秒的进攻中，整体态势是由后场右路发起，经过中路过渡，最终用一次高球长传把进攻推进到前场左路，并由8号球员完成接应。进攻方向呈明显的“右→中→左”转移，节奏前慢后快，末段已经形成有威胁的进攻落位。\n\n从数据看，A队发起点集中在右路后场：球最初就在6号脚下，随后7号连续接球推进，说明A队是从右侧后场开始组织。之后球转移到10号脚下，10号作为接应点短暂控球，随后球再次回到6号区域，并由6号位置起球——足球轨迹显示球被踢起后最高点接近4米以上，并向前场左侧飞行，这是一次典型的长传转移。球落地后一路向左前场滚动，最终在左侧区域与8号球员基本重合，说明8号高速前插到位，成为这次进攻的终点。\n\n球员角色也很清楚：6号跑动距离在全场球员中最突出，是这次进攻的推进器和长传发起者；7号负责右路短传过渡；10号虽然跑动不多，但出现在关键接球位置；8号则拥有全场最高的峰值速度，说明他是A队前插冲击防线最快的点。与此同时，3号、4号也在向前场移动，说明A队不是单点进攻，而是有中后场球员跟进压上，形成层次。\n\n总体判断：A队这次进攻属于由守转攻后的快速转移进攻，右路组织、中路过渡、左路突击，8号是最终的杀招点。",
+  "latency_ms": 24547.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 2139,
+    "total_tokens": 8225
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153948_cbb18e8bbfe9.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\team_attack_trend\\4",
+  "ts": "2026-08-19 15:39:48",
+  "context_chars": 8759,
+  "repeat": 4
+}

@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "5dc916aff562", "ts": 1787051749.927108}
+{"type": "span_start", "run_id": "5dc916aff562", "span_id": "5dc916aff562-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787051749.927108, "attrs": {"input": "这段7秒片段中球最高到过多少高度？", "system": "bare"}}
+{"type": "span_start", "run_id": "5dc916aff562", "span_id": "5dc916aff562-00002", "parent_id": "5dc916aff562-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787051749.927108, "attrs": {"system_len": 293, "user_len": 6453}}
+{"type": "span_end", "run_id": "5dc916aff562", "span_id": "5dc916aff562-00002", "parent_id": "5dc916aff562-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787051752.2505093, "dur_ms": 2323.4, "status": "ok"}
+{"type": "span_end", "run_id": "5dc916aff562", "span_id": "5dc916aff562-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787051752.2510092, "dur_ms": 2323.9, "status": "ok"}
+{"type": "run_end", "run_id": "5dc916aff562", "ts": 1787051752.251511}

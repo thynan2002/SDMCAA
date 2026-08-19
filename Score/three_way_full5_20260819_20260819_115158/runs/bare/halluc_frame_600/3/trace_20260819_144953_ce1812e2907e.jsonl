@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "ce1812e2907e", "ts": 1787122193.7258554}
+{"type": "span_start", "run_id": "ce1812e2907e", "span_id": "ce1812e2907e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787122193.7263575, "attrs": {"input": "第20秒发生了什么？请详细描述那一刻的攻防态势。", "system": "bare"}}
+{"type": "span_start", "run_id": "ce1812e2907e", "span_id": "ce1812e2907e-00002", "parent_id": "ce1812e2907e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787122193.7263575, "attrs": {"system_len": 293, "user_len": 8771}}
+{"type": "span_end", "run_id": "ce1812e2907e", "span_id": "ce1812e2907e-00002", "parent_id": "ce1812e2907e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787122229.9560695, "dur_ms": 36229.71, "status": "ok"}
+{"type": "span_end", "run_id": "ce1812e2907e", "span_id": "ce1812e2907e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787122229.95657, "dur_ms": 36230.21, "status": "ok"}
+{"type": "run_end", "run_id": "ce1812e2907e", "ts": 1787122229.95657}

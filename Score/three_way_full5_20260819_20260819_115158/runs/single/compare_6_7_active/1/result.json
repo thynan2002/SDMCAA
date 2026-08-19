@@ -1,0 +1,63 @@
+{
+  "system": "single",
+  "case_id": "compare_6_7_active",
+  "category": "comparison",
+  "input": "对比6号和7号谁更积极？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "## 结论：6号明显更积极\n\n从活跃度综合来看，**6号明显比7号更积极**，主要体现在移动持续性、覆盖范围和与球的接触密度上。不过两人的风格有差异——7号属于\"平时站位较稳、但需要时能爆发出更高瞬时速度\"的类型。\n\n### 数据依据\n\n**6号——持续的移动者**\n- 6号全程保持着稳定且偏快的移动节奏，平均移动速度明显高于7号（约高出四成），属于持续跑动型。\n- 活动范围横跨幅度很大（右路前场纵深和横向都有覆盖），场地覆盖率远高于7号。\n- 最突出的是：6号**几乎所有时间内都贴着球活动**，接近球的时间占比接近满值，说明他始终主动参与球权争夺和接应。\n\n**7号——站位更收敛、爆发力更强**\n- 7号平均移动速度明显更慢，活动范围非常窄，场地覆盖率只有6号的约五分之一，绝大多数时间盘踞在一个相对固定的点位。\n- 但7号的**最大瞬时速度更高**，说明他在关键瞬间能做出比6号更快的冲刺启动（虽然整场冲刺次数都为零，两人均未形成高速冲刺）。\n- 参与球路的次数与6号相当（略多一次），但由于站位固定、贴近球的时段较少（接近球时间占比明显低于6号），其\"积极性\"更多体现在等待和定点接应，而非主动跑动拉扯。\n\n### 综合判断\n如果\"积极\"指主动跑动、覆盖范围、持续贴球施压，**6号明显更胜一筹**；如果只看瞬时爆发力，7号的峰值速度更高，但他整体参与度与移动量都不及6号。两人战术位置相同（右路前锋），6号的打法更动态，7号更静态。",
+  "latency_ms": 10047.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 3254,
+    "completion_tokens": 1053,
+    "total_tokens": 4307
+  },
+  "error": null,
+  "trace_file": "trace_20260819_132350_94dbb0620ab9.jsonl",
+  "tool_records": [
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\compare_6_7_active\\1",
+  "ts": "2026-08-19 13:23:50",
+  "repeat": 1
+}

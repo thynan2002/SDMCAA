@@ -1,0 +1,38 @@
+{
+  "system": "multi",
+  "case_id": "timeline_ball_height",
+  "category": "timeline",
+  "input": "球在哪些时刻离开过地面（高度大于0）？请按时间列出。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：在这12.4秒片段中，球离开地面（低平或高空）只出现在第6.1秒至第11.6秒这一段，此前的0.7~5.9秒球始终贴地滚动。按时间顺序列出如下：\n\n首先，第6.1秒，6号传给18号，球为低平球；\n随后第6.2秒，18号传给19号，球转为高空；\n第6.3至6.5秒，19号控球移动，球保持高空；\n第6.7秒，19号传给7号，仍为高空；\n第6.9秒，7号传给15号，高空；\n第7.0秒，15号控球移动，高空；\n第7.1秒，15号传给16号，高空；\n第7.2秒，16号控球移动，高空；\n第7.4秒，16号传给14号，球降为低平；\n第7.9秒，14号传给3号，低平；\n第8.1至8.8秒，3号控球移动，低平；\n第9.1至9.2秒，3号传给8号，低平；\n最后第9.4至11.6秒，8号控球移动，低平。\n\n战术含义：球离开地面的时段高度集中，形成一段连续的空中球处理链——A队6号起球后，球经B队18、19、15、16、14号多名球员以高空或低平方式连续流转，再交回A队3号、8号脚下。这与本片段\"空中球占比约三分之一、高球偏多\"的整体特征吻合，说明中段出现了一波以争顶和高空过渡为主的争夺战，而片段首尾则回到地面短传控制。需要注意的是，这些空中球均为短距离、中速，并非长传起球，属于近距离的高空衔接与顶球过渡，而非直接打身后的长传冲吊。",
+  "latency_ms": 14141.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 11720,
+    "completion_tokens": 1860,
+    "total_tokens": 13580
+  },
+  "error": null,
+  "trace_file": "trace_20260818_161649_c6b375cb8cef.jsonl",
+  "tool_records": [
+    {
+      "name": "submit_intent",
+      "args": {
+        "intent": "general_qa",
+        "target_players": [],
+        "confidence": 0.85,
+        "scenario": null
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke_20260818_161234\\runs\\multi\\timeline_ball_height\\0",
+  "ts": "2026-08-18 16:16:49",
+  "repeat": 0
+}

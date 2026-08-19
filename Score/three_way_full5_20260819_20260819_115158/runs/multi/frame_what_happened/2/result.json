@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_what_happened",
+  "category": "frame",
+  "input": "第90帧发生了什么？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧（第3.0秒）场上处于前场边路区域的阵地争夺阶段，球权一侧靠近前场右路边线附近。A队10号是距球最近的球员，处于右路前场；A队整体呈右路重兵布置，进攻线有6号、7号配合接应，其余多名球员分布在中场右路形成保护。B队相应也有18号、19号顶到右路前场，其余多数球员填在中场右路，形成密集的边路对峙。此位置位于前场边路，静态威胁潜力中等偏高（0.45），但该帧没有记录到具体事件，更像是一次边路控球或等待出球机会的相持局面。\n\n数据锚点：帧号90，时间第3.0秒；球位置 (922, 587, 0)，战术区域“前场边路”；离球最近为10号（距球84）。\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 8765.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1102,
+    "completion_tokens": 820,
+    "total_tokens": 1922
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135730_dfdcef0373dd.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_what_happened\\2",
+  "ts": "2026-08-19 13:57:30",
+  "repeat": 2
+}

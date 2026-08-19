@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_player_zone_7",
+  "category": "style",
+  "input": "7号主要活动在球场的哪个区域？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "7号的主要活动区域是：**球场右侧——右路肋部与右边线之间的纵向区域**。\n\n**判断：**  \n7号的活动范围非常集中，基本没有离开右侧半场。开场阶段他贴近**右侧底线/角旗区附近**，后来逐渐向场地中路方向内收，最终主要停留在**右侧禁区肋部、大禁区线附近**一带。整体是一条“从右路底线往右肋部内收”的活动带，不是覆盖大范围的中路或左路球员。\n\n**数据依据：**  \n从轨迹数据看，7号在开场阶段与足球轨迹高度重合，是这次右路推进的持球/贴球队员；离开球权后，他也没有向另一侧转移，而是继续在右侧移动并最终稳定在禁区右侧肋部。整个过程他的横向位置始终集中在右侧，纵向则由靠近边线一路收到大禁区线右侧附近。",
+  "latency_ms": 74734.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6089,
+    "completion_tokens": 7275,
+    "total_tokens": 13364
+  },
+  "error": null,
+  "trace_file": "trace_20260819_120724_38bbe0c7efb1.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_player_zone_7\\0",
+  "ts": "2026-08-19 12:07:24",
+  "context_chars": 8762,
+  "repeat": 0
+}

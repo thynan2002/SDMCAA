@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "整段比赛对球门形成的最大威胁值约为 0.862（威胁值区间为 0 到 1，越接近 1 越危险）。\n\n依据与复核信息如下：\n数值与单位：0.862（无单位，为标准化威胁指标）。\n对应时刻：约第 7.4 秒，即第 223 帧（30fps 下第 223 帧 ≈ 7.43 秒）。\n数据来源：来自「比赛事实」中的战术事实字段\"球最大威胁值 0.862\"，其峰值时刻标注为第 7.4 秒（帧 223），峰值区域为\"禁区\"。\n推理链：该威胁峰值出现在球路第 7.4 秒、由 16 号传给 14 号（低平球）之后——此时球路已推进到禁区区域，是这段 12.4 秒片段中球最接近球门且形成射门威胁的时刻，随后 14 号控球、第 7.9 秒球路转向后威胁随之回落。综合来看，0.862 属于高威胁水平，说明这段比赛中确实出现过一次接近得分的危险机会，但并未转化为射门或进球。",
+  "latency_ms": 4141.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9455,
+    "completion_tokens": 422,
+    "total_tokens": 9877
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144948_a951513a9a73.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\team_threat_peak\\3",
+  "ts": "2026-08-19 14:49:48",
+  "repeat": 3
+}

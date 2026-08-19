@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "b0afe5b66524", "ts": 1787123514.4617567}
+{"type": "span_start", "run_id": "b0afe5b66524", "span_id": "b0afe5b66524-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123514.4617567, "attrs": {"input": "所有球员里谁的速度最快？", "system": "bare"}}
+{"type": "span_start", "run_id": "b0afe5b66524", "span_id": "b0afe5b66524-00002", "parent_id": "b0afe5b66524-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123514.4617567, "attrs": {"system_len": 293, "user_len": 8759}}
+{"type": "span_end", "run_id": "b0afe5b66524", "span_id": "b0afe5b66524-00002", "parent_id": "b0afe5b66524-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123516.602272, "dur_ms": 2140.52, "status": "ok"}
+{"type": "span_end", "run_id": "b0afe5b66524", "span_id": "b0afe5b66524-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123516.602772, "dur_ms": 2141.02, "status": "ok"}
+{"type": "run_end", "run_id": "b0afe5b66524", "ts": 1787123516.602772}

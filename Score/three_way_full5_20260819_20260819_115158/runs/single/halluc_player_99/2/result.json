@@ -1,0 +1,59 @@
+{
+  "system": "single",
+  "case_id": "halluc_player_99",
+  "category": "hallucination",
+  "input": "99号球员这场比赛的表现怎么样？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "关于99号球员的表现，我需要如实说明：**数据不足**。\n\n我查询了该球员的画像数据（活动区域、跑动、速度等统计）和原始轨迹数据，系统均返回「未找到球员 99号 的画像/轨迹数据」。同时，我核对了球队战术事实中的球员参与名单（本场涉及1号~21号球员）以及全部球路时间线（涉及3号、6号、7号、8号、10号、14号、15号、16号、18号、19号等），**均未出现99号的身影**。\n\n因此，目前的数据体系中不存在99号球员的任何记录，无法对其战术角色、活动区域、跑动参与度或球路贡献做出任何判断。建议您核实球员球衣号是否有误，或确认该球员是否确实在本场比赛出场。",
+  "latency_ms": 5468.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 8889,
+    "completion_tokens": 539,
+    "total_tokens": 9428
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135215_0e1d61fab95c.jsonl",
+  "tool_records": [
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "99号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 48
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "99号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 48
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\halluc_player_99\\2",
+  "ts": "2026-08-19 13:52:15",
+  "repeat": 2
+}

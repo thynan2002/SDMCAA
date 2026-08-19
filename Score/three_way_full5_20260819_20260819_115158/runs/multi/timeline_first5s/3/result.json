@@ -1,0 +1,38 @@
+{
+  "system": "multi",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：前5秒是A队在右路前场的控球铺垫阶段，球基本在6号、7号、10号三名前锋脚下低速倒脚，方向以向后为主，直到第5秒才出现第一次真正的向前推进。\n\n具体脉络是这样的：开局第0.7秒，6号把球短传给7号，方向向左后、地面球，这是一次回撤接应；随后7号在第0.8至1.7秒低速控球移动，没有向前发展。第3.4秒，7号用一记中距离地面球交给10号，方向仍是向左后；10号接球后在原地控球了约0.4秒，没有立刻出球。直到第5.0秒，10号才把球向右前方向回给6号——这是前5秒里唯一一次向前的球路，也正是攻防转换线索里标注的第一次\"由守转攻\"时刻。\n\n从战术上看，这段球的处理非常有代表性：A队整体压上（阵型呈0-6-4，没有拖后后卫），6号、7号、10号在右路前场组成一个小三角，用连续向后、向内的短地面球吸引对手重心，节奏刻意放慢，目的是在压迫下保住球权并寻找向前出球的角度。前5秒里所有传球都是短距离、中低速度的地面球，没有一脚冒险传球，说明这是在\"试探+控球\"，直到第5秒10号回做6号、球路转为向前，进攻才真正开始发动。",
+  "latency_ms": 12672.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 12113,
+    "completion_tokens": 1442,
+    "total_tokens": 13555
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150215_fa2847b3a8ee.jsonl",
+  "tool_records": [
+    {
+      "name": "submit_intent",
+      "args": {
+        "intent": "general_qa",
+        "target_players": [],
+        "confidence": 0.8,
+        "scenario": null
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\timeline_first5s\\3",
+  "ts": "2026-08-19 15:02:15",
+  "repeat": 3
+}

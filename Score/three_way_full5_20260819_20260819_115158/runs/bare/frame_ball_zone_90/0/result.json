@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**第90帧时球的位置和威胁程度：数据不足，无法判断。**\n\n数据依据：足球轨迹原始数据中**没有第90帧的记录**，球轨迹只在部分帧有采样，例如第50帧和第102帧之间有记录，但中间并没有第90帧的球坐标。因此无法确定第90帧时球具体位于球场的哪个区域，也无法据此评估对球门的威胁程度。",
+  "latency_ms": 10750.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6098,
+    "completion_tokens": 1027,
+    "total_tokens": 7125
+  },
+  "error": null,
+  "trace_file": "trace_20260819_121144_522a86ec60a7.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_ball_zone_90\\0",
+  "ts": "2026-08-19 12:11:44",
+  "context_chars": 8776,
+  "repeat": 0
+}

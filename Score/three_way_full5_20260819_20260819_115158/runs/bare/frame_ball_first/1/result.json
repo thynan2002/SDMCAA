@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据第0帧数据，这并非通常意义上的中圈开球，而是一次**角球进攻的起始瞬间**：红队（A队）获得右侧角球，6号球员站在角旗区球旁准备主罚；蓝队（B队）门将已经站在球门线中央，全队基本退回禁区一带防守。整体是一个典型的**定位球攻防阵型**。\n\n数据依据是：第0帧足球停在角落附近，高度为0，而红队6号球员的位置与球几乎重合，说明球权在红队6号脚下；蓝队21号门将位于球门线中路，说明防守的是右侧球门。红队多名球员集中在门前、点球点附近及小禁区一带，显然是在准备抢点攻门；红队7号则在角旗区附近拉开接应，存在打短角球配合的可能。蓝队大多数球员分布在门前、禁区中路和禁区前沿，形成密集防守；另有球员靠近边路保护后点或准备反击。整体来看，红队投入了较多进攻兵力，蓝队则全线回收，是标准的角球防守布置。\n\n另外需要说明：第0帧数据中没有红队10号的位置信息，因此无法判断该球员此刻的具体站位。",
+  "latency_ms": 44391.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6092,
+    "completion_tokens": 4085,
+    "total_tokens": 10177
+  },
+  "error": null,
+  "trace_file": "trace_20260819_132412_99f923f8255a.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_ball_first\\1",
+  "ts": "2026-08-19 13:24:12",
+  "context_chars": 8768,
+  "repeat": 1
+}

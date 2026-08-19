@@ -1,0 +1,50 @@
+{
+  "system": "single",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**直接判断**：整场比赛中球对球门形成的最大威胁值约为 **0.862**，属于**很高的危险级别**（非常接近 1），也就是说整场比赛出现过一次相当接近得分的绝佳机会。\n\n**数据依据**：\n- 威胁峰值发生在**第 7.4 秒（帧 223）**，峰值区域位于**禁区**内。\n- 该帧球的位置在禁区附近（坐标 x=1119, y=381），持球的是 **14号**，球路事件为「16号→14号」，球正进入禁区腹地。\n- 当时防守方 5号 距球仅 6 个距离单位，贴身施压，但 14号 仍处于可起脚射门的危险位置。\n\n**补充背景**：需要说明的是，这一高威胁时刻出现在全场比赛**偏早阶段**，而整体来看比赛节奏偏慢——进攻三区到达率约一半，但绝大多数球路为短距离回传/横传（向前推进占比仅不到两成，回传占比超过六成），全场没有出现快速直塞或冲刺推进。因此这次禁区内机会更像是全场罕见的**单点爆破时刻**，其余时间球权多在低威胁的中场区域流转，未能持续形成对球门的连续压制。",
+  "latency_ms": 10500.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 14140,
+    "completion_tokens": 1009,
+    "total_tokens": 15149
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150056_f54d2f72676e.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 223
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\team_threat_peak\\3",
+  "ts": "2026-08-19 15:00:56",
+  "repeat": 3
+}

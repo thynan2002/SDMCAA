@@ -1,0 +1,65 @@
+[
+  {
+    "system": "bare",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 0
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 1
+  },
+  {
+    "system": "single",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 2
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 3
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_ball_owner_3s",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 4
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_6_7_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 5
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_zone_90",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 6
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_6_7_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 7
+  },
+  {
+    "system": "single",
+    "case_id": "compare_6_7_active",
+    "repeat": 0,
+    "round": 0,
+    "order_in_round": 8
+  }
+]

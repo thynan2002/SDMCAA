@@ -1,0 +1,14 @@
+{"type": "run_start", "run_id": "e5f3c1d49830", "ts": 1787112036.2334323}
+{"type": "event", "run_id": "e5f3c1d49830", "span_id": null, "kind": "session", "name": "session_reset", "ts": 1787112036.2439406, "attrs": {}}
+{"type": "span_start", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787112036.2444398, "attrs": {"person": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_person2d.csv", "ball": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_soccer3d.csv"}}
+{"type": "span_end", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787112036.2494388, "dur_ms": 5.0, "status": "ok"}
+{"type": "event", "run_id": "e5f3c1d49830", "span_id": null, "kind": "load", "name": "corpus_ready", "ts": 1787112036.2499392, "attrs": {"prefix": "12s", "player_count": 21}}
+{"type": "span_start", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787112036.2499392, "attrs": {"input": "第20秒发生了什么？请详细描述那一刻的攻防态势。"}}
+{"type": "event", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00002", "kind": "stage", "name": "routing", "ts": 1787112036.2499392, "attrs": {"content": "正在理解问题意图…", "status": "active"}}
+{"type": "event", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00002", "kind": "stage", "name": "routing", "ts": 1787112036.2504451, "attrs": {"content": "意图识别完成", "status": "done"}}
+{"type": "event", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00002", "kind": "stage", "name": "verify", "ts": 1787112036.2504451, "attrs": {"content": "正在核验原始数据…", "status": "active"}}
+{"type": "event", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00002", "kind": "stage", "name": "verify", "ts": 1787112036.2504451, "attrs": {"content": "数据核验完成", "status": "done"}}
+{"type": "event", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00002", "kind": "stream", "name": "stream_summary", "ts": 1787112036.2509432, "attrs": {"chunks": 0, "chars": 0}}
+{"type": "event", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00002", "kind": "output", "name": "output[0]", "ts": 1787112036.2509432, "attrs": {"response_sha256": "302967cd5ef01eb2ad74bececa36b8423985a325a7763eedb8b17e46ae89a09f", "response_len": 349, "is_exit_signal": false}}
+{"type": "span_end", "run_id": "e5f3c1d49830", "span_id": "e5f3c1d49830-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787112036.2509432, "dur_ms": 1.0, "status": "ok"}
+{"type": "run_end", "run_id": "e5f3c1d49830", "ts": 1787112036.2509432}

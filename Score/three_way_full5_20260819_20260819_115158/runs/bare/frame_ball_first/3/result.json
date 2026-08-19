@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第0帧并不是传统的中圈开球——球位于场地右侧角球区附近，接近底线和边线的交点。此时A队（红）6号正处在足球的位置，是持球/准备发球的人；A队7号紧跟在一旁，形成近距离接应。A队其他队员在中前场散开站位，其中2、3号在左侧外围，4、5号在禁区弧附近，8号居中，9号拖后；10号在该帧数据中未出现。B队（蓝）大部分队员收缩在本方禁区前呈防守队形，19号单独靠近右路边路，门将21号站在球门线中路。\n\n数据依据：第0帧足球坐标为(1194.5, 695.5)，A队6号坐标为(1195, 695.5)，两者基本重合；7号在(1100.4, 688.2)接应；门将21号在(1182.2, 349.5)。B队11–18号、20号均集中在禁区前沿区域，19号在(1111.9, 573.7)贴近边路。因此，这是A队掌握球权、准备发起一次右侧定位球进攻的初始画面，而不是比赛刚刚开始的中圈开球。",
+  "latency_ms": 44000.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6092,
+    "completion_tokens": 4544,
+    "total_tokens": 10636
+  },
+  "error": null,
+  "trace_file": "trace_20260819_151101_85a3ff69d7d3.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_ball_first\\3",
+  "ts": "2026-08-19 15:11:01",
+  "context_chars": 8768,
+  "repeat": 3
+}

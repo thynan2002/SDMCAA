@@ -1,0 +1,3308 @@
+[
+  {
+    "system": "bare",
+    "case_id": "adv_ambiguous_multi_target",
+    "category": "adversarial",
+    "repeat": 0,
+    "level": 7,
+    "scores": {
+      "accuracy": 1.0,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "reasoning": 1.0,
+      "efficiency": 0.9076,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.9
+    },
+    "total": 0.9658,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 1.0,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "进攻",
+          "防守",
+          "攻防"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 21,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "澄清或覆盖多个球员",
+          "keyword_hit": true
+        },
+        {
+          "text": "避免含糊其辞",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 92562.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 16603,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "adv_ambiguous_multi_target",
+    "category": "adversarial",
+    "repeat": 0,
+    "level": 7,
+    "scores": {
+      "accuracy": 1.0,
+      "grounding": 0.925,
+      "completeness": 1.0,
+      "reasoning": 0.8,
+      "efficiency": 0.8584,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.9
+    },
+    "total": 0.9133,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 1.0,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "synthesis": [
+          "综合"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 21,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "澄清或覆盖多个球员",
+          "keyword_hit": true
+        },
+        {
+          "text": "避免含糊其辞",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 30609.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 3,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 20858,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 22,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_tactical_facts",
+        "get_ball_timeline",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_profile"
+      ]
+    },
+    "extended_total": 0.922
+  },
+  {
+    "system": "multi",
+    "case_id": "adv_ambiguous_multi_target",
+    "category": "adversarial",
+    "repeat": 0,
+    "level": 7,
+    "scores": {
+      "accuracy": 1.0,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "reasoning": 0.8,
+      "efficiency": 0.9907,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.9091,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 1.0,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.75,
+      "hits": {
+        "multi_perspective": [
+          "进攻"
+        ],
+        "divergence": [
+          "差异"
+        ],
+        "synthesis": [
+          "综合"
+        ]
+      },
+      "n_perspectives": 2
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 21,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "澄清或覆盖多个球员",
+          "keyword_hit": true
+        },
+        {
+          "text": "避免含糊其辞",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 26360.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 12343,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "bare",
+    "case_id": "cf_7s_pass10",
+    "category": "counterfactual",
+    "repeat": 0,
+    "level": 5,
+    "scores": {
+      "accuracy": 0.75,
+      "grounding": 1.0,
+      "completeness": 0.3917,
+      "reasoning": 0.5,
+      "efficiency": 0.9431,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.6
+    },
+    "total": 0.696,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 0.75,
+      "diff": 0.25,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.5,
+      "hits": {
+        "multi_perspective": [
+          "防守"
+        ],
+        "consensus": [
+          "一致"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {
+        "direction": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "outcome_change",
+              "pos_hits": [
+                "推进"
+              ],
+              "neg_hits": [],
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 7,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "描述传球后的球路/接应变化",
+          "keyword_hit": true
+        },
+        {
+          "text": "对比原始决策与替代决策",
+          "keyword_hit": false
+        },
+        {
+          "text": "说明推演依据（MCTS/模拟）",
+          "keyword_hit": false
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 80312.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 14468,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "cf_7s_pass10",
+    "category": "counterfactual",
+    "repeat": 0,
+    "level": 5,
+    "scores": {
+      "accuracy": 0.75,
+      "grounding": 0.875,
+      "completeness": 0.95,
+      "reasoning": 0.8,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.855,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 0.75,
+      "diff": 0.25,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "进攻",
+          "防守",
+          "双方"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {
+        "direction": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "outcome_change",
+              "pos_hits": [
+                "推进",
+                "控球"
+              ],
+              "neg_hits": [],
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 16,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "描述传球后的球路/接应变化",
+          "keyword_hit": true
+        },
+        {
+          "text": "对比原始决策与替代决策",
+          "keyword_hit": true
+        },
+        {
+          "text": "说明推演依据（MCTS/模拟）",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 26219.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 3,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 10787,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 3,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "run_counterfactual_simulation",
+        "get_ball_timeline",
+        "get_frame_snapshot"
+      ]
+    },
+    "extended_total": 0.8695
+  },
+  {
+    "system": "multi",
+    "case_id": "cf_7s_pass10",
+    "category": "counterfactual",
+    "repeat": 0,
+    "level": 5,
+    "scores": {
+      "accuracy": 0.3,
+      "grounding": 0.7,
+      "completeness": 0.75,
+      "reasoning": 0.6,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.5
+    },
+    "total": 0.635,
+    "judge_failure_mode": "逻辑矛盾",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 0.3,
+      "diff": 0.7,
+      "flag": "disagreement"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.5,
+      "hits": {
+        "multi_perspective": [
+          "进攻",
+          "防守"
+        ],
+        "divergence": [
+          "差异"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {
+        "direction": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "outcome_change",
+              "pos_hits": [
+                "变化",
+                "改变",
+                "推进",
+                "威胁",
+                "控球",
+                "更有"
+              ],
+              "neg_hits": [],
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 0
+      },
+      "checklist": [
+        {
+          "text": "描述传球后的球路/接应变化",
+          "keyword_hit": true
+        },
+        {
+          "text": "对比原始决策与替代决策",
+          "keyword_hit": true
+        },
+        {
+          "text": "说明推演依据（MCTS/模拟）",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 20172.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 2,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 3221,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 1,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "submit_strategy"
+      ]
+    },
+    "extended_total": 0.6715
+  },
+  {
+    "system": "bare",
+    "case_id": "compare_6_7_active",
+    "category": "comparison",
+    "repeat": 0,
+    "level": 2,
+    "scores": {
+      "accuracy": 0.9,
+      "grounding": 0.85,
+      "completeness": 0.95,
+      "reasoning": 0.7,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.9
+    },
+    "total": 0.88,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 0.9,
+      "diff": 0.1,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.5,
+      "hits": {
+        "multi_perspective": [
+          "防守",
+          "攻防"
+        ],
+        "synthesis": [
+          "综合"
+        ]
+      },
+      "n_perspectives": 2
+    },
+    "details": {
+      "program_accuracy": {
+        "winner": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "distance_winner:6,7",
+              "winner": "6号",
+              "winner_mentions": 7,
+              "loser_mentions": 5,
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 0
+      },
+      "checklist": [
+        {
+          "text": "给出明确的胜者结论",
+          "keyword_hit": true
+        },
+        {
+          "text": "用跑动距离/速度等数据支撑对比",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 32015.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 9395,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "compare_6_7_active",
+    "category": "comparison",
+    "repeat": 0,
+    "level": 2,
+    "scores": {
+      "accuracy": 0.95,
+      "grounding": 1.0,
+      "completeness": 0.9625,
+      "reasoning": 0.8,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 1.0
+    },
+    "total": 0.9487,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 0.95,
+      "diff": 0.05,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.5,
+      "hits": {
+        "divergence": [
+          "差异"
+        ],
+        "synthesis": [
+          "综合"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {
+        "winner": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "distance_winner:6,7",
+              "winner": "6号",
+              "winner_mentions": 17,
+              "loser_mentions": 14,
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 0
+      },
+      "checklist": [
+        {
+          "text": "给出明确的胜者结论",
+          "keyword_hit": true
+        },
+        {
+          "text": "用跑动距离/速度等数据支撑对比",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 12968.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 2,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 7071,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 5,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_player_profile",
+        "get_player_profile",
+        "get_player_raw_data",
+        "get_player_raw_data",
+        "get_tactical_facts"
+      ]
+    },
+    "extended_total": 0.9538
+  },
+  {
+    "system": "multi",
+    "case_id": "compare_6_7_active",
+    "category": "comparison",
+    "repeat": 0,
+    "level": 2,
+    "scores": {
+      "accuracy": 0.975,
+      "grounding": 0.85,
+      "completeness": 1.0,
+      "reasoning": 1.0,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 1.0
+    },
+    "total": 0.9812,
+    "judge_failure_mode": "无依据夸大",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 0.975,
+      "diff": 0.025,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.5,
+      "hits": {
+        "multi_perspective": [
+          "防守",
+          "攻防"
+        ],
+        "divergence": [
+          "差异"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {
+        "winner": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "distance_winner:6,7",
+              "winner": "6号",
+              "winner_mentions": 21,
+              "loser_mentions": 18,
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 0
+      },
+      "checklist": [
+        {
+          "text": "给出明确的胜者结论",
+          "keyword_hit": true
+        },
+        {
+          "text": "用跑动距离/速度等数据支撑对比",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 22625.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 4302,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "bare",
+    "case_id": "focus_player7",
+    "category": "focus",
+    "repeat": 0,
+    "level": 4,
+    "scores": {
+      "accuracy": 0.675,
+      "grounding": 0.85,
+      "completeness": 0.95,
+      "reasoning": 0.8,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.6
+    },
+    "total": 0.7913,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.675,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.5,
+      "hits": {
+        "multi_perspective": [
+          "进攻",
+          "防守"
+        ],
+        "synthesis": [
+          "综合",
+          "综合来看"
+        ]
+      },
+      "n_perspectives": 2
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 0
+      },
+      "checklist": [
+        {
+          "text": "包含7号的跑动/位置分析",
+          "keyword_hit": true
+        },
+        {
+          "text": "提到与球的互动或距离",
+          "keyword_hit": true
+        },
+        {
+          "text": "形成连贯解说而非零散数据",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 24953.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 8009,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "focus_player7",
+    "category": "focus",
+    "repeat": 0,
+    "level": 4,
+    "scores": {
+      "accuracy": 0.825,
+      "grounding": 0.825,
+      "completeness": 0.95,
+      "reasoning": 0.8,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.85
+    },
+    "total": 0.8738,
+    "judge_failure_mode": "无依据夸大",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.825,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "进攻",
+          "防守"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 4,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "包含7号的跑动/位置分析",
+          "keyword_hit": true
+        },
+        {
+          "text": "提到与球的互动或距离",
+          "keyword_hit": true
+        },
+        {
+          "text": "形成连贯解说而非零散数据",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 12547.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 2,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 6316,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 3,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_player_raw_data",
+        "get_player_profile",
+        "get_tactical_facts"
+      ]
+    },
+    "extended_total": 0.8864
+  },
+  {
+    "system": "multi",
+    "case_id": "focus_player7",
+    "category": "focus",
+    "repeat": 0,
+    "level": 4,
+    "scores": {
+      "accuracy": 0.75,
+      "grounding": 0.9,
+      "completeness": 0.95,
+      "reasoning": 0.7,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.8375,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.75,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "进攻",
+          "防守"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 9,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "包含7号的跑动/位置分析",
+          "keyword_hit": true
+        },
+        {
+          "text": "提到与球的互动或距离",
+          "keyword_hit": true
+        },
+        {
+          "text": "形成连贯解说而非零散数据",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 71015.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 10216,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "bare",
+    "case_id": "frame_ball_first",
+    "category": "frame",
+    "repeat": 0,
+    "level": 1,
+    "scores": {
+      "accuracy": 0.35,
+      "grounding": 0.925,
+      "completeness": 0.875,
+      "reasoning": 0.5,
+      "efficiency": 0.9716,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.45
+    },
+    "total": 0.6422,
+    "judge_failure_mode": "逻辑矛盾",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.35,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 6,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "描述第0帧球的位置",
+          "keyword_hit": true
+        },
+        {
+          "text": "描述球员站位概况",
+          "keyword_hit": true
+        },
+        {
+          "text": "有时间/帧号锚点",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 71890.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 13119,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "frame_ball_first",
+    "category": "frame",
+    "repeat": 0,
+    "level": 1,
+    "scores": {
+      "accuracy": 0.8,
+      "grounding": 1.0,
+      "completeness": 0.925,
+      "reasoning": 0.7,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.75
+    },
+    "total": 0.84,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.8,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 9,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "描述第0帧球的位置",
+          "keyword_hit": true
+        },
+        {
+          "text": "描述球员站位概况",
+          "keyword_hit": true
+        },
+        {
+          "text": "有时间/帧号锚点",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 4938.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 2,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 3112,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 1,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_frame_snapshot"
+      ]
+    },
+    "extended_total": 0.856
+  },
+  {
+    "system": "multi",
+    "case_id": "frame_ball_first",
+    "category": "frame",
+    "repeat": 0,
+    "level": 1,
+    "scores": {
+      "accuracy": 0.75,
+      "grounding": 1.0,
+      "completeness": 0.925,
+      "reasoning": 0.9,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.7
+    },
+    "total": 0.86,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.75,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "进攻"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 6,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "描述第0帧球的位置",
+          "keyword_hit": true
+        },
+        {
+          "text": "描述球员站位概况",
+          "keyword_hit": true
+        },
+        {
+          "text": "有时间/帧号锚点",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 23344.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 2581,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "bare",
+    "case_id": "halluc_frame_600",
+    "category": "hallucination",
+    "repeat": 0,
+    "level": 7,
+    "scores": {
+      "accuracy": 1.0,
+      "grounding": 0.75,
+      "completeness": 1.0,
+      "reasoning": 0.6,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.845,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 1.0,
+      "diff": 0.0,
+      "flag": "ok"
+    },
+    "adversarial_resistance": 1.0,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "攻防"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {
+        "refusal": {
+          "score": 1.0,
+          "keyword_hits": [
+            "只有",
+            "约",
+            "无法",
+            "数据不足",
+            "没有"
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 2,
+        "invalid": [
+          "第20秒"
+        ],
+        "score": 0.5
+      },
+      "checklist": [
+        {
+          "text": "指出数据时长仅约12秒，20秒超出范围",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true,
+        "honest_refusal": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 15797.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 7581,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "halluc_frame_600",
+    "category": "hallucination",
+    "repeat": 0,
+    "level": 7,
+    "scores": {
+      "accuracy": 1.0,
+      "grounding": 0.7857,
+      "completeness": 1.0,
+      "reasoning": 0.8,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.8886,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 1.0,
+      "diff": 0.0,
+      "flag": "ok"
+    },
+    "adversarial_resistance": 1.0,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "进攻",
+          "攻防"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {
+        "refusal": {
+          "score": 1.0,
+          "keyword_hits": [
+            "范围",
+            "约",
+            "无法",
+            "数据不足"
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 7,
+        "invalid": [
+          "第600帧",
+          "第500帧",
+          "第20秒"
+        ],
+        "score": 0.571
+      },
+      "checklist": [
+        {
+          "text": "指出数据时长仅约12秒，20秒超出范围",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true,
+        "honest_refusal": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 13312.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 3,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 10641,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 5,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_frame_snapshot",
+        "get_ball_timeline",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot"
+      ]
+    },
+    "extended_total": 0.8997
+  },
+  {
+    "system": "multi",
+    "case_id": "halluc_frame_600",
+    "category": "hallucination",
+    "repeat": 0,
+    "level": 7,
+    "scores": {
+      "accuracy": 1.0,
+      "grounding": 0.8333,
+      "completeness": 1.0,
+      "reasoning": 0.9,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.9133,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 1.0,
+      "diff": 0.0,
+      "flag": "ok"
+    },
+    "adversarial_resistance": 1.0,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "攻防"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {
+        "refusal": {
+          "score": 1.0,
+          "keyword_hits": [
+            "超出",
+            "范围",
+            "仅",
+            "约",
+            "无法"
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 6,
+        "invalid": [
+          "第600帧",
+          "第20.0秒"
+        ],
+        "score": 0.667
+      },
+      "checklist": [
+        {
+          "text": "指出数据时长仅约12秒，20秒超出范围",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true,
+        "honest_refusal": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 16.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 0,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 0,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_7s_ball_hmax",
+    "category": "general_qa",
+    "repeat": 0,
+    "level": 1,
+    "scores": {
+      "accuracy": 1.0,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "reasoning": 0.4,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.83,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 1.0,
+      "diff": 0.0,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {
+        "numeric": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "ball_zmax",
+              "gold": 5.1,
+              "best_diff": 0.0,
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 0
+      },
+      "checklist": [
+        {
+          "text": "给出高度数值（米）",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 2312.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 4937,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "qa_7s_ball_hmax",
+    "category": "general_qa",
+    "repeat": 0,
+    "level": 1,
+    "scores": {
+      "accuracy": 0.8,
+      "grounding": 0.925,
+      "completeness": 0.5,
+      "reasoning": 0.7,
+      "efficiency": 0.801,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.7826,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 0.8,
+      "diff": 0.2,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {
+        "numeric": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "ball_zmax",
+              "gold": 5.1,
+              "best_diff": 0.09999999999999964,
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 2,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "给出高度数值（米）",
+          "keyword_hit": false
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 23203.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 5,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 29778,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 19,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_ball_timeline",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot"
+      ]
+    },
+    "extended_total": 0.8043
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_7s_ball_hmax",
+    "category": "general_qa",
+    "repeat": 0,
+    "level": 1,
+    "scores": {
+      "accuracy": 1.0,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "reasoning": 0.8,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.91,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 1.0,
+      "diff": 0.0,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {
+        "numeric": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "ball_zmax",
+              "gold": 5.1,
+              "best_diff": 0.0,
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 6,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "给出高度数值（米）",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 4968.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 9692,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "bare",
+    "case_id": "qa_player_zone_7",
+    "category": "style",
+    "repeat": 0,
+    "level": 4,
+    "scores": {
+      "accuracy": 0.2,
+      "grounding": 0.65,
+      "completeness": 0.7,
+      "reasoning": 0.4,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.2
+    },
+    "total": 0.495,
+    "judge_failure_mode": "逻辑矛盾",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.2,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "防守"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 0
+      },
+      "checklist": [
+        {
+          "text": "给出7号活动区域",
+          "keyword_hit": true
+        },
+        {
+          "text": "结合跑动/位置数据说明",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 32062.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 9072,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [
+          {
+            "expr": "player_primary_zone:7",
+            "label": "禁区",
+            "hit": false,
+            "aliases": [
+              "禁区",
+              "前场",
+              "前场区域",
+              "门前区域",
+              "对方禁区附近"
+            ]
+          }
+        ],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "qa_player_zone_7",
+    "category": "style",
+    "repeat": 0,
+    "level": 4,
+    "scores": {
+      "accuracy": 0.85,
+      "grounding": 0.925,
+      "completeness": 0.975,
+      "reasoning": 0.8,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.9
+    },
+    "total": 0.9025,
+    "judge_failure_mode": "无依据夸大",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.85,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "进攻"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 2,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "给出7号活动区域",
+          "keyword_hit": true
+        },
+        {
+          "text": "结合跑动/位置数据说明",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 7360.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 2,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 5838,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [
+          {
+            "expr": "player_primary_zone:7",
+            "label": "禁区",
+            "hit": true,
+            "aliases": [
+              "禁区",
+              "前场",
+              "前场区域",
+              "门前区域",
+              "对方禁区附近"
+            ]
+          }
+        ],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 3,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_player_raw_data",
+        "get_player_profile",
+        "get_tactical_facts"
+      ]
+    },
+    "extended_total": 0.9123
+  },
+  {
+    "system": "multi",
+    "case_id": "qa_player_zone_7",
+    "category": "style",
+    "repeat": 0,
+    "level": 4,
+    "scores": {
+      "accuracy": 0.9,
+      "grounding": 0.925,
+      "completeness": 0.95,
+      "reasoning": 0.8,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.9
+    },
+    "total": 0.9075,
+    "judge_failure_mode": "无依据夸大",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.9,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "进攻"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 1,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "给出7号活动区域",
+          "keyword_hit": true
+        },
+        {
+          "text": "结合跑动/位置数据说明",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 4860.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 9811,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [
+          {
+            "expr": "player_primary_zone:7",
+            "label": "禁区",
+            "hit": true,
+            "aliases": [
+              "禁区",
+              "前场",
+              "前场区域",
+              "门前区域",
+              "对方禁区附近"
+            ]
+          }
+        ],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "bare",
+    "case_id": "team_7s_threat",
+    "category": "team",
+    "repeat": 0,
+    "level": 3,
+    "scores": {
+      "accuracy": 0.2,
+      "grounding": 0.3,
+      "completeness": 0.7,
+      "reasoning": 0.4,
+      "efficiency": 0.706,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.2
+    },
+    "total": 0.4306,
+    "judge_failure_mode": "编造数据",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.2,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.5,
+      "hits": {
+        "multi_perspective": [
+          "进攻"
+        ],
+        "synthesis": [
+          "综合"
+        ]
+      },
+      "n_perspectives": 2
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 0
+      },
+      "checklist": [
+        {
+          "text": "给出威胁值数值",
+          "keyword_hit": true
+        },
+        {
+          "text": "结合球路/区域说明",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 192593.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 24243,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [
+          {
+            "expr": "threat_max",
+            "gold": 0.957,
+            "best_diff": 0.04300000000000004,
+            "score": 1.0
+          }
+        ],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "team_7s_threat",
+    "category": "team",
+    "repeat": 0,
+    "level": 3,
+    "scores": {
+      "accuracy": 0.95,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "reasoning": 0.8,
+      "efficiency": 0.9139,
+      "robustness": 1.0,
+      "tactical_accuracy": 1.0
+    },
+    "total": 0.9439,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 0.95,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.25,
+      "hits": {
+        "multi_perspective": [
+          "防守"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 8,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "给出威胁值数值",
+          "keyword_hit": true
+        },
+        {
+          "text": "结合球路/区域说明",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 13313.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 3,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 16181,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [
+          {
+            "expr": "threat_max",
+            "gold": 0.957,
+            "best_diff": 0.0,
+            "score": 1.0
+          }
+        ],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 3,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_tactical_facts",
+        "get_ball_timeline",
+        "get_frame_snapshot"
+      ]
+    },
+    "extended_total": 0.9495
+  },
+  {
+    "system": "multi",
+    "case_id": "team_7s_threat",
+    "category": "team",
+    "repeat": 0,
+    "level": 3,
+    "scores": {
+      "accuracy": 1.0,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "reasoning": 0.8,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 1.0
+    },
+    "total": 0.96,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": null,
+      "judge_accuracy": 1.0,
+      "diff": null,
+      "flag": "n/a"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {},
+      "program_accuracy_score": null,
+      "entity_grounding": {
+        "mentions": 7,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "给出威胁值数值",
+          "keyword_hit": true
+        },
+        {
+          "text": "结合球路/区域说明",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 7953.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 9921,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [
+          {
+            "expr": "threat_max",
+            "gold": 0.957,
+            "best_diff": 0.0,
+            "score": 1.0
+          }
+        ],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "bare",
+    "case_id": "timeline_ball_height",
+    "category": "timeline",
+    "repeat": 0,
+    "level": 2,
+    "scores": {
+      "accuracy": 0.4,
+      "grounding": 0.95,
+      "completeness": 0.725,
+      "reasoning": 0.5,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.7275,
+    "judge_failure_mode": "数据不足未声明",
+    "judge_program_agreement": {
+      "program_accuracy": 0.0,
+      "judge_accuracy": 0.4,
+      "diff": 0.4,
+      "flag": "disagreement"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {
+        "numeric": {
+          "score": 0.0,
+          "items": [
+            {
+              "expr": "ball_zmax",
+              "gold": 4.2,
+              "best_diff": 1.7000000000000002,
+              "score": 0.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 0.0,
+      "entity_grounding": {
+        "mentions": 6,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "按时间列出离地时刻",
+          "keyword_hit": true
+        },
+        {
+          "text": "给出高度数值",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 20078.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 8377,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "timeline_ball_height",
+    "category": "timeline",
+    "repeat": 0,
+    "level": 2,
+    "scores": {
+      "accuracy": 0.4,
+      "grounding": 0.925,
+      "completeness": 0.725,
+      "reasoning": 0.6,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.7
+    },
+    "total": 0.72,
+    "judge_failure_mode": "数据不足未声明",
+    "judge_program_agreement": {
+      "program_accuracy": 0.0,
+      "judge_accuracy": 0.4,
+      "diff": 0.4,
+      "flag": "disagreement"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {
+        "numeric": {
+          "score": 0.0,
+          "items": [
+            {
+              "expr": "ball_zmax",
+              "gold": 4.2,
+              "best_diff": 1.2000000000000002,
+              "score": 0.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 0.0,
+      "entity_grounding": {
+        "mentions": 10,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "按时间列出离地时刻",
+          "keyword_hit": true
+        },
+        {
+          "text": "给出高度数值",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 10297.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 2,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 6228,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 1,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_ball_timeline"
+      ]
+    },
+    "extended_total": 0.748
+  },
+  {
+    "system": "multi",
+    "case_id": "timeline_ball_height",
+    "category": "timeline",
+    "repeat": 0,
+    "level": 2,
+    "scores": {
+      "accuracy": 0.825,
+      "grounding": 0.925,
+      "completeness": 0.8625,
+      "reasoning": 0.8,
+      "efficiency": 0.8009,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.85
+    },
+    "total": 0.8551,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 1.0,
+      "judge_accuracy": 0.825,
+      "diff": 0.175,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {
+        "numeric": {
+          "score": 1.0,
+          "items": [
+            {
+              "expr": "ball_zmax",
+              "gold": 4.2,
+              "best_diff": 0.0,
+              "score": 1.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 1.0,
+      "entity_grounding": {
+        "mentions": 14,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "按时间列出离地时刻",
+          "keyword_hit": true
+        },
+        {
+          "text": "给出高度数值",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 32765.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 3,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 29802,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 2,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "submit_intent",
+        "get_ball_timeline"
+      ]
+    },
+    "extended_total": 0.8696
+  },
+  {
+    "system": "bare",
+    "case_id": "verify_7s_pos",
+    "category": "verify",
+    "repeat": 0,
+    "level": 2,
+    "scores": {
+      "accuracy": 0.65,
+      "grounding": 0.925,
+      "completeness": 0.925,
+      "reasoning": 0.8,
+      "efficiency": 0.9282,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.75
+    },
+    "total": 0.8228,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 0.5,
+      "judge_accuracy": 0.65,
+      "diff": 0.15,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.0,
+      "hits": {},
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {
+        "numeric": {
+          "score": 0.5,
+          "items": [
+            {
+              "expr": "player_x_at_second:7,3",
+              "gold": 93.6,
+              "best_diff": 3.4000000000000057,
+              "score": 1.0
+            },
+            {
+              "expr": "player_y_at_second:7,3",
+              "gold": 59.8,
+              "best_diff": 11.200000000000003,
+              "score": 0.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 0.5,
+      "entity_grounding": {
+        "mentions": 4,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "回溯原始数据核验（给出帧号/坐标）",
+          "keyword_hit": true
+        },
+        {
+          "text": "给出核验结论（确认/纠正）",
+          "keyword_hit": true
+        },
+        {
+          "text": "引用7号第3秒的具体位置",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 87547.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 1,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 15293,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 0,
+      "error_rate": null,
+      "redundancy": null,
+      "score": null
+    },
+    "extended_total": null
+  },
+  {
+    "system": "single",
+    "case_id": "verify_7s_pos",
+    "category": "verify",
+    "repeat": 0,
+    "level": 2,
+    "scores": {
+      "accuracy": 0.55,
+      "grounding": 0.925,
+      "completeness": 0.7875,
+      "reasoning": 0.7,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.8
+    },
+    "total": 0.7937,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 0.5,
+      "judge_accuracy": 0.55,
+      "diff": 0.05,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.5,
+      "hits": {
+        "multi_perspective": [
+          "进攻"
+        ],
+        "consensus": [
+          "一致"
+        ]
+      },
+      "n_perspectives": 1
+    },
+    "details": {
+      "program_accuracy": {
+        "numeric": {
+          "score": 0.5,
+          "items": [
+            {
+              "expr": "player_x_at_second:7,3",
+              "gold": 93.6,
+              "best_diff": 3.5999999999999943,
+              "score": 1.0
+            },
+            {
+              "expr": "player_y_at_second:7,3",
+              "gold": 59.8,
+              "best_diff": 30.200000000000003,
+              "score": 0.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 0.5,
+      "entity_grounding": {
+        "mentions": 3,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "回溯原始数据核验（给出帧号/坐标）",
+          "keyword_hit": true
+        },
+        {
+          "text": "给出核验结论（确认/纠正）",
+          "keyword_hit": true
+        },
+        {
+          "text": "引用7号第3秒的具体位置",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 26656.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 3,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 11028,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 8,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "get_frame_snapshot",
+        "get_player_raw_data",
+        "get_player_profile",
+        "get_ball_timeline",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot",
+        "get_frame_snapshot"
+      ]
+    },
+    "extended_total": 0.8143
+  },
+  {
+    "system": "multi",
+    "case_id": "verify_7s_pos",
+    "category": "verify",
+    "repeat": 0,
+    "level": 2,
+    "scores": {
+      "accuracy": 0.7,
+      "grounding": 0.925,
+      "completeness": 0.9375,
+      "reasoning": 0.9,
+      "efficiency": 1.0,
+      "robustness": 1.0,
+      "tactical_accuracy": 0.9
+    },
+    "total": 0.8962,
+    "judge_failure_mode": "无",
+    "judge_program_agreement": {
+      "program_accuracy": 0.5,
+      "judge_accuracy": 0.7,
+      "diff": 0.2,
+      "flag": "ok"
+    },
+    "adversarial_resistance": null,
+    "collaboration": {
+      "score": 0.5,
+      "hits": {
+        "consensus": [
+          "一致"
+        ],
+        "divergence": [
+          "差异"
+        ]
+      },
+      "n_perspectives": 0
+    },
+    "details": {
+      "program_accuracy": {
+        "numeric": {
+          "score": 0.5,
+          "items": [
+            {
+              "expr": "player_x_at_second:7,3",
+              "gold": 93.6,
+              "best_diff": 3.5999999999999943,
+              "score": 1.0
+            },
+            {
+              "expr": "player_y_at_second:7,3",
+              "gold": 59.8,
+              "best_diff": 30.200000000000003,
+              "score": 0.0
+            }
+          ]
+        }
+      },
+      "program_accuracy_score": 0.5,
+      "entity_grounding": {
+        "mentions": 2,
+        "invalid": [],
+        "score": 1.0
+      },
+      "checklist": [
+        {
+          "text": "回溯原始数据核验（给出帧号/坐标）",
+          "keyword_hit": true
+        },
+        {
+          "text": "给出核验结论（确认/纠正）",
+          "keyword_hit": true
+        },
+        {
+          "text": "引用7号第3秒的具体位置",
+          "keyword_hit": true
+        }
+      ],
+      "robustness": {
+        "nonempty": true,
+        "no_error_marker": true,
+        "coherent": true
+      },
+      "efficiency": {
+        "latency_ms": {
+          "value": 11766.0,
+          "ref": 120000.0
+        },
+        "llm_calls": {
+          "value": 2,
+          "ref": 10.0
+        },
+        "total_tokens": {
+          "value": 3114,
+          "ref": 12000.0
+        }
+      },
+      "tactical": {
+        "category": [],
+        "tactical_numeric": [],
+        "event_f1": {
+          "events": []
+        }
+      }
+    },
+    "judge_note": "",
+    "tool_use": {
+      "calls": 1,
+      "error_rate": 0.0,
+      "redundancy": 0.0,
+      "score": 1.0,
+      "names": [
+        "submit_challenge_judgment"
+      ]
+    },
+    "extended_total": 0.9066
+  }
+]

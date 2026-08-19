@@ -1,0 +1,12 @@
+{"type": "run_start", "run_id": "31d9c956d42e", "ts": 1787114341.8242588}
+{"type": "span_start", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114341.828764, "attrs": {"input": "比赛中球最高到过多少高度？", "system": "single"}}
+{"type": "span_start", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00002", "parent_id": "31d9c956d42e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114341.828764, "attrs": {"system_len": 311, "user_len": 13, "tool_round": 0}}
+{"type": "span_end", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00002", "parent_id": "31d9c956d42e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114342.9722726, "dur_ms": 1143.51, "status": "ok"}
+{"type": "event", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00001", "kind": "tool", "name": "tool[0]", "ts": 1787114342.972599, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00003", "parent_id": "31d9c956d42e-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787114342.972599, "attrs": {"system_len": 311, "user_len": 13, "tool_round": 1}}
+{"type": "span_end", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00003", "parent_id": "31d9c956d42e-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787114347.7106018, "dur_ms": 4738.0, "status": "ok"}
+{"type": "event", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00001", "kind": "tool", "name": "tool[1]", "ts": 1787114347.711103, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00004", "parent_id": "31d9c956d42e-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787114347.711103, "attrs": {"system_len": 311, "user_len": 13, "tool_round": 2}}
+{"type": "span_end", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00004", "parent_id": "31d9c956d42e-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787114351.1956794, "dur_ms": 3484.58, "status": "ok"}
+{"type": "span_end", "run_id": "31d9c956d42e", "span_id": "31d9c956d42e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114351.1956794, "dur_ms": 9366.92, "status": "ok"}
+{"type": "run_end", "run_id": "31d9c956d42e", "ts": 1787114351.1956794}

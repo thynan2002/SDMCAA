@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "先说明：原始足球轨迹数据里没有直接给出第 90 帧的球坐标，所以这是一个基于相邻球轨迹的估算，不是精确值。\n\n按第 50 帧和第 102 帧的球位置推算，第 90 帧时球大约位于**右半区、靠近右侧边线、大禁区右上角外侧**的位置。也就是说，球不在中路，也不在门前，而是在边路偏外的地带，距离右侧球门大约 30 米上下。\n\n这个位置对球门的**直接威胁较低**。原因是：它离球门有距离，而且射门角度很偏；同时球此时的运动方向更偏向中场/边路一侧，不是朝球门方向推进，更像是一次边路争抢或阵地进攻的过渡球。",
+  "latency_ms": 107265.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6098,
+    "completion_tokens": 10513,
+    "total_tokens": 16611
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142936_d3f6d5039ebf.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_ball_zone_90\\3",
+  "ts": "2026-08-19 14:29:36",
+  "context_chars": 8776,
+  "repeat": 3
+}

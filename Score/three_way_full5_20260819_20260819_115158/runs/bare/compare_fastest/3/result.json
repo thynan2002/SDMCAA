@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "compare_fastest",
+  "category": "comparison",
+  "input": "所有球员里谁的速度最快？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据数据，**8号球员（A队/红队）速度最快**。\n\n数据依据：在球员统计表中，8号的峰值速度为 **7.7 米/秒**，是全部21名球员中的最高值；其余球员峰值速度均未超过这一数值（第二快的是7号，峰值5.6米/秒）。",
+  "latency_ms": 2140.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 142,
+    "total_tokens": 6228
+  },
+  "error": null,
+  "trace_file": "trace_20260819_151154_b0afe5b66524.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\compare_fastest\\3",
+  "ts": "2026-08-19 15:11:54",
+  "context_chars": 8759,
+  "repeat": 3
+}

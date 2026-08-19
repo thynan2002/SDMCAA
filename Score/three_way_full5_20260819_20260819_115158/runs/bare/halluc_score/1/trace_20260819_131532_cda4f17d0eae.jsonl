@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "cda4f17d0eae", "ts": 1787116532.6240232}
+{"type": "span_start", "run_id": "cda4f17d0eae", "span_id": "cda4f17d0eae-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787116532.6240232, "attrs": {"input": "这场比赛最后的比分是多少？", "system": "bare"}}
+{"type": "span_start", "run_id": "cda4f17d0eae", "span_id": "cda4f17d0eae-00002", "parent_id": "cda4f17d0eae-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787116532.6245205, "attrs": {"system_len": 293, "user_len": 8760}}
+{"type": "span_end", "run_id": "cda4f17d0eae", "span_id": "cda4f17d0eae-00002", "parent_id": "cda4f17d0eae-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787116534.3461943, "dur_ms": 1721.67, "status": "ok"}
+{"type": "span_end", "run_id": "cda4f17d0eae", "span_id": "cda4f17d0eae-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787116534.3466911, "dur_ms": 1722.67, "status": "ok"}
+{"type": "run_end", "run_id": "cda4f17d0eae", "ts": 1787116534.3466911}

@@ -1,0 +1,14 @@
+{"type": "run_start", "run_id": "64e3dffd4059", "ts": 1787112224.596894}
+{"type": "event", "run_id": "64e3dffd4059", "span_id": null, "kind": "session", "name": "session_reset", "ts": 1787112224.6068945, "attrs": {}}
+{"type": "span_start", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787112224.6068945, "attrs": {"person": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_person2d.csv", "ball": "D:\\GHY\\2.Files\\football-agent\\TestInput\\Files\\12s_soccer3d.csv"}}
+{"type": "span_end", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00001", "parent_id": null, "kind": "load", "name": "load_data", "ts": 1787112224.6114058, "dur_ms": 4.51, "status": "ok"}
+{"type": "event", "run_id": "64e3dffd4059", "span_id": null, "kind": "load", "name": "corpus_ready", "ts": 1787112224.6119096, "attrs": {"prefix": "12s", "player_count": 21}}
+{"type": "span_start", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787112224.6119096, "attrs": {"input": "第1200帧时球在哪？当时是谁在控球？"}}
+{"type": "event", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00002", "kind": "stage", "name": "routing", "ts": 1787112224.6119096, "attrs": {"content": "正在理解问题意图…", "status": "active"}}
+{"type": "event", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00002", "kind": "stage", "name": "routing", "ts": 1787112224.612406, "attrs": {"content": "意图识别完成", "status": "done"}}
+{"type": "event", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00002", "kind": "stage", "name": "verify", "ts": 1787112224.612906, "attrs": {"content": "正在核验原始数据…", "status": "active"}}
+{"type": "event", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00002", "kind": "stage", "name": "verify", "ts": 1787112224.612906, "attrs": {"content": "数据核验完成", "status": "done"}}
+{"type": "event", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00002", "kind": "stream", "name": "stream_summary", "ts": 1787112224.612906, "attrs": {"chunks": 0, "chars": 0}}
+{"type": "event", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00002", "kind": "output", "name": "output[0]", "ts": 1787112224.612906, "attrs": {"response_sha256": "77c3f982d0e2979d11e455bada5d50021a8658ab54fd0cd9cb4361e462e1058e", "response_len": 342, "is_exit_signal": false}}
+{"type": "span_end", "run_id": "64e3dffd4059", "span_id": "64e3dffd4059-00002", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787112224.612906, "dur_ms": 1.0, "status": "ok"}
+{"type": "run_end", "run_id": "64e3dffd4059", "ts": 1787112224.612906}

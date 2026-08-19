@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "team_7s_threat",
+  "category": "team",
+  "input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这7秒片段中，球的威胁峰值是0.957，已经非常接近1，属于极高威胁等级。\n\n具体数值口径如下：威胁值为0.957（无量纲，0-1区间，越接近1越危险），出现在约第3.2秒（对应第97帧，帧率30fps），峰值发生时球位于禁区区域。数据来源为「比赛事实」中的战术威胁字段（球最大威胁值0.957，威胁峰值时刻第3.2秒/帧97，威胁峰值区域为禁区）。\n\n从球路反推这波威胁的形成过程：第2.9至3.3秒球由8号向6号转移，随后6号在第3.3秒短暂控球并立即在第3.4秒过渡给10号——也就是说，威胁峰值恰好出现在A队中场在禁区前沿完成连续短传推进、球路即将转入最后一传的节点上。这解释了为什么威胁值在此时被拉满：球已进入最危险的得分区域，且持球方正处于向前组织的关键瞬间。值得注意的是，此后球路在第3.5秒起转向B队一侧（10号→15号→7号），威胁随即回落，说明这次高威胁局面未能转化为射门，属于\"推进到位但未完成终结\"的类型。",
+  "latency_ms": 6125.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9289,
+    "completion_tokens": 619,
+    "total_tokens": 9908
+  },
+  "error": null,
+  "trace_file": "trace_20260819_152056_037cacce5acf.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\team_7s_threat\\4",
+  "ts": "2026-08-19 15:20:56",
+  "repeat": 4
+}

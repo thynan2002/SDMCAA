@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_player_team",
+  "category": "general_qa",
+  "input": "7号球员是哪个队的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "7号球员是 **A队（红）** 的球员。  \n数据依据：球员所属信息明确列出“7号=A队（红）”。",
+  "latency_ms": 1282.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 63,
+    "total_tokens": 6149
+  },
+  "error": null,
+  "trace_file": "trace_20260819_125629_b3edd8ccddfb.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_player_team\\1",
+  "ts": "2026-08-19 12:56:29",
+  "context_chars": 8757,
+  "repeat": 1
+}

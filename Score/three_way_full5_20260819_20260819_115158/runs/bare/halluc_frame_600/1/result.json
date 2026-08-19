@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据中没有“第20秒”的信息，无法描述那一刻的攻防态势。\n\n依据：数据总帧号为 0~372，采样率 30fps，总时长约 12.4 秒；所有球员与足球轨迹都只覆盖这 12.4 秒内，不存在第 20 秒的记录。\n\n补充：如果你实际想问的是“第20帧”（约 0.67 秒），数据中倒是有该帧记录：足球在地面上（高度为0），位置接近红队7号，7号也正好在球旁边，可理解为红队球员在近身控制/接触皮球。但这并不是“第20秒”。",
+  "latency_ms": 12015.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 1253,
+    "total_tokens": 7346
+  },
+  "error": null,
+  "trace_file": "trace_20260819_125528_afe2f5373396.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\halluc_frame_600\\1",
+  "ts": "2026-08-19 12:55:28",
+  "context_chars": 8771,
+  "repeat": 1
+}

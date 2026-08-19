@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧（比赛第3.0秒），球位于**前场边路**，坐标为 (x=922, y=587, z=0)，即球在地面运行。此时球靠近边路发展，尚未进入中路腹地，对球门的直接威胁属于**中等偏低**：核验数据给出的威胁值为 **0.45**。10号球员距球最近（84），是当前最有可能控制或争抢球权的球员，18号、7号等队友在附近接应，进攻处于边路推进/过渡阶段，尚未形成直接射门或传中机会。该帧事件列表为空，没有传球、射门等具体事件发生。\n\n[核验过程：回溯第90帧、时间第3.0秒的原始追踪数据，核验球位置 (x=922, y=587, z=0)，战术区域字段为“前场边路”，威胁值为0.45，离球最近球员为10号，并参照球员位置概要中10/18/7/6/19号与球的距离关系；该帧事件列表为空，因此未附加任何事件判定。]\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 9323.5,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 540,
+    "completion_tokens": 905,
+    "total_tokens": 1445
+  },
+  "error": null,
+  "trace_file": "trace_20260816_144157_1c53bbf4c109.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\smoke3_20260816_143907\\runs\\multi\\frame_ball_zone_90\\0",
+  "ts": "2026-08-16 14:41:57",
+  "repeat": 0
+}

@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "verify_ball_owner_3s",
+  "category": "verify",
+  "input": "再确认一下，第3秒的时候球离7号有多远？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第3秒时，球处于前场边路，距其最近的球员是A队10号，7号同样在右路前场参与进攻接应；A队整体阵型偏向前场及右路中场，B队主要驻守中场区域，C队仅21号在中场一侧。该位置威胁潜力中等。\n\n数据依据：第90帧（第3.0秒），球位置（x=922, y=587），所询7号与球距离为13.2米。\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 7875.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1138,
+    "completion_tokens": 779,
+    "total_tokens": 1917
+  },
+  "error": null,
+  "trace_file": "trace_20260819_133939_412f6cf852d2.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\verify_ball_owner_3s\\2",
+  "ts": "2026-08-19 13:39:39",
+  "repeat": 2
+}

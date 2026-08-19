@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "约 **0.4**，属于“中等偏低”的威胁。\n\n整段比赛没有形成真正的射门，最接近威胁的是红方从边路起高球传入禁区那一下。球在接近 21 号门将镇守的右侧球门时，已经进入禁区腹地，距门线约 7 米、距中路约 3 米，高度约 2.5 米，形成了一次门前争顶。但同一时刻，蓝方 14 号正好出现在球的落点，把球顶回场内，随后球继续远离球门。\n\n另外，21 号门将几乎一直守在门线附近，基本没有需要扑救的动作，也说明这次威胁没有发展到“射门”级别。因此最大威胁大约就是 **0.4**，算是一次有威胁的传中，但被防守方及时化解。",
+  "latency_ms": 117891.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6105,
+    "completion_tokens": 11107,
+    "total_tokens": 17212
+  },
+  "error": null,
+  "trace_file": "trace_20260819_123658_eaf7a3655544.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\team_threat_peak\\0",
+  "ts": "2026-08-19 12:36:58",
+  "context_chars": 8786,
+  "repeat": 0
+}

@@ -1,0 +1,38 @@
+{
+  "system": "multi",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：前5秒是A队的控球梳理阶段，球权始终掌握在A队脚下，球路以向左后方向回撤为主，全部为短距离地面球，节奏偏慢；直到第5.0秒才出现第一次向前的推进，标志着攻防转换的起点。\n\n具体球路变化如下：开场第0.7秒，6号短传交给7号，方向向左后，地面球，中速；随后7号在0.8至1.7秒期间低速盘带，仍向左后移动。到第3.4秒，7号用一脚中距离地面球交给10号，方向依然是向左后；10号在3.7至4.1秒原地控球，几乎没有移动。第5.0秒，10号短传回给6号，方向首次转为向右前，这是前5秒内唯一一次向前传球。\n\n从战术上看，这一阶段A队并未急于进攻，而是在本方右路中前场通过连续的中短距离横向回传和低速盘带稳住球权、调整站位，球高度全程贴地，说明是典型的慢节奏控球组织。第5.0秒那次向前传球正是战术事实中标注的第一次\"由守转攻\"时刻——球路方向由向后回传反转向前，之后比赛节奏开始变化。可以说，前5秒是为后续进攻铺垫的\"蓄力期\"，A队的进攻发起从这一脚向前传递开始。",
+  "latency_ms": 11266.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 12113,
+    "completion_tokens": 1268,
+    "total_tokens": 13381
+  },
+  "error": null,
+  "trace_file": "trace_20260819_155758_fef6429dde4b.jsonl",
+  "tool_records": [
+    {
+      "name": "submit_intent",
+      "args": {
+        "intent": "general_qa",
+        "target_players": [],
+        "confidence": 0.72,
+        "scenario": null
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\timeline_first5s\\4",
+  "ts": "2026-08-19 15:57:58",
+  "repeat": 4
+}

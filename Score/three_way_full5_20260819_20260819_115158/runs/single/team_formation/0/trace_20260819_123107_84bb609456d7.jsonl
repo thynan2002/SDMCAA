@@ -1,0 +1,9 @@
+{"type": "run_start", "run_id": "84bb609456d7", "ts": 1787113867.9637387}
+{"type": "span_start", "run_id": "84bb609456d7", "span_id": "84bb609456d7-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787113867.970738, "attrs": {"input": "分析一下两队的大致阵型和站位特点。", "system": "single"}}
+{"type": "span_start", "run_id": "84bb609456d7", "span_id": "84bb609456d7-00002", "parent_id": "84bb609456d7-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787113867.970738, "attrs": {"system_len": 311, "user_len": 17, "tool_round": 0}}
+{"type": "span_end", "run_id": "84bb609456d7", "span_id": "84bb609456d7-00002", "parent_id": "84bb609456d7-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787113869.261518, "dur_ms": 1290.78, "status": "ok"}
+{"type": "event", "run_id": "84bb609456d7", "span_id": "84bb609456d7-00001", "kind": "tool", "name": "tool[0]", "ts": 1787113869.2650218, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "84bb609456d7", "span_id": "84bb609456d7-00003", "parent_id": "84bb609456d7-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787113869.2650218, "attrs": {"system_len": 311, "user_len": 17, "tool_round": 1}}
+{"type": "span_end", "run_id": "84bb609456d7", "span_id": "84bb609456d7-00003", "parent_id": "84bb609456d7-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787113885.4633677, "dur_ms": 16198.35, "status": "ok"}
+{"type": "span_end", "run_id": "84bb609456d7", "span_id": "84bb609456d7-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787113885.4633677, "dur_ms": 17492.63, "status": "ok"}
+{"type": "run_end", "run_id": "84bb609456d7", "ts": 1787113885.4638677}

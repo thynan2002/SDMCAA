@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_player_zone_7",
+  "category": "style",
+  "input": "7号主要活动在球场的哪个区域？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "7号的活动区域非常固定：基本集中在本方半场的后场偏边路，属于典型的“边后卫/边翼卫”防区。它横向移动很少，始终贴着球场一侧活动；纵向则从接近底线的危险区逐步向中场区域回收，整体覆盖了后场到中后场的边路走廊。\n\n数据依据：从全场轨迹看，7号的横向坐标一直稳定在同一个较窄区间内，几乎没有换边或内收；纵向位置则由开场时靠近本方底线的边路区域，逐渐前移到中后场位置，并且后半段长时间保持在这一带。这说明7号的主要职责是镇守本方后场边路，很少进入前场参与进攻。",
+  "latency_ms": 41797.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6089,
+    "completion_tokens": 4077,
+    "total_tokens": 10166
+  },
+  "error": null,
+  "trace_file": "trace_20260819_133958_449e8694dabd.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_player_zone_7\\2",
+  "ts": "2026-08-19 13:39:58",
+  "context_chars": 8762,
+  "repeat": 2
+}

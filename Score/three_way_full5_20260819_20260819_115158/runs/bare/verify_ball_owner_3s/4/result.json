@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "verify_ball_owner_3s",
+  "category": "verify",
+  "input": "再确认一下，第3秒的时候球离7号有多远？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第3秒对应约第90帧。这一瞬间7号正在快速回撤，球在他移动方向的前侧约13米，球权不在7号脚下。\n\n严格说，原始数据里第90帧没有直接给出球和7号的坐标，所以这是按前后帧线性插值估算的：  \n- 球大约在 (922, 587)  \n- 7号大约在 (1070, 616)  \n按105m×68m场地比例折算，球离7号约 **13.1米**，也就是大约13米左右。  \n\n如果实际球路不是匀速/直线运动，这个数值会有偏差。",
+  "latency_ms": 74610.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6094,
+    "completion_tokens": 9414,
+    "total_tokens": 15508
+  },
+  "error": null,
+  "trace_file": "trace_20260819_155552_7e6b660a7c49.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\verify_ball_owner_3s\\4",
+  "ts": "2026-08-19 15:55:52",
+  "context_chars": 8767,
+  "repeat": 4
+}

@@ -1,0 +1,34 @@
+{
+  "system": "single",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "比赛前5秒的球路整体呈现**低速、短传、后场持球推进**的节奏，进攻端并未急于向前，而是通过连续的地面短传在本方半场稳住球权、寻找出球角度。\n\n**开局球路顺序（0～5秒）：**\n\n- **6号起球**：开场球由6号以短距离地面球传向左后方的7号，方向是向后场左侧移动。\n- **7号控球盘带**：接球后7号进入连续控球阶段，速度很低，先向左后、再微调至左侧、随后向右后小幅变向，期间一度原地调整。也就是说，7号用约2秒多的时间在原地附近护球、等待队友跑位，没有盲目向前出球。\n- **7号横传10号**：约3.4秒时，7号以中等速度、中距离地面球把球交给左后侧的10号，完成一次转移。\n- **10号短暂持球**：10号接球后先是原地控球调整，没有立即出脚。\n- **10号回传6号**：约5.0秒时，10号将球以短距离地面球向右前方回给6号，球重新回到发起进攻的6号脚下。\n\n**战术解读：** 前5秒球的运行几乎全部停留在低速地面短传层面，方向以**后场横向与小幅回撤**为主，控球方明显是在**耐心倒脚、试探对手站位**，节奏偏慢、推进性弱，属于典型的\"以稳为主\"的开局。直到5秒之后（6号重新拿球）才可能开始向前的推进尝试。",
+  "latency_ms": 10094.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 4856,
+    "completion_tokens": 1010,
+    "total_tokens": 5866
+  },
+  "error": null,
+  "trace_file": "trace_20260819_121702_457a046c9075.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\timeline_first5s\\0",
+  "ts": "2026-08-19 12:17:02",
+  "repeat": 0
+}

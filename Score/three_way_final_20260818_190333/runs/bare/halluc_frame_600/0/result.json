@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据中没有“第20秒”的信息，无法描述那一刻的攻防态势。\n\n这段比赛数据的采样总时长只有约12.4秒（帧号0~372，30fps），因此不存在“第20秒”这一时刻。数据不足，不能编造第20秒发生了什么。\n\n如果你指的是“第20帧”，那确实有逐帧数据可用，但第20帧并不是第20秒，需要你确认后再作分析。",
+  "latency_ms": 15797.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 1488,
+    "total_tokens": 7581
+  },
+  "error": null,
+  "trace_file": "trace_20260818_190711_1fa0571e6f7c.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final_20260818_190333\\runs\\bare\\halluc_frame_600\\0",
+  "ts": "2026-08-18 19:07:11",
+  "context_chars": 8771,
+  "repeat": 0
+}

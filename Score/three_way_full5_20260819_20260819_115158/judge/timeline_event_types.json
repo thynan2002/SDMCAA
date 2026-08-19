@@ -1,0 +1,65 @@
+{
+  "key": "e0b63fed1efeaece48583597c210b810242c2ca470a2099b3fcc0634c5c99109",
+  "scores": {
+    "bare": {
+      "accuracy": 0.5,
+      "completeness": 0.8,
+      "reasoning": 3.75,
+      "fabrication": 0.225,
+      "tactical": 0.65,
+      "failure_mode": "无",
+      "judge_rounds": 4
+    },
+    "multi": {
+      "accuracy": 0.2,
+      "completeness": 0.65,
+      "reasoning": 2.25,
+      "fabrication": 0.6,
+      "tactical": 0.3,
+      "failure_mode": "编造数据",
+      "judge_rounds": 4
+    },
+    "single": {
+      "accuracy": 0.25,
+      "completeness": 0.675,
+      "reasoning": 2.75,
+      "fabrication": 0.6,
+      "tactical": 0.35,
+      "failure_mode": "编造数据",
+      "judge_rounds": 4
+    }
+  },
+  "meta": {
+    "orders": [
+      [
+        "multi",
+        "single",
+        "bare"
+      ],
+      [
+        "multi",
+        "single",
+        "bare"
+      ],
+      [
+        "bare",
+        "single",
+        "multi"
+      ],
+      [
+        "bare",
+        "single",
+        "multi"
+      ]
+    ],
+    "sample_repeats": 2,
+    "judge_model": "deepseek-v4-pro",
+    "judge_temperature": 0.0,
+    "rubric_version": "v3",
+    "consistency": {
+      "bare": 0.125,
+      "multi": 0.0,
+      "single": 0.05
+    }
+  }
+}

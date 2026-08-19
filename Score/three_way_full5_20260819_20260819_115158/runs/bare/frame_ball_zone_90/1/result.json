@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧没有足球轨迹的直接采样点，但可以根据前后帧推断。\n\n**区域判断：**  \n第50帧球在右侧靠近边线的位置，第102帧球移动到中右场附近、且与红队10号重合。按这两帧之间的轨迹线性估计，第90帧球大约在原始坐标 **（920，590）** 一带，也就是球场的**右半区、靠近右侧边线的前场边路位置**，大致在**大禁区外侧、边路角度较偏的区域**。\n\n**威胁程度：低。**  \n这个位置离21号门将把守的球门大约还有三十多米，而且是在边路，射门角度很小；球门和球之间还有多名攻防球员布防。同时，球在前后记录中都是贴地状态，说明不是高空传中或直接吊门。红队10号正在向球移动并准备接球，更像是**边路接应、阵地推进或攻防转换**，而不是已经形成直接射门机会。\n\n所以综合来看：**第90帧球位于右侧前场边路，对球门的直接威胁很低。**",
+  "latency_ms": 72282.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6098,
+    "completion_tokens": 7344,
+    "total_tokens": 13442
+  },
+  "error": null,
+  "trace_file": "trace_20260819_125036_37bdbb7ec645.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\frame_ball_zone_90\\1",
+  "ts": "2026-08-19 12:50:36",
+  "context_chars": 8776,
+  "repeat": 1
+}

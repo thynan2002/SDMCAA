@@ -1,0 +1,140 @@
+{
+  "system": "single",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**第20秒的数据不存在，我无法描述那一刻的攻防态势——这属于「数据不足」，我不会编造任何内容。**\n\n我通过多种工具交叉核验后确认：\n\n- **帧级快照**：查询第20秒对应的第600帧，返回「第600帧的球数据不存在」；进一步核验了第100、200、300、330、340、345、348、400、500等帧，均无帧级球数据。\n- **球路时间线**：数据仅覆盖**开场约0.7秒至11.6秒**，最后一条球路记录是第11.6秒「8号控球移动」，之后时间线终止，没有延伸到第20秒。\n- **球员原始轨迹**：以7号为例，仅记录19帧，轨迹数据同样止步于开场初期，未覆盖到第20秒。\n\n因此，**第20秒超出了现有数据的时间覆盖范围**，关于那一刻的球权、站位、攻防转换等细节均无法核实，如实声明数据不足。\n\n**补充说明**：如果你需要的是现有数据覆盖范围内（即开场前约11.6秒）的攻防态势，我可以为你描述那段时间的情况——比如A队整体压上、围绕右路展开短传推进，8号、7号、6号是主要持球点，期间出现过几次由守转攻/由攻转守的转换等。需要的话请告诉我。",
+  "latency_ms": 18203.0,
+  "llm_calls": 6,
+  "tokens": {
+    "prompt_tokens": 26046,
+    "completion_tokens": 1956,
+    "total_tokens": 28002
+  },
+  "error": null,
+  "trace_file": "trace_20260819_122336_e537c910c005.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 600
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 16.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 348
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 400
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 500
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 330
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 340
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 345
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 100
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 200
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 300
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_player_raw_data",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\halluc_frame_600\\0",
+  "ts": "2026-08-19 12:23:36",
+  "repeat": 0
+}

@@ -1,0 +1,21 @@
+{"type": "run_start", "run_id": "3fccea2db5c4", "ts": 1787041511.4682949}
+{"type": "span_start", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787041511.4728017, "attrs": {"input": "对比一下队里几个球员谁更积极？别只盯着一个人，把所有人都比一遍。", "system": "single"}}
+{"type": "span_start", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00002", "parent_id": "3fccea2db5c4-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787041511.4728017, "attrs": {"system_len": 311, "user_len": 32, "tool_round": 0}}
+{"type": "span_end", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00002", "parent_id": "3fccea2db5c4-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787041514.0418742, "dur_ms": 2569.07, "status": "ok"}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[0]", "ts": 1787041514.0443697, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00003", "parent_id": "3fccea2db5c4-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787041514.0443697, "attrs": {"system_len": 311, "user_len": 32, "tool_round": 1}}
+{"type": "span_end", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00003", "parent_id": "3fccea2db5c4-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787041519.9157197, "dur_ms": 5871.35, "status": "ok"}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[1]", "ts": 1787041519.9157197, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[2]", "ts": 1787041519.9157197, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[3]", "ts": 1787041519.9157197, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[4]", "ts": 1787041519.9157197, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[5]", "ts": 1787041519.9162216, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[6]", "ts": 1787041519.9162216, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[7]", "ts": 1787041519.9162216, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[8]", "ts": 1787041519.9162216, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[9]", "ts": 1787041519.9162216, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "kind": "tool", "name": "tool[10]", "ts": 1787041519.9162216, "attrs": {"tool": "get_player_profile", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00004", "parent_id": "3fccea2db5c4-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787041519.9162216, "attrs": {"system_len": 311, "user_len": 32, "tool_round": 2}}
+{"type": "span_end", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00004", "parent_id": "3fccea2db5c4-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787041536.4449282, "dur_ms": 16528.71, "status": "ok"}
+{"type": "span_end", "run_id": "3fccea2db5c4", "span_id": "3fccea2db5c4-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787041536.4454272, "dur_ms": 24972.63, "status": "ok"}
+{"type": "run_end", "run_id": "3fccea2db5c4", "ts": 1787041536.4454272}

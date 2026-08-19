@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "数据不足，无法给出“球对球门最大威胁”的数值。\n\n现有数据只包含球员/足球的坐标轨迹和位移、速度统计，没有提供球门位置、攻防方向、射门事件标记，也没有定义“威胁值”的计算模型（例如是否考虑距离球门远近、射门角度、防守压力等）。因此无法可靠计算或推断出 0~1 之间的威胁值。",
+  "latency_ms": 5156.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6105,
+    "completion_tokens": 367,
+    "total_tokens": 6472
+  },
+  "error": null,
+  "trace_file": "trace_20260819_140756_ab4ff8247a42.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\team_threat_peak\\2",
+  "ts": "2026-08-19 14:07:56",
+  "context_chars": 8786,
+  "repeat": 2
+}

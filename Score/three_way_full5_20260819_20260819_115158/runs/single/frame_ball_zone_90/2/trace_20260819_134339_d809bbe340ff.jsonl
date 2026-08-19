@@ -1,0 +1,12 @@
+{"type": "run_start", "run_id": "d809bbe340ff", "ts": 1787118219.1569884}
+{"type": "span_start", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118219.163007, "attrs": {"input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？", "system": "single"}}
+{"type": "span_start", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00002", "parent_id": "d809bbe340ff-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118219.163007, "attrs": {"system_len": 311, "user_len": 29, "tool_round": 0}}
+{"type": "span_end", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00002", "parent_id": "d809bbe340ff-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787118266.0117671, "dur_ms": 46848.76, "status": "ok"}
+{"type": "event", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00001", "kind": "tool", "name": "tool[0]", "ts": 1787118266.0117671, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00003", "parent_id": "d809bbe340ff-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787118266.0117671, "attrs": {"system_len": 311, "user_len": 29, "tool_round": 1}}
+{"type": "span_end", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00003", "parent_id": "d809bbe340ff-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787118267.5784929, "dur_ms": 1566.73, "status": "ok"}
+{"type": "event", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00001", "kind": "tool", "name": "tool[1]", "ts": 1787118267.5784929, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00004", "parent_id": "d809bbe340ff-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787118267.5789928, "attrs": {"system_len": 311, "user_len": 29, "tool_round": 2}}
+{"type": "span_end", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00004", "parent_id": "d809bbe340ff-00001", "kind": "llm", "name": "llm_call[2]", "ts": 1787118275.3586693, "dur_ms": 7779.68, "status": "ok"}
+{"type": "span_end", "run_id": "d809bbe340ff", "span_id": "d809bbe340ff-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787118275.359166, "dur_ms": 56196.16, "status": "ok"}
+{"type": "run_end", "run_id": "d809bbe340ff", "ts": 1787118275.359166}

@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "先说明：这组数据总时长只有约 **12.4 秒**（帧号 0~372），所以严格来说**数据中没有“第20秒”**，无法描述第20秒的攻防态势。\n\n如果你指的是**第20帧**（约开场 0.67 秒），那么可以这样解读：\n\n**那一刻的攻防态势：**\n\n红队正在**右侧边路完成一次快速地面传递**。第20帧时，球已经滚到红队7号球员附近，红7在边线处接球控球。此前红6号在靠近角旗区的位置与球重合，随后球沿边线向红7方向滚动，所以这更像是一次**红队边路短传配合**：红6传、红7接。\n\n攻防上，红7接球时**身边没有蓝方球员贴身紧逼**。蓝方大多数球员此时还集中在中路区域，没有及时向这一侧边路收缩，因此红7接球后有相对从容的空间，可以沿边路继续推进，也可以向中路转移。\n\n**数据依据：**\n\n- 第20帧的足球轨迹与7号球员位置完全重合，球离地高度为0，说明是**地滚球**，不是高球。\n- 更早的帧中，6号红队球员原本就在球所在位置附近，随后球沿边路滚动到7号方向，符合“红6传、红7接”的边路推进。\n- 第20帧前后，蓝方球员大多分布在中路，尚未对红7形成包夹。",
+  "latency_ms": 36782.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 3807,
+    "total_tokens": 9900
+  },
+  "error": null,
+  "trace_file": "trace_20260818_223116_5f588b4492a0.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final2_20260818_222756\\runs\\bare\\halluc_frame_600\\0",
+  "ts": "2026-08-18 22:31:16",
+  "context_chars": 8771,
+  "repeat": 0
+}

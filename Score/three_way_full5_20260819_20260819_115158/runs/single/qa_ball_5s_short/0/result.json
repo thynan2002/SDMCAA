@@ -1,0 +1,248 @@
+{
+  "system": "single",
+  "case_id": "qa_ball_5s_short",
+  "category": "general_qa",
+  "input": "这份数据里一共有多少名球员？球最高到过多少？",
+  "dataset": {
+    "person": "TestInput/Files/5s-person.csv",
+    "ball": "TestInput/Files/5s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "我先后查询了战术事实、球路时间线以及多帧快照来核实这两个问题。结论如下：\n\n**一、数据中共有 20 名球员**\n\n数据覆盖两队加一名门将，共 20 名球员：\n- **A队 10 人**：1号、2号、3号、4号、5号、6号、7号、8号、9号、10号\n- **B队 9 人**：11号、12号、13号、14号、15号、16号、17号、18号、19号\n- **门将 1 人**：21号\n\n从站位结构看，A队近似中场5人、前场3人的紧凑阵型，B队近似中场5人、前场4人，两队活动都高度集中在右路中场区域。\n\n**二、球最高到过 z=5**\n\n球的高度以位置坐标的 z 值记录。我逐帧核验了所有高空球段的轨迹，全片段球高峰值出现在 **13号→9号** 那记高空回传球的飞行中段，即大约第 **1.4~1.6 秒**，球高度达到 **z=5**，此后逐渐回落。其余几次标为「高空」的球路实际高度都只有 z=2~3，后半段的球路基本都是低平球或地面球，没有更高纪录。\n\n数据依据：帧 42~49（约1.4~1.6秒）球位置 z 值均为 5，为该片段观测到的最大值；时间线中其他高空球段（17号→4号、4号→6号）逐帧核验最大仅 z=3。",
+  "latency_ms": 29641.0,
+  "llm_calls": 6,
+  "tokens": {
+    "prompt_tokens": 39116,
+    "completion_tokens": 3904,
+    "total_tokens": 43020
+  },
+  "error": null,
+  "trace_file": "trace_20260819_120345_b2a24b15dde4.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3783
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 607
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 40
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 81
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 30
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 353
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 33
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 353
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 36
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 353
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 45
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 352
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 67
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 75
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 343
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 42
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 353
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 48
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 348
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 51
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 348
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 66
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 68
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 343
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 72
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 341
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 78
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 44
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 353
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 46
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 352
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 47
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 350
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 49
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 348
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 65
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 69
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 343
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 74
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 343
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 77
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 343
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_ball_5s_short\\0",
+  "ts": "2026-08-19 12:03:45",
+  "repeat": 0
+}

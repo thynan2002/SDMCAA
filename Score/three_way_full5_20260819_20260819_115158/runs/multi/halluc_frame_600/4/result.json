@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "无法回答该问题：球数据仅覆盖第0~349帧，第600帧无球数据。\n\n数据实际覆盖范围：球数据采样49帧，仅覆盖第0~349帧（约第0.0~11.6秒），按 30fps 换算总时长约11.6秒。\n\n推理过程：所问的\"第20.0秒\"按 30帧/秒 换算对应第600帧，而数据的末帧仅为第349帧（约第11.6秒），第600帧已超出球数据覆盖范围，第600帧无球数据；若强行描述该时刻的攻防态势只能是编造，故如实拒答。\n\n可查证的最近合法时刻：球数据的最后时刻为约第11.6秒（第349帧），如需了解片段末段的攻防态势，可改问\"第11秒发生了什么\"，我会基于真实数据回溯核验后回答。\n\n补充信息：球员轨迹覆盖第0~372帧（21名球员）；但帧级态势核验以球数据为锚点，球数据缺失时无法构建该帧的攻防快照。",
+  "latency_ms": 16.0,
+  "llm_calls": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153126_58c867c5236a.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\halluc_frame_600\\4",
+  "ts": "2026-08-19 15:31:26",
+  "repeat": 4
+}

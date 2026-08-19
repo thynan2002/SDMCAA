@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "19c3b10eb3f5", "ts": 1787123368.2740562}
+{"type": "span_start", "run_id": "19c3b10eb3f5", "span_id": "19c3b10eb3f5-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123368.2740562, "attrs": {"input": "这份数据覆盖了多长时间的比赛？", "system": "bare"}}
+{"type": "span_start", "run_id": "19c3b10eb3f5", "span_id": "19c3b10eb3f5-00002", "parent_id": "19c3b10eb3f5-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123368.2740562, "attrs": {"system_len": 293, "user_len": 8762}}
+{"type": "span_end", "run_id": "19c3b10eb3f5", "span_id": "19c3b10eb3f5-00002", "parent_id": "19c3b10eb3f5-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123370.1199563, "dur_ms": 1845.9, "status": "ok"}
+{"type": "span_end", "run_id": "19c3b10eb3f5", "span_id": "19c3b10eb3f5-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123370.1204574, "dur_ms": 1846.4, "status": "ok"}
+{"type": "run_end", "run_id": "19c3b10eb3f5", "ts": 1787123370.1204574}

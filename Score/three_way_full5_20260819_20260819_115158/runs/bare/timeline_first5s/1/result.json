@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "比赛前5秒，足球基本保持在地面运行，没有出现高空球。球路呈现明显的三个阶段：先是向场地一侧快速推进，随后出现一段停滞，最后又向回转移。整体节奏不是平滑的连续推进，而是带有停顿和折返。\n\n数据依据：\n\n- 开局阶段（约前1.7秒）：球从起始点出发，沿着x坐标减小的方向移动，y坐标也略微下降，可以理解为向场地一侧的中前场方向滚动，球速相对平缓。\n- 随后阶段（约第1.7秒到第3.4秒之间）：球出现一次长距离位移，x和y坐标同时明显变化，说明球被快速传递或带球推进，这是前5秒内最主要的推进段。\n- 接着（约第3.4秒到第4.1秒）：足球坐标几乎完全不变，说明球在这一区域陷入停滞或被控制住，没有继续向前发展。\n- 最后阶段（约第4.1秒到第5秒）：球又向反方向移动，x和y坐标回升，相当于球路折返，回到较靠后的区域，为后续重新组织做准备。\n\n整个前5秒内，足球的高度数值均为0，因此没有空中球或高球线路，全部是贴地滚动。",
+  "latency_ms": 23579.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6090,
+    "completion_tokens": 2033,
+    "total_tokens": 8123
+  },
+  "error": null,
+  "trace_file": "trace_20260819_132120_e165749ea38a.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\timeline_first5s\\1",
+  "ts": "2026-08-19 13:21:20",
+  "context_chars": 8762,
+  "repeat": 1
+}

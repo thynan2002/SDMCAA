@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "qa_ball_5s_short",
+  "category": "general_qa",
+  "input": "这份数据里一共有多少名球员？球最高到过多少？",
+  "dataset": {
+    "person": "TestInput/Files/5s-person.csv",
+    "ball": "TestInput/Files/5s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据这份数据，场上共有 **20 名球员**（不含门将编号21？注意总览中球员列表包含21号，且说明球员人数20，但列表中有21个编号？需要核对：列表有1-19和21，共20个编号。因为20号缺失，所以是20名球员。门将21号是其中一名球员，所以总人数20）。球最高到达过 **5.0 米**。",
+  "latency_ms": 2000.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 4021,
+    "completion_tokens": 128,
+    "total_tokens": 4149
+  },
+  "error": null,
+  "trace_file": "trace_20260819_143848_56cbb5629557.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\qa_ball_5s_short\\3",
+  "ts": "2026-08-19 14:38:48",
+  "context_chars": 5326,
+  "repeat": 3
+}

@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "先说明一个时间口径：数据总时长只有约 12.4 秒，并没有真正的“第 20 秒”。如果你指的是帧号 20（约 0.67 秒），那么那一帧的情况如下：\n\n**形势判断：**  \n这是红队在后场右路边线/角球区附近的持球组织。红队 7 号完全控制球，球是贴地的；红队 6 号在近处接应；蓝队没有贴身上抢，整体退在中场区域布防。所以这不是一次快攻或射门瞬间，而是红队从后场边路稳下来、准备向前推进的开端。\n\n**数据依据：**  \n帧 20 时，足球坐标为 (1115.1, 688.2, 0.0)，离地高度为 0；红队 7 号同一帧坐标也是 (1115.1, 688.2)，说明人球重合，球权在 7 号脚下。红队 6 号在附近靠近边线的位置接应，其余红队队员大多散在中场或另一侧。蓝队球员中，19 号离持球点相对较近，但也不构成贴身压迫；其他蓝队球员集中在中路区域，没有形成包夹。因此当时蓝队是“退守观察”的姿态，红队拥有充足的控球空间。",
+  "latency_ms": 57047.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6093,
+    "completion_tokens": 5879,
+    "total_tokens": 11972
+  },
+  "error": null,
+  "trace_file": "trace_20260819_122826_9cd4ed0a7ccd.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\halluc_frame_600\\0",
+  "ts": "2026-08-19 12:28:26",
+  "context_chars": 8771,
+  "repeat": 0
+}

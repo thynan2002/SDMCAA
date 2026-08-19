@@ -1,0 +1,35 @@
+{
+  "system": "multi",
+  "case_id": "team_7s_threat",
+  "category": "team",
+  "input": "这段7秒比赛里球形成的最大威胁是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段7秒片段中，球形成的最大威胁值为 0.957（威胁值量纲为0~1，越接近1越危险，因此这是一个接近顶格的极高威胁值）。\n\n数值口径如下：\n- 数值：0.957（无量纲，0-1区间内越接近1越危险）\n- 出现时刻：约第3.2秒（第97帧，30fps）\n- 威胁峰值区域：禁区\n- 数据来源：战术事实字段「战术威胁与区域」中的球最大威胁值，并经帧级核验确认——第97帧球位于禁区一带，离球最近的防守球员是B队13号（约6米），该帧对应的球路事件为「8号→6号」的短距离回传。\n\n推理链：威胁峰值出现在球路推进序列的中段，即8号回做给6号、球正飞向禁区前沿的那一刻。此时球已进入防守方禁区腹地，且攻方多点（6号、10号、5号、9号）都聚集在球周围形成接应包围，防守方最近球员仍被拉开在6米之外，所以系统判定的威胁值被推到接近1的极高水平。值得注意的是，虽然整段球路以向后回传为主，但最大威胁恰恰诞生于回传衔接的瞬间——说明这段进攻的威胁不在于向前的纵深，而在于把球稳定控制在禁区附近、持续压迫防守站位。",
+  "latency_ms": 10156.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 19432,
+    "completion_tokens": 1056,
+    "total_tokens": 20488
+  },
+  "error": null,
+  "trace_file": "trace_20260818_223021_7bb9b1cd0d4b.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 97
+      },
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final2_20260818_222756\\runs\\multi\\team_7s_threat\\0",
+  "ts": "2026-08-18 22:30:21",
+  "repeat": 0
+}

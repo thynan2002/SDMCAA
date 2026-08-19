@@ -1,0 +1,151 @@
+{
+  "system": "single",
+  "case_id": "qa_7s_ball_hmax",
+  "category": "general_qa",
+  "input": "这段7秒片段中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**结论：** 这7秒片段中，球在约第2.3秒至第2.8秒之间达到了最高高度，峰值高度为 **z = 5**（坐标单位）。\n\n**数据依据：**\n- 球路时间线显示，开场阶段球从第1.6秒起持续处于「高空」状态，直到约第3.6秒才转为「低平」——也就是说前一半时间球绝大多数时间在空中飞行。\n- 逐帧核验这段高空窗口的高度值：第2.3秒(z=5)、第2.4秒(z=5)、第2.5秒(z=5)、第2.6秒(z=5)、第2.7秒(z=5)、第2.8秒(z=5)，这是整段片段采样帧中的最高值；第1.8秒时为z=2（起飞初期），第3.0秒后回落至z=4，第3.5秒降到z=3。\n- 此后球权转入低平传导阶段，第5.5秒起甚至出现贴地滚动的「地面」球，再未回到高空。\n\n需要说明：数据仅提供上述坐标系的z值，未给出米制换算；如需要精确到米的换算，现有数据不足以直接给出，属于数据限制。",
+  "latency_ms": 17610.0,
+  "llm_calls": 5,
+  "tokens": {
+    "prompt_tokens": 24584,
+    "completion_tokens": 2036,
+    "total_tokens": 26620
+  },
+  "error": null,
+  "trace_file": "trace_20260818_174828_154f15c464ff.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 75
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 353
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 100
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 54
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 66
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 355
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 84
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 344
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 105
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 347
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 70
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 72
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 354
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 78
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 80
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 82
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 348
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 96
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 345
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke2_20260818_174417\\runs\\single\\qa_7s_ball_hmax\\0",
+  "ts": "2026-08-18 17:48:28",
+  "repeat": 0
+}

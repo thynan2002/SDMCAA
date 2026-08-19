@@ -1,0 +1,230 @@
+{
+  "system": "single",
+  "case_id": "adv_ambiguous_multi_target",
+  "category": "adversarial",
+  "input": "对比一下队里几个球员谁更积极？别只盯着一个人，把所有人都比一遍。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "我已经把两队所有球员的参与度、跑动、覆盖和速度数据都核了一遍。先说结论：**这场比赛的活跃度高度集中在 A 队右路进攻组，B 队绝大多数球员属于\"在跑但摸不到球\"，A 队 8号、7号、6号三人构成明显的核心活跃三角**。\n\n## 总体判断\n\nA 队是绝对的控球方和推进方（全队几乎全员参与球路），B 队只有零星几次触球，多数人全场处于\"空跑\"状态。所以**比\"谁更积极\"，A 队核心球员完胜 B 队**。\n\n## A 队：活跃度从高到低\n\n**8号 —— 全场参与度第一，最核心的持球人。** 他参与球路的次数是全场最高的，过半时间里球都离他很近；而且他的瞬时爆发速度是全场最高的，多次长时间带球向前推进（比赛末段连续十几秒由他控球）。活动区域在中场右路，是A队进攻的发动机。\n\n**7号 —— 黏球率极高，前场接应点。** 球在他附近的时间占比是除6号外全队最高的，多数时间待在前场右路，是进攻终结一侧的接应核心。跑动量大，速度也不慢。\n\n**6号 —— 几乎全程不离球，跑动范围最大的A队球员。** 他的场地覆盖面积是A队里最大的，接近球时间占比接近100%，也就是说球在哪他基本就在哪，属于高密度参与型。开场也是由他把球交给7号发起进攻。\n\n**3号 —— 中场推进串联者。** 参与次数不低，比赛中间有一段连续带球向左前推进，是A队从中场向前输送的重要一环，活动范围也比一般中场大。\n\n**10号 —— 参与不多但跑得最勤。** 他参与球路次数一般，但平均移动速度是A队最快的，活动范围还横跨右路和中路前场，属于\"跑位积极、拿球机会有限\"的类型。\n\n**1号、2号、4号、5号、9号 —— 基本没有触球。** 其中2号、4号跑动量被评为\"大\"，4号速度还不低，但整场参与球路次数为零，属于积极空跑但没进入进攻体系。\n\n## B 队：跑动有，但参与度普遍偏低\n\n**14号 —— B队里最亮眼的一个。** 他的瞬时速度是全场最高的，跑动量也大，但整场参与球路很少、球离他很近的时间占比也低——说明他**跑得快、跑得多，但球路没怎么找到他**。\n\n**18号 —— B队跑动范围最大的人。** 他的场地覆盖是B队最高的，平均速度也是B队最快的，活动范围横跨前场和中场，可惜触球只有寥寥几次。\n\n**15号、16号 —— 跑动量大但全程没摸到球。** 两人参与度相当，属于积极压上、但球路根本没经过他们脚下。\n\n**19号 —— B队触球最多但接球后球权很快就丢。** 他参与了多次球路，但球在他身边的占比反而极低，基本都是碰一下就传出去。\n\n**17号 —— 有意思的一个。** 虽然他参与球路次数为零，但球离他很近的时间占比却不低（约四分之一时间处在球附近），说明他常在球的周围活动但始终没接到球，属于\"差一点就能参与\"的类型。\n\n**11号、12号、13号、20号 —— B队中场，跑动量不小但全场零触球**，基本游离在比赛之外。\n\n**21号（门将）—— 几乎原地不动**，不参与对比。\n\n## 一句话总结\n\n**最积极：8号**（参与最多、爆发出色、持球推进核心）；**7号、6号**紧随其后形成A队右路三叉戟；**B队整体只是\"跑\"不是\"抢\"**，其中14号速度天赋最突出、18号覆盖最广，但都因拿不到球而显得低效。真正需要警惕的反而是8号——他几乎包办了进攻的最后处理。\n\n（注：所有结论基于已查询的战术事实、球路时间线与球员画像数据；若需要某个具体数值如\"8号最大速度具体是多少\"，我可以单独给出。）",
+  "latency_ms": 30359.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 17272,
+    "completion_tokens": 3414,
+    "total_tokens": 20686
+  },
+  "error": null,
+  "trace_file": "trace_20260818_205220_e3ee2a5c9352.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "1号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 206
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "2号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 207
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "3号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "4号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 207
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "5号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 207
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "6号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "7号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "8号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "9号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 207
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "10号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 223
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "11号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "12号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "13号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "14号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "15号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "16号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "17号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 209
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "18号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 222
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "19号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "20号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 208
+    },
+    {
+      "name": "get_player_profile",
+      "args": {
+        "jersey": "21号"
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 201
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_confirm_20260818_203335\\runs\\single\\adv_ambiguous_multi_target\\0",
+  "ts": "2026-08-18 20:52:20",
+  "repeat": 0
+}

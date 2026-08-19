@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "qa_7s_player_count",
+  "category": "general_qa",
+  "input": "这段7秒的数据一共跟踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段7秒的数据一共跟踪了 **19名球员**。\n\n数据依据：从球员参与度与跑动统计中可以看到，全部19名被跟踪球员均被列出——\n- **A队**：1号、2号、3号、4号、5号、6号、7号、8号、9号、10号，共10人；\n- **B队**：11号、12号、13号、14号、15号、16号、17号、18号，共8人；\n- **门将**：21号，1人。\n\n合计 **10 + 8 + 1 = 19人**。其中A队10人全员在场，B队8人，另有1名门将；所有19人在这7秒内都有轨迹被跟踪记录（其中部分球员参与了球路，部分虽未触球但跑动轨迹仍被跟踪）。",
+  "latency_ms": 7141.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7558,
+    "completion_tokens": 963,
+    "total_tokens": 8521
+  },
+  "error": null,
+  "trace_file": "trace_20260819_151657_20a2c9b2d080.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3667
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_7s_player_count\\3",
+  "ts": "2026-08-19 15:16:57",
+  "repeat": 3
+}

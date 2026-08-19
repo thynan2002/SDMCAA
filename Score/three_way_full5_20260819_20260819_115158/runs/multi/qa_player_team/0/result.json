@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_player_team",
+  "category": "general_qa",
+  "input": "7号球员是哪个队的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "7号是A队的球员。\n\n依据比赛事实中的球员清单与球队概况：7号所属队伍标注为A队，位置角色为右路前锋，主要活动区域在右路前场。战术定位上，他是A队右路进攻的重要参与者——在本片段中参与球路次数达14次，接近球时间占比67%，在队内仅次于8号，属于A队右路前场的核心发起点之一。",
+  "latency_ms": 3625.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9436,
+    "completion_tokens": 208,
+    "total_tokens": 9644
+  },
+  "error": null,
+  "trace_file": "trace_20260819_123857_0515b121b6e8.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_player_team\\0",
+  "ts": "2026-08-19 12:38:57",
+  "repeat": 0
+}

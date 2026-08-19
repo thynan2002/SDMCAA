@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "compare_6_7_active",
+  "category": "comparison",
+  "input": "对比6号和7号谁更积极？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**直接判断：这段约 12 秒的片段里，6号比7号更积极。**\n\n6号几乎一直在持续跑动，活动范围明显更大，从中后场一路向中场方向移动；相比之下，7号虽然有过一次较快的冲刺表现，但整体跑动量明显偏少，大部分时间移动相对有限。\n\n**数据依据：**\n\n从整段数据的累计跑动和平均速度来看，6号都明显高于7号，说明同样时间内6号的有效移动更多、更主动。7号虽然出现过一次更快的瞬间冲刺（峰值速度高于6号），但这只说明他有短时间爆发能力，并不等于整体积极性更强。综合跑动总量、持续移动时间和活动范围，6号是这段数据中更积极的一方。",
+  "latency_ms": 12313.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6088,
+    "completion_tokens": 1129,
+    "total_tokens": 7217
+  },
+  "error": null,
+  "trace_file": "trace_20260818_175205_2235827592a5.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke2_20260818_174417\\runs\\bare\\compare_6_7_active\\0",
+  "ts": "2026-08-18 17:52:05",
+  "context_chars": 8759,
+  "repeat": 0
+}

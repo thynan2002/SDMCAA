@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据第0帧数据，球并不在中圈——该帧并不是开球情景。球的实际位置在球场右侧禁区附近（坐标为 x=1194, y=696），战术区域为“禁区”，因此该位置属于威胁潜力较高的区域（威胁值0.653，仅作静态评估）。\n\n场上球权掌握在A队6号脚下，他与球距离为0，站位在右路前场；A队整体阵型偏向右路，大部分球员集中在右路中场区域，7号也在右路前场，距球约94。B队阵型同样集中在右路，多数球员处于右路中场，19号在右路前场、距球约147，是B队离球最近的球员。C队仅21号一人可见，位于右路中场，距球约346。该帧没有事件记录，且10号球员未出现在可见球员中。\n\n数据依据：帧号0，时间第0.0秒，球坐标(x=1194, y=696, z=0)，离球最近球员为A队6号。\n\n[核验过程：回溯原始数据 → 定位第0帧（0.0秒）→ 提取20名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 6922.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1108,
+    "completion_tokens": 692,
+    "total_tokens": 1800
+  },
+  "error": null,
+  "trace_file": "trace_20260819_160023_d9923a419110.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_ball_first\\4",
+  "ts": "2026-08-19 16:00:23",
+  "repeat": 4
+}

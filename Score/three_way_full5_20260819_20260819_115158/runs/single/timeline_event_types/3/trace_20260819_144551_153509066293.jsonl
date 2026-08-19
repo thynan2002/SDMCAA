@@ -1,0 +1,10 @@
+{"type": "run_start", "run_id": "153509066293", "ts": 1787121951.1074848}
+{"type": "span_start", "run_id": "153509066293", "span_id": "153509066293-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787121951.1120958, "attrs": {"input": "这段比赛主要发生了哪些球路事件类型？", "system": "single"}}
+{"type": "span_start", "run_id": "153509066293", "span_id": "153509066293-00002", "parent_id": "153509066293-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787121951.1125937, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 0}}
+{"type": "span_end", "run_id": "153509066293", "span_id": "153509066293-00002", "parent_id": "153509066293-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787121952.3904507, "dur_ms": 1277.86, "status": "ok"}
+{"type": "event", "run_id": "153509066293", "span_id": "153509066293-00001", "kind": "tool", "name": "tool[0]", "ts": 1787121952.3904507, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "153509066293", "span_id": "153509066293-00001", "kind": "tool", "name": "tool[1]", "ts": 1787121952.3944743, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 15.0}}
+{"type": "span_start", "run_id": "153509066293", "span_id": "153509066293-00003", "parent_id": "153509066293-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787121952.3944743, "attrs": {"system_len": 311, "user_len": 18, "tool_round": 1}}
+{"type": "span_end", "run_id": "153509066293", "span_id": "153509066293-00003", "parent_id": "153509066293-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787121959.5887005, "dur_ms": 7194.23, "status": "ok"}
+{"type": "span_end", "run_id": "153509066293", "span_id": "153509066293-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787121959.5887005, "dur_ms": 8476.6, "status": "ok"}
+{"type": "run_end", "run_id": "153509066293", "ts": 1787121959.5887005}

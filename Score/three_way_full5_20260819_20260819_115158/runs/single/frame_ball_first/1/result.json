@@ -1,0 +1,36 @@
+{
+  "system": "single",
+  "case_id": "frame_ball_first",
+  "category": "frame",
+  "input": "开球那一刻（第0帧）的场上情况是什么样的？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**开球瞬间（第0帧）的场上情况判断：**\n\n开球那一刻球停在场地中圈附近的开球点，处于地面高度（z=0），尚未有任何球路事件发生——比赛处于刚刚启动的静止状态。\n\n- **开球执行者明确**：6号球员正踩在球点上（距球0.0），是这次开球的直接执行者。\n- **近端支援紧凑**：7号距球约94个单位、19号距球约147个单位，两人紧贴开球点站位，构成典型的开球双保险/短传接应配置，为开球后的第一脚传递预留了近距离目标。\n- **外围接应层拉开**：15号（约293）、18号（约300）、14号（约314）、16号（约325）、4号（约327）分居球点外围，呈扇形散开，从开球瞬间就已为球路向中前场推进或向两侧调度做好了站位准备。\n\n**数据依据**：帧级快照显示，第0帧球位置为(1194, 696, z=0)，距球最近球员为6号（距球0.0），其后依次为7号、19号、15号、18号、14号、16号、4号；该帧无任何球路事件，确认比赛尚未有实际传递动作发生。",
+  "latency_ms": 7078.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 2790,
+    "completion_tokens": 614,
+    "total_tokens": 3404
+  },
+  "error": null,
+  "trace_file": "trace_20260819_132910_fc2bae474c2a.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 0
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 322
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\frame_ball_first\\1",
+  "ts": "2026-08-19 13:29:10",
+  "repeat": 1
+}

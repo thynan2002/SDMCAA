@@ -1,0 +1,50 @@
+{
+  "system": "single",
+  "case_id": "team_threat_peak",
+  "category": "team",
+  "input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "## 形势判断\n\n整场比赛对球门的威胁整体**峰值出现在一次进入禁区的推进中**。全场绝大多数时间里，球权多以短传在中场横向和回传中流转，向前推进占比很低，攻防转换频繁发生在比赛前段（约5~9秒），真正把球打进威胁区域（禁区）并形成高危机会的时刻非常有限，且集中在一个瞬间。\n\n## 数据依据\n\n- 全场球的**最大威胁值为 0.862**（威胁值0-1，越接近1越危险），这是一个**接近\"必进球级\"的高危威胁**。\n- 该峰值出现在**第7.4秒（帧223）**，威胁峰值区域为**禁区**。\n- 帧级核验显示，这一时刻球位于禁区内（坐标x=1119, y=381），球刚由16号传向14号（球路「16号→14号」），**14号持球时距离最近，且防守球员（5号）距球6个单位**，已形成禁区内直接面对球门的局面，因此威胁被推至全场最高。\n- 相比之下，比赛其余时段球路高度集中在右路中场/前场，进入进攻三区虽达21次，但绝大多数是横向与回传，未能转化为同等量级的射门威胁。\n\n如需进一步了解这一时刻如果14号选择射门/传球的结果，我可以调用反事实模拟进行推演。",
+  "latency_ms": 9485.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 14030,
+    "completion_tokens": 963,
+    "total_tokens": 14993
+  },
+  "error": null,
+  "trace_file": "trace_20260819_125911_daec89dc5386.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 223
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 349
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\team_threat_peak\\1",
+  "ts": "2026-08-19 12:59:11",
+  "repeat": 1
+}

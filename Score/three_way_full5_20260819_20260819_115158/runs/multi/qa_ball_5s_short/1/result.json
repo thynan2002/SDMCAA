@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_ball_5s_short",
+  "category": "general_qa",
+  "input": "这份数据里一共有多少名球员？球最高到过多少？",
+  "dataset": {
+    "person": "TestInput/Files/5s-person.csv",
+    "ball": "TestInput/Files/5s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "先给结论：这份数据里一共有20名球员；球的最高高度为5.01米。\n\n关于球员人数，具体构成是：A队10人、B队9人、另有一名门将（21号），合计20人；其中场上球员17人、门将3人（A队的5号、6号与21号均按门将标记）。这一点可以直接从比赛信息中的球员总数字段确认。\n\n关于球的高度，峰值高度为5.01米，出现在约第1.5秒（第45帧，按30fps折算），数据来源是球特征字段中的\"球峰值高度(米)\"与\"峰值高度出现时刻\"。这段高度爬升正好落在第一脚传球的时间窗口内——第0.9至1.7秒是13号传给9号的高空球，球在第1.5秒前后达到最高点，随后开始回落，这与该次传球为高空球、长传较多的空中球特征相符。",
+  "latency_ms": 6172.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 8272,
+    "completion_tokens": 602,
+    "total_tokens": 8874
+  },
+  "error": null,
+  "trace_file": "trace_20260819_131647_4f20ced1e163.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_ball_5s_short\\1",
+  "ts": "2026-08-19 13:16:47",
+  "repeat": 1
+}

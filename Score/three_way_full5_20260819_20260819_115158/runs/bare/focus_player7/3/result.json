@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "focus_player7",
+  "category": "focus",
+  "input": "聚焦7号",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**7号（红队）** 在本段约12.4秒的样本中，是一名**活动范围偏中后场边路的球员**，更像边路接应/防守角色，而非深入前场的进攻终端。\n\n从轨迹看，他开局靠近本方底线一侧，随后随着球队由后向前推进，沿边路向中场方向移动；但进入中场附近后基本停留在该区域，没有继续深入对方半场。整体来说，他的进攻参与度有限，对球门的直接威胁不大，主要作用是提供边路宽度和后场出球接应。\n\n他的跑动总量在红队中属于中游水平，平均移动速度也不算突出，说明绝大多数时间他没有进行持续高速跑动，更像是在站住位置等待或短距离调整。不过，他有过一次明显的高速冲刺，峰值速度在红队中位居前列，说明他具备短距离爆发加速的能力，只是这种冲刺在样本中出现得不多。",
+  "latency_ms": 37906.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6082,
+    "completion_tokens": 3683,
+    "total_tokens": 9765
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144440_816967554f81.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\focus_player7\\3",
+  "ts": "2026-08-19 14:44:40",
+  "context_chars": 8751,
+  "repeat": 3
+}

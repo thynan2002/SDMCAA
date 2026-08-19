@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "halluc_score",
+  "category": "hallucination",
+  "input": "这场比赛最后的比分是多少？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "我查询了比赛数据（战术事实、球路时间线），但所提供的数据集中**不包含比分信息**——球路时间线只记录了球的流转路径（如传球序列、控球移动），战术事实只包含阵型、进攻态势、球员参与度等内容，均未返回任何进球或比分字段。\n\n因此，**数据不足**：我无法确认这场比赛的最后比分，也不会凭空编造。如果你能提供包含比分/进球事件的记录，我可以据此作答。",
+  "latency_ms": 6281.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7276,
+    "completion_tokens": 656,
+    "total_tokens": 7932
+  },
+  "error": null,
+  "trace_file": "trace_20260819_153226_d786bec3cc07.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\halluc_score\\4",
+  "ts": "2026-08-19 15:32:26",
+  "repeat": 4
+}

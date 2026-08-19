@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第90帧场上局势：\n\n球位于前场边路（右路），靠近边线区域，尚未进入中路危险地带。该位置对球门的静态威胁潜力较低（威胁值0.45），属于阵地推进中的边路发展阶段，而非已形成直接攻门机会。\n\n双方站位整体偏向右侧半场：A队前场有10号（距球84）、6号（距球165）、7号（距球150）等球员分布在右路前场，中场多名球员集中在右路中路；B队则18号（距球121）、19号（距球166）在右路前场，其余多数球员处于右路中场。C队仅21号出现在右路中场，距球较远（351）。可见该时刻球权附近人员密集，双方在右路边路形成缠斗态势，但整体纵深尚未拉开。\n\n数据依据：帧号90，时间第3.0秒；球位置 (x=922, y=587, z=0)，战术区域为“前场边路”，威胁值0.45。\n\n[核验过程：回溯原始数据 → 定位第90帧（3.0秒）→ 提取21名球员位置 + 球坐标 + 0条事件]",
+  "latency_ms": 10531.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 1116,
+    "completion_tokens": 973,
+    "total_tokens": 2089
+  },
+  "error": null,
+  "trace_file": "trace_20260819_121006_46db0e834bc3.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\frame_ball_zone_90\\0",
+  "ts": "2026-08-19 12:10:06",
+  "repeat": 0
+}

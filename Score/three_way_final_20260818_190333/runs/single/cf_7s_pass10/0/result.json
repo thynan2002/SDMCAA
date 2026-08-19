@@ -1,0 +1,56 @@
+{
+  "system": "single",
+  "case_id": "cf_7s_pass10",
+  "category": "counterfactual",
+  "input": "如果7号在第3秒改为传球给10号会怎样？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "已调用反事实模拟工具完成推演，并与真实球路时间线做了对照核验。以下是结论。\n\n## 结论\n\n**如果7号在第3秒改为长传给10号，这次进攻会在中场陷入反复的球权拉锯，最终无果而终（结局为空，未形成射门/得分）。** 相比真实比赛中的处理，这个改法反而让推进更滞涩、更易丢球。\n\n## 反事实推演过程（帧90→372，约3.0秒~12.4秒）\n\n- 第3秒干预：7号放弃原决策，改为**长传**给10号；\n- 10号在第3.6秒接球，随后两次盘带推进（第3.9秒、第4.5秒），第5.1秒短传给6号；\n- 6号接球后回传7号（第5.5秒）；7号接球后连续**四次盘带推进**（第6秒至第7.8秒）；\n- 第7.8秒，19号完成抢断，此后进入中场拉锯：7号与19号之间连续出现**5次抢断/球权互换**；\n- 第10.1秒7号短传6号，但第10.2秒被19号空中拦截；19号传给18号后，6号又在第10.6秒空中拦截，随后6号与18号再次陷入多轮抢断互换；\n- 推演至约12.4秒结束，**没有出现射门，结局为空**。\n\n## 与真实比赛对照\n\n需要指出一个重要事实：**真实比赛里7号在第3.4秒本来就已经把球传给了10号**（中速、中距离、地面球），所以这个\"如果\"在时间与传球方式上与原场景有细微差别（反事实改为更早、更长的长传）。\n\n真实路径中，10号接球后控球片刻、于第5秒短传6号，随后球在6→18→19→7→15→16→14→3→8之间**连续流畅短传转移**，形成从一侧到另一侧的大范围推进，节奏明快、球权稳定。\n\n而反事实路径中，长传+提前干预反而让10号只能原地控球后回传，7号试图强行盘带推进，结果被19号这一防守中轴反复抢断，随后双方在中场高频互换球权，**进攻势头被彻底消耗在无谓的缠斗里**。\n\n**一句话：这个改法不可取——原本的中距离地面传球能带出流畅的整体推进，改成强行长传反而把球权送进了对手的抢断热区。**",
+  "latency_ms": 26219.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 7827,
+    "completion_tokens": 2960,
+    "total_tokens": 10787
+  },
+  "error": null,
+  "trace_file": "trace_20260818_191945_0003ad61585b.jsonl",
+  "tool_records": [
+    {
+      "name": "run_counterfactual_simulation",
+      "args": {
+        "subject_player": "7号",
+        "time_second": 3,
+        "altered_action": "pass",
+        "altered_target": "10号",
+        "duration_seconds": 0
+      },
+      "ok": true,
+      "dur_ms": 16.0,
+      "result_len": 655
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    },
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_final_20260818_190333\\runs\\single\\cf_7s_pass10\\0",
+  "ts": "2026-08-18 19:19:45",
+  "repeat": 0
+}

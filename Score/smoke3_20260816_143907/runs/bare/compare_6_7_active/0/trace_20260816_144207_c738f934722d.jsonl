@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "c738f934722d", "ts": 1786862527.9841785}
+{"type": "span_start", "run_id": "c738f934722d", "span_id": "c738f934722d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1786862527.9842653, "attrs": {"input": "对比6号和7号谁更积极？", "system": "bare"}}
+{"type": "span_start", "run_id": "c738f934722d", "span_id": "c738f934722d-00002", "parent_id": "c738f934722d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1786862527.9843004, "attrs": {"system_len": 293, "user_len": 8759}}
+{"type": "span_end", "run_id": "c738f934722d", "span_id": "c738f934722d-00002", "parent_id": "c738f934722d-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1786862563.2864456, "dur_ms": 35302.15, "status": "ok"}
+{"type": "span_end", "run_id": "c738f934722d", "span_id": "c738f934722d-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1786862563.287005, "dur_ms": 35302.74, "status": "ok"}
+{"type": "run_end", "run_id": "c738f934722d", "ts": 1786862563.2870846}

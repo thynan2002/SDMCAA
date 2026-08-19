@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "0316ecbc0ca3", "ts": 1787125081.7219472}
+{"type": "span_start", "run_id": "0316ecbc0ca3", "span_id": "0316ecbc0ca3-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787125081.7219472, "attrs": {"input": "比赛中球最高到过多少高度？", "system": "bare"}}
+{"type": "span_start", "run_id": "0316ecbc0ca3", "span_id": "0316ecbc0ca3-00002", "parent_id": "0316ecbc0ca3-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787125081.7219472, "attrs": {"system_len": 293, "user_len": 8760}}
+{"type": "span_end", "run_id": "0316ecbc0ca3", "span_id": "0316ecbc0ca3-00002", "parent_id": "0316ecbc0ca3-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787125083.7410333, "dur_ms": 2019.09, "status": "ok"}
+{"type": "span_end", "run_id": "0316ecbc0ca3", "span_id": "0316ecbc0ca3-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787125083.7415333, "dur_ms": 2019.59, "status": "ok"}
+{"type": "run_end", "run_id": "0316ecbc0ca3", "ts": 1787125083.7415333}

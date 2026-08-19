@@ -1,0 +1,9 @@
+{"type": "run_start", "run_id": "7bbdc5ec6c01", "ts": 1787117436.3983328}
+{"type": "span_start", "run_id": "7bbdc5ec6c01", "span_id": "7bbdc5ec6c01-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117436.4033365, "attrs": {"input": "描述一下比赛前5秒的球路变化。", "system": "single"}}
+{"type": "span_start", "run_id": "7bbdc5ec6c01", "span_id": "7bbdc5ec6c01-00002", "parent_id": "7bbdc5ec6c01-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117436.4033365, "attrs": {"system_len": 311, "user_len": 15, "tool_round": 0}}
+{"type": "span_end", "run_id": "7bbdc5ec6c01", "span_id": "7bbdc5ec6c01-00002", "parent_id": "7bbdc5ec6c01-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787117437.7066464, "dur_ms": 1303.31, "status": "ok"}
+{"type": "event", "run_id": "7bbdc5ec6c01", "span_id": "7bbdc5ec6c01-00001", "kind": "tool", "name": "tool[0]", "ts": 1787117437.7071493, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "7bbdc5ec6c01", "span_id": "7bbdc5ec6c01-00003", "parent_id": "7bbdc5ec6c01-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117437.7071493, "attrs": {"system_len": 311, "user_len": 15, "tool_round": 1}}
+{"type": "span_end", "run_id": "7bbdc5ec6c01", "span_id": "7bbdc5ec6c01-00003", "parent_id": "7bbdc5ec6c01-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787117447.1332192, "dur_ms": 9426.07, "status": "ok"}
+{"type": "span_end", "run_id": "7bbdc5ec6c01", "span_id": "7bbdc5ec6c01-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787117447.133722, "dur_ms": 10730.39, "status": "ok"}
+{"type": "run_end", "run_id": "7bbdc5ec6c01", "ts": 1787117447.133722}

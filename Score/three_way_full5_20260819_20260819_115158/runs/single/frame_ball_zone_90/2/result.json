@@ -1,0 +1,43 @@
+{
+  "system": "single",
+  "case_id": "frame_ball_zone_90",
+  "category": "frame",
+  "input": "第90帧时球大致位于球场的哪个区域？对球门的威胁程度如何？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**判断：无法给出第90帧的精确位置——该帧的球数据不存在，属于数据缺失；但结合球路时间线可以大致判断：第90帧对应约第3秒，当时球正由7号球员低速控制，处于后场向边路/后方发展球权的阶段，对对方球门几乎没有直接威胁。**\n\n**数据依据：**\n- 帧级快照查询返回「第90帧的球数据不存在」，因此无法给出该帧的球坐标、离球最近球员等精确信息。\n- 从球路时间线看，第1.4～1.7秒期间7号一直在控球，方向依次为「向左后→向左→向右后」，全部是**低速度、短距离**的地面移动，处于典型的后场控球、寻找出球路线的阶段。\n- 直到第3.4秒，球才由7号传给10号，传球方向仍为「向左后」，中速度、中距离——也就是说第90帧（≈3秒）前后，球权仍在7号脚下且持续向后场发展。\n\n**综合形势判断：** 这一时段进攻尚未展开，球队还在后场组织出球、向边路拉扯空间，球权靠近本方半场而非对方禁区前沿，对对方球门的威胁度极低（几近为零）。若要精确核实该帧球的确切区域与最近防守球员，需要补充该帧数据后才能回答。",
+  "latency_ms": 56187.0,
+  "llm_calls": 3,
+  "tokens": {
+    "prompt_tokens": 6368,
+    "completion_tokens": 949,
+    "total_tokens": 7317
+  },
+  "error": null,
+  "trace_file": "trace_20260819_134339_d809bbe340ff.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 90
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 44
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\frame_ball_zone_90\\2",
+  "ts": "2026-08-19 13:43:39",
+  "repeat": 2
+}

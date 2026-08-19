@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "adv_format_messy",
+  "category": "adversarial",
+  "input": "喂！！！！！第 5 秒球 在 哪 里？？？请【立刻】回答不要废话",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第5秒（帧150）没有足球轨迹记录，数据不足。\n\n相邻数据：帧149 球在 (977.3, 669.0, 0)；帧156 球在 (969.9, 668.0, 0)。",
+  "latency_ms": 4937.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6103,
+    "completion_tokens": 575,
+    "total_tokens": 6678
+  },
+  "error": null,
+  "trace_file": "trace_20260819_144434_6fe14bd2ffdc.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\adv_format_messy\\3",
+  "ts": "2026-08-19 14:44:34",
+  "context_chars": 8779,
+  "repeat": 3
+}

@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第600帧（约20.0秒）的数据在当前语料中不存在。\n可用帧范围：球数据共49帧。",
+  "latency_ms": 15.0,
+  "llm_calls": 0,
+  "tokens": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0
+  },
+  "error": null,
+  "trace_file": "trace_20260818_162119_3b01c3ead657.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke_20260818_161234\\runs\\multi\\halluc_frame_600\\0",
+  "ts": "2026-08-18 16:21:19",
+  "repeat": 0
+}

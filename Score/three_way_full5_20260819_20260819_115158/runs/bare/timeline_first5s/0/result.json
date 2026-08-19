@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "timeline_first5s",
+  "category": "timeline",
+  "input": "描述一下比赛前5秒的球路变化。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "**形势判断**：比赛开场前5秒，球权一直掌握在红方（A队）手中，整体处于**后场到中场的控球与转移阶段**，没有形成直接威胁。球路呈现“右路启动→横向转移到中路偏左→再回到右路”的走向，节奏平稳，属于阵地组织而非快速反击。\n\n**数据依据**：  \n- 第0帧，球出现在场地右路靠近底线的位置，与红方6号球员位置重合，说明由红方后场/边路球员控制。  \n- 到第50帧左右，球沿右侧边路向前推进了一段距离，此时与红方7号球员位置重合，说明红方在右路完成了一次短传或带球衔接。  \n- 随后球路出现一段“跳变”——第102帧至第123帧，球出现在场地中路偏左的区域，与红方10号球员位置重合，说明球被大范围转移到另一侧，应由红方10号接应。  \n- 到第149帧（仍在5秒内），球又回到右路，再次与红方6号球员位置重合，说明红方6号重新拿到球权。  \n- 整个过程足球高度始终为0米，即一直是地面球，没有起高球。  \n\n**需要说明**：足球轨迹在第50帧到第102帧之间没有记录，因此从右路到左路这一“转移”是瞬间发生的，还是中途有连续的地面传递，现有数据无法判断。",
+  "latency_ms": 23859.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6090,
+    "completion_tokens": 2138,
+    "total_tokens": 8228
+  },
+  "error": null,
+  "trace_file": "trace_20260819_124117_e0f31c852028.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\timeline_first5s\\0",
+  "ts": "2026-08-19 12:41:17",
+  "context_chars": 8762,
+  "repeat": 0
+}

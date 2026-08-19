@@ -1,0 +1,11 @@
+{"type": "run_start", "run_id": "cc259192322b", "ts": 1787064012.8001046}
+{"type": "span_start", "run_id": "cc259192322b", "span_id": "cc259192322b-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787064012.8046098, "attrs": {"input": "如果7号在第3秒改为传球给10号会怎样？", "system": "single"}}
+{"type": "span_start", "run_id": "cc259192322b", "span_id": "cc259192322b-00002", "parent_id": "cc259192322b-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787064012.8046098, "attrs": {"system_len": 311, "user_len": 20, "tool_round": 0}}
+{"type": "span_end", "run_id": "cc259192322b", "span_id": "cc259192322b-00002", "parent_id": "cc259192322b-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787064015.7309036, "dur_ms": 2926.29, "status": "ok"}
+{"type": "event", "run_id": "cc259192322b", "span_id": "cc259192322b-00001", "kind": "tool", "name": "tool[0]", "ts": 1787064015.7434123, "attrs": {"tool": "run_counterfactual_simulation", "ok": true, "dur_ms": 16.0}}
+{"type": "event", "run_id": "cc259192322b", "span_id": "cc259192322b-00001", "kind": "tool", "name": "tool[1]", "ts": 1787064015.7434123, "attrs": {"tool": "get_frame_snapshot", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "cc259192322b", "span_id": "cc259192322b-00001", "kind": "tool", "name": "tool[2]", "ts": 1787064015.7434123, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "cc259192322b", "span_id": "cc259192322b-00003", "parent_id": "cc259192322b-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787064015.7434123, "attrs": {"system_len": 311, "user_len": 20, "tool_round": 1}}
+{"type": "span_end", "run_id": "cc259192322b", "span_id": "cc259192322b-00003", "parent_id": "cc259192322b-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787064034.2436056, "dur_ms": 18500.19, "status": "ok"}
+{"type": "span_end", "run_id": "cc259192322b", "span_id": "cc259192322b-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787064034.2441044, "dur_ms": 21439.49, "status": "ok"}
+{"type": "run_end", "run_id": "cc259192322b", "ts": 1787064034.2441044}

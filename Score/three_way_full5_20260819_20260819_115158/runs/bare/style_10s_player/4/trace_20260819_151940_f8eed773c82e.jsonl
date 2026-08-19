@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "f8eed773c82e", "ts": 1787123980.4302568}
+{"type": "span_start", "run_id": "f8eed773c82e", "span_id": "f8eed773c82e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123980.4307585, "attrs": {"input": "哪个球员的跑动距离最长？他的风格特点是什么？", "system": "bare"}}
+{"type": "span_start", "run_id": "f8eed773c82e", "span_id": "f8eed773c82e-00002", "parent_id": "f8eed773c82e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123980.4307585, "attrs": {"system_len": 293, "user_len": 6972}}
+{"type": "span_end", "run_id": "f8eed773c82e", "span_id": "f8eed773c82e-00002", "parent_id": "f8eed773c82e-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787123992.479903, "dur_ms": 12049.14, "status": "ok"}
+{"type": "span_end", "run_id": "f8eed773c82e", "span_id": "f8eed773c82e-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787123992.480512, "dur_ms": 12049.75, "status": "ok"}
+{"type": "run_end", "run_id": "f8eed773c82e", "ts": 1787123992.480512}

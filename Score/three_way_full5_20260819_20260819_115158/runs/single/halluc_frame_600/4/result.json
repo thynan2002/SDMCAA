@@ -1,0 +1,43 @@
+{
+  "system": "single",
+  "case_id": "halluc_frame_600",
+  "category": "hallucination",
+  "input": "第20秒发生了什么？请详细描述那一刻的攻防态势。",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "我先核查了第20秒对应的帧数据与球路时间线，结果如下：\n\n**第20秒的数据不足，无法描述那一刻的攻防态势。**\n\n依据：\n- 第20秒对应第600帧（帧率30），但帧快照查询返回「第600帧的球数据不存在」。\n- 球路时间线数据的末尾仅覆盖到约11.6秒，之后没有任何球路事件记录。也就是说，这场比赛的可用数据截止在11秒多，第20秒根本不在已收录数据的范围内。\n\n为避免误导，我不能凭空补写第20秒发生了什么。\n\n**顺带说明现有数据的覆盖情况（仅到约11.6秒）**，供你参考当前数据能支撑的分析边界：\n- 从开局到约11.6秒，球权基本掌握在蓝方一侧，呈现明显的后场-中场横向倒脚与推进节奏：先由6号→7号在中后场起手，随后7号短传10号、10号回传6号，6号把球传导至18号、19号，再经7号、15号、16号、14号一路向右后方横向转移，最后由3号带球向左前推进，交到8号脚下。\n- 这段过程以短距离、中低速的地面/低平球传导为主，球队在缓慢地寻找推进空间，尚处于阵地组织阶段，没有形成威胁性进攻。\n\n如果你需要，我可以继续核验这段有限时间内的某一具体时刻（比如5秒、10秒等已覆盖的帧），或说明哪些球员的数据可用。",
+  "latency_ms": 9031.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 4976,
+    "completion_tokens": 963,
+    "total_tokens": 5939
+  },
+  "error": null,
+  "trace_file": "trace_20260819_154210_6900fe62e1aa.jsonl",
+  "tool_records": [
+    {
+      "name": "get_frame_snapshot",
+      "args": {
+        "frame": 600
+      },
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 45
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\halluc_frame_600\\4",
+  "ts": "2026-08-19 15:42:10",
+  "repeat": 4
+}

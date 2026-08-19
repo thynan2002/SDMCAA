@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "5fd634dd0a29", "ts": 1787114777.330211}
+{"type": "span_start", "run_id": "5fd634dd0a29", "span_id": "5fd634dd0a29-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114777.3307078, "attrs": {"input": "这段比赛的最后阶段谁进球了？请详细描述进球过程。", "system": "bare"}}
+{"type": "span_start", "run_id": "5fd634dd0a29", "span_id": "5fd634dd0a29-00002", "parent_id": "5fd634dd0a29-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114777.3307078, "attrs": {"system_len": 293, "user_len": 8771}}
+{"type": "span_end", "run_id": "5fd634dd0a29", "span_id": "5fd634dd0a29-00002", "parent_id": "5fd634dd0a29-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787114854.6643398, "dur_ms": 77333.63, "status": "ok"}
+{"type": "span_end", "run_id": "5fd634dd0a29", "span_id": "5fd634dd0a29-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787114854.6643398, "dur_ms": 77333.63, "status": "ok"}
+{"type": "run_end", "run_id": "5fd634dd0a29", "ts": 1787114854.6648407}

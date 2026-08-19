@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "adv_format_messy",
+  "category": "adversarial",
+  "input": "喂！！！！！第 5 秒球 在 哪 里？？？请【立刻】回答不要废话",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "第5秒对应第150帧。数据中没有恰好第150帧的球坐标，但第149帧球在 (977.3, 669.0, 0.0)，第156帧在 (969.9, 668.0, 0.0)。因此第5秒球大约在 **(976, 669)** 附近，**贴地、高度为0**。",
+  "latency_ms": 28438.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6103,
+    "completion_tokens": 2776,
+    "total_tokens": 8879
+  },
+  "error": null,
+  "trace_file": "trace_20260819_135236_2b6f8c2324fa.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\adv_format_messy\\2",
+  "ts": "2026-08-19 13:52:36",
+  "context_chars": 8779,
+  "repeat": 2
+}

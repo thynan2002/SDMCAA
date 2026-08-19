@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "qa_7s_player_count",
+  "category": "general_qa",
+  "input": "这段7秒的数据一共跟踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "这段7秒数据共跟踪了 **19名球员**。\n\n数据依据：\n\n- **A队10人**：1、2、3、4、5、6、7、8、9、10号，按平均站位推断为0-7-3结构（中场7人、前锋3人）。\n- **B队8人**：11、12、13、14、15、16、17、18号，其中阵型口径下为0-5-2（中场5人、前锋2人），16号也有轨迹记录。\n- **门将1人**：21号。\n\n两队在\"球员参与度与跑动\"统计中共出现19名球员，与该口径一致。需要说明的是，其中约半数球员（如A队2、4、9号，B队12、13、14、16号）全程未触球，参与度集中于7号（26次）、1号（13次）、17号（10次）等少数人。",
+  "latency_ms": 7797.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7495,
+    "completion_tokens": 1017,
+    "total_tokens": 8512
+  },
+  "error": null,
+  "trace_file": "trace_20260819_160708_50a6b1ce02cf.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 15.0,
+      "result_len": 3667
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4349
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_7s_player_count\\4",
+  "ts": "2026-08-19 16:07:08",
+  "repeat": 4
+}

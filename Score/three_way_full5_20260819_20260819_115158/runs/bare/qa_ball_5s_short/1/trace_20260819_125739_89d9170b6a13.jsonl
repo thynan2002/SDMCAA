@@ -1,0 +1,6 @@
+{"type": "run_start", "run_id": "89d9170b6a13", "ts": 1787115459.0111914}
+{"type": "span_start", "run_id": "89d9170b6a13", "span_id": "89d9170b6a13-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787115459.0111914, "attrs": {"input": "这份数据里一共有多少名球员？球最高到过多少？", "system": "bare"}}
+{"type": "span_start", "run_id": "89d9170b6a13", "span_id": "89d9170b6a13-00002", "parent_id": "89d9170b6a13-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787115459.0111914, "attrs": {"system_len": 293, "user_len": 5326}}
+{"type": "span_end", "run_id": "89d9170b6a13", "span_id": "89d9170b6a13-00002", "parent_id": "89d9170b6a13-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787115463.1886322, "dur_ms": 4177.44, "status": "ok"}
+{"type": "span_end", "run_id": "89d9170b6a13", "span_id": "89d9170b6a13-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787115463.1891348, "dur_ms": 4177.94, "status": "ok"}
+{"type": "run_end", "run_id": "89d9170b6a13", "ts": 1787115463.1891348}

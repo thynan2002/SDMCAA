@@ -1,0 +1,41 @@
+{
+  "system": "single",
+  "case_id": "qa_player_count",
+  "category": "general_qa",
+  "input": "这份数据里一共追踪了多少名球员？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "根据数据统计，这份数据一共追踪了 **21 名球员**。\n\n数据依据：球员参与度与跑动名单中完整列出了 21 个球衣号，其中 **A 队 10 名**（1、2、3、4、5、6、7、8、9、10 号），**B 队 10 名**（11、12、13、14、15、16、17、18、19、20 号），另有 **21 号门将**1 名。A 队阵型按平均站位推断为 0-6-4（6 中场、4 前锋），B 队为 0-4-6（4 中场、6 前锋），两队均无后卫线球员入列，这与名单中合计 21 人的口径一致。",
+  "latency_ms": 5968.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 7358,
+    "completion_tokens": 603,
+    "total_tokens": 7961
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142753_6a6ec68ff1b6.jsonl",
+  "tool_records": [
+    {
+      "name": "get_tactical_facts",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 4042
+    },
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0,
+      "result_len": 3807
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\single\\qa_player_count\\2",
+  "ts": "2026-08-19 14:27:53",
+  "repeat": 2
+}

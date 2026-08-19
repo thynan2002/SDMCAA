@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_player_zone_7",
+  "category": "style",
+  "input": "7号主要活动在球场的哪个区域？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "7号主要活动在球场的右路前场区域，也就是进攻端的右路前场，战术口径上其核心活动范围落在禁区一带。\n\n因为球员位置分布显示，7号在右路前场的时间接近全部（区域分布Top3中右路前场占比100%），完全没有出现在中场或后场；结合他的位置角色为右路前锋，以及战术威胁区域中将7号标注在禁区，可以判断他是一名固定驻留在右路进攻前沿的球员——既是右路推进的接应点，也承担着禁区内的终结职责。这与他在球路线索中的角色一致：他多次在右路前场接球、控球并完成向队友的过渡，是整个右路攻势的支点之一。",
+  "latency_ms": 5547.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 9439,
+    "completion_tokens": 472,
+    "total_tokens": 9911
+  },
+  "error": null,
+  "trace_file": "trace_20260818_205213_4dd475a09fe5.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_confirm_20260818_203335\\runs\\multi\\qa_player_zone_7\\0",
+  "ts": "2026-08-18 20:52:13",
+  "repeat": 0
+}

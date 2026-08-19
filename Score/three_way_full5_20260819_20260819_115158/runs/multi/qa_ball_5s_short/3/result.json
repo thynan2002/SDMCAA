@@ -1,0 +1,26 @@
+{
+  "system": "multi",
+  "case_id": "qa_ball_5s_short",
+  "category": "general_qa",
+  "input": "这份数据里一共有多少名球员？球最高到过多少？",
+  "dataset": {
+    "person": "TestInput/Files/5s-person.csv",
+    "ball": "TestInput/Files/5s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "先给结论：这份数据里一共有 20 名球员；球最高到达 5.01 米。\n\n具体说明如下——\n\n首先，关于球员人数。数据中球员总数为 20 人，来源是「比赛信息」的球员总数字段。其中 A 队 10 人、B 队 9 人，另有 1 名门将（21号），场上同时跟踪到的球员为 17 人，门将 3 人。\n\n其次，关于球的峰值高度。球峰值高度为 5.01 米，出现在约第 1.5 秒（第 45 帧，按 30fps 帧率换算），数据来源是「球特征」中的球峰值高度字段。该峰值出现在片段开端的第一个球路事件（13号→9号）期间，那是一次中距离高空球传递，球在爬升阶段于第 1.5 秒左右到达最高点后开始回落。从整体看，本片段高空球比例偏高、长传较多，与这个 5 米级的峰值高度是相互印证的。",
+  "latency_ms": 3891.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 8272,
+    "completion_tokens": 421,
+    "total_tokens": 8693
+  },
+  "error": null,
+  "trace_file": "trace_20260819_150051_aee64ce9f143.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\multi\\qa_ball_5s_short\\3",
+  "ts": "2026-08-19 15:00:51",
+  "repeat": 3
+}

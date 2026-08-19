@@ -1,0 +1,10 @@
+{"type": "run_start", "run_id": "2462dcbf2874", "ts": 1787120802.8777485}
+{"type": "span_start", "run_id": "2462dcbf2874", "span_id": "2462dcbf2874-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787120802.883248, "attrs": {"input": "整段比赛中球对球门形成的最大威胁大约是多少？（威胁值 0-1，越接近1越危险）", "system": "single"}}
+{"type": "span_start", "run_id": "2462dcbf2874", "span_id": "2462dcbf2874-00002", "parent_id": "2462dcbf2874-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787120802.883248, "attrs": {"system_len": 311, "user_len": 39, "tool_round": 0}}
+{"type": "span_end", "run_id": "2462dcbf2874", "span_id": "2462dcbf2874-00002", "parent_id": "2462dcbf2874-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787120805.271566, "dur_ms": 2388.32, "status": "ok"}
+{"type": "event", "run_id": "2462dcbf2874", "span_id": "2462dcbf2874-00001", "kind": "tool", "name": "tool[0]", "ts": 1787120805.2755685, "attrs": {"tool": "get_tactical_facts", "ok": true, "dur_ms": 0.0}}
+{"type": "event", "run_id": "2462dcbf2874", "span_id": "2462dcbf2874-00001", "kind": "tool", "name": "tool[1]", "ts": 1787120805.2755685, "attrs": {"tool": "get_ball_timeline", "ok": true, "dur_ms": 0.0}}
+{"type": "span_start", "run_id": "2462dcbf2874", "span_id": "2462dcbf2874-00003", "parent_id": "2462dcbf2874-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787120805.2755685, "attrs": {"system_len": 311, "user_len": 39, "tool_round": 1}}
+{"type": "span_end", "run_id": "2462dcbf2874", "span_id": "2462dcbf2874-00003", "parent_id": "2462dcbf2874-00001", "kind": "llm", "name": "llm_call[1]", "ts": 1787120810.4865015, "dur_ms": 5210.93, "status": "ok"}
+{"type": "span_end", "run_id": "2462dcbf2874", "span_id": "2462dcbf2874-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787120810.4870002, "dur_ms": 7603.75, "status": "ok"}
+{"type": "run_end", "run_id": "2462dcbf2874", "ts": 1787120810.4870002}

@@ -1,0 +1,33 @@
+{
+  "system": "multi",
+  "case_id": "qa_7s_ball_hmax",
+  "category": "general_qa",
+  "input": "这段7秒片段中球最高到过多少高度？",
+  "dataset": {
+    "person": "TestInput/Files/7s-person.csv",
+    "ball": "TestInput/Files/7s-ball.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "结论：根据当前数据，无法给出球的具体高度数值（如米数），因为这套数据只记录了球高度的档位，没有采集精确的高度数值。在档位层面，球在本片段中达到的最高档位是\"高空\"。\n\n依据如下：整段7.2秒的球路线索中，高度只分为\"地面\"\"低平\"\"高空\"三档，没有任何一条记录了具体米数。其中\"高空\"档出现在约1.6秒至4.6秒，也就是17号从右路前场向后处理球、经未知球员过渡给8号，再经6号、10号、15号流转到7号脚下这一长串传递过程——这期间球几乎始终处于\"高空\"状态，是整段唯一持续保持最高高度档位的阶段。这也与战术事实中\"空中球占比高达七成以上\"的传球特征互相印证：本片段前中段是一段连续的空中传递衔接。\n\n因此回答是：球最高到过\"高空\"这一档位，时间集中在片段前中段（约第1.6秒到第4.6秒），但具体精确高度数值数据中不存在，无法给出米数。",
+  "latency_ms": 12375.0,
+  "llm_calls": 2,
+  "tokens": {
+    "prompt_tokens": 20961,
+    "completion_tokens": 1264,
+    "total_tokens": 22225
+  },
+  "error": null,
+  "trace_file": "trace_20260818_161442_ebe971a0b76a.jsonl",
+  "tool_records": [
+    {
+      "name": "get_ball_timeline",
+      "args": {},
+      "ok": true,
+      "dur_ms": 0.0
+    }
+  ],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_smoke_20260818_161234\\runs\\multi\\qa_7s_ball_hmax\\0",
+  "ts": "2026-08-18 16:14:42",
+  "repeat": 0
+}

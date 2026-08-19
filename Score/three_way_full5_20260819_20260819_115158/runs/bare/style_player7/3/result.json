@@ -1,0 +1,27 @@
+{
+  "system": "bare",
+  "case_id": "style_player7",
+  "category": "style",
+  "input": "7号的跑动风格是什么？",
+  "dataset": {
+    "person": "TestInput/Files/12s_person2d.csv",
+    "ball": "TestInput/Files/12s_soccer3d.csv"
+  },
+  "model": "deepseek-v4-flash",
+  "temperature": 0.85,
+  "answer": "7号在片段中的跑动风格可以概括为：**左路边路球员，以纵向直线跑动为主，整体跑动量不大，但具备一次明显的爆发冲刺能力；在球队由后向前推进时，他会从中后场沿边路跟上，随后在中场附近减速站位，属于“边路接应型”跑动，而不是持续大范围来回冲刺的类型。**\n\n**数据依据**：  \n- 从7号的位置变化看，他的活动范围几乎集中在球场的左侧边路区域，横向（x方向）移动很少，主要沿纵向往本方前场方向移动，说明他的跑动非常“直”，较少横向扯动或回撤接应。  \n- 在整段12秒左右的时间里，7号的累计跑动距离在全部球员中属于中等偏下，平均移动速度也不快，说明他多数时间是慢跑或走位，没有持续高速跑动。  \n- 但与此同时，他的峰值速度明显高于自己的平均速度，显示他在某个阶段曾有一次突然加速，说明他并非完全不跑，而是更倾向于在需要时“爆发一下”。  \n- 后段他的位置长时间保持在同一个区域附近，说明到达中场中路偏左的位置后，他没有继续深入前场，而是停在该区域，更像是在完成一次边路前插后转入站位/保护。",
+  "latency_ms": 21687.0,
+  "llm_calls": 1,
+  "tokens": {
+    "prompt_tokens": 6086,
+    "completion_tokens": 1804,
+    "total_tokens": 7890
+  },
+  "error": null,
+  "trace_file": "trace_20260819_142856_d6714928d6dd.jsonl",
+  "tool_records": [],
+  "out_dir": "D:\\GHY\\2.Files\\football-agent\\Score\\three_way_full5_20260819_20260819_115158\\runs\\bare\\style_player7\\3",
+  "ts": "2026-08-19 14:28:56",
+  "context_chars": 8758,
+  "repeat": 3
+}
