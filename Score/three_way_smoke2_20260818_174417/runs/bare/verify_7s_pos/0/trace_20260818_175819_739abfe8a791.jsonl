@@ -1,6 +1,0 @@
-{"type": "run_start", "run_id": "739abfe8a791", "ts": 1787047099.7110002}
-{"type": "span_start", "run_id": "739abfe8a791", "span_id": "739abfe8a791-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787047099.711501, "attrs": {"input": "不对吧，7号第3秒的时候明明在中场附近，你确定吗？请核验数据。", "system": "bare"}}
-{"type": "span_start", "run_id": "739abfe8a791", "span_id": "739abfe8a791-00002", "parent_id": "739abfe8a791-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787047099.711501, "attrs": {"system_len": 293, "user_len": 8778}}
-{"type": "span_end", "run_id": "739abfe8a791", "span_id": "739abfe8a791-00002", "parent_id": "739abfe8a791-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787047137.1733005, "dur_ms": 37461.8, "status": "ok"}
-{"type": "span_end", "run_id": "739abfe8a791", "span_id": "739abfe8a791-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787047137.1738005, "dur_ms": 37462.3, "status": "ok"}
-{"type": "run_end", "run_id": "739abfe8a791", "ts": 1787047137.1738005}

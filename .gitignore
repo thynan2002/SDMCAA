@@ -16,6 +16,7 @@ build/
 # IDE
 .vscode/
 .idea/
+.workbuddy/
 *.swp
 *.swo
 

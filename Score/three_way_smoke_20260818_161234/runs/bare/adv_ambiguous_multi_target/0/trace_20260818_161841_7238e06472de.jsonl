@@ -1,6 +1,0 @@
-{"type": "run_start", "run_id": "7238e06472de", "ts": 1787041121.2860813}
-{"type": "span_start", "run_id": "7238e06472de", "span_id": "7238e06472de-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787041121.2860813, "attrs": {"input": "对比一下队里几个球员谁更积极？别只盯着一个人，把所有人都比一遍。", "system": "bare"}}
-{"type": "span_start", "run_id": "7238e06472de", "span_id": "7238e06472de-00002", "parent_id": "7238e06472de-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787041121.2865815, "attrs": {"system_len": 293, "user_len": 8779}}
-{"type": "span_end", "run_id": "7238e06472de", "span_id": "7238e06472de-00002", "parent_id": "7238e06472de-00001", "kind": "llm", "name": "llm_call[0]", "ts": 1787041208.549774, "dur_ms": 87263.19, "status": "ok"}
-{"type": "span_end", "run_id": "7238e06472de", "span_id": "7238e06472de-00001", "parent_id": null, "kind": "turn", "name": "turn[0]", "ts": 1787041208.550273, "dur_ms": 87264.19, "status": "ok"}
-{"type": "run_end", "run_id": "7238e06472de", "ts": 1787041208.550273}
