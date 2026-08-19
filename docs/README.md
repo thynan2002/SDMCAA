@@ -49,7 +49,7 @@ football-agent/
 ├── harness/                 # 统一 Harness（trace / golden / 回放）
 ├── eval/                    # 对比评测框架
 ├── web/                     # FastAPI + SSE Web 界面
-├── tests/                   # pytest 测试（111 个）
+├── tests/                   # pytest 测试（127 个）
 ├── TestInput/               # 示例数据
 └── docs/                    # 本目录
 ```

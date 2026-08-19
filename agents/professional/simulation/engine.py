@@ -27,6 +27,22 @@ GOAL_HALF_WIDTH = 40.0              # 球门半宽（px ≈ 3.6m）
 GOAL_X = FIELD_WIDTH / 2            # 球门中心 x
 
 
+def assign_attack_directions(team_avg_y: dict[str, float]) -> dict[str, int]:
+    """进攻方向约定的单一事实源：按各队平均 y 升序交替分配方向。
+
+    平均 y 偏小的队守 y=0 球门、攻 +y（+1），次小的队攻 -y（-1），
+    以此类推交替分配；硬约束：不同队伍必须攻相反方向。
+    TrajectorySimulator._attack_directions 与
+    CounterfactualEngineAgent._infer_attack_dir 均委托此函数。
+    """
+    directions: dict[str, int] = {}
+    sign = 1
+    for color in sorted(team_avg_y, key=lambda c: team_avg_y[c]):
+        directions[color] = sign
+        sign = -sign
+    return directions
+
+
 @dataclass
 class SimulationResult:
     """一次反事实模拟的输出。"""
@@ -432,21 +448,15 @@ class TrajectorySimulator:
         return position_at_frame(traj, frame)
 
     def _attack_directions(self, players: dict[str, SimPlayer]) -> dict[str, int]:
-        """判定各队进攻方向。
+        """判定各队进攻方向（约定见 assign_attack_directions）。
 
-        硬约束：不同队伍必须攻相反方向。按各队干预帧平均 y 排序交替分配
-        （平均 y 偏小的队守 y=0 球门、攻 +y）。
+        按各队干预帧平均 y 排序交替分配（平均 y 偏小的队守 y=0 球门、攻 +y）。
         """
         sums: dict[str, list[float]] = {}
         for p in players.values():
             sums.setdefault(p.color, []).append(p.home_y)
         avgs = {c: sum(ys) / len(ys) for c, ys in sums.items()}
-        directions: dict[str, int] = {}
-        sign = 1
-        for color in sorted(avgs, key=lambda c: avgs[c]):
-            directions[color] = sign
-            sign = -sign
-        return directions
+        return assign_attack_directions(avgs)
 
     def _detect_holder(self, players: dict[str, SimPlayer], ball: physics.BallPhysics) -> str | None:
         best_tid, best_d = None, float("inf")

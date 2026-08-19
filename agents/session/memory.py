@@ -148,16 +148,6 @@ class MemoryStore:
             encoding="utf-8",
         )
 
-    @classmethod
-    def load_from_disk(cls, path: str | Path) -> MemoryStore:
-        """从磁盘 JSON 文件加载记忆。"""
-        data = json.loads(Path(path).read_text(encoding="utf-8"))
-        store = cls()
-        store.context_summary = data.get("context_summary", "")
-        store._full_history = data.get("_full_history", [])
-        store.turn_count = data.get("turn_count", 0)
-        return store
-
     # ── 清除 ──
 
     def clear(self) -> None:

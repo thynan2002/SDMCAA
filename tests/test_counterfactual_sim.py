@@ -13,7 +13,7 @@
   4. 生成的 CSV 能被 build_corpus_from_paths 重新加载（格式闭环）
   5. 攻守方向约束 / 未知球员证据 / 距离档位分类
 
-`run_standalone()` 保留旧命令行契约（tools/test_counterfactual_sim.py 调用），
+`run_standalone()` 提供独立命令行入口（`python -m tests.test_counterfactual_sim`），
 输出场景明细与 [OK]/[FAIL]，退出码 0=全部通过 / 1=存在失败项。
 """
 
@@ -159,7 +159,7 @@ def test_distance_tiers() -> None:
 
 
 # ═══════════════════════════════════════════════════════════════
-# 命令行驱动（保留旧 tools/test_counterfactual_sim.py 契约）
+# 命令行驱动（独立命令行入口）
 # ═══════════════════════════════════════════════════════════════
 
 def run_standalone(out_dir: Path | None = None, corpus=None) -> int:

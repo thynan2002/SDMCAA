@@ -8,8 +8,18 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
 from math import hypot, sqrt, log
-from typing import Any
+from typing import Any, TYPE_CHECKING
 import random
+
+from agents.constants import FIELD_WIDTH, FIELD_HEIGHT
+
+if TYPE_CHECKING:
+    from ..types import CounterfactualScenario
+
+# ── 场地/球门几何（数值回指 agents.constants，避免硬编码漂移） ──
+GOAL_X = FIELD_WIDTH / 2            # 球门中心 x（600）
+FIELD_CENTER_Y = FIELD_HEIGHT / 2   # 场地中心 y（350）
+_DRIBBLE_STEP = 30                 # 盘带单步前移位移（px，int 与原实现逐字节一致）
 
 
 class ActionType(Enum):
@@ -27,6 +37,32 @@ class Action:
     action_type: ActionType
     target_player: str = ""  # 传球目标 jersey_label（仅 PASS）
     direction: tuple[float, float] = (0, 0)  # 盘带方向（仅 DRIBBLE）
+
+
+def action_from_scenario(
+    scenario: "CounterfactualScenario",
+    altered: bool = True,
+    fallback: Action | None = Action(ActionType.HOLD),
+) -> Action | None:
+    """从场景描述构建第一步强制执行的反事实 Action（单一工厂）。
+
+    altered=True 取场景的替换动作（altered_action / altered_target），
+    False 取原始动作（original_action / original_target）。
+    场景未给出可识别的动作名时返回 fallback（None 表示纯自然推演）。
+    """
+    name = scenario.altered_action if altered else scenario.original_action
+    if name == "pass":
+        target = scenario.altered_target if altered else scenario.original_target
+        return Action(ActionType.PASS, target_player=target)
+    if name == "shoot":
+        return Action(ActionType.SHOOT)
+    if name == "dribble":
+        return Action(ActionType.DRIBBLE, direction=(0, _DRIBBLE_STEP))
+    if name == "clear":
+        return Action(ActionType.CLEAR)
+    if name == "hold":
+        return Action(ActionType.HOLD)
+    return fallback
 
 
 @dataclass
@@ -79,14 +115,14 @@ class GameState:
 
     def _attack_goal_y(self) -> float:
         """控球方进攻目标球门的 y 坐标。"""
-        return 700.0 if self.attack_dir > 0 else 0.0
+        return float(FIELD_HEIGHT) if self.attack_dir > 0 else 0.0
 
     def get_legal_actions(self) -> list[Action]:
         """获取当前状态下合法动作列表。"""
         actions: list[Action] = []
 
         # 球必须在场上
-        if not (0 <= self.ball_x <= 1200 and 0 <= self.ball_y <= 700):
+        if not (0 <= self.ball_x <= FIELD_WIDTH and 0 <= self.ball_y <= FIELD_HEIGHT):
             return actions
 
         # 传球只能给同队队友（绝不能传给对手）。
@@ -104,13 +140,13 @@ class GameState:
         if self.possession in self.player_positions:
             px, py = self.player_positions[self.possession]
             goal_y = self._attack_goal_y()
-            dist_to_goal = hypot(px - 600, py - goal_y)
+            dist_to_goal = hypot(px - GOAL_X, py - goal_y)
             # 在对方半场且距球门 < 400 可射门
-            if (py - 350) * self.attack_dir > 0 and dist_to_goal < 400:
+            if (py - FIELD_CENTER_Y) * self.attack_dir > 0 and dist_to_goal < 400:
                 actions.append(Action(ActionType.SHOOT))
 
         # 盘带（向进攻方向）
-        fwd = 30 * self.attack_dir
+        fwd = _DRIBBLE_STEP * self.attack_dir
         actions.append(Action(ActionType.DRIBBLE, direction=(0, fwd)))
         actions.append(Action(ActionType.DRIBBLE, direction=(30, fwd)))
         actions.append(Action(ActionType.DRIBBLE, direction=(-30, fwd)))
@@ -158,7 +194,7 @@ class GameState:
 
         elif action.action_type == ActionType.SHOOT:
             # 射门判定（校准为更真实的概率），目标球门由 attack_dir 决定
-            dist_to_goal = hypot(self.ball_x - 600, self.ball_y - self._attack_goal_y())
+            dist_to_goal = hypot(self.ball_x - GOAL_X, self.ball_y - self._attack_goal_y())
             # 射正概率：距离越近越容易射正
             on_target = max(0.05, 1.0 - dist_to_goal / 400)
             # 射正后进球的概率：距离越近进球率越高
@@ -174,8 +210,8 @@ class GameState:
                 new_state.last_shot_result = "miss"
 
             # 球出界/被没收，重置到中场
-            new_state.ball_x = 600 + rng.uniform(-100, 100)
-            new_state.ball_y = 350
+            new_state.ball_x = GOAL_X + rng.uniform(-100, 100)
+            new_state.ball_y = FIELD_CENTER_Y
             new_state.ball_z = 0
             new_state.possession = self._random_pass_target(rng)
             if self.player_teams.get(new_state.possession, "") != \
@@ -187,8 +223,8 @@ class GameState:
             dx, dy = action.direction
             new_x = self.ball_x + dx + rng.uniform(-15, 15)
             new_y = self.ball_y + dy + rng.uniform(-10, 10)
-            new_state.ball_x = max(10, min(1190, new_x))
-            new_state.ball_y = max(10, min(690, new_y))
+            new_state.ball_x = max(10, min(FIELD_WIDTH - 10, new_x))
+            new_state.ball_y = max(10, min(FIELD_HEIGHT - 10, new_y))
             new_state.ball_z = 0
             # 更新控球球员位置
             if self.possession in new_state.player_positions:
@@ -226,7 +262,7 @@ class GameState:
         if self.turn >= max_depth:
             return True
         # 球出界
-        if not (0 <= self.ball_x <= 1200 and 0 <= self.ball_y <= 700):
+        if not (0 <= self.ball_x <= FIELD_WIDTH and 0 <= self.ball_y <= FIELD_HEIGHT):
             return True
         return False
 
@@ -243,8 +279,8 @@ class GameState:
             reward -= 0.1
 
         # 位置奖励：球越靠近对方球门越好（球门方向由 attack_dir 决定）
-        goal_dist = hypot(self.ball_x - 600, self.ball_y - self._attack_goal_y())
-        position_reward = max(0, (350 - goal_dist) / 350 * 0.5)
+        goal_dist = hypot(self.ball_x - GOAL_X, self.ball_y - self._attack_goal_y())
+        position_reward = max(0, (FIELD_CENTER_Y - goal_dist) / FIELD_CENTER_Y * 0.5)
         reward += position_reward
 
         # 控球奖励

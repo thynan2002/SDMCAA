@@ -2,8 +2,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/type-project%20report-4B8BBE?style=flat-square" alt="Type: project report">
-  <img src="https://img.shields.io/badge/tests-111%20passed-2EA043?style=flat-square" alt="Tests: 111 passed">
-  <img src="https://img.shields.io/badge/golden-39%20LLM%20calls-8B5CF6?style=flat-square" alt="Golden: 39 LLM calls">
+  <img src="https://img.shields.io/badge/tests-127%20passed-2EA043?style=flat-square" alt="Tests: 127 passed">
+  <img src="https://img.shields.io/badge/golden-13%20LLM%20calls-8B5CF6?style=flat-square" alt="Golden: 13 LLM calls">
 </p>
 
 ## 一、项目背景
@@ -46,8 +46,8 @@
 
 ### 5. 多智能体编排 + 反事实推演
 
-- 球员追踪流水线：运动分析 → 球互动 → 球路事件 → 对比排名 → 综合决策 → 解说稿，由 LangGraph `StateGraph` + `MemorySaver` 编排；
-- 专业分析流水线：数据采集 → 攻防风格建模 → MCTS 反事实推演（指定球员在特定时刻改为射门/传球/盘带，推演后续轨迹与胜率变化，可导出轨迹 CSV）→ 报告生成；
+- 球员追踪流水线：运动分析 → 球互动 → 球路事件 → 对比排名 → 综合决策 → 解说稿，由 LangGraph `StateGraph` 编排；
+- 专业分析流水线：数据采集 → 攻防风格建模 → MCTS 反事实推演（默认 300 次模拟，可配置；指定球员在特定时刻改为射门/传球/盘带，推演后续轨迹与胜率变化，可导出轨迹 CSV）→ 报告生成；
 - 数据核验：对系统回答提出质疑时，自动回溯原始数据核验并纠正。
 
 ## 四、项目结果
@@ -62,8 +62,8 @@
 
 | 保障手段 | 内容 |
 |---------|------|
-| **pytest 全量通过** | 111 个用例全部通过（含工具调用专项：工具循环 / 并行 tool_calls / 失败分类 / 文本回退 / 绑定 / 回放兼容 / 流式增量 / record→replay 工具闭环） |
-| **golden 回放回归** | 真实 API 录制的 39 次 LLM 调用、覆盖 8 种意图 + 反事实轨迹导出的回归数据集，四维比对全部 PASS，全程不触网 |
+| **pytest 全量通过** | 127 个用例全部通过（含工具调用专项：工具循环 / 并行 tool_calls / 失败分类 / 文本回退 / 绑定 / 回放兼容 / 流式增量 / record→replay 工具闭环） |
+| **golden 回放回归** | 真实 API 录制的 13 次 LLM 调用（含工具调用轨迹）回归数据集，回放经四维比对（LLM 请求序列 / 逐轮输出 / 状态快照 / 文件哈希）验证当前代码下回放等价，全程不触网 |
 | **A/B 同进程对比** | 裸 SessionManager 与 Harness 包装下输出 / 状态快照 / LLM 请求序列完全一致 |
 | **兼容性保持** | 重构全程保持旧 golden 兼容、测试 mock 签名兼容、流式语义不变 |
 

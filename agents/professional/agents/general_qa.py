@@ -40,7 +40,9 @@ SYSTEM_PROMPT = """## 角色
 - 先给结论，再给数据依据（"因为……所以……"的推理结构）
 - 用简洁专业的语言，像资深球探或战术分析师
 - 纯文本输出，不要 markdown 格式
-- **数值输出规则（无条件遵守）**：默认将统计数值翻译为自然语言判断（"绝大多数时间"、"极少"、"几乎每次"、"明显更活跃"），严禁罗列成串的统计数字。**但当用户明确索要具体数值/数据时（如"最快速度是多少""峰值是多少""平均速度多少""具体几次""数据是多少"），必须直接引用「比赛事实」中的精确数值字段作答（如球峰值速度、平均速度、事件总数），不得拒绝、不得含糊，也不得擅自换成其他数值**
+- **数值输出规则（无条件遵守）**：默认将统计数值翻译为自然语言判断（"绝大多数时间"、"极少"、"几乎每次"、"明显更活跃"），严禁罗列成串的统计数字。**但当用户明确索要具体数值/数据时（如"最快速度是多少""峰值是多少""平均速度多少""具体几次""数据是多少""最高到过多少高度"），必须直接引用「比赛事实」中的精确数值字段作答（如球峰值高度、球峰值速度、平均速度、事件总数），不得拒绝、不得含糊，也不得擅自换成其他数值**
+- **数值类问答的完整口径（用户索要数值时强制四件套）**：数值 + 单位（米/米每秒/次等）+ 对应时刻（约第几秒、第几帧）+ 数据来源说明（来自哪个事实字段或哪次工具查询）。只给裸数字视为不合格答案。同时附一句简要推理链（如"该峰值出现在球路爬升阶段的第X秒附近，随后开始回落"），让用户能复核。
+- **严禁以"数据只有定性档位/没有记录该数值"为由拒答**：「比赛事实」中若已含对应数值字段（如"球峰值高度(米)"），必须直接引用；若事实摘要中确实没有所需数值，应先调用工具（get_ball_timeline / get_frame_snapshot / get_player_profile 等）查询原始数据后再作答，只有工具也查不到时才可如实声明数据不足
 - 严禁输出坐标数值，严禁编造数据中没有的数字
 - **多子问题处理**：如果用户一次提出多个问题（如"从谁开始传出，随后路径如何"、"谁最积极？谁最长？"），必须逐一作答，用"首先/其次/随后"等衔接词组织，不得遗漏任何子问题，也不要因为问题有多个就声称数据不足
 
@@ -76,6 +78,11 @@ SYSTEM_PROMPT = """## 角色
 - 不同球员间 + 快速 + 中距 → 传球；长距 → 长传
 - 朝球门方向 + 快速 → 射门
 - 「未知」表示该端球员因跟踪缺失无法确定，可根据上下文推断
+
+### 7. 战术推理深度（涉及球员/威胁/战术效果的问题必须体现）
+- 因果推理：不只描述"发生了什么"，要解释"为什么"——为何形成该威胁/该跑位为何有效（如"球路集中在右路且对方左路参与球路少 → 右路成为主要进攻通道"），因果链必须能回溯到事实字段
+- 对比参照：把对象放到全场背景中定位，与全队均值/其他球员做定性对比（如"参与球路次数在队内明显领先"、"威胁峰值出现在球路最密集的阶段"）
+- 结论分级：给出分级结论（核心发起点/重要参与者/辅助角色；威胁高/中/低），而非不置可否的罗列
 
 ## 回答规则（按优先级排序）
 
@@ -152,7 +159,7 @@ class GeneralQAAgent:
             "球队概况": self._extract_team_summary(players),
             "球员位置分布": self._extract_position_summary(players),
             "球路线索": self._extract_ball_timeline(ball),
-            "球特征": self._extract_ball_features(ball),
+            "球特征": self._extract_ball_features(ball, corpus),
             "战术事实": extract_tactical_facts(corpus),
         }
 
@@ -283,7 +290,9 @@ class GeneralQAAgent:
         return self._merge_timeline(timeline)
 
     def _extract_ball_features(
-        self, ball: BallTrajectoryAnalysis | None,
+        self,
+        ball: BallTrajectoryAnalysis | None,
+        corpus: PrefixPlayerCorpus | None = None,
     ) -> dict[str, Any]:
         """提取球特征。"""
         if not ball:
@@ -305,13 +314,30 @@ class GeneralQAAgent:
         else:
             aerial_label = "以地面球为主"
 
-        return {
+        features: dict[str, Any] = {
             "整体球速": speed_label,
             "球峰值速度(米/秒)": px_s_to_ms(ball.max_speed),
             "球平均速度(米/秒)": px_s_to_ms(ball.avg_speed),
             "空中球特征": aerial_label,
             "事件总数": len(ball.events) if ball.events else 0,
         }
+
+        # 球峰值高度（z 轴单位为米，见 agents.constants）：数值类问答
+        # （如"球最高到过多少高度"）必须能直接从事实中取到数值+时刻，
+        # 避免模型因只有定性档位而误判"数据没有记录高度"。
+        frames = corpus.ball_frames if corpus is not None else {}
+        if frames:
+            peak_frame, (peak_z, peak_sec) = max(
+                ((f, (pos[2], f / 30)) for f, pos in frames.items() if len(pos) > 2),
+                key=lambda kv: kv[1][0],
+                default=(None, (0.0, 0.0)),
+            )
+            if peak_frame is not None:
+                features["球峰值高度(米)"] = round(peak_z, 2)
+                features["峰值高度出现时刻"] = (
+                    f"约第{peak_sec:.1f}秒（第{peak_frame}帧，30fps）"
+                )
+        return features
 
     # ── 辅助 ──
 

@@ -171,6 +171,16 @@ class QueryRouter:
             pass
 
         # ── 回退：一切未识别走综合问答 ──
+        # 特例：同时含反事实假设词与球员号（如"7号"）且规则与 LLM 均未
+        # 解析出场景 → 保持 COUNTERFACTUAL 意图（scenario=None），由 manager
+        # 输出场景澄清话术；仅含假设词的普通问题（如"如果下雨呢"）不再
+        # 拦截，避免 LLM 不可用时被误路由为反事实。
+        if re.search(r"如果|假如|假设|要是|换成|改成", text) and re.search(r"\d+号", text):
+            return RoutedQuery(
+                intent=IntentType.COUNTERFACTUAL,
+                original_text=user_text,
+                confidence=0.3,
+            )
         return RoutedQuery(
             intent=IntentType.GENERAL_QA,
             original_text=user_text,
@@ -279,6 +289,25 @@ class QueryRouter:
             confidence=confidence,
         )
 
+    # ── 关键词规则 ↔ LLM 提示词意图映射表（单一事实源说明，防双轨漂移） ──
+    # 下方规则分支与 SYSTEM_PROMPT 的"意图定义"章节是同一意图分类法的
+    # 双轨编码（规则轨：确定性快速通道；提示词轨：LLM 兜底）。
+    # 修改任一侧时必须同步另一侧，对照关系如下：
+    #
+    #   规则分支（_rule_based_parse 执行顺序）        SYSTEM_PROMPT 意图定义
+    #   ────────────────────────────────────  ────────────────────────────
+    #   SYSTEM_COMMANDS（快速通道，先于规则）    ### 8. 系统命令（help/exit/clear）
+    #   counterfactual（假设词命中）            ### 3. counterfactual（如果/假如/假设/要是）
+    #   comparison（对比词 + ≥2 球员）          ### 4. comparison（对比/谁更/区别）
+    #   verify_data（质疑词/帧号秒数）          ### 6. verify_data（核验/质疑/回查）
+    #   style_analysis（风格词 + 球员或队）     ### 2. style_analysis（风格/特点/类型）
+    #   focus_player（看/聚焦/关注 + 球员）     ### 1. focus_player（不含分析类词）
+    #   general_analysis（球队级词 + 无球员）   ### 5. general_analysis（不聚焦单一球员）
+    #   纯事实疑问 → GENERAL_QA（直返，省一次 LLM） ### 7. general_qa（兜底）
+    #   返回 None → LLM 解析 → 仍失败则兜底       ### 7. general_qa（不确定时默认）
+    #
+    # 注意：规则分支的执行顺序 ≠ 提示词的编号优先级，这是有意差异——
+    # 规则按信号强度从强到弱匹配（假设词/质疑词优先），与提示词编号无关。
     def _rule_based_parse(self, text: str) -> RoutedQuery | None:
         """关键词规则兜底（LLM 不可用时）。"""
         import re
@@ -325,6 +354,25 @@ class QueryRouter:
                 elif re.search(r"直接\s*突破|带球\s*突破", text):
                     altered_action = "dribble"
 
+            # 兜底："改为/换成/改成…"句式（如"如果7号在第3秒改为传球给10号会怎样"）
+            # 旧版只覆盖"不传…而是…"与"直接射门/突破"，该句式提取不到任何动作，
+            # 导致 scenario=None 被 manager 退回澄清话术。排除"不传给X号"的误命中。
+            if not altered_action and re.search(r"改为|改成|换成|变成", text):
+                m_change_pass = re.search(r"(?<!不)传(?:球)?给\s*(\d+)\s*号", text)
+                if m_change_pass:
+                    altered_action = "pass"
+                    altered_target = f"{m_change_pass.group(1)}号"
+                elif re.search(r"传球|分球|转移", text):
+                    altered_action = "pass"
+                elif re.search(r"射门|打门", text):
+                    altered_action = "shoot"
+                elif re.search(r"突破|盘带|带球", text):
+                    altered_action = "dribble"
+                elif re.search(r"解围", text):
+                    altered_action = "clear"
+                elif re.search(r"控球|护球", text):
+                    altered_action = "hold"
+
             m_time = re.search(r"第\s*(\d+(?:\.\d+)?)\s*秒", text)
             if m_time:
                 time_second = float(m_time.group(1))
@@ -340,21 +388,26 @@ class QueryRouter:
             if m_dur:
                 duration_seconds = float(m_dur.group(1))
 
-            # 只要提取到原始动作或替换动作之一就构造 scenario
-            if original_action or altered_action:
-                scenario = CounterfactualScenario(
-                    scenario_type=ScenarioType.SELF_CHOICE_CHANGE,
-                    subject_player=subject,
-                    frame=frame,
-                    time_second=time_second,
-                    original_action=original_action,
-                    original_target=original_target,
-                    altered_action=altered_action,
-                    altered_target=altered_target,
-                    generate_data=generate_data,
-                    duration_seconds=duration_seconds,
-                    raw_query=text,
-                )
+            # 提取到原始动作或替换动作之一 → 构造 scenario 直接返回；
+            # 两者皆空 → 规则无法解析场景，返回 None 交由 LLM 兜底解析
+            #（旧版此处返回 scenario=None 的 COUNTERFACTUAL，manager 只能退回
+            # 澄清话术，LLM 兜底永远不会被触发 —— 反事实路由失效的结构性根因）
+            if not (original_action or altered_action):
+                return None
+
+            scenario = CounterfactualScenario(
+                scenario_type=ScenarioType.SELF_CHOICE_CHANGE,
+                subject_player=subject,
+                frame=frame,
+                time_second=time_second,
+                original_action=original_action,
+                original_target=original_target,
+                altered_action=altered_action,
+                altered_target=altered_target,
+                generate_data=generate_data,
+                duration_seconds=duration_seconds,
+                raw_query=text,
+            )
 
             return RoutedQuery(
                 intent=IntentType.COUNTERFACTUAL,

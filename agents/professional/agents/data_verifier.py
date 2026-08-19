@@ -26,22 +26,23 @@ from agents.llm_client import call_llm
 # ═══════════════════════════════════════════════════════════════════
 
 VERIFY_SYSTEM_PROMPT = """## 角色
-你是足球比赛数据核验分析师 (Data Verifier)。职责是基于原始追踪数据进行精确的帧级或球员级核验，并生成带有核验过程说明的回答。
+你是足球比赛数据核验分析师 (Data Verifier)。职责是基于原始追踪数据进行精确的帧级或球员级核验，并生成核验回答。
 
 ## 输入
-- 原始帧级数据：帧号、时间、球位置、球员位置、离球最近球员、事件列表
+- 原始帧级数据：帧号、时间、球位置、战术区域、全队站位、离球最近球员、事件列表
 - 用户原始问题
 
 ## 输出
-纯文本回答，包含：
-1. 核验描述：基于数据的比赛状态描述，用足球专业语言
-2. 核验过程说明：在回答末尾用 `[核验过程：...]` 标注回溯了哪些数据
+纯文本回答：先给出该帧的场上情况描述（用足球专业语言的形势判断，含双方站位概况），再给数据依据（帧号/时间锚点）。系统会在回答末尾自动追加 [核验过程] 标注，你无需自行输出该标注，也不要重复描述核验步骤。
 
 ## 核心规则
 - 只基于提供的数据描述，不编造任何信息
-- 说明数据来源（帧号、帧率等核验依据）
-- 默认用感受性语言描述形势，不堆砌数字；但用户明确索要具体数值/坐标/距离/威胁值/战术区域时，必须如实引用核验数据中的精确数值作答，不得含糊、不得拒绝、不得换成其他数值
+- 说明数据来源（帧号、时间等核验依据），回答必须包含帧号/时间锚点
+- 默认把数值翻译为自然语言形势判断，不堆砌数字；威胁值是基于球所在场地位置的静态评估，只能描述为"该位置威胁潜力较高/较低"，严禁解读为"已形成进攻敏感性/实际威胁机会"；用户明确索要具体数值/坐标/距离/威胁值/战术区域时，必须如实引用核验数据中的精确数值作答，不得含糊、不得拒绝、不得换成其他数值
+- 球员站位描述必须基于"全队站位"中的坐标与区域，覆盖双方阵型分布；严禁仅凭离球距离推断球员的前后站位、层次或接应关系；数据已提供全部球员位置时，严禁声称"数据未提供全部球员的位置"
+- 用户问题含场景预设（如"开球"）而核验数据的球位置与该预设不符（如球不在中圈）时，必须先基于数据客观指出差异（如"第0帧球并不在中圈"），再描述该帧实际局面，不得迎合错误预设
 - 如果某些数据缺失，诚实说明
+- 当核验数据不足以支持确定结论时（如缺少所询时刻的精确数据，只有统计概况），必须如实声明不确定性（如"该时刻无精确数据，仅能基于现有数据推断"），不得以强势断言代替
 - 自行判断球路事件类型：不要依赖预标注类型，根据「球路」字段和方向判断（传球/长传/射门/盘带/解围等）
 - 「未知」表示该端球员因跟踪缺失无法确定"""
 
@@ -234,6 +235,18 @@ class DataVerifierAgent:
                     f"已重新核验第{snapshot.time_second:.1f}秒（帧{snapshot.frame}）的原始数据"
                 )
 
+        # 争议时刻的精确球员位置（位置类质疑的直接证据）
+        # 旧版证据只有"距球距离 + 全场轨迹统计"，LLM 拿不到争议时刻的
+        # 具体坐标，只能凭全场主区域强势断言（verify_7s_pos 缺陷）；
+        # 此处补齐插值位置，无数据时显式标注"无法精确核验"供 LLM 如实声明。
+        if frame_info["frame"] is not None and jerseys:
+            pos_evidence = self._extract_players_at_frame(
+                frame_info["frame"], jerseys, corpus,
+            )
+            if pos_evidence:
+                evidence_parts.append(pos_evidence)
+                corrections.append("已提取争议时刻相关球员的精确位置（插值）")
+
         # 球路链条物理证据（高度轨迹/方向/最近球员）
         # —— 核验"高空球/头顶经过/是否传球"类质疑的关键证据
         context_text = ""
@@ -274,18 +287,28 @@ class DataVerifierAgent:
         evidence_text = "\n\n".join(evidence_parts) if evidence_parts else "未能提取到相关原始数据"
 
         system_prompt = """你是足球数据分析师。用户对你的上一个回答提出了质疑。
-请基于重新核验的原始数据，诚实回答。
+请基于重新核验的原始数据，诚实、客观、语气克制地回答。
+
+【输出纪律（必须遵守）】
+- 严禁使用"您的质疑不成立"、"您错了"、"您的说法不对"等强势否定或居高临下的断言；结论一律用客观中性表述呈现（如"核验数据显示……"、"与您的描述存在差异：……"）。
+- 证据层级与结论口径（倾向性结论、口径说明、不确定性声明三者不得互相冲突）：
+  1) 证据含争议时刻相关球员的精确位置（包括"相邻样本插值估计"）时：插值坐标就是该时刻的直接核验证据，必须基于该坐标与所在区域给出倾向性结论（与用户说法一致或不一致），并注明口径为"相邻样本插值估计"；不确定性声明仅限"插值估计与直接观测可能存在偏差"一句，不得反过来否定刚给出的结论（严禁出现"无法确认该时刻位置"、"无法排除用户说法的可能性"等与结论冲突的表述）。
+  2) 仅当证据明确标注"该帧无位置数据/无法精确核验/仅有最后已知位置"时，才声明"现有数据不足以精确核验"，说明缺少什么数据，仅给出基于其他证据（全场轨迹、球路时间线等）的倾向性说明，不得断言用户质疑错误。
+- 全文只允许一个结论方向，最终结论必须与所引用证据一致；严禁引用坐标与区域后又推翻结论，严禁对同一位置给出两个互相矛盾的区域判定。
+- 区域判定只使用证据中提供的"所在区域"字段；严禁自行推断中线、禁区线等场地参考线的位置，严禁拿坐标与臆造的参考线比较得出新判定。
+- 引用坐标时优先引用证据中提供的场地坐标（米），可附像素坐标。
+- 不得用全场平均位置/主要活动区域冒充特定时刻的状态。
 
 格式：
 【核验结果】
 - 如果用户质疑正确：明确承认并给出修正后的信息
-- 如果用户质疑有误：礼貌解释，引用核验数据
-- 如果数据不足以判断：说明需要更多数据
+- 如果核验数据与用户说法不一致：客观指出差异并引用具体核验数据
+- 如果数据不足以判断：明确声明数据不足及原因
 
 【核验过程】
 列出本次核验做了哪些数据回溯操作
 
-要求：专业、诚实、简洁
+要求：专业、诚实、简洁、语气中性克制
 
 当证据包含「球路链条物理证据」时，按以下物理规律判断"触球/传球"与"从头顶经过"：
 - 高度轨迹平滑（单次上升-下降抛物线）且方向连续一致 → 倾向一次高空飞行，途中离球最近的球员未必触球
@@ -309,6 +332,80 @@ class DataVerifierAgent:
         return (
             f"针对您的质疑「{question}」，系统已重新核查原始数据。\n"
             + "\n".join(corrections) if corrections else "未找到可核验的相关数据。"
+        )
+
+    def _out_of_range_refusal(
+        self,
+        frame: int,
+        frame_info: dict,
+        corpus: PrefixPlayerCorpus,
+    ) -> str:
+        """越界帧/时刻的拒答文案（带完整证据链）。
+
+        拒答纪律：不只说"不存在"，还要展示数据实际覆盖范围、越界推理
+        过程（30fps 换算）与最近合法时刻的可查证指引，让用户能复核拒答理由。
+
+        口径：触发拒答的判据是帧落在"球数据"首末帧之外（_capture_frame），
+        故拒答理由严格以球数据覆盖区间为准；球员轨迹覆盖范围仅作补充信息，
+        避免"并集口径"与拒答判据自相矛盾。
+        """
+        ball_ids = sorted(corpus.ball_frames.keys())
+        asked = (
+            f"所问的\"第{frame_info['time_second']}秒\"按 30帧/秒 换算对应第{frame}帧"
+            if frame_info.get("source") == "秒数"
+            else f"所问的第{frame}帧对应约第{frame / 30:.1f}秒"
+        )
+
+        # 球员轨迹覆盖范围（仅作补充信息分别给出）
+        player_frame_ids: set[int] = set()
+        for p in corpus.players.values():
+            player_frame_ids.update(p.frames)
+        if player_frame_ids:
+            pmin, pmax = min(player_frame_ids), max(player_frame_ids)
+            player_note = (
+                f"补充信息：球员轨迹覆盖第{pmin}~{pmax}帧"
+                f"（{len(corpus.players)}名球员）；但帧级态势核验以球数据为锚点，"
+                f"球数据缺失时无法构建该帧的攻防快照。"
+            )
+        else:
+            player_note = "补充信息：当前语料也没有任何球员轨迹数据。"
+
+        if not ball_ids:
+            return (
+                f"无法回答该问题：当前语料没有任何球数据，无法核验任意时刻的球状态。\n\n"
+                f"推理过程：{asked}，而语料中球数据为空，第{frame}帧自然不存在球数据记录；"
+                f"若强行描述该时刻只能是编造，故如实拒答。\n\n"
+                f"{player_note}"
+            )
+
+        bmin, bmax = ball_ids[0], ball_ids[-1]
+        ball_span = f"球数据采样{len(ball_ids)}帧，仅覆盖第{bmin}~{bmax}帧（约第{bmin / 30:.1f}~{bmax / 30:.1f}秒）"
+
+        if frame < bmin:
+            direction = (
+                f"而第{frame}帧早于球数据首帧（第{bmin}帧，约第{bmin / 30:.1f}秒），"
+                f"该时刻尚未进入球数据的观测范围，第{frame}帧无球数据；"
+                f"若强行描述该时刻的攻防态势只能是编造，故如实拒答。\n\n"
+                f"可查证的最近合法时刻：球数据的最早时刻为约第{bmin / 30:.1f}秒（第{bmin}帧），"
+                f"如需了解片段开段的攻防态势，可改问\"第{max(1, int(bmin / 30) + 1)}秒发生了什么\"，"
+                f"我会基于真实数据回溯核验后回答。"
+            )
+        else:
+            last_sec = int(bmax / 30)
+            direction = (
+                f"而数据的末帧仅为第{bmax}帧（约第{bmax / 30:.1f}秒），"
+                f"第{frame}帧已超出球数据覆盖范围，第{frame}帧无球数据；"
+                f"若强行描述该时刻的攻防态势只能是编造，故如实拒答。\n\n"
+                f"可查证的最近合法时刻：球数据的最后时刻为约第{bmax / 30:.1f}秒（第{bmax}帧），"
+                f"如需了解片段末段的攻防态势，可改问\"第{last_sec}秒发生了什么\"，"
+                f"我会基于真实数据回溯核验后回答。"
+            )
+
+        return (
+            f"无法回答该问题：球数据仅覆盖第{bmin}~{bmax}帧，第{frame}帧无球数据。\n\n"
+            f"数据实际覆盖范围：{ball_span}，按 30fps 换算总时长约{bmax / 30:.1f}秒。\n\n"
+            f"推理过程：{asked}，{direction}\n\n"
+            f"{player_note}"
         )
 
     # ── 帧级查询 ──
@@ -443,15 +540,13 @@ class DataVerifierAgent:
         snap = self._capture_frame(frame, corpus)
 
         if not snap:
-            return (
-                f"第{frame}帧（约{frame_info['time_second']}秒）的数据在当前语料中不存在。\n"
-                f"可用帧范围：球数据共{len(corpus.ball_frames)}帧。"
-            )
+            return self._out_of_range_refusal(frame, frame_info, corpus)
 
         # LLM 生成帧级描述
         from math import hypot
 
         from agents.constants import PX_PER_M_X, PX_PER_M_Y
+        from agents.player.tracker import _which_zone
         from .tactical_facts import threat_value, tactical_zone
 
         # 问题中明确索要的球员与该帧球的距离（米，x/y 分轴标定）
@@ -479,6 +574,27 @@ class DataVerifierAgent:
                 )[:5]
             },
         }
+        # 全队站位（按队伍分组，含区域标注）：帧类开放描述题需要覆盖双方
+        # 阵型分布，仅提供离球 Top5 会让 LLM 误判"数据未提供全部球员"
+        def _jersey_key(label: str) -> int:
+            digits = "".join(c for c in label if c.isdigit())
+            return int(digits) if digits else 9999
+
+        team_view: dict[str, list[str]] = {}
+        for j, d in snap.player_positions.items():
+            team_view.setdefault(f"{d.get('color') or '?'}队", []).append(
+                f"{j}（{_which_zone(d['x'], d['y'])}，距球{d['distance_to_ball']:.0f}）"
+            )
+        for members in team_view.values():
+            members.sort(key=_jersey_key)
+        payload_data["全队站位"] = team_view
+        payload_data["该帧可见球员数"] = len(snap.player_positions)
+        all_labels = {p.jersey_label for p in corpus.players.values()}
+        missing = sorted(
+            all_labels - set(snap.player_positions.keys()), key=_jersey_key,
+        )
+        if missing:
+            payload_data["该帧未出现的球员"] = missing
         if queried_dists:
             payload_data["所询球员与球距离(米)"] = queried_dists
 
@@ -778,6 +894,56 @@ class DataVerifierAgent:
                 seg += f"终点{_fmt_dist(e.end_nearest_dist)}；"
             lines.append("  - " + seg.rstrip("；"))
         return "\n".join(lines)
+
+    def _extract_players_at_frame(
+        self, frame: int, jerseys: list[str], corpus: PrefixPlayerCorpus,
+    ) -> str:
+        """提取争议时刻相关球员的精确位置（相邻样本线性插值）。
+
+        位置类质疑（"X号第N秒明明在Y区域"）的直接证据；球员在该帧
+        无位置数据时显式标注"无法精确核验"，供 LLM 如实声明数据不足。
+        坐标同时给出像素与场地米制两套口径（评测金标准以米为单位），
+        插值标注采用"可作核验依据 + 与直接观测可能存在偏差"的中性口径，
+        避免 LLM 把插值证据当作"不可用"而自相矛盾地否定自己的结论。
+        """
+        from agents.constants import PX_PER_M_X, PX_PER_M_Y
+        from agents.player.tracker import position_at_frame, _which_zone
+
+        lines = [f"争议时刻（帧{frame}，约第{frame / 30:.1f}秒）相关球员精确位置："]
+        hit = 0
+        for jersey in jerseys[:4]:
+            player = next(
+                (p for p in corpus.players.values() if p.jersey_label == jersey),
+                None,
+            )
+            if player is None or not player.frames:
+                continue
+            pos = position_at_frame(player, frame)
+            if pos is None:
+                lines.append(
+                    f"  - {jersey}: 该帧无位置数据（首个样本为帧{player.frames[0]}），"
+                    "无法精确核验该时刻位置"
+                )
+            else:
+                x, y = pos
+                if frame > player.frames[-1]:
+                    # last-known 语义：position_at_frame 在 frame 晚于末帧时
+                    # 返回最后已知位置而非插值，须如实标注，避免误导 LLM
+                    # 把陈旧位置当作争议时刻的插值证据。
+                    lines.append(
+                        f"  - {jersey}: 坐标(x={x:.0f}, y={y:.0f})，"
+                        f"所在区域：{_which_zone(x, y)}（该帧晚于其最后观测帧{player.frames[-1]}，"
+                        "仅有最后已知位置，无法核验争议时刻位置）"
+                    )
+                else:
+                    lines.append(
+                        f"  - {jersey}: 场地坐标约(x={x / PX_PER_M_X:.1f}米, y={y / PX_PER_M_Y:.1f}米)，"
+                        f"像素坐标(x={x:.0f}, y={y:.0f})，"
+                        f"所在区域：{_which_zone(x, y)}（相邻样本插值估计，可作为该时刻的核验依据；"
+                        "插值与直接观测可能存在偏差）"
+                    )
+            hit += 1
+        return "\n".join(lines) if hit else ""
 
     def _extract_player_raw_data(
         self, jersey: str, corpus: PrefixPlayerCorpus,

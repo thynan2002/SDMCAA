@@ -10,6 +10,7 @@
 示例：
     python -m eval run --event demo_v1
     python -m eval run --event smoke --cases cf_7s_shoot --repeats 1 --no-judge
+    python -m eval run --event smoke_v2 --smoke          # 分层冒烟预设
     python -m eval report Score/demo_v1_20260815_1030
     python -m eval cases lint
 """
@@ -19,8 +20,8 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from .cases import lint_cases, load_cases
-from .config import ALL_SYSTEMS, CASES_DIR, EvalConfig, SCORE_ROOT
+from .cases import lint_cases, lint_warnings, load_cases
+from .config import ALL_SYSTEMS, CASES_DIR, SYSTEM_MULTI, SYSTEM_SINGLE, EvalConfig, SCORE_ROOT
 from .cases import LEVEL_NAMES
 
 
@@ -40,17 +41,33 @@ def _apply_overrides(cfg: EvalConfig, args) -> EvalConfig:
         cfg.max_workers = args.workers
     if args.quick:
         cfg.repeats = 1
+    if args.smoke:
+        # smoke 预设优先于显式 --systems/--repeats：每 category 抽 1 例
+        # （抽样在 cmd_run 中完成），repeats=1，仅 single+multi
+        cfg.repeats = 1
+        cfg.systems = (SYSTEM_SINGLE, SYSTEM_MULTI)
     cfg.__post_init__()
     return cfg
 
 
 def cmd_run(args) -> int:
-    from .engine import evaluate
+    from .engine import evaluate, sample_smoke_cases
 
-    cfg = _apply_overrides(EvalConfig.load(args.config), args)
+    cfg = EvalConfig.load(args.config)
+    preset = None
+    if args.smoke:
+        preset = "smoke"
+        # 在（可选 --cases 过滤后的）用例集上确定性抽样，以 id 列表回传 select
+        cases = load_cases(cfg.cases_dir, args.cases)
+        picked = sample_smoke_cases(cases)
+        if not picked:
+            raise SystemExit("--smoke: 过滤后无用例可抽")
+        args.cases = ",".join(c.id for c in picked)
+    cfg = _apply_overrides(cfg, args)
     event_dir = evaluate(
         args.event, cfg, select=args.cases,
         dry_run=args.dry_run, resume=not args.no_resume,
+        preset=preset,
     )
     if not args.dry_run:
         print(f"\n完成。结果: {event_dir}")
@@ -91,6 +108,14 @@ def cmd_cases(args) -> int:
                 print(f"  - {p}")
             return 1
         print("[ok] 用例集校验通过")
+        # 刷分点卫生检查（仅 warnings，不阻断；不发 LLM）
+        warns = lint_warnings(CASES_DIR)
+        if warns:
+            print(f"[warn] 刷分点卫生检查（{len(warns)} 条，不影响 lint 结论）:")
+            for w in warns:
+                print(f"  - {w}")
+        else:
+            print("[warn] 刷分点卫生检查无告警")
         return 0
     # list
     cases = load_cases(CASES_DIR)
@@ -150,6 +175,9 @@ def main(argv: list[str] | None = None) -> int:
                        help="并行执行作业数（3.1：>1 启用多进程并发）")
     p_run.add_argument("--quick", action="store_true",
                        help="快速分层预设：1 重复（3.1）")
+    p_run.add_argument("--smoke", action="store_true",
+                       help="冒烟分层预设：每 category 确定性抽 1 例（按 id 排序取首个），"
+                            "repeats=1，systems 仅 single+multi")
     p_run.add_argument("--dry-run", action="store_true", help="只打印执行计划")
     p_run.add_argument("--no-resume", action="store_true")
     p_run.add_argument("--no-judge", action="store_true")

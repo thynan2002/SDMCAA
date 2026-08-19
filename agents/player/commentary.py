@@ -138,6 +138,13 @@ def build_user_message(
                 "帧范围": [e.start_frame, e.end_frame],
             })
 
+    # ── 聚焦球员标签（用于赛段标注与指令约束） ──
+    focus_labels: set[str] = set()
+    if focus_jerseys:
+        focus_labels = {
+            fj if fj.endswith("号") else f"{fj}号" for fj in focus_jerseys
+        }
+
     # ── 聚合 episode（去类型化）──
     episode_list: list[dict[str, Any]] = []
     for ep in episodes:
@@ -157,7 +164,7 @@ def build_user_message(
             route_desc = "、".join(start_players[:4])
         else:
             route_desc = "球员"
-        episode_list.append({
+        ep_data: dict[str, Any] = {
             "赛段时间": time_range,
             "球权流转": route_desc,
             "移动距离(px)": round(ep["total_dist"], 0),
@@ -165,7 +172,16 @@ def build_user_message(
             "峰值速度(px/s)": round(ep["max_spd"], 0),
             "峰值速度描述": speed_tier(ep["max_spd"]),
             "事件数": len(ep["events"]),
-        })
+        }
+        # 聚焦模式下标注每个赛段是否涉及聚焦球员，引导 LLM 只详述相关赛段，
+        # 避免把无关赛段展开成全场叙事（focus_player7 缺陷修复）
+        if focus_labels:
+            involved = sorted(
+                j for j in focus_labels
+                if j in start_players or j in end_players
+            )
+            ep_data["涉及聚焦球员"] = "、".join(involved) if involved else "无（仅作背景一句带过）"
+        episode_list.append(ep_data)
 
     # ── 球员亮点 ──
     if field:
@@ -229,8 +245,13 @@ def build_user_message(
     if focus_jerseys:
         focus_players: list[dict[str, Any]] = []
         for fj in focus_jerseys:
+            # 兼容"7号"与"7"两种写法：旧版用 `p.track_id == fj or
+            # p.jersey_label == f"{fj}号"` 匹配，当路由传入的 fj 已带"号"后缀
+            # （如"7号"）时两个条件都不成立 → 聚焦球员块从不被注入，
+            # 解说退化为无约束的全场叙事（focus_player7 缺陷根因）。
+            fj_num = fj[:-1] if fj.endswith("号") else fj
             for p in field + goalkeepers:
-                if p.track_id == fj or p.jersey_label == f"{fj}号":
+                if p.track_id in (fj, fj_num) or p.jersey_label in (fj, f"{fj_num}号"):
                     speed_curve = p.speed_curve
                     sprint_count = sum(1 for s in speed_curve if s > 300)
                     player_info: dict[str, Any] = {
@@ -265,7 +286,19 @@ def build_user_message(
         if focus_players:
             data["重点关注球员"] = focus_players
             labels = "、".join(p["球衣号"] for p in focus_players)
-            instruction = f"请围绕{labels}这几名球员的表现展开解说，深入分析他们的个人特点和彼此之间的配合联动："
+            # 硬约束指令：旧版"请围绕…展开解说"是软约束，LLM 会拿着全场赛段
+            # 数据输出覆盖所有球员的全场叙事（focus_player7 缺陷）。
+            instruction = (
+                f"请聚焦{labels}生成本段解说，{labels}是解说的绝对主角。严格要求：\n"
+                f"1. 主体内容必须围绕{labels}的跑动线路、位置变化、触球时机、与球的互动展开；\n"
+                f"2. 其他球员只有在与{labels}发生直接互动（给他传球、接应他的传球、与他对抗或防守他）时才可提及，且仅作必要铺垫；\n"
+                f"3. 与{labels}无关的场上事件不得展开描述，最多用一句话带过场上背景；\n"
+                f"4. 优先详细解说\"比赛阶段\"中标注了涉及{labels}的赛段，标注为\"无\"的赛段一句带过；\n"
+                f"5. 仍需按时间分段输出，保持连贯的叙事而非零散数据；\n"
+                f"6. 战术推理深度：对{labels}的关键动作要解释战术动因与效果（为何这次跑位/传球能制造威胁或拉开空间），"
+                f"并将{labels}放到全队背景中做定性对比参照（如跑动量/参与度在队内的相对位置），"
+                f"结尾用一到两句给出对{labels}本段作用的分级评价结论；因果链只能源自提供的数据，不得编造。"
+            )
         else:
             instruction = f"请根据以下赛场数据，生成一段{prefix}的足球比赛解说："
     else:

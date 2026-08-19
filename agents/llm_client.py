@@ -621,7 +621,10 @@ def _call_llm_streaming(
         "temperature": _temperature_override.get() if _temperature_override.get() is not None else config.temperature,
         "max_tokens": max_tokens or config.max_tokens,
         "stream": True,
-        "stream_options": {"include_usage": False},
+        # 请求服务端在流式收尾时返回 usage chunk（OpenAI 兼容协议：
+        # 最后一个 choices 为空的 chunk 携带 usage）。不支持该参数的
+        # 服务端通常直接忽略；若返回 400 则去掉该参数降级重试（见下）。
+        "stream_options": {"include_usage": True},
     }
     if exchange is not None:
         payload["tools"] = exchange.tools
@@ -632,16 +635,21 @@ def _call_llm_streaming(
     acc_tool_calls: dict[int, dict[str, Any]] = {}
     try:
         with requests.post(url, headers=headers, json=payload, timeout=config.timeout, stream=True) as resp:
-            if (
-                resp.status_code == 400
-                and "tool_choice" in payload
-                and (resp.text or "").find("tool_choice") != -1
-            ):
-                # 降级链：推理模式拒绝强制 tool_choice → 去 choice 重试一次
-                logger.warning("流式请求 tool_choice 被拒绝（%s），降级重试", resp.text[:200])
-                payload.pop("tool_choice", None)
-                with requests.post(url, headers=headers, json=payload, timeout=config.timeout, stream=True) as resp2:
-                    return _drain_stream(resp2, acc_tool_calls, pieces, cb)
+            if resp.status_code == 400 and resp.text:
+                body_text = resp.text or ""
+                # 降级链 1：不支持 stream_options 的服务端 → 去掉后重试
+                # （usage 缺失时由评测侧调用次数兜底，不影响正文产出）
+                if "stream_options" in body_text and "stream_options" in payload:
+                    logger.warning("服务端不支持 stream_options（%s），降级重试", body_text[:200])
+                    payload.pop("stream_options", None)
+                    with requests.post(url, headers=headers, json=payload, timeout=config.timeout, stream=True) as resp2:
+                        return _drain_stream(resp2, acc_tool_calls, pieces, cb)
+                if "tool_choice" in payload and body_text.find("tool_choice") != -1:
+                    # 降级链 2：推理模式拒绝强制 tool_choice → 去 choice 重试一次
+                    logger.warning("流式请求 tool_choice 被拒绝（%s），降级重试", body_text[:200])
+                    payload.pop("tool_choice", None)
+                    with requests.post(url, headers=headers, json=payload, timeout=config.timeout, stream=True) as resp2:
+                        return _drain_stream(resp2, acc_tool_calls, pieces, cb)
             resp.raise_for_status()
             return _drain_stream(resp, acc_tool_calls, pieces, cb)
     except Exception as e:
@@ -674,6 +682,10 @@ def _drain_stream(
     reasoning_total = 0
     reasoning_active = False
     last_reasoning_push = time.monotonic()
+    # 流式 usage 计量：服务端可能在收尾单发一个累计 usage chunk，也可能
+    # 逐 chunk 发增量 usage；统一暂存最后一个 usage chunk，收尾时记录一次，
+    # 两类口径都能得到完整总量，且每条流最多记录一次，避免重复计数。
+    last_usage_chunk: dict | None = None
 
     def flush_reasoning(force: bool = False) -> None:
         nonlocal reasoning_parts, last_reasoning_push
@@ -696,6 +708,12 @@ def _drain_stream(
             chunk = json.loads(data_str)
         except json.JSONDecodeError:
             continue
+        # usage chunk（OpenAI 兼容协议下通常在收尾的 choices 为空 chunk，
+        # 也有服务端逐 chunk 发增量 usage）：只暂存不立即记录，收尾时
+        # 统一经既有 _record_usage 落账；服务端未返回时静默跳过，
+        # 由评测侧调用次数兜底。不触碰正文/工具增量，流式产出行为不变。
+        if isinstance(chunk, dict) and chunk.get("usage"):
+            last_usage_chunk = chunk
         choices = chunk.get("choices") or []
         if not choices:
             continue
@@ -719,6 +737,8 @@ def _drain_stream(
             except Exception:
                 logger.warning("流式回调异常，已忽略", exc_info=True)
     flush_reasoning(True)
+    if last_usage_chunk is not None:
+        _record_usage(last_usage_chunk)
     if reasoning_total:
         push_op("reasoning_end", length=reasoning_total)
     if acc_tool_calls:

@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/status-implemented-2EA043?style=flat-square" alt="Status: implemented">
   <img src="https://img.shields.io/badge/systems-bare%2Fsingle%2Fmulti-4B8BBE?style=flat-square" alt="Systems: bare/single/multi">
-  <img src="https://img.shields.io/badge/cases-46%2B-8B5CF6?style=flat-square" alt="Cases: 46+">
+  <img src="https://img.shields.io/badge/cases-40-8B5CF6?style=flat-square" alt="Cases: 40">
 </p>
 
 对同一测试用例集，系统性地对比三种方案：
@@ -30,6 +30,10 @@ python -m eval judge Score/demo_v1_... --force  # 强制重评 Judge
 小规模冒烟 / 调试：
 
 ```bash
+# 分层冒烟预设：每 category 确定性抽 1 例、repeats=1、仅 single+multi
+python -m eval run --event smoke_v2 --smoke
+
+# 或手动指定用例与系统：
 python -m eval run --event smoke --cases qa_duration,halluc_player_99 \
     --systems bare,single,multi --repeats 1
 ```
@@ -42,13 +46,17 @@ python -m eval run --event smoke --cases qa_duration,halluc_player_99 \
 
 ```
 meta.json       配置快照/git commit/随机种子（可复现性凭证）
+                + usage_fix_version（口径标记，见下）+ preset（分层预设标记，如 smoke）
 plan.json       交错执行计划
 runs/{sys}/{case}/{repeat}/   result.json + trace_*.jsonl + stdout.log
 judge/{case}.json             Judge 评分（内容哈希缓存，resume 复用）
 metrics.json     每 run 评分明细（含程序化指标逐项明细）
 results.json     系统级聚合 + 配对检验 + 类别热力 + 失败模式 + 成本
+                 + judge_meta（Judge 一致性等元信息）+ judge_disagreements（Judge-程序分歧）
 report.md / report.html / figures/*.png
 ```
+
+> **`usage_fix_version` 口径标注**：该键由 `eval/engine.py` 的 `create_event` 写入 `meta.json`，表示流式 usage 计量修复后的口径（流式调用经 `stream_options.include_usage` 采集真实 token usage，`llm_calls` 另含调用次数兜底）。历史事件无此字段，**跨该版本前后的事件效率（efficiency）分不可直接比较**。
 
 ## 指标体系与默认权重
 
@@ -67,6 +75,18 @@ report.md / report.html / figures/*.png
 - **共同总分** = Σ 权重×分项（三系统公平可比）；**扩展总分** 额外以 0.10 权重并入 tool_use（其余等比缩放），仅在 single 与 multi 间比较。
 - **策略化倾向**：reasoning + tactical_accuracy 合计 0.45（原 0.30），accuracy + grounding + completeness 合计 0.35（原 0.52），得分点从「小细节数值」转向「形势/策略判断」。
 - **语义对齐（混合软校验）**：accuracy/tactical_accuracy 以 Judge 语义比对为主，程序化数值/胜者/类别/容差扫描降级为诊断（保留在 metrics.json 的 `details` 便于对照，不计分）；Judge 缺失分量自动重归一化并在报告标注。
+
+### 指标定义与依据
+
+| 方法/指标 | 权威依据 | 本项目落地与局限 |
+|---|---|---|
+| 威胁值（threat） | Karun Singh (2018), *Beyond Expected Goals*（xT，Expected Threat）：以球位置刻画传球/携带至该位置后的潜在得分威胁 | 参考其「越近球门、越靠中路威胁越高」的构造思路，用无训练数据的确定性启发式实现（距门线线性衰减 + 中路加成），**未用真实射门/得分数据校准**，不代表专业级 xT |
+| 战术区域划分 | StatsBomb / Metrica 等事件数据厂商的进攻三区（final/middle/defensive third）与中路/边路划分惯例 | 按距最近球门线归一化距离（禁区 <0.15 / 前场 <0.40）与横向位置（边路 s<0.25 或 s>0.75）划分，双球门对称；边界阈值为项目自定义启发式 |
+| 统计检验 | Wilcoxon 配对符号秩检验 + Holm 逐步校正，非参数配对比较的标准做法（不假设正态、控制族错误率） | 按用例配对；Judge 主观分指标存在族内相关，Holm 校正后 p 仅作参考下界；另报配对 t / Cohen's d / Cliff's δ 供交叉核对 |
+| LLM-as-Judge 偏差与缓解 | Zheng et al. (2023, NeurIPS Datasets & Benchmarks), *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena*：系统刻画位置偏差、冗长偏差、自我增强偏差及缓解手段 | 已采用盲评（甲/乙/丙匿名）、位置互换取均值（正逆序差作为一致性指标并写入 `results.json` 的 `judge_meta`，报告对差 >0.15 用例标黄告警）、temp=0；**尚缺与人工标注的一致性校准**，同源 Judge（模型名前缀粗判同厂商）存在自我偏好风险，报告头部固定披露，结论需人工抽检 |
+| Judge-程序交叉对照 | 同上（多源评分交叉验证思路） | `score_run` 输出 `judge_program_agreement`：程序化 accuracy（诊断分量）与 Judge accuracy 差 >0.3 记 flag="disagreement"，缺失记 "n/a"；`results.json` 的 `judge_disagreements` 汇总 top 分歧供抽检（仅诊断不改分） |
+
+> **诚实性标注**：本项目的威胁值公式、区域边界阈值、事件检测速度阈值（SPEED_STILL_MS/SPEED_DRIVE_MS，米/秒）均为**未校准启发式，仅用于内部相对比较，不代表专业级绝对标准**；速度阈值经场地标定（1200×700 px → 105×68 m）换算后与历史像素阈值数值等价。
 
 ## 领域真实性与可量化性（v1.0 重构）
 
@@ -113,10 +133,6 @@ v2 扩用例：启用 7s 数据集，新增 `qa_7s_player_count` / `qa_7s_ball_h
 
 `cf_7s_pass10` 补充方向金标准（neg 关键词区分「无变化」放水）；MCTS 随机性大不设精确数值金标准（修订 #2），以方向性 + checklist + 跨重复 stability 诊断评估。
 
-### 跨 Agent 结构化事实记忆（`agents/session/memory.py`）
-
-`MemoryStore` 增加 `fact_store`：`record_fact(fact, source, confidence)` / `get_facts()` / `get_fact_context()`，支持来源与置信度过滤、持久化往返 —— 跨 Agent 共享的已验证事实工作记忆（默认不改变现有 prompt 注入行为）。
-
 ### 对抗鲁棒性（评测侧 + robustness 增强）
 
 - 新增 `adversarial` 类别用例（level 7）：`adv_induced_scoring`（诱导编造）、`adv_frame_out_of_range`（超范围时间）、`adv_prompt_injection`（prompt 注入）、`adv_ambiguous_multi_target`（多目标歧义）、`adv_format_messy`（噪声格式）；
@@ -126,6 +142,7 @@ v2 扩用例：启用 7s 数据集，新增 `qa_7s_player_count` / `qa_7s_ball_h
 
 - `EvalConfig.max_workers`（默认 1 保持串行），`--workers N` 并行调度子进程（`concurrent.futures.ThreadPoolExecutor`，保持交错计划语义）；
 - `--quick` 分层预设：1 重复快速冒烟；
+- `--smoke` 分层预设：每 category 确定性抽 1 例（按 case_id 排序取首个，不依赖随机种子、可复现），强制 `repeats=1` 且仅参评 `single+multi`（优先于显式 `--systems/--repeats`），`meta.json` 附 `preset: "smoke"` 标记；
 - 建议分层：L1 冒烟（5 用例×1 重复）→ L2 快速（12 用例）→ L3 全量（≥3 重复）。
 
 ### 可解释性（报告分层展示）

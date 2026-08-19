@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/status-completed-2EA043?style=flat-square" alt="Status: completed">
   <img src="https://img.shields.io/badge/tool-sites-19-4B8BBE?style=flat-square" alt="Tool sites: 19">
-  <img src="https://img.shields.io/badge/golden-39%20calls-8B5CF6?style=flat-square" alt="Golden: 39 calls">
+  <img src="https://img.shields.io/badge/golden-13%20calls-8B5CF6?style=flat-square" alt="Golden: 13 calls">
 </p>
 
 > **目标**：将系统从「纯文本 JSON 契约」迁移到「OpenAI 风格 function calling」：tools 参数 + tool_calls 解析 + 多轮工具循环 + 并行 tool_calls，同时保持 harness golden 回放与全部 pytest 用例不回归。本文档为设计 + 执行结果的完整记录。
@@ -17,7 +17,7 @@
   1. `tests/_common.py` 的 mock 以 `(system_prompt, user_message, config, max_tokens, retries)` 5 参签名替换 `llm_brain.call_llm` —— llm_brain 内部调用点的调用签名**不可变更**。
   2. `tests/test_harness_equivalence.py` 以 6 参签名替换 `agents.llm_client._call_llm_impl` 与 `harness.interceptors._call_llm_impl` —— 传输层被 patch 的函数签名**不可变更**。
   3. dispatcher 探针断言收到且仅收到原 6 个参数（不传 tools 时）。
-  4. golden 回放以 `(system_prompt, user_message)` 精确匹配、FIFO 消费；现有 `harness/golden/standard` 的 39 条记录全部为 `response: null`（录制时 LLM 不可用），回放验证的是**全兜底链路**。迁移后各调用点的首轮 `(system, user)` 必须保持不变，旧 golden 才能继续回放。
+  4. golden 回放以 `(system_prompt, user_message)` 精确匹配、FIFO 消费；迁移时 `harness/golden/standard` 的 39 条记录全部为 `response: null`（录制时 LLM 不可用），回放验证的是**全兜底链路**。迁移后各调用点的首轮 `(system, user)` 必须保持不变，golden 才能继续回放。（注：该 golden 已随新代码重录为 13 次调用、含工具调用轨迹的真实响应数据集。）
 
 ## 二、技术选型与理由（含最终落地结论）
 
@@ -125,7 +125,7 @@ tests 与 harness 均以**固定签名** patch 传输函数与 dispatcher。为�
 
 ## 六、golden 兼容策略（落地，零重录）
 
-1. **旧 golden 直接回放（主策略）**：迁移只增加 tools 绑定，不改任何 `(system_prompt, user_message)` 首轮内容；replay 返回的录制文本/None 走文本回退路径，与重构前行为逐字节一致。现有 `harness/golden/standard`（39 条 response=null 全兜底链路）无需重录即可继续 PASS。
+1. **旧 golden 直接回放（主策略）**：迁移只增加 tools 绑定，不改任何 `(system_prompt, user_message)` 首轮内容；replay 返回的录制文本/None 走文本回退路径，与重构前行为逐字节一致。迁移时点的 `harness/golden/standard`（39 条 response=null 全兜底链路）无需重录即可继续回放。（后续已按本节第 3 条一键重录：当前 golden 为 13 次调用、含工具调用轨迹的真实响应数据集，回放经四维比对验证当前代码下回放等价。）
 2. **新格式向后兼容**：record 模式仅在出现 tool_calls 时追录 `tools` / `assistant_message` 字段（字段可选）；ReplayLLM 对无该字段的旧条目行为不变；record→replay 工具闭环有专门单测覆盖。
 3. **一键重录**（可选）：`python -m harness run TestInput/Files/12s_person2d.csv TestInput/Files/12s_soccer3d.csv --script harness/scripts/standard_12s.txt --mode record --golden-dir harness/golden/standard --seed 42`（真实 API）。
 
@@ -133,7 +133,7 @@ tests 与 harness 均以**固定签名** patch 传输函数与 dispatcher。为�
 
 - `call_llm` 支持 tools 参数与 tool_calls 循环；不传 tools 时行为与重构前完全一致（dispatcher 探针用例 + A/B 等价用例直接证明）。
 - 7 个结构化调用点 + general_qa 全部工具化；同一响应并行 tool_calls 支持且有单测证明。
-- pytest 全部用例 + golden 四维回放 PASS；实网冒烟（剧本/决策/档位/质疑判断/general_qa 工具循环）全部正确。
+- pytest 全部 127 个用例通过 + golden 四维回放验证当前代码下回放等价；实网冒烟（剧本/决策/档位/质疑判断/general_qa 工具循环）全部正确。
 
 ## 八、已知边界
 

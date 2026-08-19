@@ -35,7 +35,8 @@ from .tracealign import build_case_alignment
 
 # ── 事件目录 ────────────────────────────────────────────────
 
-def create_event(event_name: str, cfg: EvalConfig, cases: list[TestCase]) -> Path:
+def create_event(event_name: str, cfg: EvalConfig, cases: list[TestCase],
+                 preset: str | None = None) -> Path:
     ts = time.strftime("%Y%m%d_%H%M%S")
     event_dir = cfg.score_root / f"{event_name}_{ts}"
     for sub in ("runs", "judge", "figures"):
@@ -59,6 +60,13 @@ def create_event(event_name: str, cfg: EvalConfig, cases: list[TestCase]) -> Pat
         "python": sys.version.split()[0],
     }
     meta["git_commit"] = _git_commit()
+    # 口径标记：v1 起流式调用经 stream_options.include_usage 采集真实
+    # token usage，llm_calls 另含调用次数兜底；历史事件无此字段，
+    # 效率指标跨口径不可直接比较。
+    meta["usage_fix_version"] = 1
+    # 分层评测预设标记（如 smoke），附加性字段，历史事件无此字段
+    if preset:
+        meta["preset"] = preset
     (event_dir / "meta.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8",
     )
@@ -87,6 +95,18 @@ def find_event(event_or_dir: str, cfg: EvalConfig) -> Path:
 
 
 # ── 计划与执行 ──────────────────────────────────────────────
+
+def sample_smoke_cases(cases: list[TestCase]) -> list[TestCase]:
+    """smoke 预设抽样：每个 category 取 1 个用例。
+
+    确定性规则：按 case_id 排序后每类取第一个，结果按 category 排序，
+    保证同一用例集下抽样结果可复现（不依赖随机种子）。
+    """
+    picked: dict[str, TestCase] = {}
+    for case in sorted(cases, key=lambda c: c.id):
+        picked.setdefault(case.category, case)
+    return [picked[cat] for cat in sorted(picked)]
+
 
 def build_plan(cases: list[TestCase], cfg: EvalConfig) -> list[dict]:
     """重复轮分层 + 轮内 (case×system) 随机交错。"""
@@ -249,6 +269,28 @@ def run_judge_phase(event_dir: Path, cases: list[TestCase],
     return scores
 
 
+def load_judge_meta(event_dir: Path, cases: list[TestCase]) -> dict[str, dict]:
+    """按用例读回 Judge 缓存中的 meta（consistency / orders / judge_model /
+    rubric_version 等，由 judge.score_case_with_judge 产出）。
+
+    附加性字段：历史事件缓存若无 meta 则跳过，不影响既有流程。
+    """
+    meta_by_case: dict[str, dict] = {}
+    judge_dir = event_dir / "judge"
+    for case in cases:
+        path = judge_dir / f"{case.id}.json"
+        if not path.exists():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        meta = data.get("meta")
+        if isinstance(meta, dict):
+            meta_by_case[case.id] = meta
+    return meta_by_case
+
+
 def score_all(event_dir: Path, cases: list[TestCase], runs_by_case: dict,
               judge_scores: dict, cfg: EvalConfig) -> dict[str, dict]:
     """全量评分：每 run 明细（metrics.json）+ 每用例聚合（stats.aggregate 输入）。"""
@@ -318,6 +360,33 @@ def failure_modes(metrics_rows: list[dict]) -> dict[str, dict]:
     return {mode: {"count": n, "samples": samples.get(mode, [])} for mode, n in top}
 
 
+def judge_disagreements(metrics_rows: list[dict], top_n: int = 5) -> dict:
+    """Judge 与程序化 accuracy 分歧汇总（仅诊断，不改分）。
+
+    基于每 run 的 judge_program_agreement 字段（scoring.score_run 产出），
+    列出 top 分歧用例及差值，供人工抽检 Judge 可信度。
+    """
+    items: list[dict] = []
+    counts = {"ok": 0, "disagreement": 0, "n/a": 0}
+    for row in metrics_rows:
+        ag = row.get("judge_program_agreement") or {}
+        flag = ag.get("flag")
+        if flag not in counts:
+            continue
+        counts[flag] += 1
+        if flag == "disagreement":
+            items.append({
+                "system": row.get("system"), "case_id": row.get("case_id"),
+                "repeat": row.get("repeat"),
+                "program_accuracy": ag.get("program_accuracy"),
+                "judge_accuracy": ag.get("judge_accuracy"),
+                "diff": ag.get("diff"),
+            })
+    items.sort(key=lambda x: (-(x["diff"] or 0.0),
+                              str(x.get("case_id")), str(x.get("system"))))
+    return {"counts": counts, "top": items[:top_n]}
+
+
 def cost_summary(runs_by_case: dict, cfg: EvalConfig) -> dict[str, dict]:
     """成本透明度：每系统时延/调用数/token 均值。"""
     out: dict[str, dict[str, list[float]]] = {s: {} for s in cfg.systems}
@@ -341,9 +410,10 @@ def cost_summary(runs_by_case: dict, cfg: EvalConfig) -> dict[str, dict]:
 # ── 一条龙 ──────────────────────────────────────────────────
 
 def evaluate(event_name: str, cfg: EvalConfig, select: str | None = None,
-             dry_run: bool = False, resume: bool = True) -> Path:
+             dry_run: bool = False, resume: bool = True,
+             preset: str | None = None) -> Path:
     cases = load_cases(cfg.cases_dir, select)
-    event_dir = create_event(event_name, cfg, cases)
+    event_dir = create_event(event_name, cfg, cases, preset=preset)
     plan = build_plan(cases, cfg)
     (event_dir / "plan.json").write_text(
         json.dumps(plan, ensure_ascii=False, indent=2), encoding="utf-8",
@@ -384,6 +454,9 @@ def finalize_event(event_dir: Path, cfg: EvalConfig, select: str | None = None,
         "aggregate": agg,
         "category_breakdown": category_breakdown(present, per_case_scores),
         "failure_modes": failure_modes(metrics_rows),
+        # 可信度增量（附加字段）：Judge 元信息与 Judge-程序分歧诊断
+        "judge_meta": load_judge_meta(event_dir, present),
+        "judge_disagreements": judge_disagreements(metrics_rows),
         "cost": cost_summary(runs_by_case, cfg),
         "per_case_summary": {
             cid: {s: {"total": (round(sum(t for t in d['total'] if t is not None) /

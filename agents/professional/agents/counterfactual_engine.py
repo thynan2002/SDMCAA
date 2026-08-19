@@ -20,9 +20,14 @@ from ..types import (
     PlayerBehaviorModel,
     ScenarioType,
 )
-from ..mcts.node import GameState, Action, ActionType
+from ..mcts.node import GameState, Action, ActionType, action_from_scenario
 from ..mcts.tree import MCTSTree
 from ..mcts.policy import RolloutPolicy, create_policy_from_model
+
+# ── 置信度计算：两因子（最优动作访问占比 + Q 值差）的命名权重 ──
+_VISIT_WEIGHT = 0.6          # 最优动作访问占比因子权重
+_Q_WEIGHT = 0.4              # Q 值分离度因子权重
+_Q_GAP_SATURATION = 0.15     # avg_reward 差距达到该值即视为完全分离（rollout 奖励约在 [0, 1.5]）
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -186,60 +191,27 @@ class CounterfactualEngineAgent:
         action_stats: list[dict],
         total_visits: int,
     ) -> float:
-        """基于 MCTS 实际搜索结果动态计算置信度。
+        """基于 MCTS 搜索结果计算置信度（两因子线性组合）。
 
-        综合四个维度：
-        1. 最优动作访问占比：访问越集中于最优动作 → 置信度越高
-        2. 访问充分性：最优动作访问次数需达到阈值才可信赖，
-           防止"低访问次数 + 高胜率"节点获得虚高置信度
-        3. Q 值分离度：最优与次优动作的 avg_reward 差距越大 → 置信度越高
-        4. 模拟规模充分性：总访问数越多 → 置信度越高（平方根衰减）
-
-        与旧版的关键差异：
-        - 用"最优动作访问占比"替代"归一化熵"，更直接反映决策确信程度
-        - 新增"访问充分性"维度，防止低访问次数的高胜率节点获得虚高置信度
-        - Q 值分离度归一化阈值从 0.5 降至 0.15，适配实际奖励范围
-        - 模拟规模基于实际总访问数而非配置迭代次数
+        因子 1：最优动作访问占比——访问越集中于最优动作 → 置信度越高；
+        因子 2：Q 值差——最优与次优动作 avg_reward 差距越大 → 置信度越高
+        （差距达到 _Q_GAP_SATURATION 即饱和；仅一个候选动作时无歧义，取满值）。
 
         返回 [0.1, 0.95] 区间的置信度。
         """
-        import math
-
         if not action_stats or total_visits <= 0:
             return 0.1
 
-        n_actions = len(action_stats)
         best = action_stats[0]  # 已按 visit_count 降序排列
+        visit_share = best["visit_count"] / total_visits
 
-        # ── 维度 1：最优动作访问占比（权重 0.35）──
-        # 访问越集中于最优动作 → 置信度越高
-        best_visit_share = best["visit_count"] / total_visits
-
-        # ── 维度 2：访问充分性（权重 0.15）──
-        # 最优动作至少需 50 次访问才具备统计可靠性
-        visit_sufficiency = min(1.0, best["visit_count"] / 50.0)
-
-        # ── 维度 3：Q 值分离度（权重 0.30）──
-        if n_actions >= 2:
+        if len(action_stats) >= 2:
             q_gap = abs(best["avg_reward"] - action_stats[1]["avg_reward"])
+            q_separation = min(1.0, q_gap / _Q_GAP_SATURATION)
         else:
-            q_gap = 0.15  # 仅一个可选动作 → 中等分离度
-        # 归一化阈值 0.15：rollout 奖励通常在 [0, 1.5] 区间，
-        # 0.15 的 avg_reward 差距已具有显著区分意义
-        q_separation = min(1.0, q_gap / 0.15)
+            q_separation = 1.0
 
-        # ── 维度 4：模拟规模充分性（权重 0.20）──
-        # 基于实际总访问数（而非配置迭代次数），平方根衰减避免线性饱和
-        sim_factor = min(1.0, math.sqrt(total_visits / 1000.0))
-
-        # ── 加权融合 ──
-        confidence = (
-            best_visit_share * 0.35
-            + visit_sufficiency * 0.15
-            + q_separation * 0.30
-            + sim_factor * 0.20
-        )
-
+        confidence = _VISIT_WEIGHT * visit_share + _Q_WEIGHT * q_separation
         return round(min(0.95, max(0.1, confidence)), 4)
 
     # ── 辅助方法 ──
@@ -316,21 +288,18 @@ class CounterfactualEngineAgent:
     def _infer_attack_dir(corpus: PrefixPlayerCorpus, team_color: str) -> int:
         """推断指定队伍的进攻方向（+1 攻 +y / -1 攻 -y）。
 
-        与 TrajectorySimulator._attack_directions 同一约定：
+        委托 simulation.engine.assign_attack_directions（单一事实源）：
         按各队平均 y 升序交替分配方向，平均 y 偏小的队攻 +y。
         """
+        from ..simulation.engine import assign_attack_directions
+
         sums: dict[str, list[float]] = {}
         for p in corpus.players.values():
             sums.setdefault(p.color or "unknown", []).append(p.avg_y())
         if not sums:
             return 1
         avgs = {c: sum(ys) / len(ys) for c, ys in sums.items()}
-        sign = 1
-        for color in sorted(avgs, key=lambda c: avgs[c]):
-            if color == team_color:
-                return sign
-            sign = -sign
-        return 1
+        return assign_attack_directions(avgs).get(team_color, 1)
 
     def _find_position_at_frame(
         self,
@@ -349,7 +318,7 @@ class CounterfactualEngineAgent:
     ) -> dict[str, float]:
         """模拟原始决策路径的结果。"""
         # 从初始状态开始，首先应用原始动作
-        original_action = self._action_from_scenario(scenario, altered=False)
+        original_action = action_from_scenario(scenario, altered=False)
         state = root_state.apply_action(original_action)
 
         # 继续 rollout
@@ -363,31 +332,11 @@ class CounterfactualEngineAgent:
         root_state: GameState,
     ) -> dict[str, float]:
         """模拟反事实决策路径的结果。"""
-        altered_action = self._action_from_scenario(scenario, altered=True)
+        altered_action = action_from_scenario(scenario, altered=True)
         state = root_state.apply_action(altered_action)
 
         rewards = policy.rollout_many(state, num_rollouts=50, max_depth=20)
         return self._compute_outcome_stats(rewards)
-
-    def _action_from_scenario(
-        self,
-        scenario: CounterfactualScenario,
-        altered: bool,
-    ) -> Action:
-        """从场景描述构建 Action 对象。"""
-        action_name = scenario.altered_action if altered else scenario.original_action
-
-        if action_name == "pass":
-            target = scenario.altered_target if altered else scenario.original_target
-            return Action(ActionType.PASS, target_player=target)
-        elif action_name == "shoot":
-            return Action(ActionType.SHOOT)
-        elif action_name == "dribble":
-            return Action(ActionType.DRIBBLE, direction=(0, 30))
-        elif action_name == "clear":
-            return Action(ActionType.CLEAR)
-        else:
-            return Action(ActionType.HOLD)
 
     def _compute_outcome_stats(self, rewards: list[float]) -> dict[str, float]:
         """从奖励列表计算结果统计。"""

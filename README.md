@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/LLM-DeepSeek-4B8BBE?style=flat-square" alt="LLM: DeepSeek">
   <img src="https://img.shields.io/badge/orchestration-LangGraph-2C8C5A?style=flat-square" alt="Orchestration: LangGraph">
   <img src="https://img.shields.io/badge/architecture-tool--calling-8B5CF6?style=flat-square" alt="Architecture: tool-calling">
-  <img src="https://img.shields.io/badge/tests-111%20passed-2EA043?style=flat-square" alt="Tests: 111 passed">
+  <img src="https://img.shields.io/badge/tests-127%20passed-2EA043?style=flat-square" alt="Tests: 127 passed">
 </p>
 
 Feed in player-tracking and ball-tracking CSV files, and an LLM-driven multi-agent pipeline turns them into professional match commentary, player performance analysis, and counterfactual (What-If) simulations. The system is built around **function calling (tool calling)**: structured decisions are delivered through tool contracts, and external information can only be obtained through tools — with the full pipeline orchestrated by LangGraph and usable from a CLI chat, one-shot commentary, or a Web visualization interface.
@@ -94,7 +94,7 @@ Example conversation:
 ## Testing
 
 ```bash
-pytest            # full suite, 111 tests (real-API smoke tests skipped by default)
+pytest            # full suite, 127 tests (real-API smoke tests skipped by default)
 pytest -m smoke   # real-API smoke tests (requires DEEPSEEK_API_KEY)
 
 # Harness golden replay regression (offline; verifies refactors preserve equivalence)

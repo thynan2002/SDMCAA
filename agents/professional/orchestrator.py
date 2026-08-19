@@ -11,11 +11,6 @@ import hashlib
 
 from langgraph.graph import END, START, StateGraph
 
-try:
-    from langgraph.checkpoint.memory import MemorySaver
-except Exception:
-    MemorySaver = None
-
 from agents.player.tracker import PrefixPlayerCorpus
 from agents.progress import push_stage
 from .types import (
@@ -32,6 +27,11 @@ from .agents.counterfactual_engine import CounterfactualEngineAgent
 from .agents.report_generator import ReportGeneratorAgent
 from .agents.general_qa import GeneralQAAgent
 from .agents.data_verifier import DataVerifierAgent
+from .mcts.node import action_from_scenario
+
+# MCTS 模拟预算默认值（模块级可配置；曾硬编码为 1000，
+# 降级为 300 以控制延迟与成本，可按需经构造参数上调）
+DEFAULT_NUM_SIMULATIONS = 300
 
 
 class ProfessionalState(TypedDict, total=False):
@@ -57,7 +57,7 @@ class ProfessionalAnalysisOrchestrator:
     - DataVerifierAgent       数据核验与回查（独立路径）
     """
 
-    def __init__(self, enable_checkpoint: bool = False) -> None:
+    def __init__(self, num_simulations: int = DEFAULT_NUM_SIMULATIONS) -> None:
         from .simulation.llm_brain import LLMDecisionEngine
 
         self.data_collector = DataCollectorAgent()
@@ -65,14 +65,14 @@ class ProfessionalAnalysisOrchestrator:
         # 共享 LLM 决策引擎：驱动 MCTS 策略与轨迹模拟的战术判断
         self.llm_engine = LLMDecisionEngine()
         self.counterfactual_engine = CounterfactualEngineAgent(
-            num_simulations=1000, llm_engine=self.llm_engine,
+            num_simulations=num_simulations, llm_engine=self.llm_engine,
         )
         self.report_generator = ReportGeneratorAgent()
         self.general_qa_agent = GeneralQAAgent()
         self.data_verifier = DataVerifierAgent()
-        self.graph = self._build_graph(enable_checkpoint=enable_checkpoint)
+        self.graph = self._build_graph()
 
-    def _build_graph(self, enable_checkpoint: bool):
+    def _build_graph(self):
         builder = StateGraph(ProfessionalState)
 
         builder.add_node("collect_data", self._collect_data)
@@ -96,8 +96,6 @@ class ProfessionalAnalysisOrchestrator:
         builder.add_edge("generate_report", END)
         builder.add_edge("generate_style_report", END)
 
-        if enable_checkpoint and MemorySaver is not None:
-            return builder.compile(checkpointer=MemorySaver())
         return builder.compile()
 
     # ── 节点函数 ──
@@ -175,7 +173,8 @@ class ProfessionalAnalysisOrchestrator:
         from .simulation.exporter import export_simulation
 
         push_stage("trajectory", "正在生成反事实轨迹…")
-        forced = self._action_from_scenario(scenario)
+        # 未指定替换动作时 fallback=None → 纯自然推演
+        forced = action_from_scenario(scenario, fallback=None)
         simulator = TrajectorySimulator(corpus, models, llm_engine=self.llm_engine)
         result = simulator.simulate(
             intervention_frame=scenario.frame,
@@ -198,24 +197,6 @@ class ProfessionalAnalysisOrchestrator:
             report.trajectory_events = result.events
             report.analysis_summary += f"\n\n[轨迹数据生成失败] {exc}"
             push_stage("trajectory", "轨迹数据导出失败", status="done")
-
-    @staticmethod
-    def _action_from_scenario(scenario: CounterfactualScenario):
-        """从场景描述构建第一步强制执行的反事实动作。"""
-        from .mcts.node import Action, ActionType
-
-        name = scenario.altered_action
-        if name == "pass":
-            return Action(ActionType.PASS, target_player=scenario.altered_target)
-        if name == "shoot":
-            return Action(ActionType.SHOOT)
-        if name == "dribble":
-            return Action(ActionType.DRIBBLE, direction=(0, 30))
-        if name == "clear":
-            return Action(ActionType.CLEAR)
-        if name == "hold":
-            return Action(ActionType.HOLD)
-        return None  # 未指定替换动作 → 纯自然推演
 
     @staticmethod
     def _format_generated_section(report: CounterfactualReport) -> str:

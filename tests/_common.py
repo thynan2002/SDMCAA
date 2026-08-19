@@ -32,7 +32,7 @@ def run_scenario(
 ):
     """执行一次反事实模拟并导出，返回 (person_path, ball_path, result, warnings)。
 
-    与旧 tools/test_counterfactual_sim.py 的 run_scenario 行为完全一致。
+    对应独立 run_scenario 行为，供 pytest 用例与命令行驱动复用。
     """
     from agents.professional.simulation.engine import TrajectorySimulator
     from agents.professional.simulation.exporter import export_simulation

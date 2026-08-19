@@ -3,7 +3,7 @@
 基于 FastAPI，为前端提供：
   - 文件上传（person + ball CSV）
   - 对话流式输出（SSE，真流式 LLM）
-  - 原始轨迹数据（JSON，前端 Canvas 逐帧渲染，复刻 showAll.py 逻辑）
+  - 原始轨迹数据（JSON，前端 Canvas 逐帧渲染，含缺帧插值补齐）
   - 反事实轨迹生成（表单提交 → SSE 流式 + 轨迹文件）
   - 反事实轨迹对比数据
 
@@ -306,7 +306,7 @@ async def trajectory_file(person: str, ball: str):
 
 
 def _build_trajectory_json(person_csv: str, ball_csv: str, label: str = "") -> JSONResponse:
-    """复刻 showAll.py 的插值逻辑，返回前端可直接逐帧渲染的 JSON。"""
+    """对轨迹做缺帧插值补齐，返回前端可直接逐帧渲染的 JSON。"""
     try:
         import numpy as np
     except ImportError:

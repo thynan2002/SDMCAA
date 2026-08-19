@@ -5,7 +5,7 @@
 3. 无 LLM 引擎：纯启发式路径
 4. 真实 API 冒烟（环境有 DEEPSEEK_API_KEY 时执行，pytest 中标记为 smoke 默认跳过）
 
-`run_standalone()` 保留旧命令行契约（tools/test_llm_decision.py 调用），
+`run_standalone()` 提供独立命令行入口（`python -m tests.test_llm_decision`），
 输出用例明细与 [OK]/[FAIL]，退出码 0=全部通过 / 1=存在失败项。
 """
 
@@ -80,7 +80,7 @@ def test_real_api_smoke(corpus) -> None:
 
 
 # ═══════════════════════════════════════════════════════════════
-# 命令行驱动（保留旧 tools/test_llm_decision.py 契约）
+# 命令行驱动（独立命令行入口）
 # ═══════════════════════════════════════════════════════════════
 
 def run_standalone(corpus=None) -> int:

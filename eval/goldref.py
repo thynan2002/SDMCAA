@@ -242,6 +242,10 @@ def ball_player_distance_at_second(stats: DatasetStats, tid: int, second: float)
 # - 威胁值：参考 Karun Singh 的 xT（Expected Threat, 2018）思路 —— 球越接近
 #   球门、越靠中路，对得分的威胁越高；此处用无训练数据的确定性启发式模型
 #   （距门线距离线性衰减 + 中路加成），保证独立可重算、不依赖被测系统。
+#
+# 局限声明（诚实化标注）：以上威胁值公式、区域边界阈值（0.15/0.40/0.25）
+# 均为未校准启发式 —— 未用真实射门/得分数据拟合，仅供评测内部相对比较，
+# 不代表专业级绝对标准；场地标定假设 1200×700 px → 105×68 m（_FIELD_*_PX）。
 
 def _normalize(stats: DatasetStats, x: float, y: float) -> tuple[float, float]:
     """球场内点归一化到 [0,1]×[0,1]：t=进攻轴（x，门线到门线），s=横向（y，边线到边线）。
@@ -331,17 +335,25 @@ def player_primary_zone(stats: DatasetStats, tid: int) -> str:
 
 # ── 独立事件检测（1.1：事件类金标准，不经被测系统） ──────────
 # 基于球速/高度的确定性分段；速度阈值与事件类型对应足球常见事件。
-# 阈值说明（像素/秒，启发式）：<40 视为控球/静止；40-120 视为带球/短传；
-# ≥120 且球高度高（z≥0.5m）视为长传，≥120 且低球视为快速推进；
-# 高速且接近球门线（威胁≥0.8）额外标记射门。
-SPEED_STILL = 40.0
-SPEED_DRIVE = 120.0
+# 阈值说明（米/秒语义，启发式、未校准，仅用于内部相对比较）：
+# <3.5 视为控球/静止；3.5-10.5 视为带球/短传；≥10.5 且球高度高（z≥0.5m）
+# 视为长传，≥10.5 且低球视为快速推进；高速且接近球门线（威胁≥0.8）额外
+# 标记射门。与 ball_speed_segments（像素/秒）比较时经场地标定换算回像素
+# 阈值（沿用一个主轴的标定系数），数值结果与历史像素阈值 40/120 完全等价。
+SPEED_STILL_MS = 3.5    # 米/秒：静止/控球上界
+SPEED_DRIVE_MS = 10.5   # 米/秒：快速推进/长传下界
+SPEED_STILL = round(SPEED_STILL_MS * _PX_PER_M_X, 6)   # 像素/秒（≡40，与旧值等价）
+SPEED_DRIVE = round(SPEED_DRIVE_MS * _PX_PER_M_X, 6)   # 像素/秒（≡120，与旧值等价）
 HIGH_BALL_Z = 0.5
 SHOT_THREAT = 0.8
 
 
 def ball_event_types(stats: DatasetStats) -> list[str]:
-    """独立检测的数据集内发生的事件类型（排序后的集合）。"""
+    """独立检测的数据集内发生的事件类型（排序后的集合）。
+
+    局限：速度/高度/威胁阈值均为未校准启发式，仅用于评测内部相对比较，
+    不代表专业级事件检测标准。
+    """
     types: set[str] = set()
     for f0, _f1, spd in stats.ball_speed_segments:
         z0 = stats.ball_pos.get(int(f0), (0.0, 0.0, 0.0))[2]

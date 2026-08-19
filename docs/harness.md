@@ -66,7 +66,7 @@ Web 后端经 `HarnessConfig.from_env()` 读取 `HARNESS_MODE` 等环境变量�
 ## 等价性验证
 
 - **A/B 同进程对比**：同一确定性 mock 下，裸 SessionManager 与 Harness 包装的输出/状态快照/LLM 请求序列三者一致（`tests/test_harness_equivalence.py`）
-- **golden 回放回归**：`harness/golden/standard`（真实 API 录制，39 次 LLM 调用、覆盖 8 种意图 + 反事实轨迹导出）回放四维比对全部 PASS
+- **golden 回放回归**：`harness/golden/standard`（真实 API 录制，13 次 LLM 调用，覆盖系统命令 / 8 种意图 / 记忆摘要 / 反事实轨迹导出，含工具调用轨迹），回放经四维比对验证当前代码下回放等价，全程不触网
 - **工具层单测**：`tests/test_tool_calling.py`（21 例：工具循环/并行 tool_calls/失败分类/文本回退/绑定/回放兼容/流式增量/record→replay 工具闭环）
 - 回归报告由 `python -m harness verify` 生成（LLM 请求序列 / 逐轮输出 unified diff / 状态快照字段级差异 / 产出文件哈希 / 已知边界声明）
 
@@ -76,7 +76,7 @@ Web 后端经 `HarnessConfig.from_env()` 读取 `HARNESS_MODE` 等环境变量�
 - 日志与 trace 体量（新增 `Output/traces/*.jsonl`；stdout 不变）
 - 含时间戳的文件名（对话存档、trace 文件名）
 - 真实 LLM 模式的输出文本（temperature 采样不可复现；逐字节断言仅在 replay 确定性模式下有效）
-- MCTS 默认未 seed：原始版本本身非确定；record/replay 注入 seed 属"确定性增强"
+- MCTS 默认未 seed：原始版本本身非确定；模拟预算默认 300 次（可配置）；record/replay 注入 seed 属"确定性增强"
 - 实网模式下，绑定数据工具的提示词（如综合问答）中模型可能主动发起工具调用获取额外数据，回答文本与纯内嵌事实时不同——语义一致且不编造，属于工具化的预期效果；回放模式下完全确定性、与 golden 逐字节一致
 
 ## 模块一览

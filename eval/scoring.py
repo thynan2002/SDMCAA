@@ -21,6 +21,9 @@ from .config import EXTENDED_TOOL_WEIGHT, EvalConfig
 
 JUDGE_MISSING_NOTE = "Judge 未启用或评分失败，相应分量已重归一化"
 
+# Judge-程序分歧诊断（可信度增量）：程序化 accuracy 与 Judge accuracy 差的告警阈值
+JUDGE_PROGRAM_DISAGREE_THRESHOLD = 0.3
+
 # 战术数值类金标准（expr 前缀命中 → 计入 tactical_accuracy 而非 accuracy.numeric）
 TACTICAL_NUMERIC_PREFIXES = ("threat", "ball_speed", "zone", "event")
 
@@ -126,6 +129,10 @@ def score_run(case, run: dict, stats, cfg: EvalConfig,
                    for k, v in scores.items()},
         "total": round(total, 4) if total is not None else None,
         "judge_failure_mode": js.get("failure_mode") if judge_ok else None,
+        # 诊断性附加字段（不影响 scores/total 计算）：程序化 accuracy（现仅写入
+        # details.program_accuracy_score）与 Judge accuracy 的交叉对照，
+        # 供 results.json 的 judge_disagreements 汇总定位 Judge 可疑用例。
+        "judge_program_agreement": judge_program_agreement(prog_acc, accuracy),
         "adversarial_resistance": adv_resist,
         "collaboration": collab_diag,
         "details": {
@@ -140,6 +147,23 @@ def score_run(case, run: dict, stats, cfg: EvalConfig,
         },
         "judge_note": note,
     }
+
+
+def judge_program_agreement(program_score: float | None,
+                            judge_accuracy: float | None) -> dict[str, Any]:
+    """程序化 accuracy 与 Judge accuracy 的分歧诊断（仅诊断，不参与计分）。
+
+    两侧均已算出时比较差值：> JUDGE_PROGRAM_DISAGREE_THRESHOLD 记
+    flag="disagreement"，否则 "ok"；任一分量缺失（无程序金标准或 Judge
+    未评分/失败）记 flag="n/a"。
+    """
+    if program_score is None or judge_accuracy is None:
+        return {"program_accuracy": program_score, "judge_accuracy": judge_accuracy,
+                "diff": None, "flag": "n/a"}
+    diff = round(abs(program_score - judge_accuracy), 4)
+    flag = "disagreement" if diff > JUDGE_PROGRAM_DISAGREE_THRESHOLD else "ok"
+    return {"program_accuracy": program_score, "judge_accuracy": judge_accuracy,
+            "diff": diff, "flag": flag}
 
 
 def extended_total(score_row: dict, tool_diag: dict) -> float | None:

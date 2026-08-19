@@ -185,6 +185,51 @@ def _resolve_auto_gold(case: TestCase) -> None:
             gold.value = float(gold.value)
 
 
+# ── 场地标定一致性（lint 防呆） ──
+# goldref 的区域/威胁/速度指标假设数据坐标标定在 1200×700 像素场地
+# （→ 105×68 m，与 agents/constants 一致）；坐标允许 ±5% 越界（追踪噪声，
+# 如球员岀界/检测抖动），显著偏离则视为标定假设被打破。
+CALIB_FIELD_PX = (goldref._FIELD_WIDTH_PX, goldref._FIELD_HEIGHT_PX)
+CALIB_SLACK = 0.05
+
+
+def _calibration_problems(cases: list[TestCase]) -> list[str]:
+    """逐唯一数据集校验坐标范围与 1200×700 标定假设一致（防静默打破）。"""
+    import pandas as pd
+
+    problems: list[str] = []
+    seen: set[tuple[str, str]] = set()
+    for case in cases:
+        key = (case.dataset_person, case.dataset_ball)
+        if key in seen:
+            continue
+        seen.add(key)
+        users = [c.id for c in cases
+                 if (c.dataset_person, c.dataset_ball) == key]
+        for rel in key:
+            path = PROJECT_ROOT / rel
+            if not path.exists():
+                continue  # 文件缺失由上方文件存在性检查报告
+            try:
+                df = pd.read_csv(path)
+            except Exception as exc:
+                problems.append(f"{'/'.join(users)}: 标定校验无法读取 {rel}: {exc}")
+                continue
+            if not {"x", "y"}.issubset(df.columns):
+                problems.append(f"{'/'.join(users)}: {rel} 缺少 x/y 列，无法校验场地标定")
+                continue
+            for axis, size in (("x", CALIB_FIELD_PX[0]), ("y", CALIB_FIELD_PX[1])):
+                lo, hi = float(df[axis].min()), float(df[axis].max())
+                bound = size * CALIB_SLACK
+                if lo < -bound or hi > size + bound:
+                    problems.append(
+                        f"{'/'.join(users)}: {rel} 坐标 {axis} 范围 "
+                        f"[{lo:.1f}, {hi:.1f}] 显著超出标定场地 "
+                        f"{size:.0f}px（允许 ±{CALIB_SLACK:.0%}），疑似标定假设被打破"
+                    )
+    return problems
+
+
 def lint_cases(cases_dir: Path) -> list[str]:
     """校验：schema 合法、数据文件存在、auto 金标准可解析、checklist 非空或可评。"""
     problems: list[str] = []
@@ -211,4 +256,43 @@ def lint_cases(cases_dir: Path) -> list[str]:
         for g in case.category_gold:
             if not g.label and not g.aliases:
                 problems.append(f"{case.id}: category_gold 缺少 label/aliases")
+    problems.extend(_calibration_problems(cases))
     return problems
+
+
+# ── 刷分点卫生检查（warnings，不阻断） ──
+
+# 过短过泛的拒答关键词黑名单：单独成词易误命中正常语句（如“无”“没”“仅”）
+_GENERIC_REFUSAL_2CHAR = {
+    "没有", "无法", "不能", "不在", "只有", "不是", "不含", "未知", "无从",
+}
+
+
+def lint_warnings(cases_dir: Path) -> list[str]:
+    """刷分点卫生检查：仅产出 warnings（不影响 lint_cases 的 error 判定）。
+
+    1) refusal 关键词过短过泛（单字成词 / 双字泛词），易使拒答判定误命中；
+    2) checklist 关键词与 refusal 关键词重复，存在计分点自相矛盾风险。
+    """
+    warnings: list[str] = []
+    cases = load_cases(cases_dir)
+    for case in cases:
+        if case.refusal:
+            for kw in case.refusal.keywords:
+                if len(kw) <= 1:
+                    warnings.append(
+                        f"{case.id}: refusal 关键词 {kw!r} 为单字，过短过泛，"
+                        f"易误命中正常语句")
+                elif len(kw) == 2 and kw in _GENERIC_REFUSAL_2CHAR:
+                    warnings.append(
+                        f"{case.id}: refusal 关键词 {kw!r} 为双字泛词，"
+                        f"建议改用更具体的拒答措辞")
+        if case.refusal and case.checklist:
+            refusal_kws = set(case.refusal.keywords)
+            dup = sorted({kw for item in case.checklist for kw in item.keywords
+                          if kw in refusal_kws})
+            if dup:
+                warnings.append(
+                    f"{case.id}: checklist 与 refusal 关键词重复 {dup}，"
+                    f"存在计分点自相矛盾风险")
+    return warnings

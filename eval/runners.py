@@ -105,6 +105,9 @@ def run_bare(case: dict, out_dir: Path, cfg: EvalConfig) -> dict:
         if answer is None:
             result["error"] = "llm_returned_none"
         result.update(_usage_totals())
+        # 与 single/multi 兜底口径对齐：裸调用必然发起 1 次 LLM 调用，
+        # usage 事件缺失（服务端未返回 usage）时不将 llm_calls 计为 0。
+        result["llm_calls"] = max(result["llm_calls"], 1)
         result["context_chars"] = len(user_message)
     except Exception as exc:
         result["error"] = f"{type(exc).__name__}: {exc}"
@@ -220,6 +223,7 @@ def run_multi(case: dict, out_dir: Path, cfg: EvalConfig) -> dict:
         return res
 
     llm_mod._execute_tool_spec = traced_exec
+    llm_call_seq = 0
     try:
         t0 = time.monotonic()
         with Harness(hcfg) as h:
@@ -229,11 +233,17 @@ def run_multi(case: dict, out_dir: Path, cfg: EvalConfig) -> dict:
             if not ok:
                 raise RuntimeError("数据加载失败")
             answer = h.handle_input(case["input"])
+            # 调用次数兜底（与 run_single counting_dispatch 同思路）：
+            # 流式 usage 缺失时，llm_calls 至少反映真实 LLM 调用次数。
+            # Harness 拦截器对每次 dispatcher 调用计数，覆盖多智能体
+            # 内部全部 LLM 调用（路由/编排/叙述，含 stream=True 路径）。
+            llm_call_seq = h.llm_call_count
         result["latency_ms"] = round((time.monotonic() - t0) * 1000, 1)
         result["answer"] = answer
         if answer is None:
             result["error"] = "handle_input_returned_none"
         result.update(_usage_totals())
+        result["llm_calls"] = max(result["llm_calls"], llm_call_seq)
         result["model"] = _detect_model()
     except Exception as exc:
         result["error"] = f"{type(exc).__name__}: {exc}"

@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/LLM-DeepSeek-4B8BBE?style=flat-square" alt="LLM: DeepSeek">
   <img src="https://img.shields.io/badge/orchestration-LangGraph-2C8C5A?style=flat-square" alt="Orchestration: LangGraph">
   <img src="https://img.shields.io/badge/architecture-tool--calling-8B5CF6?style=flat-square" alt="Architecture: tool-calling">
-  <img src="https://img.shields.io/badge/tests-111%20passed-2EA043?style=flat-square" alt="Tests: 111 passed">
+  <img src="https://img.shields.io/badge/tests-127%20passed-2EA043?style=flat-square" alt="Tests: 127 passed">
 </p>
 
 输入球员追踪 CSV 与足球轨迹 CSV，由 LLM 驱动的多智能体流水线自动完成足球比赛数据分析，输出专业级比赛解说、球员表现分析与反事实（What-If）推演。系统以 **function calling（工具调用）** 为架构核心：结构化决策经工具契约交付、外部信息只能经工具获取，全链路经 LangGraph 编排，可通过 CLI 对话、单次解说或 Web 可视化界面使用。
@@ -94,7 +94,7 @@ python -m web.backend
 ## 测试
 
 ```bash
-pytest            # 全部用例（真实 API 冒烟默认跳过，共 111 个）
+pytest            # 全部用例（真实 API 冒烟默认跳过，共 127 个）
 pytest -m smoke   # 需要 DEEPSEEK_API_KEY 的真实 API 冒烟
 
 # Harness golden 回放回归（不触网，验证代码改动不破坏等价性）

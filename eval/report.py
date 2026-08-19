@@ -21,6 +21,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from .config import SCORED_METRICS, SYSTEM_LABELS
+from .judge import RUBRIC_VERSION
 from .tracealign import PHASE_LABELS
 
 plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei", "sans-serif"]
@@ -212,6 +213,59 @@ def _fmt_ci(ci) -> str:
     return f"[{ci[0]:.3f}, {ci[1]:.3f}]" if ci else "—"
 
 
+# ── 同源风险披露与 Judge 一致性（可信度增量，仅披露不改分） ──
+
+# Judge 一致性告警阈值：正逆序 accuracy 差超过该值的用例标黄/加告警标记
+JUDGE_CONSISTENCY_WARN = 0.15
+
+
+def _vendor_prefix(model: str) -> str:
+    """模型名前缀 → 厂商族粗判（如 deepseek-v4-pro → deepseek）。
+
+    仅作同源风险的粗粒度披露；同族不同模型仍属同厂商，如需精确结论
+    请人工核对厂商归属（可通过部署配置自行补充说明）。
+    """
+    name = (model or "").lower().split("/")[-1].strip()
+    for sep in ("-", "_", ":"):
+        if sep in name:
+            name = name.split(sep, 1)[0]
+    return name or "?"
+
+
+def _judge_disclosure_lines(meta: dict) -> list[str]:
+    """报告头部固定披露段：judge_model / rubric 版本 / 同厂商判定 / 风险声明。"""
+    jcfg = (meta.get("config", {}) or {}).get("judge", {}) or {}
+    judge_model = str(jcfg.get("model") or "(same-as-system)")
+    import os
+
+    # 机器口径与展示口径分离：同源判定用真实生效的模型名（环境变量
+    # 未配置时即默认模型 deepseek-v4-flash），展示仍用带说明的兜底文案；
+    # judge_model 为 "(same-as-system)"（engine 未单独配置 judge）时直接判同厂商。
+    effective_model = os.getenv("DEEPSEEK_MODEL") or "deepseek-v4-flash"
+    sys_model_display = os.getenv("DEEPSEEK_MODEL") or "(未配置，默认 deepseek-v4-flash)"
+    same = judge_model == "(same-as-system)" or (
+        _vendor_prefix(judge_model) == _vendor_prefix(effective_model)
+    )
+    return [
+        f"- 【同源风险披露】Judge 模型: {judge_model}；rubric 版本: {RUBRIC_VERSION}；"
+        f"被测系统模型: {sys_model_display}；Judge 与被测系统"
+        f"{'同厂商（模型名前缀粗判: ' + _vendor_prefix(effective_model) + '）' if same else '非同厂商（模型名前缀粗判）'}。"
+        "同源 Judge 存在自我偏好风险，结论需人工抽检。"
+    ]
+
+
+def _judge_consistency_rows(results: dict) -> list[tuple[str, str, float | None]]:
+    """从 results.judge_meta 提取每用例每系统的正逆序 accuracy 差。"""
+    rows: list[tuple[str, str, float | None]] = []
+    for cid, m in (results.get("judge_meta") or {}).items():
+        cons = (m or {}).get("consistency") or {}
+        if not cons:
+            continue
+        for sys_name, diff in cons.items():
+            rows.append((cid, sys_name, diff))
+    return rows
+
+
 def _level_breakdown(results: dict, meta: dict, systems: list[str]) -> list[list]:
     """按业务分层 L1-L7 聚合共同总分（3.3：可解释性分层展示）。"""
     from eval.cases import LEVEL_NAMES
@@ -251,6 +305,7 @@ def render_markdown(event_dir: Path, results: dict) -> str:
              f"git: `{meta.get('git_commit', '')[:8]}`")
     L.append(f"- 权重: {meta.get('config', {}).get('weights')}")
     L.append(f"- Judge: {meta.get('config', {}).get('judge')}")
+    L.extend(_judge_disclosure_lines(meta))
     L.append("")
 
     L.append("## 1. 总分\n")
@@ -338,7 +393,38 @@ def render_markdown(event_dir: Path, results: dict) -> str:
             L.append(f"- **{mode}** ×{info['count']}（样例: {', '.join(info['samples'])}）")
     else:
         L.append("- 无显著失败模式")
+    jd = results.get("judge_disagreements") or {}
+    if jd.get("top"):
+        L.append("")
+        L.append("Judge-程序分歧 top（详见 results.json judge_disagreements）:")
+        for item in jd["top"]:
+            L.append(f"- {item.get('system')}/{item.get('case_id')}"
+                     f"#r{item.get('repeat')}：程序 {item.get('program_accuracy')}"
+                     f" vs Judge {item.get('judge_accuracy')}（差 {item.get('diff')}）")
     L.append("")
+
+    # 6b. Judge 一致性（位置互换正逆序差，仅告警不改分）
+    cons_rows = _judge_consistency_rows(results)
+    if cons_rows:
+        L.append("## 6b. Judge 一致性（位置互换正逆序差）\n")
+        L.append(f"阈值：正逆序差 > {JUDGE_CONSISTENCY_WARN} 的用例标 ⚠，建议人工抽检（仅告警不改分）。")
+        L.append("")
+        L.append("| 用例 | 系统 | 正逆序差 | 告警 |")
+        L.append("|---|---|---|---|")
+        for cid, sys_name, diff in cons_rows:
+            warn = diff is not None and diff > JUDGE_CONSISTENCY_WARN
+            mark = "⚠" if warn else ""
+            diff_txt = f"{diff:.3f}" if diff is not None else "—"
+            L.append(f"| {cid} | {SYSTEM_LABELS.get(sys_name, sys_name)} "
+                     f"| {diff_txt} | {mark} |")
+        flagged = sorted({cid for cid, _s, d in cons_rows
+                          if d is not None and d > JUDGE_CONSISTENCY_WARN})
+        L.append("")
+        if flagged:
+            L.append(f"⚠ 一致性告警用例（{len(flagged)}）: {', '.join(flagged)}")
+        else:
+            L.append("全部用例正逆序差在阈值内。")
+        L.append("")
 
     L.append("## 7. 成本\n")
     cost = results.get("cost", {})
@@ -416,6 +502,27 @@ def _context_svg(align: dict) -> str:
                      f'stroke-width="2" points="{pts}"/>')
     return (f'<svg width="{w}" height="{h}" style="background:#fafafa">'
             f'{"".join(lines)}</svg>')
+
+
+def _judge_consistency_html(results: dict) -> str:
+    """Judge 一致性表（HTML）：正逆序差 > 阈值行标黄加 ⚠（仅告警不改分）。"""
+    rows = _judge_consistency_rows(results)
+    if not rows:
+        return ("<p class='sub'>（本次事件无 Judge 位置互换一致性数据，"
+                "如 Judge 未启用或未开启 order_swap）</p>")
+    parts = [f'<p class="sub">位置互换正逆序 accuracy 差；'
+             f'差 &gt; {JUDGE_CONSISTENCY_WARN} 标黄加 ⚠，建议人工抽检（仅告警不改分）。</p>',
+             '<table><tr><th>用例</th><th>系统</th><th>正逆序差</th><th>告警</th></tr>']
+    for cid, sys_name, diff in rows:
+        warn = diff is not None and diff > JUDGE_CONSISTENCY_WARN
+        diff_txt = f"{diff:.3f}" if diff is not None else "—"
+        cls = ' class="warn"' if warn else ""
+        parts.append(
+            f"<tr{cls}><td>{H.escape(cid)}</td>"
+            f"<td>{H.escape(SYSTEM_LABELS.get(sys_name, sys_name))}</td>"
+            f"<td>{diff_txt}</td><td>{'⚠' if warn else ''}</td></tr>")
+    parts.append("</table>")
+    return "".join(parts)
 
 
 def render_html(event_dir: Path, results: dict) -> str:
@@ -511,6 +618,9 @@ figcaption{{color:#888;font-size:.85em}}
 .legend i{{display:inline-block;width:10px;height:10px;border-radius:2px;
           margin-right:4px}}
 .tl-note{{color:#a05a00;font-size:.85em;margin-bottom:6px}}
+.disclosure{{background:#f8f9fa;border-left:4px solid #a05a00;padding:10px 14px;
+            font-size:.9em;color:#444;margin:12px 0}}
+tr.warn td,td.warn{{background:#fff3cd}}
 h2{{border-bottom:2px solid #eee;padding-bottom:6px;margin-top:36px}}
 details{{margin:6px 0}} summary{{cursor:pointer;color:#36c}}
 </style></head><body>
@@ -518,6 +628,7 @@ details{{margin:6px 0}} summary{{cursor:pointer;color:#36c}}
 <p>事件 <code>{H.escape(str(event_dir.name))}</code> ·
 用例 {results['n_cases']} · 重复 {_load_meta(event_dir).get('config', {}).get('repeats')} ·
 模型 {H.escape(str(_load_meta(event_dir).get('config', {}).get('judge', {}).get('model', '')))}</p>
+<div class="disclosure">{H.escape("".join(_judge_disclosure_lines(_load_meta(event_dir))).lstrip("- "))}</div>
 <div class="cards">{"".join(cards)}</div>
 {img_tags}
 <h2>分指标</h2>{metric_table}
@@ -527,6 +638,8 @@ details{{margin:6px 0}} summary{{cursor:pointer;color:#36c}}
 <h2>类别 × 系统</h2>
 {f'<img src="data:image/png;base64,{_b64(event_dir / "figures" / "fig_category.png")}" style="max-width:100%">' if (event_dir / "figures" / "fig_category.png").exists() else "<p class='sub'>（无类别数据）</p>"}
 <h2>失败模式（Judge 标注）</h2><ul>{fm_html}</ul>
+<h2>Judge 一致性（位置互换正逆序差）</h2>
+{_judge_consistency_html(results)}
 <h2>逐步骤对齐（用例 {H.escape(align_case)}，重复 #0）</h2>
 {_timeline_html(align)}
 {ctx_svg and f'<h3>上下文演变</h3>{ctx_svg}'}
